@@ -1,0 +1,35 @@
+# scan = 40
+# date = 9/5/2017
+# time = 3:32:09 PM
+# proposal = 19739
+# experiment = Separation of phonon and magnetic scattering near the Majorana mode in α-RuCl3: feasibility study
+# experiment_number = 600
+# command = scan sgu -10 10 1
+# builtin_command = scan sgu -10 10 1
+# users = Paula Kelley
+# local_contact = 
+# scan_title = Co-alignment on post RT 0 0 6 position
+# monochromator = PG002
+# analyzer = Pg002
+# sense = -+-
+# collimation = 48-40-40-120
+# samplename = RuCl3
+# sampletype = crystal
+# samplemosaic = 30.000000
+# latticeconstants = 5.975000,5.975000,17.000000,90.000000,90.000000,120.000000
+# ubmatrix = 0.011053,0.002606,-0.058718,0.192939,0.096469,0.003365,-0.000193,-0.167435,0.001025
+# mode = 0
+# plane_normal = 0.017452,-0.000000,0.999848
+# ubconf = UB05Sep2017_32726PM.ini
+# preset_type = normal 
+# preset_channel = time
+# preset_value = 1.000000
+# def_x = sgu
+# def_y = detector
+# col_headers = 
+#   Pt.        sgu       time   detector    monitor        mcu focal_length         m1         m2   mcrystal       marc     mtrans     mfocus        bab        bal        bar        bat        bbb        bbl        bbr        bbt         s1         s2        sgl        stl        stu         a1         a2          q          h          k          l         ei         ef          e   cold_tip    tsample       temp
+      1    -4.5850      0.000      0.000      0.000      0.000    66.7975   -22.2454   -41.1655   119.9771     2.6000    -2.0000   -34.2897    39.0000    30.0000    30.0000    39.0000    10.0000    30.0000    30.0000    30.0000   136.1999    86.3046    -1.0000    -0.0010     0.0000   159.4104   -41.1799     3.6428     3.1286    -0.2765     0.0536    14.7005    14.6907     0.0098     1.0000     1.0000     1.000
+# Sum of Counts = 0
+# Center of Mass = NaN+/-NaN
+# Full Width Half-Maximum = NaN+/-NaN
+# 3:32:14 PM  9/5/2017   scan stopped!!
