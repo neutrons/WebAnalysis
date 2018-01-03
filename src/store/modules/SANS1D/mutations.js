@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import _ from 'lodash';
 import * as d3 from 'd3';
-import fd from '../../../assets/js/FitData/fitData';
+import transformData from '../../../assets/js/FitData/transformData';
 
 export default {
   addFetchFiles(state, files) {
@@ -40,34 +40,42 @@ export default {
 
     Vue.set(state.saved, filename, data);
   },
-  resetCurrentData(state) {
-    // eslint-disable-next-line
+  resetAll(state) {
+    /* eslint-disable */
     state.selectedData = [];
+    state.plotScale = {
+      x: { label: 'x', value: d3.scaleLinear() },
+      y: { label: 'y', value: d3.scaleLinear() },
+    };
+    state.transformations = {
+      x: 'x',
+      y: 'y',
+    };
+    /* eslinst-enable */
   },
-  setCurrentData(state, payload) {
-    const currentConfiguration = _.cloneDeep(payload.currentConfiguration);
+  setCurrentData(state, chosenData) {
     const field = _.cloneDeep(state.field);
-    const tempData = _.cloneDeep(payload.chosenData);
+    const tempData = _.cloneDeep(chosenData);
     const tempSelect = [];
 
     for (let i = 0, len = tempData.length; i < len; i += 1) {
-      const temp = tempData[i].data;
-      const name = tempData[i].filename;
+      const data = tempData[i].data;
+      const filename = tempData[i].filename;
 
-      if (currentConfiguration.transformations.x !== 'x' || currentConfiguration.transformations.y !== 'y') {
-        const dataTransformed = fd.transformData(temp, currentConfiguration.transformations, field);
+      if (state.transformations.x !== 'x' || state.transformations.y !== 'y') {
+        const dataTransformed = transformData(data, state.transformations, field);
 
         tempSelect.push({
-          filename: name,
-          data: temp,
+          filename,
+          data,
           dataTransformed,
         });
       } else {
-        const dataTransformed = _.cloneDeep(temp);
+        const dataTransformed = _.cloneDeep(data);
 
         tempSelect.push({
-          filename: name,
-          data: temp,
+          filename,
+          data,
           dataTransformed,
         });
       }
@@ -78,11 +86,11 @@ export default {
   },
   setXScale(state, x) {
     // eslint-disable-next-line
-    state.plotScale.x = { label: x, value: _.cloneDeep(state.scale.x[x]) };
+    state.plotScale.x = { label: x, value: state.scale.x[x].copy() };
   },
   setYScale(state, y) {
     // eslint-disable-next-line
-    state.plotScale.y = { label: y, value: _.cloneDeep(state.scale.y[y]) };
+    state.plotScale.y = { label: y, value: state.scale.y[y].copy() };
   },
   resetScales(state) {
     // eslint-disable-next-line
@@ -90,5 +98,91 @@ export default {
       x: { label: 'x', value: d3.scaleLinear() },
       y: { label: 'y', value: d3.scaleLinear() },
     };
+  },
+  setXTransformation(state, x) {
+    // eslint-disable-next-line
+    state.transformations.x = x;
+  },
+  setYTransformation(state, y) {
+    // eslint-disable-next-line
+    state.transformations.y = y;
+  },
+  setTransformations(state, payload) {
+    // eslint-disable-next-line
+    state.transformations = {
+      x: payload.x,
+      y: payload.y,
+    };
+  },
+  resetTransformations(state) {
+    // eslint-disable-next-line
+    state.transformations = {
+      x: state.fits[state.fitType].transformations.x,
+      y: state.fits[state.fitType].transformations.y,
+      error: state.fits[state.fitType].transformations.error,
+    };
+  },
+  transformData(state) {
+    const tempData = _.cloneDeep(state.selectedData);
+
+    state.selectedData.forEach((el) => {
+      if (state.transformations.x !== 'x' || state.transformations.y !== 'y') {
+        el.dataTransformed = transformData(el.data, state.transformations);
+      } else {
+        el.dataTransformed = _.cloneDeep(el.data);
+      }
+    })
+  },
+  setFitType(state, type = state.fitType) {
+    /* eslint-disable */
+    state.fitType = type;
+    state.fitEquation = state.fits[type].equation;
+    state.transformations.x = state.fits[type].transformations.x;
+    state.transformations.y = state.fits[type].transformations.y;
+    state.transformations.error = state.fits[type].transformations.error;
+    state.fitInitialValues = _.cloneDeep(state.fits[type].initialValues);
+    /* eslint-enable */
+  },
+  setFitEquation(state, value = state.fits[state.fitType].equation) {
+    // eslint-disable-next-line
+    state.fitEquation = value;
+  },
+  setFitDamping(state, value = state.defaultFitSettings.damping.value) {
+    // eslint-disable-next-line
+    state.fitSettings.damping = value;
+  },
+  setFitGradient(state, value = state.defaultFitSettings.gradientDifference.value) {
+    // eslint-disable-next-line
+    state.fitSettings.gradientDifference = value;
+  },
+  setFitIterations(state, value = state.defaultFitSettings.maxIterations.value) {
+    // eslint-disable-next-line
+    state.fitSettings.maxIterations = value;
+  },
+  setFitError(state, value = state.defaultFitSettings.errorTolerance.value) {
+    // eslint-disable-next-line
+    state.fitSettings.errorTolerance = value;
+  },
+  setFitInitialValues(state) {
+    // eslint-disable-next-line
+    state.fitInitialValues = _.cloneDeep(state.fits[state.fitType].initialValues);
+  },
+  resetFitConfiguration(state) {
+    /* eslint-disable */
+    state.fitSettings = {
+      damping: undefined,
+      errorTolerance: undefined,
+      gradientDifference: undefined,
+      maxIterations: undefined,
+    };
+    state.fitType = 'Linear';
+    state.fitEquation = undefined;
+    state.fitInitialValues = [];
+    state.transformations = {
+      x: 'x',
+      y: 'y',
+      error: 'error',
+    };
+    /* eslint-enable */
   },
 };

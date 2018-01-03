@@ -1,6 +1,6 @@
 <template>
 <v-expansion-panel flat>
-  <v-expansion-panel-content :value='true' class='green white--text'>
+  <v-expansion-panel-content :value='!collapse' class='green white--text'>
     <div slot='header' class='title'>Files</div>
 
     <v-container class='grey lighten-4'>
@@ -47,6 +47,10 @@ export default {
     multiple: {
       type: Boolean,
       default: true,
+    },
+    collapse: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {

@@ -8,7 +8,8 @@
         chips
         deletable-chips
         hint='Pick tags to filter files'
-        light>
+        light
+        :disabled='tags.length === 0'>
     </v-select>
 </template>
 

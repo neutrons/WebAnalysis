@@ -1,20 +1,17 @@
-import * as d3 from 'd3';
-import scales from '../../Scales/scales';
-
 export default {
+  ID: 'SANS2D',
   fetched: {},
   uploaded: {},
   saved: {},
   filesSelected: null,
   filters: [],
   selectedData: [],
-  scale: {
-    x: { ...scales.x },
-  },
-  plotScale: {
-    x: d3.scaleLinear(),
-    y: d3.scaleLinear(),
-  },
+  scales: [
+    'Log',
+    'Linear',
+  ],
+  hexScale: 'Log',
+  hexBinSize: 15,
   label: {
     x: 'x',
     y: 'y',

@@ -1,10 +1,6 @@
 import _ from 'lodash';
 
 export default {
-  getXScales: state => state.scale.x,
-  getYScales: state => state.scale.y,
-  getPlotScaleX: state => state.plotScale.x,
-  getPlotScaleY: state => state.plotScale.y,
   getFilesToPlot: state => state.filesToPlot,
   getFileToFit: state => state.fileToFit,
   getSavedFile: state => (file) => {
@@ -14,7 +10,7 @@ export default {
       return '999';
     }
 
-    return _.cloneDeep(temp);
+    return { data: _.cloneDeep(temp), filename: file };
   },
   getURLs: state => (files) => {
     const tempURLs = [];

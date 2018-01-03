@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import _ from 'lodash';
 import * as d3 from 'd3';
-import fd from '../../../assets/js/FitData/fitData';
+import swapFields from '../../../assets/js/swapFields';
 
 export default {
   addFetchFiles(state, files) {
@@ -40,49 +40,44 @@ export default {
 
     Vue.set(state.saved, filename, data);
   },
-  resetCurrentData(state) {
-    // eslint-disable-next-line
+  resetAll(state) {
+    /* eslint-disable */
     state.selectedData = [];
+    state.field = { x: 'pt', y: 'detector' };
+    state.plotScale = {
+      x: { label: 'x', value: d3.scaleLinear() },
+      y: { label: 'y', value: d3.scaleLinear() },
+    };
+    /* eslinst-enable */
   },
-  setCurrentData(state, payload) {
-    const currentConfiguration = _.cloneDeep(payload.currentConfiguration);
-    const field = _.cloneDeep(state.field);
-    const tempData = _.cloneDeep(payload.chosenData);
+  setCurrentData(state, chosenData) {
+    const tempData = _.cloneDeep(chosenData);
     const tempSelect = [];
 
-    for (let i = 0, len = tempData.length; i < len; i += 1) {
-      const temp = tempData[i].data;
-      const name = tempData[i].filename;
+    tempData.forEach((d) => {
+      const data = _.cloneDeep(d.data);
+      const metadata = [...d.metadata];
+      const filename = d.filename;
+      const dataTransformed = swapFields(data, state.field);
 
-      if (currentConfiguration.transformations.x !== 'x' || currentConfiguration.transformations.y !== 'y') {
-        const dataTransformed = fd.transformData(temp, currentConfiguration.transformations, field);
-
-        tempSelect.push({
-          filename: name,
-          data: temp,
-          dataTransformed,
-        });
-      } else {
-        const dataTransformed = _.cloneDeep(temp);
-
-        tempSelect.push({
-          filename: name,
-          data: temp,
-          dataTransformed,
-        });
-      }
-    }
+      tempSelect.push({
+        data,
+        dataTransformed,
+        filename,
+        metadata,
+      });
+    });
 
     // eslint-disable-next-line
     state.selectedData = tempSelect;
   },
   setXScale(state, x) {
     // eslint-disable-next-line
-    state.plotScale.x = { label: x, value: _.cloneDeep(state.scale.x[x]) };
+    state.plotScale.x = { label: x, value: state.scale.x[x].copy() };
   },
   setYScale(state, y) {
     // eslint-disable-next-line
-    state.plotScale.y = { label: y, value: _.cloneDeep(state.scale.y[y]) };
+    state.plotScale.y = { label: y, value: state.scale.y[y].copy() };
   },
   resetScales(state) {
     // eslint-disable-next-line
@@ -90,5 +85,73 @@ export default {
       x: { label: 'x', value: d3.scaleLinear() },
       y: { label: 'y', value: d3.scaleLinear() },
     };
+  },
+  setXField(state, value) {
+    // eslint-disable-next-line
+    state.field.x = value;
+  },
+  setYField(state, value) {
+    // eslint-disable-next-line
+    state.field.y = value;
+  },
+  changeFields(state) {
+    const tempSelect = [];
+
+    state.selectedData.forEach((d) => {
+      const data = _.cloneDeep(d.data);
+      const metadata = [...d.metadata];
+      const filename = d.filename;
+      const dataTransformed = swapFields(data, state.field);
+
+      tempSelect.push({
+        data,
+        dataTransformed,
+        filename,
+        metadata,
+      });
+    });
+
+    // eslint-disable-next-line
+    state.selectedData = tempSelect;
+  },
+  setFitEquation(state, value = state.fits[state.fitType].equation) {
+    // eslint-disable-next-line
+    state.fitEquation = value;
+  },
+  setFitDamping(state, value = state.defaultFitSettings.damping.value) {
+    // eslint-disable-next-line
+    state.fitSettings.damping = value;
+  },
+  setFitGradient(state, value = state.defaultFitSettings.gradientDifference.value) {
+    // eslint-disable-next-line
+    state.fitSettings.gradientDifference = value;
+  },
+  setFitIterations(state, value = state.defaultFitSettings.maxIterations.value) {
+    // eslint-disable-next-line
+    state.fitSettings.maxIterations = value;
+  },
+  setFitError(state, value = state.defaultFitSettings.errorTolerance.value) {
+    // eslint-disable-next-line
+    state.fitSettings.errorTolerance = value;
+  },
+  setFitEquation(state, value) {
+    // eslint-disable-next-line
+    state.fitEquation = value;
+  },
+  setFitInitialValues(state, value) {
+    // eslint-disable-next-line
+    state.fitInitialValues = value;
+  },
+  resetFitConfiguration(state) {
+    /* eslint-disable */
+    state.fitSettings = {
+      damping: undefined,
+      errorTolerance: undefined,
+      gradientDifference: undefined,
+      maxIterations: undefined,
+    };
+    state.fitEquation = undefined;
+    state.fitInitialValues = [];
+    /* eslint-enable */
   },
 };

@@ -13,6 +13,14 @@ export default function (chunk) {
     header = header.split(/[\s,]+/).join(delimiter);
   }
 
+  // Rename error header to be consistent
+  header = header.split(/[\s,]+/);
+  const position = header.indexOf('e');
+
+  // eslint-disable-next-line
+  header[position] = 'error';
+  header = header.join(delimiter);
+
   // Remove punctuations from header names for readability
   header = header.replace(/Pt./, 'pt');
 

@@ -35,9 +35,15 @@ export default {
 
     Vue.set(state.saved, filename, data);
   },
-  resetCurrentData(state) {
-    // eslint-disable-next-line
+  resetAll(state) {
+    /* eslint-disable */
     state.selectedData = [];
+    state.isZoomBrush = true;
+    state.plotScale = {
+      x: { label: 'x', value: d3.scaleLinear() },
+      y: { label: 'y', value: d3.scaleLinear() },
+    };
+    /* eslint-enable */
   },
   setCurrentData(state, chosenData) {
     const tempData = _.cloneDeep(chosenData);
@@ -60,11 +66,11 @@ export default {
   },
   setXScale(state, x) {
     // eslint-disable-next-line
-    state.plotScale.x = { label: x, value: _.cloneDeep(state.scale.x[x]) };
+    state.plotScale.x = { label: x, value: state.scale.x[x].copy() };
   },
   setYScale(state, y) {
     // eslint-disable-next-line
-    state.plotScale.y = { label: y, value: _.cloneDeep(state.scale.y[y]) };
+    state.plotScale.y = { label: y, value: state.scale.y[y].copy() };
   },
   resetScales(state) {
     // eslint-disable-next-line
@@ -72,5 +78,9 @@ export default {
       x: { label: 'x', value: d3.scaleLinear() },
       y: { label: 'y', value: d3.scaleLinear() },
     };
+  },
+  toggleZoomBrush(state, value) {
+    // eslint-disable-next-line
+    state.isZoomBrush = value;
   },
 };
