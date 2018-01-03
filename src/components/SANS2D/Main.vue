@@ -3,6 +3,8 @@
         <h4>{{msg}}</h4>
         <p>Files to plot: {{fileToPlot}}</p>
         <p>Data to plot: {{selectedData}}</p>
+        <p>Hex Bin Size: {{hexBinSize}}</p>
+        <p>Hex Scale: {{hexScale}}</p>
     </v-container>
 </template>
 
@@ -33,11 +35,17 @@ export default {
     selectedData() {
       return this.$store.state[this.ID].selectedData;
     },
+    hexBinSize() {
+      return this.$store.state[this.ID].hexBinSize;
+    },
+    hexScale() {
+      return this.$store.state[this.ID].hexScale;
+    },
   },
   watch: {
     fileToPlot() {
       if (this.fileToPlot === null || this.fileToPlot.length === 0) {
-        this.$store.commit(`${this.title}/resetCurrentData`);
+        this.$store.commit(`${this.title}/resetAll`);
       } else {
         const vm = this;
         let fileURLs = [];
@@ -53,8 +61,10 @@ export default {
         }
 
         if (fileURLs.length > 0) {
+          console.log('reading data');
           this.read2DData(fileURLs, tempData);
         } else {
+          console.log('using saved');
           this.$store.commit(`${this.title}/setCurrentData`, tempData);
         }
       }

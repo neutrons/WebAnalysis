@@ -11,8 +11,8 @@ export default {
     xLabel: 'Q',
     note: '',
     initialValues: [
-      ['m', 1, false],
-      ['b', 1, false],
+      { coefficient: 'm', value: 1, constant: false },
+      { coefficient: 'b', value: 1, constant: false },
     ],
   },
   Guinier: {
@@ -27,8 +27,8 @@ export default {
     xLabel: 'q^2',
     note: '',
     initialValues: [
-      ['Rg', 1, false],
-      ['I0', 1, false],
+      { coefficient: 'Rg', value: 1, constant: false },
+      { coefficient: 'I0', value: 1, constant: false },
     ],
   },
   Porod: {
@@ -43,8 +43,8 @@ export default {
     xLabel: 'q',
     note: 'This is valid for high Q.',
     initialValues: [
-      ['p0', 1, false],
-      ['p1', 1, false],
+      { coefficient: 'p0', value: 1, constant: false },
+      { coefficient: 'p1', value: 1, constant: false },
     ],
   },
   Zimm: {
@@ -59,8 +59,8 @@ export default {
     xLabel: 'q^2',
     note: '',
     initialValues: [
-      ['I0', 1, false],
-      ['Cl', 1, false],
+      { coefficient: 'I0', value: 1, constant: false },
+      { coefficient: 'Cl', value: 1, constant: false },
     ],
   },
   Kratky: {
@@ -77,8 +77,8 @@ export default {
     xLabel: 'q',
     note: '',
     initialValues: [
-      ['m', 1, false],
-      ['b', 1, false],
+      { coefficient: 'm', value: 1, constant: false },
+      { coefficient: 'b', value: 1, constant: false },
     ],
   },
   'Debye-Beuche': {
@@ -93,8 +93,8 @@ export default {
     xLabel: 'Q^2',
     note: '',
     initialValues: [
-      ['m', 1, false],
-      ['I0', 1, false],
+      { coefficient: 'm', value: 1, constant: false },
+      { coefficient: 'I0', value: 1, constant: false },
     ],
   },
 };

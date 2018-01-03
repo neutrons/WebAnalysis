@@ -58,7 +58,7 @@ export default {
         Promise.all(promises).then((results) => {
           const plotData = _.concat(tempData, results);
 
-          vm.$store.dispatch(`${vm.title}/setCurrentData`, plotData);
+          vm.$store.commit(`${vm.title}/setCurrentData`, plotData);
         }).catch((reason) => {
           const errorMsg = `Error! ${reason}`;
 

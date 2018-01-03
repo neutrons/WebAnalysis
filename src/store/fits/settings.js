@@ -1,9 +1,9 @@
 export default {
   damping: {
-    value: 0.001,
-    min: 0.001,
+    value: 0.1,
+    min: 0.1,
     max: 10,
-    increment: 0.001,
+    increment: 0.1,
   },
   gradientDifference: {
     value: 0.1,
@@ -18,9 +18,9 @@ export default {
     increment: 100,
   },
   errorTolerance: {
-    value: 0.001,
-    min: 0.001,
+    value: 0.1,
+    min: 0.1,
     max: 1,
-    increment: 0.001,
+    increment: 0.1,
   },
 };

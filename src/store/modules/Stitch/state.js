@@ -2,6 +2,7 @@ import * as d3 from 'd3';
 import scales from '../../Scales/scales';
 
 export default {
+  ID: 'Stitch',
   fetched: {},
   uploaded: {},
   saved: {},
@@ -21,4 +22,5 @@ export default {
     x: 'x',
     y: 'y',
   },
+  isZoomBrush: true,
 };

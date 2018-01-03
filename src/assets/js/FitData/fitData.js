@@ -40,7 +40,7 @@ fd.transformData = (data, transformations, fields = {
   // https://stackoverflow.com/questions/7574054/javascript-how-to-pass-object-by-value
   const t = _.cloneDeep(data);
 
-  console.log('Transforming your data', trans, t);
+  // console.log('Transforming your data', trans, t);
   // First swap x,y for field names
   let transKeys = Object.keys(trans);
   const fieldKeys = Object.keys(fields);

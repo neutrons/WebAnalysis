@@ -17,7 +17,7 @@ export default {
               data: data.data,
             });
 
-            return data;
+            return { data: data.data, filename: url.filename };
           });
         }
           // Turn file reader into a promise in order to
@@ -38,7 +38,7 @@ export default {
               data: data.data,
             });
 
-            resolve(data);
+            resolve({ data: data.data, filename: url.filename });
           };
 
           reader.readAsText(url.url, 'UTF-8');
@@ -47,9 +47,10 @@ export default {
 
       if (promises.length > 0) {
         Promise.all(promises).then((results) => {
-          const plotData = _.concat(tempData, results);
+          const data = _.concat(tempData, results[0].data);
+          const filename = results[0].filename;
 
-          vm.$store.commit(`${vm.title}/setCurrentData`, plotData);
+          vm.$store.commit(`${vm.title}/setCurrentData`, { data, filename });
         }).catch((reason) => {
           const errorMsg = `Error! ${reason}`;
 

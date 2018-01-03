@@ -5,14 +5,19 @@
         <p>File to fit: {{fileToFit}}</p>
         <p>Data to plot: {{selectedData}}</p>
         <p>Plot scales: {{plotScales}}</p>
+        <p>Transformations: {{transformations}}</p>
+        <p>Fit Type: {{fitType}}</p>
+        <p>Fit equation: {{fitEquation}}</p>
+        <p>Fit settings: {{fitSettings}}</p>
+        <p>Fit initial values: {{fitInitialValues}}</p>
     </v-container>
 </template>
 
 <script>
 import _ from 'lodash';
-import getTitle from '../../assets/js/getTitle';
 
 // Import Mixins
+import getTitle from '../../assets/js/getTitle';
 import read1DData from '../../assets/js/readFiles/default';
 import parseData from '../../assets/js//readFiles/parse/SANS1D';
 
@@ -42,11 +47,26 @@ export default {
     plotScales() {
       return this.$store.state[this.ID].plotScale;
     },
+    transformations() {
+      return this.$store.state[this.ID].transformations;
+    },
+    fitType() {
+      return this.$store.state[this.ID].fitType;
+    },
+    fitEquation() {
+      return this.$store.state[this.ID].fitEquation;
+    },
+    fitInitialValues() {
+      return this.$store.state[this.ID].fitInitialValues;
+    },
+    fitSettings() {
+      return this.$store.state[this.ID].fitSettings;
+    },
   },
   watch: {
     filesToPlot() {
       if (this.filesToPlot.length === 0) {
-        this.$store.commit(`${this.title}/resetCurrentData`);
+        this.$store.commit(`${this.title}/resetAll`);
       } else {
         const tempFilesToPlot = _.cloneDeep(this.filesToPlot);
         const vm = this;
@@ -69,8 +89,13 @@ export default {
         if (fileURLs.length > 0) {
           this.read1DData(fileURLs, tempData);
         } else {
-          this.$store.dispatch(`${this.title}/setCurrentData`, tempData);
+          this.$store.commit(`${this.title}/setCurrentData`, tempData);
         }
+      }
+    },
+    fileToFit() {
+      if (this.fileToFit === null) {
+        this.$store.commit(`${this.title}/resetFitConfiguration`);
       }
     },
   },
