@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import SidebarSANS1D from './SidebarSANS1D';
-import SidebarSANS2D from './SidebarSANS2D';
-import SidebarStitch from './SidebarStitch';
-import SidebarTAS from './SidebarTAS';
+import SidebarSANS1D from './SANS1D/SidebarSANS1D';
+import SidebarSANS2D from './SANS2D/SidebarSANS2D';
+import SidebarStitch from './Stitch/SidebarStitch';
+import SidebarTAS from './TAS/SidebarTAS';
 
 /* Import Mixins */
 import getTitle from '../../assets/js/getTitle';

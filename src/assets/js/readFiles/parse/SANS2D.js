@@ -5,7 +5,6 @@ export default {
   methods: {
     parseData(data) {
       const results2D = pp.parse(data, config);
-
       return results2D;
     },
   },

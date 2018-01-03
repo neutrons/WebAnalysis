@@ -4,6 +4,7 @@ import fits from '../../fits/TAS';
 import scales from '../../Scales/scales';
 
 export default {
+  ID: 'TAS',
   fetched: {},
   uploaded: {},
   saved: {},
@@ -20,20 +21,22 @@ export default {
     x: { label: 'x', value: d3.scaleLinear() },
     y: { label: 'y', value: d3.scaleLinear() },
   },
-  fitSetting: { ...settings },
-  fitEquation: null,
-  initialValues: [],
-  label: {
-    x: 'x',
-    y: 'y',
+  defaultFitSettings: { ...settings },
+  fitSettings: {
+    damping: undefined,
+    errorTolerance: undefined,
+    gradientDifference: undefined,
+    maxIterations: undefined,
   },
-  transformations: {
+  fitEquation: undefined,
+  fitInitialValues: [],
+  label: {
     x: 'x',
     y: 'y',
   },
   fit: { ...fits },
   field: {
-    x: 'x',
-    y: 'y',
+    x: 'pt',
+    y: 'detector',
   },
 };

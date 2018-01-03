@@ -4,14 +4,15 @@
         <p>Files to plot: {{filesToPlot}}</p>
         <p>Data to plot: {{selectedData}}</p>
         <p>Plot scales: {{plotScales}}</p>
+        <p>Zoom Brush Toggle: {{zoomBrush}}</p>
     </v-container>
 </template>
 
 <script>
 import _ from 'lodash';
-import getTitle from '../../assets/js/getTitle';
 
 // Import Mixins
+import getTitle from '../../assets/js/getTitle';
 import read1DData from '../../assets/js/readFiles/default';
 import parseData from '../../assets/js//readFiles/parse/SANS1D';
 
@@ -38,11 +39,14 @@ export default {
     plotScales() {
       return this.$store.state[this.ID].plotScale;
     },
+    zoomBrush() {
+      return this.$store.state[this.ID].isZoomBrush;
+    },
   },
   watch: {
     filesToPlot() {
       if (this.filesToPlot.length === 0) {
-        this.$store.commit(`${this.title}/resetCurrentData`);
+        this.$store.commit(`${this.title}/resetAll`);
       } else {
         const tempFilesToPlot = _.cloneDeep(this.filesToPlot);
         const vm = this;

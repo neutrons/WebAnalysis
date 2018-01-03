@@ -28,25 +28,34 @@ export default {
 
     Vue.set(state.saved, filename, data);
   },
-  resetCurrentData(state) {
-    // eslint-disable-next-line
+  resetAll(state) {
+    /* eslint-disable */
     state.selectedData = [];
+    state.hexBinSize = 15;
+    state.hexScale = 'Log';
+    /* eslint-enable */
   },
-  setCurrentData(state, chosenData) {
-    const tempData = _.cloneDeep(chosenData);
-    const tempSelect = [];
-
-    for (let i = 0, len = tempData.length; i < len; i += 1) {
-      const temp = tempData[i].data;
-      const name = tempData[i].filename;
-
-      tempSelect.push({
-        filename: name,
-        data: temp,
-      });
-    }
+  setCurrentData(state, payload) {
+    const data = _.cloneDeep(payload.data);
+    const filename = payload.filename;
 
     // eslint-disable-next-line
-    state.selectedData = tempSelect;
+    state.selectedData = [{ data, filename }];
+  },
+  setScale(state, value) {
+    // eslint-disable-next-line
+    state.hexScale = value;
+  },
+  resetScale(state) {
+    // eslint-disable-next-line
+    state.hexScale = 'Log';
+  },
+  setBinSize(state, value) {
+    // eslint-disable-next-line
+    state.hexBinSize = value;
+  },
+  resetBinSize(state) {
+    // eslint-disable-next-line
+    state.hexBinSize = 15;
   },
 };

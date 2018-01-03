@@ -4,6 +4,7 @@ import fits from '../../fits/SANS1D';
 import scales from '../../Scales/scales';
 
 export default {
+  ID: 'SANS1D',
   fetched: {},
   uploaded: {},
   saved: {},
@@ -20,9 +21,16 @@ export default {
     x: { label: 'x', value: d3.scaleLinear() },
     y: { label: 'y', value: d3.scaleLinear() },
   },
-  fitSetting: { ...settings },
-  fitEquation: null,
-  initialValues: [],
+  fitType: 'Linear',
+  defaultFitSettings: { ...settings },
+  fitSettings: {
+    damping: undefined,
+    errorTolerance: undefined,
+    gradientDifference: undefined,
+    maxIterations: undefined,
+  },
+  fitEquation: undefined,
+  fitInitialValues: [],
   label: {
     x: 'x',
     y: 'y',
@@ -30,8 +38,9 @@ export default {
   transformations: {
     x: 'x',
     y: 'y',
+    error: 'error',
   },
-  fit: { ...fits },
+  fits: { ...fits },
   field: {
     x: 'x',
     y: 'y',

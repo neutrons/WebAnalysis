@@ -72,8 +72,8 @@ export default {
   getCurrentConfiguration: (state) => {
     const equation = state.fitEquation;
     const transformations = state.transformations;
-    const initialValues = state.initialValues;
-    const settings = state.fitSetting;
+    const initialValues = state.fitInitialValues;
+    const settings = state.fitSettings;
 
     return {
       equation,
