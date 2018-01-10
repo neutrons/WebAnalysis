@@ -8,15 +8,33 @@ export default {
     const keys = Object.keys(files);
     keys.forEach((key) => {
       Vue.set(state.fetched, key, files[key]);
+
+      if (state.colorDomain.indexOf(key) === -1) {
+        state.colorDomain.push(key);
+      }
     });
   },
   addUploadFiles(state, files) {
     const keys = Object.keys(files);
     keys.forEach((key) => {
       Vue.set(state.uploaded, key, files[key]);
+
+      if (state.colorDomain.indexOf(key) === -1) {
+        state.colorDomain.push(key);
+      }
     });
   },
   updateFilesSelected(state, selected) {
+    const keys = [];
+
+    state.filesSelected.forEach((key) => {
+      if (selected.indexOf(key) === -1) {
+        keys.push(key);
+      }
+    });
+    // eslint-disable-next-line
+    state.deleteKeys = keys;
+    // now update new list
     // eslint-disable-next-line
     state.filesSelected = selected;
 
@@ -33,6 +51,10 @@ export default {
   updateFileToFit(state, selected) {
     // eslint-disable-next-line
     state.fileToFit = selected;
+  },
+  setPreviousFit(state, value) {
+    // eslint-disable-next-line
+    state.previousFit = value;
   },
   storeData(state, payload) {
     const filename = payload.filename;
@@ -51,7 +73,13 @@ export default {
       x: 'x',
       y: 'y',
     };
-    /* eslinst-enable */
+    state.label = {
+      x: 'q = x',
+      y: 'I(q) = y',
+    };
+    state.deleteKeys = [];
+    state.fittedData = [];
+    /* eslint-enable */
   },
   setCurrentData(state, chosenData) {
     const field = _.cloneDeep(state.field);
@@ -100,12 +128,16 @@ export default {
     };
   },
   setXTransformation(state, x) {
-    // eslint-disable-next-line
+    /* eslint-disable */
     state.transformations.x = x;
+    state.label.x = `q = ${x}`;
+    /* eslint-enable */
   },
   setYTransformation(state, y) {
-    // eslint-disable-next-line
+    /* eslint-disable */
     state.transformations.y = y;
+    state.label.y = `I(q) = ${y}`;
+    /* eslint-enable */
   },
   setTransformations(state, payload) {
     // eslint-disable-next-line
@@ -115,23 +147,29 @@ export default {
     };
   },
   resetTransformations(state) {
-    // eslint-disable-next-line
+    /* eslint-disable */
     state.transformations = {
       x: state.fits[state.fitType].transformations.x,
       y: state.fits[state.fitType].transformations.y,
       error: state.fits[state.fitType].transformations.error,
     };
+
+    state.label = {
+      x: 'q = x',
+      y: 'I(q) = y',
+    };
+    /* eslint-enable */
   },
   transformData(state) {
-    const tempData = _.cloneDeep(state.selectedData);
-
     state.selectedData.forEach((el) => {
       if (state.transformations.x !== 'x' || state.transformations.y !== 'y') {
+        // eslint-disable-next-line
         el.dataTransformed = transformData(el.data, state.transformations);
       } else {
+        // eslint-disable-next-line
         el.dataTransformed = _.cloneDeep(el.data);
       }
-    })
+    });
   },
   setFitType(state, type = state.fitType) {
     /* eslint-disable */
@@ -141,7 +179,12 @@ export default {
     state.transformations.y = state.fits[type].transformations.y;
     state.transformations.error = state.fits[type].transformations.error;
     state.fitInitialValues = _.cloneDeep(state.fits[type].initialValues);
+    state.fitNote = state.fits[type].note;
     /* eslint-enable */
+  },
+  updateFitEquation(state, value) {
+    // eslint-disable-next-line
+    state.fitEquation = value;
   },
   setFitEquation(state, value = state.fits[state.fitType].equation) {
     // eslint-disable-next-line
@@ -163,17 +206,39 @@ export default {
     // eslint-disable-next-line
     state.fitSettings.errorTolerance = value;
   },
-  setFitInitialValues(state) {
+  addFitInitialValue(state, value) {
+    value.forEach((v) => {
+      state.fitInitialValues.push({
+        coefficient: v,
+        value: 1,
+        constant: false,
+      });
+    });
+  },
+  setFitInitialValues(state, value = state.fits[state.fitType].initialValues) {
+    /* Note: Make sure to add a method
+       to compile initial values with
+       mathjs that are string formulas
+     */
     // eslint-disable-next-line
-    state.fitInitialValues = _.cloneDeep(state.fits[state.fitType].initialValues);
+    state.fitInitialValues = _.cloneDeep(value);
+  },
+  resetFitSettings(state) {
+    // eslint-disable-next-line
+    state.fitSettings = {
+      damping: state.defaultFitSettings.damping.value,
+      errorTolerance: state.defaultFitSettings.errorTolerance.value,
+      gradientDifference: state.defaultFitSettings.gradientDifference.value,
+      maxIterations: state.defaultFitSettings.maxIterations.value,
+    };
   },
   resetFitConfiguration(state) {
     /* eslint-disable */
     state.fitSettings = {
-      damping: undefined,
-      errorTolerance: undefined,
-      gradientDifference: undefined,
-      maxIterations: undefined,
+      damping: state.defaultFitSettings.damping.value,
+      errorTolerance: state.defaultFitSettings.errorTolerance.value,
+      gradientDifference: state.defaultFitSettings.gradientDifference.value,
+      maxIterations: state.defaultFitSettings.maxIterations.value,
     };
     state.fitType = 'Linear';
     state.fitEquation = undefined;
@@ -184,5 +249,51 @@ export default {
       error: 'error',
     };
     /* eslint-enable */
+  },
+  setWidth(state, value) {
+    // eslint-disable-next-line
+    state.width = value;
+  },
+  setHeight(state, value) {
+    // eslint-disable-next-line
+    state.height = value;
+  },
+  setViewBox(state, value) {
+    // eslint-disable-next-line
+    state.viewBox = value;
+  },
+  resetSelectionLimits(state) {
+    // eslint-disable-next-line
+    state.selectionLimits = [];
+  },
+  resetBrushSelection(state) {
+    // eslint-disable-next-line
+    state.brushSelection = [];
+  },
+  resetBrushFilt(state) {
+    // eslint-disable-next-line
+    state.brushFile = null;
+  },
+  reviseFitInitialValues(state, value) {
+    // eslint-disable-next-line
+    state.fitInitialValues = value;
+  },
+  updateFitTableResults(state, payload) {
+    // eslint-disable-next-line
+    state.fittedData = payload.fittedData;
+    // eslint-disable-next-line
+    state.fitError = payload.fitError;
+    // eslint-disable-next-line
+    state.fitInitialValues = payload.iv;
+  },
+  setBrushLimits(state, payload) {
+    // eslint-disable-next-line
+    state.brushSelection[0] = payload.scale(payload.limits[0]);
+    // eslint-disable-next-line
+    state.brushSelection[1] = payload.scale(payload.limits[1]);
+  },
+  setBrushSelection(state, value) {
+    // eslint-disable-next-line
+    state.brushSelection = value;
   },
 };

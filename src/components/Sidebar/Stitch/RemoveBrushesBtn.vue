@@ -5,13 +5,8 @@
 </template>
 
 <script>
-import getTitle from '../../../assets/js/getTitle';
-
 export default {
   name: 'RemoveBrushesBtn',
-  mixins: [
-    getTitle,
-  ],
   methods: {
     removeBrushes() {
       // where brushes are removed

@@ -65,4 +65,5 @@ export default {
 
     return tempURLs;
   },
+  isFilePlotted: state => state.filesSelected !== null,
 };

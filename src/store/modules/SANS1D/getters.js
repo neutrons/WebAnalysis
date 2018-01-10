@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import * as d3 from 'd3';
 
 export default {
   getXScales: state => state.scale.x,
@@ -81,6 +82,71 @@ export default {
       initialValues,
       settings,
     };
+  },
+  getPreparedData: (state) => {
+    let temp = state.selectedData.map(el => _.cloneDeep(el.dataTransformed));
+
+    temp = _.flatten(temp);
+    temp = temp.filter(d => Number.isFinite(d.y) && Number.isFinite(d.x));
+
+    // Nest the entries by name
+    temp = d3.nest()
+        .key(d => d.name)
+        .entries(temp);
+
+    return temp;
+  },
+  getChartConfigurations: (state, getters) => {
+    const fitEquation = _.cloneDeep(state.fitEquation);
+    const fitSettings = _.cloneDeep(state.fitSettings);
+    const data = getters.getPreparedData;
+    const scales = state.plotScale;
+    const labels = state.label;
+    const fileToFit = state.fileToFit;
+
+    return {
+      fitEquation,
+      fitSettings,
+      fileToFit,
+      data,
+      scales,
+      labels,
+    };
+  },
+  isFilesPlotted: state => state.filesSelected.length > 0,
+  isFileFit: state => state.fileToFit !== null,
+  fitKeys: state => Object.keys(state.fits),
+  getExtent: (state, getters) => (field) => {
+    const tempData = _.cloneDeep(getters.getPreparedData);
+
+    if (tempData.length === 0) {
+      return 'N/A';
+    }
+
+    const extent = d3.extent(
+      tempData.map(el => el.values)
+        .reduce((a, b) => a.concat(b)),
+        d => d[field]);
+
+    // If extents are the same, +-1 in order to not plot a flat chart
+    if (extent[0] === extent[1]) {
+      extent[0] -= 1;
+      extent[1] += 1;
+    }
+
+    return extent;
+  },
+  getPlotData: (state, getters) => {
+    if (getters.getPreparedData.length === 0) return [];
+
+    return getters.getPreparedData.map(d => d.values).reduce((a, b) => a.concat(b));
+  },
+  dataToFit: (state, getters) => {
+    const temp = [];
+    getters.getPreparedData.forEach((el) => {
+      if (el.key === state.fileToFit) temp.push(_.cloneDeep(el.values));
+    });
+    return temp[0] || [];
   },
 };
 

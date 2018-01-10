@@ -5,13 +5,8 @@
 </template>
 
 <script>
-import getTitle from '../../../assets/js/getTitle';
-
 export default {
   name: 'SaveStitchBtn',
-  mixins: [
-    getTitle,
-  ],
   methods: {
     saveStitchLine() {
       // where save stitch line will go

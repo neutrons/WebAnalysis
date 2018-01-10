@@ -21,7 +21,7 @@ export default {
           return axios.get(url.url).then((response) => {
             const data = vm.parseData(response.data, url.filename);
 
-            vm.$store.commit(`${vm.title}/storeData`, {
+            vm.storeData({
               filename: url.filename,
               data,
             });
@@ -42,7 +42,7 @@ export default {
             // Code to read Upload 2D file
             const data = vm.parseData(content, url.filename);
 
-            vm.$store.commit(`${vm.title}/storeData`, {
+            vm.storeData({
               filename: url.filename,
               data,
             });
@@ -58,7 +58,7 @@ export default {
         Promise.all(promises).then((results) => {
           const plotData = _.concat(tempData, results);
 
-          vm.$store.commit(`${vm.title}/setCurrentData`, plotData);
+          vm.setCurrentData(plotData);
         }).catch((reason) => {
           const errorMsg = `Error! ${reason}`;
 

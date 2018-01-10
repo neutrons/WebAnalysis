@@ -38,10 +38,6 @@ export default {
       default: true,
     },
   },
-  created() {
-    this.selectX = 'x';
-    this.selectY = 'y';
-  },
   computed: {
     xScales() {
       return Object.keys(this.$store.state[this.title].scale.x);

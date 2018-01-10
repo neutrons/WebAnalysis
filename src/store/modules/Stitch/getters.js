@@ -81,4 +81,5 @@ export default {
       settings,
     };
   },
+  isFilesPlotted: state => state.filesSelected.length > 0,
 };

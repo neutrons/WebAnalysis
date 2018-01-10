@@ -5,13 +5,8 @@
 </template>
 
 <script>
-import getTitle from '../../../assets/js/getTitle';
-
 export default {
   name: 'DrawBrushesBtn',
-  mixins: [
-    getTitle,
-  ],
   methods: {
     drawBrushes() {
       // where brushes will be drawn

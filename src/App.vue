@@ -1,9 +1,9 @@
 <template>
-  <v-app>
+  <v-app id='app-container'>
     <!-- Side Bar Component -->
     <v-sidebar :drawer='drawer'></v-sidebar>
 
-    <v-toolbar fixed app :clipped-left='true'>
+    <v-toolbar fixed app :clipped-left='true' :clipped-right='true'>
 
       <v-toolbar-side-icon @click.stop="drawer = !drawer">
         <v-icon color='grey darken-4'>fa-sliders</v-icon>
@@ -34,7 +34,7 @@
     <!-- Error Message Component -->
     <v-error></v-error>
 
-    <v-footer :fixed='true' app text-xs-right>
+    <v-footer fixed app>
       <div>&copy; {{ new Date().getFullYear()}}</div>
     </v-footer>
   </v-app>

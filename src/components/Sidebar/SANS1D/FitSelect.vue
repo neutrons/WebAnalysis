@@ -1,35 +1,41 @@
 <template>
     <v-select
-        :items='fits'
+        :items='fitKeys'
         v-model='select'
         hint='Select Fit'
     ></v-select>
 </template>
 
 <script>
-import getTitle from '../../../assets/js/getTitle';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'FitSelect',
-  mixins: [
-    getTitle,
-  ],
   created() {
     this.select = 'Linear';
   },
   computed: {
-    fits() {
-      return Object.keys(this.$store.state[this.title].fits);
-    },
+    ...mapGetters('SANS1D', [
+      'fitKeys',
+    ]),
+    ...mapState('SANS1D', {
+      fitType: state => state.fitType,
+    }),
     select: {
       get() {
-        return this.$store.state[this.title].fitType;
+        return this.fitType;
       },
       set(value) {
-        this.$store.commit(`${this.title}/setFitType`, value);
-        this.$store.commit(`${this.title}/transformData`);
+        this.setFitType(value);
+        this.transformData();
       },
     },
+  },
+  methods: {
+    ...mapMutations('SANS1D', [
+      'setFitType',
+      'transformData',
+    ]),
   },
 };
 </script>

@@ -89,4 +89,7 @@ export default {
 
     return [];
   },
+  fitNames: state => Object.keys(state.fit),
+  isFilesPlotted: state => state.filesSelected.length > 0,
+  isFileFit: state => state.fileToFit !== null,
 };

@@ -73,6 +73,12 @@ export default {
         && this.xTransformation.length > 0
         && this.yTransformation.length > 0;
     },
+    xTrans() {
+      return this.$store.state[this.title].transformations.x;
+    },
+    yTrans() {
+      return this.$store.state[this.title].transformations.y;
+    },
   },
   methods: {
     validateX(expression) {
@@ -105,8 +111,6 @@ export default {
       return expression.length !== 0 || 'There must be a transformation.';
     },
     resetTransformations() {
-      this.xTransformation = 'x';
-      this.yTransformation = 'y';
       this.$store.commit(`${this.title}/resetTransformations`);
       this.$store.commit(`${this.title}/transformData`);
     },
@@ -130,6 +134,16 @@ export default {
         });
         this.$store.commit(`${this.title}/transformData`);
       }
+    },
+  },
+  watch: {
+    xTrans() {
+      console.log('X Trans changed');
+      this.xTransformation = this.xTrans;
+    },
+    yTrans() {
+      console.log('Y Trans changed');
+      this.yTransformation = this.yTrans;
     },
   },
 };
