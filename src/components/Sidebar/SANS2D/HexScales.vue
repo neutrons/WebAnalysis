@@ -7,9 +7,9 @@
       <v-layout row wrap>
 
         <v-flex xs12>
-          <v-select label='Intensity Scale' :items='scales' v-model='hexScale'></v-select>
+          <v-select label='Intensity Scale' :items='scales' v-model='editHexScale'></v-select>
 
-          <v-btn block outline @click='resetScale' color='orange darken-1 white--text'>
+          <v-btn block outline @click='resetS' color='orange darken-1 white--text'>
             <v-icon left color='orange darken-1'>fa-undo</v-icon> Reset Scale
           </v-btn>
         </v-flex>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import getTitle from '../../../assets/js/getTitle';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: 'HexScales',
@@ -31,25 +31,27 @@ export default {
       default: true,
     },
   },
-  mixins: [
-    getTitle,
-  ],
   computed: {
-    scales() {
-      return this.$store.state[this.title].scales;
-    },
-    hexScale: {
+    ...mapState('SANS2D', {
+      scales: state => state.scales,
+      hexScale: state => state.hexScale,
+    }),
+    editHexScale: {
       get() {
-        return this.$store.state[this.title].hexScale;
+        return this.hexScale;
       },
       set(value) {
-        this.$store.commit(`${this.title}/setScale`, value);
+        this.setScale(value);
       },
     },
   },
   methods: {
-    resetScale() {
-      this.$store.commit(`${this.title}/resetScale`);
+    ...mapMutations('SANS2D', [
+      'resetScale',
+      'setScale',
+    ]),
+    resetS() {
+      this.resetScale();
     },
   },
 };

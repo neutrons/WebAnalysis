@@ -12,25 +12,30 @@
 </template>
 
 <script>
-import getTitle from '../../../assets/js/getTitle';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: 'ToggleZoomBrush',
-  mixins: [
-    getTitle,
-  ],
   computed: {
+    ...mapState('Stitch', {
+      isZoomBrush: state => state.isZoomBrush,
+    }),
     toggle: {
       get() {
-        return this.$store.state[this.title].isZoomBrush;
+        return this.isZoomBrush;
       },
       set(value) {
-        this.$store.commit(`${this.title}/toggleZoomBrush`, value);
+        this.toggleZoomBrush(value);
       },
     },
     label() {
       return this.toggle ? 'Zoom' : 'Brush';
     },
+  },
+  methods: {
+    ...mapMutations('Stitch', [
+      'toggleZoomBrush',
+    ]),
   },
 };
 </script>

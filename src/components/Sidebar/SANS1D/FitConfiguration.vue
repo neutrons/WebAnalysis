@@ -15,19 +15,7 @@
         </v-flex>
 
         <v-flex xs12>
-          <v-subheader class='pl-0 green--text darken-4'>Fit Equation:</v-subheader>
-        </v-flex>
-
-        <v-flex xs12 pl-2>
-          <v-fit-equation />
-        </v-flex>
-
-        <v-flex xs12>
-          <v-subheader class='pl-0 green--text darken-4'>Initial Values:</v-subheader>
-        </v-flex>
-
-        <v-flex xs12 pl-2>
-          <v-fit-initial-values />
+          <v-fit-iv-eq />
         </v-flex>
 
         <v-flex xs12>
@@ -46,8 +34,7 @@
 
 <script>
 import FitSelect from './FitSelect';
-import FitEquation from './FitEquation';
-import FitInitialValues from './FitInitialValues';
+import FitInitialValuesAndEquation from './FitInitialValuesAndEquation';
 import FitSettings from '../../BaseComponents/FitSettings';
 
 export default {
@@ -60,22 +47,8 @@ export default {
   },
   components: {
     'v-fit-select': FitSelect,
-    'v-fit-equation': FitEquation,
-    'v-fit-initial-values': FitInitialValues,
+    'v-fit-iv-eq': FitInitialValuesAndEquation,
     'v-fit-settings': FitSettings,
-  },
-  computed: {
-    fits() {
-      return Object.keys(this.$store.state[this.title].fits);
-    },
-    select: {
-      get() {
-        return this.$store.state[this.title].fitType;
-      },
-      set(value) {
-        this.$store.commit(`${this.title}/setFitType`, value);
-      },
-    },
   },
 };
 </script>

@@ -9,7 +9,7 @@
         <v-flex xs12>
           <v-slider :label='`Bin Size - ${editBinSize}`'
             v-model='editBinSize'
-            @mouseup.native='setBinSize'
+            @mouseup.native='setBS'
             :step='1'
             :min='1'
             :max='25'
@@ -18,7 +18,7 @@
             color='green'
           ></v-slider>
 
-          <v-btn block outline @click='resetBinSize' color='orange darken-1 white--text'>
+          <v-btn block outline @click='resetBS' color='orange darken-1 white--text'>
             <v-icon left color='orange darken-1'>fa-undo</v-icon> Reset Bin Size
           </v-btn>
         </v-flex>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import getTitle from '../../../assets/js/getTitle';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'HexBins',
@@ -40,34 +40,22 @@ export default {
       default: true,
     },
   },
-  mixins: [
-    getTitle,
-  ],
   data() {
     return {
       editBinSize: 15,
     };
   },
-  computed: {
-    scales() {
-      return this.$store.state[this.title].scales;
-    },
-    hexScale: {
-      get() {
-        return this.$store.state[this.title].hexScale;
-      },
-      set(value) {
-        this.$store.commit(`${this.title}/setScale`, value);
-      },
-    },
-  },
   methods: {
-    setBinSize() {
-      this.$store.commit(`${this.title}/setBinSize`, this.editBinSize);
+    ...mapMutations('SANS2D', [
+      'setBinSize',
+      'resetBinSize',
+    ]),
+    setBS() {
+      this.setBinSize(this.editBinSize);
     },
-    resetBinSize() {
+    resetBS() {
       this.editBinSize = 15;
-      this.$store.commit(`${this.title}/resetBinSize`);
+      this.resetBinSize();
     },
   },
 };

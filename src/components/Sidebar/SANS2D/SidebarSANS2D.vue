@@ -12,26 +12,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import FileExplorer from '../../BaseComponents/FileExplorer/FileExplorer';
 import HexScales from './HexScales';
 import HexBins from './HexBins';
 
-import getTitle from '../../../assets/js/getTitle';
-
 export default {
   name: 'SidebarSANS2D',
-  mixins: [
-    getTitle,
-  ],
   components: {
     'v-file-explorer': FileExplorer,
     'v-hex-scales': HexScales,
     'v-hex-bins': HexBins,
   },
   computed: {
-    isFilePlotted() {
-      return this.$store.state[this.title].filesSelected !== null;
-    },
+    ...mapGetters('SANS2D', [
+      'isFilePlotted',
+    ]),
   },
 };
 </script>

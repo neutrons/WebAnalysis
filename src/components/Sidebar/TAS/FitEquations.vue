@@ -85,16 +85,13 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import _ from 'lodash';
 import Vue from 'vue';
 import math from 'mathjs';
-import getTitle from '../../../assets/js/getTitle';
 
 export default {
   name: 'FitEquations',
-  mixins: [
-    getTitle,
-  ],
   data() {
     return {
       selected: [],
@@ -104,23 +101,27 @@ export default {
     this.selected.push(_.cloneDeep(this.fits.Linear));
   },
   computed: {
-    fits() {
-      return this.$store.state[this.title].fit;
-    },
-    fitNames() {
-      return Object.keys(this.fits);
-    },
+    ...mapState('TAS', {
+      fits: state => state.fit,
+    }),
+    ...mapGetters('TAS', [
+      'fitNames',
+    ]),
     allEquations() {
       return this.selected.map(item => item.equation);
     },
     finalEquation() {
       const temp = this.allEquations.map(item => item);
-      this.$store.commit(`${this.title}/setFitEquation`, temp.join('+'));
+      this.setFitEquation(temp.join('+'));
 
       return temp.join('+');
     },
   },
   methods: {
+    ...mapMutations('TAS', [
+      'setFitEquation',
+      'setFitInitialValues',
+    ]),
     updateSelected(value, index) {
       let temp = _.cloneDeep(this.fits[value]);
 
@@ -199,7 +200,7 @@ export default {
         });
       });
 
-      this.$store.commit(`${this.title}/setFitInitialValues`, temp);
+      this.setFitInitialValues(temp);
     },
   },
 };

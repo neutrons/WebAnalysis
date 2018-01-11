@@ -44,19 +44,6 @@ export default {
     'v-fit-equations': FitEquations,
     'v-fit-settings': FitSettings,
   },
-  computed: {
-    fits() {
-      return Object.keys(this.$store.state[this.title].fits);
-    },
-    select: {
-      get() {
-        return this.$store.state[this.title].fitType;
-      },
-      set(value) {
-        this.$store.commit(`${this.title}/setFitType`, value);
-      },
-    },
-  },
 };
 </script>
 

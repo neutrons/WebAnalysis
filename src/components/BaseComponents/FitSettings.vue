@@ -44,6 +44,9 @@
         color='green'
         ></v-slider>
 
+      <v-btn block outline @click='resetFitSettings' color='orange darken-1 white--text'>
+        <v-icon left color='orange darken-1'>fa-undo</v-icon> Reset Levenberg
+      </v-btn>
     </div>
 </template>
 
@@ -63,12 +66,6 @@ export default {
       editError: 0.1,
     };
   },
-  created() {
-    this.$store.commit(`${this.title}/setFitDamping`);
-    this.$store.commit(`${this.title}/setFitGradient`);
-    this.$store.commit(`${this.title}/setFitIterations`);
-    this.$store.commit(`${this.title}/setFitError`);
-  },
   methods: {
     setDamping() {
       this.$store.commit(`${this.title}/setFitDamping`, this.editDamping);
@@ -81,6 +78,13 @@ export default {
     },
     setError() {
       this.$store.commit(`${this.title}/setFitError`, this.editError);
+    },
+    resetFitSettings() {
+      this.editDamping = 0.1;
+      this.editGradient = 0.1;
+      this.editIterations = 100;
+      this.editError = 0.1;
+      this.$store.commit(`${this.title}/resetFitSettings`);
     },
   },
 };

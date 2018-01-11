@@ -1,52 +1,50 @@
 <template>
     <v-container fluid class='main-container'>
-        <h4>{{msg}}</h4>
         <p>Files to plot: {{filesToPlot}}</p>
-        <p>Data to plot: {{selectedData}}</p>
         <p>Plot scales: {{plotScales}}</p>
         <p>Zoom Brush Toggle: {{zoomBrush}}</p>
+        <p>Data to plot: {{selectedData}}</p>
     </v-container>
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import _ from 'lodash';
 
 // Import Mixins
-import getTitle from '../../assets/js/getTitle';
 import read1DData from '../../assets/js/readFiles/default';
 import parseData from '../../assets/js//readFiles/parse/SANS1D';
 
 export default {
   name: 'Stitch',
   mixins: [
-    getTitle,
     read1DData,
     parseData,
   ],
-  data() {
-    return {
-      msg: 'Welcome to Stitch!',
-      ID: 'Stitch',
-    };
-  },
   computed: {
-    filesToPlot() {
-      return this.$store.state[this.ID].filesSelected;
-    },
-    selectedData() {
-      return this.$store.state[this.ID].selectedData;
-    },
-    plotScales() {
-      return this.$store.state[this.ID].plotScale;
-    },
-    zoomBrush() {
-      return this.$store.state[this.ID].isZoomBrush;
-    },
+    ...mapState('Stitch', {
+      ID: state => state.ID,
+      filesToPlot: state => state.filesSelected,
+      selectedData: state => state.selectedData,
+      plotScales: state => state.plotScale,
+      zoomBrush: state => state.isZoomBrush,
+    }),
+    ...mapGetters('Stitch', [
+      'getSavedFile',
+      'getURLs',
+    ]),
+  },
+  methods: {
+    ...mapMutations('Stitch', [
+      'resetAll',
+      'setCurrentData',
+      'storeData',
+    ]),
   },
   watch: {
     filesToPlot() {
       if (this.filesToPlot.length === 0) {
-        this.$store.commit(`${this.title}/resetAll`);
+        this.resetAll();
       } else {
         const tempFilesToPlot = _.cloneDeep(this.filesToPlot);
         const vm = this;
@@ -54,7 +52,7 @@ export default {
 
         // First check if files to plot are in stored data
         const tempData = tempFilesToPlot.map((filename) => {
-          const temp = vm.$store.getters[`${this.title}/getSavedFile`](filename);
+          const temp = vm.getSavedFile(filename);
 
           if (temp === '999') {
             filesToFetch.push(filename);
@@ -64,12 +62,12 @@ export default {
         }).filter(item => item !== undefined && item !== '999');
 
         // Next fetch the file URLs
-        const fileURLs = this.$store.getters[`${this.title}/getURLs`](filesToFetch);
+        const fileURLs = this.getURLs(filesToFetch);
 
         if (fileURLs.length > 0) {
           this.read1DData(fileURLs, tempData);
         } else {
-          this.$store.dispatch(`${this.title}/setCurrentData`, tempData);
+          this.setCurrentData(tempData);
         }
       }
     },

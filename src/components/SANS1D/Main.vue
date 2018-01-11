@@ -1,72 +1,53 @@
 <template>
-    <v-container fluid class='main-container'>
-        <h4>{{msg}}</h4>
-        <p>Files to plot: {{filesToPlot}}</p>
-        <p>File to fit: {{fileToFit}}</p>
-        <p>Data to plot: {{selectedData}}</p>
-        <p>Plot scales: {{plotScales}}</p>
-        <p>Transformations: {{transformations}}</p>
-        <p>Fit Type: {{fitType}}</p>
-        <p>Fit equation: {{fitEquation}}</p>
-        <p>Fit settings: {{fitSettings}}</p>
-        <p>Fit initial values: {{fitInitialValues}}</p>
-    </v-container>
+    <div>
+      <v-chart 
+        :is-math-jax='false'
+      />
+    </div>
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import _ from 'lodash';
+import Chart from './Chart';
 
 // Import Mixins
-import getTitle from '../../assets/js/getTitle';
 import read1DData from '../../assets/js/readFiles/default';
 import parseData from '../../assets/js//readFiles/parse/SANS1D';
 
 export default {
   name: 'SANS1D',
   mixins: [
-    getTitle,
     read1DData,
     parseData,
   ],
-  data() {
-    return {
-      msg: 'Welcome to SANS1D!',
-      ID: 'SANS1D',
-    };
+  components: {
+    'v-chart': Chart,
   },
   computed: {
-    filesToPlot() {
-      return this.$store.state[this.ID].filesSelected;
-    },
-    fileToFit() {
-      return this.$store.state[this.ID].fileToFit;
-    },
-    selectedData() {
-      return this.$store.state[this.ID].selectedData;
-    },
-    plotScales() {
-      return this.$store.state[this.ID].plotScale;
-    },
-    transformations() {
-      return this.$store.state[this.ID].transformations;
-    },
-    fitType() {
-      return this.$store.state[this.ID].fitType;
-    },
-    fitEquation() {
-      return this.$store.state[this.ID].fitEquation;
-    },
-    fitInitialValues() {
-      return this.$store.state[this.ID].fitInitialValues;
-    },
-    fitSettings() {
-      return this.$store.state[this.ID].fitSettings;
-    },
+    ...mapState('SANS1D', {
+      ID: state => state.ID,
+      filesToPlot: state => state.filesSelected,
+      fileToFit: state => state.fileToFit,
+    }),
+    ...mapGetters('SANS1D', [
+      'getURLs',
+      'getSavedFile',
+    ]),
+  },
+  methods: {
+    ...mapMutations('SANS1D', [
+      'setCurrentData',
+      'resetFitConfiguration',
+      'storeData',
+      'resetAll',
+      'transformData',
+    ]),
   },
   watch: {
     filesToPlot() {
       if (this.filesToPlot.length === 0) {
-        this.$store.commit(`${this.title}/resetAll`);
+        this.resetAll();
       } else {
         const tempFilesToPlot = _.cloneDeep(this.filesToPlot);
         const vm = this;
@@ -74,7 +55,7 @@ export default {
 
         // First check if files to plot are in stored data
         const tempData = tempFilesToPlot.map((filename) => {
-          const temp = vm.$store.getters[`${this.title}/getSavedFile`](filename);
+          const temp = vm.getSavedFile(filename);
 
           if (temp === '999') {
             filesToFetch.push(filename);
@@ -84,24 +65,24 @@ export default {
         }).filter(item => item !== undefined && item !== '999');
 
         // Next fetch the file URLs
-        const fileURLs = this.$store.getters[`${this.title}/getURLs`](filesToFetch);
+        const fileURLs = this.getURLs(filesToFetch);
 
         if (fileURLs.length > 0) {
           this.read1DData(fileURLs, tempData);
         } else {
-          this.$store.commit(`${this.title}/setCurrentData`, tempData);
+          this.setCurrentData(tempData);
         }
       }
     },
     fileToFit() {
       if (this.fileToFit === null) {
-        this.$store.commit(`${this.title}/resetFitConfiguration`);
+        this.resetFitConfiguration();
+        if (this.ID === 'SANS1D') this.transformData();
       }
     },
   },
 };
 </script>
 
-<style lang='scss' scoped>
-
+<style lang='scss'>
 </style>
