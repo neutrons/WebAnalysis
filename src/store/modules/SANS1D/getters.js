@@ -97,7 +97,6 @@ export default {
     return temp;
   },
   getChartConfigurations: (state, getters) => {
-    const fitEquation = _.cloneDeep(state.fitEquation);
     const fitSettings = _.cloneDeep(state.fitSettings);
     const data = getters.getPreparedData;
     const scales = state.plotScale;
@@ -105,7 +104,6 @@ export default {
     const fileToFit = state.fileToFit;
 
     return {
-      fitEquation,
       fitSettings,
       fileToFit,
       data,

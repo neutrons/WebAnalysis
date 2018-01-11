@@ -1,6 +1,8 @@
 <template>
     <div>
-      <v-chart></v-chart>
+      <v-chart 
+        :is-math-jax='false'
+      />
     </div>
 </template>
 
@@ -22,13 +24,9 @@ export default {
   components: {
     'v-chart': Chart,
   },
-  data() {
-    return {
-      drawerRight: null,
-    };
-  },
   computed: {
     ...mapState('SANS1D', {
+      ID: state => state.ID,
       filesToPlot: state => state.filesSelected,
       fileToFit: state => state.fileToFit,
     }),
@@ -79,7 +77,7 @@ export default {
     fileToFit() {
       if (this.fileToFit === null) {
         this.resetFitConfiguration();
-        this.transformData();
+        if (this.ID === 'SANS1D') this.transformData();
       }
     },
   },

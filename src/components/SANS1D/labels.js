@@ -2,11 +2,6 @@
 import * as d3 from 'd3';
 
 export default {
-  data() {
-    return {
-      isMathJax: false,
-    };
-  },
   methods: {
     addLabels() {
       const L = this.svg.append('g')

@@ -103,7 +103,7 @@ export default {
           initialValues: this.initialValues,
         };
 
-        console.log('TEMP SETTINGS:', tempSettings);
+        // console.log('TEMP SETTINGS:', tempSettings);
         const fitFunction = ([...args]) => {
           const scope = {};
           // console.log('ARGS', args);

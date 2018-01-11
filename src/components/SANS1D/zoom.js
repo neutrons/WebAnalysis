@@ -44,7 +44,7 @@ export default {
         .selectAll('path')
         .call(this.updateLine, newLine, t);
 
-      if (this.fileToFit !== null) this.g.select('.fitted-line').attr('d', newLine);
+      if (this.fileToFit) this.g.select('.fitted-line').attr('d', newLine);
     },
   },
 };

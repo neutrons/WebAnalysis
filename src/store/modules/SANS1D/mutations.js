@@ -206,6 +206,15 @@ export default {
     // eslint-disable-next-line
     state.fitSettings.errorTolerance = value;
   },
+  removeFitInitialValue(state, value) {
+    const indices = [];
+
+    state.fitInitialValues.forEach((iv, index) => {
+      if (value.indexOf(iv.coefficient) > -1) indices.push(index);
+    });
+
+    indices.forEach(el => state.fitInitialValues.splice(el, 1));
+  },
   addFitInitialValue(state, value) {
     value.forEach((v) => {
       state.fitInitialValues.push({

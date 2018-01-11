@@ -138,11 +138,9 @@ export default {
   },
   watch: {
     xTrans() {
-      console.log('X Trans changed');
       this.xTransformation = this.xTrans;
     },
     yTrans() {
-      console.log('Y Trans changed');
       this.yTransformation = this.yTrans;
     },
   },

@@ -13,7 +13,7 @@
         <v-divider></v-divider>
         <div v-for='(file, index) in filesSelected' :key='index'>
           <v-list-tile>
-            <v-list-tile-avatar v-if='file === fileToFit'>
+            <v-list-tile-avatar v-if='fileToFit && file === fileToFit'>
               <v-icon color='black' style='font-size: 12px;'>fa-asterisk</v-icon>
             </v-list-tile-avatar>
 

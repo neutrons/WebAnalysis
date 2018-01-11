@@ -19,7 +19,7 @@ export default {
           const elm = $(this);
           let iframe = elm.children(`iframe.width-changed-${vm.ID}`);
           if (!iframe.length) {
-            iframe = $('<iframe/>').addClass(`width-changed-${vm.ID}`).prependTo(this);
+            iframe = $('<iframe/>').addClass(`width-changed width-changed-${vm.ID}`).prependTo(this);
           }
           let oldWidth = elm.width();
 
@@ -44,7 +44,7 @@ export default {
       const aspectRatio = chart.width() / chart.height();
       const container = chart.parent();
 
-      $(`#chart-${vm.ID}`).on('widthChanged', () => {
+      $(`#chart-wrapper-${vm.ID}`).on('widthChanged', () => {
         const targetWidth = container.width();
         chart.attr('width', targetWidth);
         chart.attr('height', Math.round(targetWidth / aspectRatio));

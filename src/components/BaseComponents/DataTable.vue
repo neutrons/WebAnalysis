@@ -8,9 +8,10 @@
     <v-card>
       <v-card-title>
         <h3 class='headline'>Fitted Data</h3>
+        <v-spacer></v-spacer>
         <div>
         <v-btn outline flat small color='green' @click='downloadCSV'>
-          <v-icon left>fa-table</v-icon> Export CSV
+          <v-icon left>file_download</v-icon> Export CSV
         </v-btn>
         </div>
       </v-card-title>

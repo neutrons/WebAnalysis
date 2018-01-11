@@ -28,7 +28,8 @@ export default {
 
         this.g.append('rect').attr('class', 'chart-bg')
             .attr('height', this.height)
-            .attr('width', this.width);
+            .attr('width', this.width)
+            .style('fill', 'white');
 
         const grid = this.g.append('g').attr('class', 'grid');
         grid.append('g').attr('class', 'grid--x')
@@ -53,6 +54,8 @@ export default {
             .attr('id', `zoom--${this.ID}`)
             .append('rect')
             .attr('class', 'zoom')
+            .attr('opacity', 0)
+            .attr('cursor', 'move')
             .attr('pointer-events', 'none')
             .style('fill', 'none')
             .attr('width', this.width)

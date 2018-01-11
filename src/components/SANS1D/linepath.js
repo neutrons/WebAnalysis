@@ -6,14 +6,14 @@ export default {
     updateLine(selection, line, t, key) {
       // ENTER
       selection.enter()
-         .append('path')
-         .attr('d', line)
-         .style('fill', 'none')
-         .style('stroke', this.colorScale(key));
+        .append('path')
+        .attr('d', line)
+        .style('fill', 'none')
+        .style('stroke', this.colorScale(key));
 
       // UPDATE
       selection.transition(t)
-          .attr('d', line);
+        .attr('d', line);
     },
   },
 };

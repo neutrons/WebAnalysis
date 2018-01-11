@@ -35,7 +35,8 @@
     <v-error></v-error>
 
     <v-footer fixed app>
-      <div>&copy; {{ new Date().getFullYear()}}</div>
+      <v-spacer></v-spacer>
+      <div class='grey--text'>&copy; {{ new Date().getFullYear()}}</div>
     </v-footer>
   </v-app>
 </template>

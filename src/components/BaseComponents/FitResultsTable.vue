@@ -1,5 +1,5 @@
 <template>
-<v-container v-if='isFitted'>
+<v-container>
   <v-subheader class='pl-0'>Fit Results:</v-subheader>
   <v-layout row wrap>
     <v-flex xs12 sm3 pa-1><b>Fit File:</b> {{fileToFit}}</v-flex>
@@ -44,9 +44,6 @@ export default {
     },
   },
   computed: {
-    isFitted() {
-      return this.fileToFit !== null;
-    },
     fileToFit() {
       return this.$store.state[this.title].fileToFit;
     },
