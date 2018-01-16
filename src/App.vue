@@ -18,6 +18,7 @@
         <v-btn flat v-for='(link, index) in links' :key='index'
           :to='link.path'
           exact
+          active-class='default-class my-active-class'
         >{{link.name}}</v-btn>
       </v-toolbar-items>
 
@@ -44,8 +45,8 @@
 <script>
 import Error from './components/Error';
 import Sidebar from './components/Sidebar/Sidebar';
-import FetchData from './components/BaseComponents/FetchData';
-import UploadData from './components/BaseComponents/UploadData/UploadData';
+import FetchData from './components/FetchData';
+import UploadData from './components/UploadData/UploadData';
 
 export default {
   name: 'App',
@@ -93,5 +94,11 @@ export default {
 
 .fade-enter, .fade-leave-active {
   opacity: 0
+}
+
+.my-active-class {
+  color: white;
+  font-weight: bold;
+  background: rgb(76, 175, 80) !important;
 }
 </style>

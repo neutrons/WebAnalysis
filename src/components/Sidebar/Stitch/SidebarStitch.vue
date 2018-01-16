@@ -13,8 +13,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import FileExplorer from '../../BaseComponents/FileExplorer/FileExplorer';
-import Scales from '../../BaseComponents/Scales';
+import FileExplorer from '../../FileExplorer/FileExplorerStitch';
+import Scales from '../../Scales/ScalesStitch';
 import Tools from './Tools';
 
 export default {

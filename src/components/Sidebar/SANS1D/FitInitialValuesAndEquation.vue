@@ -22,6 +22,7 @@
         v-model.number='item.value'
         :append-icon='item.constant ? "fa-circle constant" : "fa-circle non-constant"'
         :append-icon-cb='() => toggleConstant(item.constant, index)'
+        @keydown.enter.native='setInitialValues'
         type='number'
         class='ml-2'
       ></v-text-field>
@@ -46,7 +47,6 @@ export default {
 
     this.setFitInitialValues();
     this.initialValues = _.cloneDeep(this.fitInitialValues);
-    eventBus.$on('revise-initial-values', this.reviseInitialValues);
   },
   data() {
     return {
@@ -83,7 +83,7 @@ export default {
         if (coefficientsToRemove.length) this.removeFitInitialValue(coefficientsToRemove);
 
         this.updateFitEquation(this.equation);
-        eventBus.$emit('refit-data');
+        eventBus.$emit('refit-data-SANS1D');
       }
     },
     validateEquation(expression) {
@@ -135,16 +135,16 @@ export default {
           this.updateFitEquation(this.equation);
         }
 
-        eventBus.$emit('refit-data');
+        eventBus.$emit('refit-data-SANS1D');
       }
-    },
-    reviseInitialValues(value) {
-      this.initialValues = value;
     },
   },
   watch: {
     fitEquation(n, o) {
       if (n !== o) this.equation = n;
+    },
+    fitInitialValues(n) {
+      this.initialValues = _.cloneDeep(n);
     },
   },
 };

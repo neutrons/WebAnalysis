@@ -2,7 +2,7 @@ import math from 'mathjs';
 import LM from 'ml-levenberg-marquardt';
 import * as _ from 'lodash';
 import getTitle from '../getTitle';
-import { eventBus } from '../eventBus';
+// import { eventBus } from '../eventBus';
 
 function fittedPoints(fittedY, tempX) {
   // Return the fitted values
@@ -151,7 +151,7 @@ export default {
 
           initValues[i].value = +initValues[i].value.toFixed(4);
         }
-        eventBus.$emit('revise-initial-values', _.cloneDeep(initValues));
+        // eventBus.$emit(`revise-initial-values-${this.title}`, _.cloneDeep(initValues));
 
         // console.log('Final IV', initValues);
         // this.$store.commit(`${this.title}/reviseInitialValues`, _.cloneDeep(initValues));
