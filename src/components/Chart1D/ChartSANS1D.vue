@@ -1,11 +1,17 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex';
-import Chart from './Chart1D';
+import Chart from './Chart';
 import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'ChartSANS1D',
   extends: Chart,
+  data() {
+    return {
+      isMathJax: true,
+      activeParentTab: 'tab-fit',
+    };
+  },
   created() {
     eventBus.$on('refit-data-SANS1D', this.drawChart);
   },
@@ -32,6 +38,7 @@ export default {
       chartConfigurations: 'getChartConfigurations',
       getExtent: 'getExtent',
       isFileFit: 'isFileFit',
+      preparedData: 'getPreparedData',
     }),
   },
   methods: {

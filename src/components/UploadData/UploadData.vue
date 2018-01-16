@@ -1,7 +1,8 @@
 <template>
   <div>
     <label id='file-load-btn' class='btn btn--flat success--text btn-upload'>
-        <span>Upload file <i class='fa fa-upload fa-lg'></i></span>
+        <span class='hidden-sm-and-down'>Upload file <i class='fa fa-upload fa-lg'></i></span>
+        <span class='hidden-md-and-up'><i class='fa fa-upload fa-lg'></i></span>
         <input id='file-upload-input' type='file' style='display: none;' @change='validateFiles($event.target.files)' multiple>
     </label>
     <v-dropzone @drag-files='validateFiles'></v-dropzone>

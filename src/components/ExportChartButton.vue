@@ -1,7 +1,7 @@
 <template>
-  <v-btn flat small @click='savePlot' :disabled='disable' :icon='isIcon'>
+  <v-btn flat small @click='savePlot' :disabled='disable' :icon='isBreakpointSmall'>
     <span class='hidden-sm-and-down'>Export Chart</span>
-    <v-icon :right='!isIcon'>fa-floppy-o</v-icon>
+    <v-icon :right='!isBreakpointSmall'>fa-floppy-o</v-icon>
   </v-btn>
 </template>
 
@@ -22,7 +22,7 @@ export default {
     },
   },
   computed: {
-    isIcon() {
+    isBreakpointSmall() {
       return this.$vuetify.breakpoint.name === 'xs' || this.$vuetify.breakpoint.name === 'sm';
     },
   },

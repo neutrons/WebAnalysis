@@ -1,10 +1,16 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex';
-import Chart from './Chart1D';
+import Chart from './Chart';
 
 export default {
   name: 'ChartStitch',
   extends: Chart,
+  data() {
+    return {
+      isMathJax: false,
+      activeParentTab: 'tab-fit',
+    };
+  },
   computed: {
     ...mapState('Stitch', {
       filesSelected: state => state.filesSelected,
@@ -25,6 +31,7 @@ export default {
       chartConfigurations: 'getChartConfigurations',
       getExtent: 'getExtent',
       isFileFit: 'isFileFit',
+      preparedData: 'getPreparedData',
     }),
   },
   methods: {

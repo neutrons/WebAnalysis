@@ -1,45 +1,53 @@
 <template>
-  <v-app id='app-container'>
-    <!-- Side Bar Component -->
-    <v-sidebar :drawer='drawer'></v-sidebar>
+<v-app id='app-container'>
+  <!-- Side Bar Component -->
+  <v-sidebar :drawer='drawer'></v-sidebar>
 
-    <v-toolbar fixed app :clipped-left='true' :clipped-right='true'>
+  <v-toolbar fixed app :clipped-left='true' :clipped-right='true'>
 
-      <v-toolbar-side-icon @click.stop="drawer = !drawer">
-        <v-icon color='grey darken-4'>fa-sliders</v-icon>
-      </v-toolbar-side-icon>
+    <v-toolbar-side-icon @click.stop="drawer = !drawer">
+      <v-icon color='grey darken-4'>fa-sliders</v-icon>
+    </v-toolbar-side-icon>
 
-      <v-fetch-data></v-fetch-data>
-      <v-upload-data></v-upload-data>
+    <v-fetch-data></v-fetch-data>
+    <v-upload-data></v-upload-data>
 
-      <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
 
-      <v-toolbar-items>
-        <v-btn flat v-for='(link, index) in links' :key='index'
-          :to='link.path'
-          exact
-          active-class='default-class my-active-class'
-        >{{link.name}}</v-btn>
-      </v-toolbar-items>
+    <v-toolbar-items class='hidden-xs-only'>
+      <v-btn flat v-for='(link, index) in links' :key='index' :to='link.path' exact active-class='default-class my-active-class'>{{ link.name }}</v-btn>
+    </v-toolbar-items>
 
-    </v-toolbar>
+    <v-menu bottom left class='hidden-sm-and-up'>
+      <v-btn icon slot='activator'>
+        <v-icon>more_vert</v-icon>
+      </v-btn>
+      <v-list>
+        <v-list-tile v-for='(link, index) in links' :key='index' :to='link.path' exact active-class='default-class my-active-class'>
+          <v-list-tile-title>{{ link.name }}</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
 
-    <v-content>
-      <transition name='fade' appear>
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
-      </transition>
-    </v-content>
+  </v-toolbar>
 
-    <!-- Error Message Component -->
-    <v-error></v-error>
+  <v-content>
+    <transition name='fade' appear>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </transition>
+  </v-content>
 
-    <v-footer fixed app>
-      <v-spacer></v-spacer>
-      <div class='grey--text'>&copy; {{ new Date().getFullYear()}}</div>
-    </v-footer>
-  </v-app>
+  <!-- Error Message Component -->
+  <v-error></v-error>
+
+  <v-footer fixed app>
+    <v-spacer></v-spacer>
+    <div class='grey--text'>&copy; {{ new Date().getFullYear()}}</div>
+  </v-footer>
+</v-app>
+
 </template>
 
 <script>

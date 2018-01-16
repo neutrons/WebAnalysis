@@ -1,7 +1,7 @@
 <template>
     <v-btn small flat color='success' @click='fetchFiles'>
-      <span class='pr-2'>Fetch Data</span>
-      <v-icon small>fa-cloud-download</v-icon>
+      <span class='hidden-sm-and-down'>Fetch Data</span>
+      <v-icon small :right='isBreakpointSmall'>fa-cloud-download</v-icon>
     </v-btn>
 </template>
 
@@ -23,6 +23,9 @@ export default {
   computed: {
     fetchURL() {
       return this.title === 'TAS' ? process.env.FETCH_TAS_URL : process.env.FETCH_SANS_URL;
+    },
+    isBreakpointSmall() {
+      return this.$vuetify.breakpoint.name !== 'xs' && this.$vuetify.breakpoint.name !== 'sm';
     },
   },
   methods: {
