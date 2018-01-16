@@ -1,7 +1,7 @@
 <template>
-  <v-btn flat small :disabled='disable' @click='$emit("toggle-legend")' :icon='isIcon'>
+  <v-btn flat small :disabled='disable' @click='$emit("toggle-legend")' :icon='isBreakpointSmall'>
     <span class='hidden-sm-and-down' >Legend</span>
-    <v-icon :right='!isIcon'>fa-th-list</v-icon>
+    <v-icon :right='!isBreakpointSmall'>fa-th-list</v-icon>
   </v-btn>  
 </template>
 
@@ -15,7 +15,7 @@ export default {
     },
   },
   computed: {
-    isIcon() {
+    isBreakpointSmall() {
       return this.$vuetify.breakpoint.name === 'xs' || this.$vuetify.breakpoint.name === 'sm';
     },
   },

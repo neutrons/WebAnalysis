@@ -1,6 +1,5 @@
 <template>
 <v-container>
-  <v-subheader class='pl-0'>Fit Results:</v-subheader>
   <v-layout row wrap>
     <v-flex xs12 sm3 pa-1><b>Fit File:</b> {{fileToFit}}</v-flex>
     <v-flex xs12 sm2 pa-1><b>Fit Type:</b> {{fitType}}</v-flex>

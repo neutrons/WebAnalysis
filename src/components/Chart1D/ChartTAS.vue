@@ -1,11 +1,17 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex';
-import Chart from './Chart1D';
+import Chart from './Chart';
 import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'ChartTAS',
   extends: Chart,
+  data() {
+    return {
+      isMathJax: false,
+      activeParentTab: 'tab-metadata',
+    };
+  },
   created() {
     eventBus.$on('refit-data-TAS', this.drawChart);
   },
@@ -33,6 +39,7 @@ export default {
       getExtent: 'getExtent',
       isFileFit: 'isFileFit',
       metadata: 'getMetadata',
+      preparedData: 'getPreparedData',
     }),
   },
   methods: {
