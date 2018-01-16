@@ -17,9 +17,9 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import FileExplorer from '../../BaseComponents/FileExplorer/FileExplorer';
-import Scales from '../../BaseComponents/Scales';
-import Transformations from '../../BaseComponents/Transformations';
+import FileExplorer from '../../FileExplorer/FileExplorerSANS1D';
+import Scales from '../../Scales/ScalesSANS1D';
+import Transformations from '../../Transformations/TransformationsSANS1D';
 import FitConfiguration from './FitConfiguration';
 
 export default {

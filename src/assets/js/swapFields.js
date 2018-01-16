@@ -4,18 +4,14 @@ export default function (data, fields) {
   let tempData = _.cloneDeep(data);
 
   tempData = tempData.map((point) => {
-    // eslint-disable-next-line
-    point = _.mapKeys(point, (value, key) => {
-      if (fields.x === key) {
-        return 'x';
-      } else if (fields.y === key) {
-        return 'y';
-      }
+    const nObj = Object.assign({}, point);
 
-      return key;
-    });
+    nObj.x = nObj[fields.x];
+    nObj.y = nObj[fields.y];
+    delete nObj[fields.x];
+    delete nObj[fields.y];
 
-    return point;
+    return nObj;
   });
 
   return tempData;

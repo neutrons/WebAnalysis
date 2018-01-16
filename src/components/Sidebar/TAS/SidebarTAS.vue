@@ -4,21 +4,21 @@
     <v-file-explorer />
 
     <!-- Scales -->
-    <v-scales v-if='isFilesPlotted' />
+    <v-scales v-if='filesSelected.length' />
 
     <!-- Fields -->
-    <v-fields v-if='isFilesPlotted' :collapse='false' />
+    <v-fields v-if='filesSelected.length' />
 
     <!-- Fit Configurations -->
-    <v-fit-configuration :collapse='false' v-if='isFileFit'/>
+    <v-fit-configuration :collapse='false' v-if='fileToFit'/>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
-import FileExplorer from '../../BaseComponents/FileExplorer/FileExplorer';
-import Scales from '../../BaseComponents/Scales';
+import FileExplorer from '../../FileExplorer/FileExplorerTAS';
+import Scales from '../../Scales/ScalesTAS';
 import Fields from './Fields';
 import FitConfiguration from './FitConfiguration';
 
@@ -31,10 +31,10 @@ export default {
     'v-fit-configuration': FitConfiguration,
   },
   computed: {
-    ...mapGetters('TAS', [
-      'isFileFit',
-      'isFilesPlotted',
-    ]),
+    ...mapState('TAS', {
+      fileToFit: state => state.fileToFit,
+      filesSelected: state => state.filesSelected,
+    }),
   },
 };
 </script>

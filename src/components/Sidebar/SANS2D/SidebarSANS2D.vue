@@ -14,7 +14,7 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import FileExplorer from '../../BaseComponents/FileExplorer/FileExplorer';
+import FileExplorer from '../../FileExplorer/FileExplorerSANS2D';
 import HexScales from './HexScales';
 import HexBins from './HexBins';
 

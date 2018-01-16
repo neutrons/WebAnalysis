@@ -35,7 +35,7 @@
 <script>
 import FitSelect from './FitSelect';
 import FitInitialValuesAndEquation from './FitInitialValuesAndEquation';
-import FitSettings from '../../BaseComponents/FitSettings';
+import FitSettings from '../../FitSettings/FitSettingsSANS1D';
 
 export default {
   name: 'FitConfiguration',

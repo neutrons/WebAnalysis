@@ -11,7 +11,7 @@
         </v-flex>
 
         <v-flex xs12>
-          <v-fit-equations />
+          <v-fit-ivs-eqs />
         </v-flex>
 
         <v-flex xs12>
@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import FitEquations from './FitEquations';
-import FitSettings from '../../BaseComponents/FitSettings';
+import FitInitialValuesAndEquations from './FitInitialValuesAndEquations';
+import FitSettings from '../../FitSettings/FitSettingsTAS';
 
 export default {
   name: 'FitConfiguration',
@@ -41,7 +41,7 @@ export default {
     },
   },
   components: {
-    'v-fit-equations': FitEquations,
+    'v-fit-ivs-eqs': FitInitialValuesAndEquations,
     'v-fit-settings': FitSettings,
   },
 };
