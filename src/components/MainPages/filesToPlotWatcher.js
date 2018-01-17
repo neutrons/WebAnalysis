@@ -1,27 +1,6 @@
-<template>
-    <div>
-      <keep-alive>
-        <component :is='`Chart${ID}`' :ID='ID'></component>
-      </keep-alive>
-    </div>
-</template>
-
-<script>
 import _ from 'lodash';
 
-// Import Mixins
-import read1DData from '../../assets/js/readFiles/default';
-
 export default {
-  name: 'MainPage',
-  mixins: [
-    read1DData,
-  ],
-  components: {
-    ChartSANS1D: () => import('../Chart1D/ChartSANS1D'),
-    ChartStitch: () => import('../Chart1D/ChartStitch'),
-    ChartTAS: () => import('../Chart1D/ChartTAS'),
-  },
   watch: {
     filesToPlot() {
       if (this.filesToPlot.length === 0) {
@@ -54,7 +33,3 @@ export default {
     },
   },
 };
-</script>
-
-<style lang='scss'>
-</style>

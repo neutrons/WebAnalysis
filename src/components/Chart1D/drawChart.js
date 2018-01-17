@@ -24,7 +24,7 @@ export default {
           .attr('class', 'chart-group')
           .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
 
-        this.setPreviousFit(this.fileToFit);
+        if (this.ID !== 'Stitch') this.setPreviousFit(this.fileToFit);
 
         this.g.append('rect').attr('class', 'chart-bg')
             .attr('height', this.height)

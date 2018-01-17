@@ -1,21 +1,19 @@
 <template>
-    <v-container fluid grid-list-xl pa-0>
-      <v-layout row justify-space-between pl-5 pb-0>
-          <v-flex xs12 pl-5 pb-0>
-            <v-radio-group v-model='toggle' row>
-              <v-radio label='Zoom' :value='true' color='green'></v-radio>
-              <v-radio label='Select' :value='false' color='green'></v-radio>
-            </v-radio-group>
-          </v-flex>
-      </v-layout>
-    </v-container>
+  <v-btn flat dark small :icon='isBreakpointSmall' @click='toggle = !toggle'>
+    <span class='hidden-sm-and-down'>{{ !isZoomBrush ? 'Zoom' : 'Select'}}</span>
+    <v-icon :right='!isBreakpointSmall'>{{ !isZoomBrush ? 'zoom_in' : 'crop_free' }}</v-icon>
+  </v-btn>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex';
+import isBreakpointSmall from '../assets/js/isBreakpointSmall';
 
 export default {
   name: 'ToggleZoomBrush',
+  mixins: [
+    isBreakpointSmall,
+  ],
   computed: {
     ...mapState('Stitch', {
       isZoomBrush: state => state.isZoomBrush,

@@ -1,6 +1,6 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex';
-import Chart from './Chart';
+import Chart from './DefaultChart';
 import { eventBus } from '../../assets/js/eventBus';
 
 export default {
@@ -14,9 +14,6 @@ export default {
   },
   created() {
     eventBus.$on('refit-data-SANS1D', this.drawChart);
-  },
-  components: {
-    'v-fit-results-table': () => import('../FitResultsTable/FitResultsTableSANS1D'),
   },
   computed: {
     ...mapState('SANS1D', {

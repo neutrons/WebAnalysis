@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import * as d3 from 'd3';
 
 export default {
   getXScales: state => state.scale.x,
@@ -68,18 +69,55 @@ export default {
 
     return tempURLs;
   },
-  getCurrentConfiguration: (state) => {
-    const equation = state.fitEquation;
-    const transformations = state.transformations;
-    const initialValues = state.initialValues;
-    const settings = state.fitSetting;
+  getPreparedData: (state) => {
+    let temp = state.selectedData.map(el => _.cloneDeep(el.dataTransformed));
+
+    temp = _.flatten(temp);
+    temp = temp.filter(d => Number.isFinite(d.y) && Number.isFinite(d.x));
+
+    // Nest the entries by name
+    temp = d3.nest()
+      .key(d => d.name)
+      .entries(temp);
+
+    return temp;
+  },
+  getChartConfigurations: (state, getters) => {
+    const data = getters.getPreparedData;
+    const scales = state.plotScale;
+    const labels = state.label;
 
     return {
-      equation,
-      transformations,
-      initialValues,
-      settings,
+      data,
+      scales,
+      labels,
     };
   },
   isFilesPlotted: state => state.filesSelected.length > 0,
+  getExtent: (state, getters) => (field) => {
+    const tempData = _.cloneDeep(getters.getPreparedData);
+
+    if (tempData.length === 0) {
+      return 'N/A';
+    }
+
+    const extent = d3.extent(
+      tempData.map(el => el.values)
+        .reduce((a, b) => a.concat(b)),
+        d => d[field]);
+
+    // If extents are the same, +-1 in order to not plot a flat chart
+    if (extent[0] === extent[1]) {
+      extent[0] -= 1;
+      extent[1] += 1;
+    }
+
+    return extent;
+  },
+  getPlotData: (state, getters) => {
+    if (getters.getPreparedData.length === 0) return [];
+
+    return getters.getPreparedData.map(d => d.values).reduce((a, b) => a.concat(b));
+  },
 };
+
