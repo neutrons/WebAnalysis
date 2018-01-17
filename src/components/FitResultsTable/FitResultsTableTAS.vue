@@ -16,6 +16,7 @@ export default {
       initialValues: state => state.fitInitialValues,
       fitNote: state => state.fitNote,
       xBrushSelection: state => state.brushSelection[1],
+      fitEquation: state => state.fitEquation,
     }),
     fitCount() {
       return this.fittedData.length;

@@ -6,17 +6,17 @@
 </template>
 
 <script>
+import isBreakpointSmall from '../assets/js/isBreakpointSmall';
+
 export default {
   name: 'ResetChartButton',
+  mixins: [
+    isBreakpointSmall,
+  ],
   props: {
     disable: {
       type: Boolean,
       default: false,
-    },
-  },
-  computed: {
-    isBreakpointSmall() {
-      return this.$vuetify.breakpoint.name === 'xs' || this.$vuetify.breakpoint.name === 'sm';
     },
   },
 };

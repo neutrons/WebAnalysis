@@ -1,7 +1,7 @@
 <template>
     <v-btn small flat color='success' @click='fetchFiles'>
       <span class='hidden-sm-and-down'>Fetch Data</span>
-      <v-icon small :right='isBreakpointSmall'>fa-cloud-download</v-icon>
+      <v-icon small :right='!isBreakpointSmall'>fa-cloud-download</v-icon>
     </v-btn>
 </template>
 
@@ -10,11 +10,13 @@ import axios from 'axios';
 import pathParse from 'path-parse';
 import getTitle from '../assets/js/getTitle';
 import { eventBus } from '../assets/js/eventBus';
+import isBreakpointSmall from '../assets/js/isBreakpointSmall';
 
 export default {
   name: 'FetchDataButton',
   mixins: [
     getTitle,
+    isBreakpointSmall,
   ],
   mounted() {
     // Event listener for when stitch lines are saved
@@ -23,9 +25,6 @@ export default {
   computed: {
     fetchURL() {
       return this.title === 'TAS' ? process.env.FETCH_TAS_URL : process.env.FETCH_SANS_URL;
-    },
-    isBreakpointSmall() {
-      return this.$vuetify.breakpoint.name !== 'xs' && this.$vuetify.breakpoint.name !== 'sm';
     },
   },
   methods: {

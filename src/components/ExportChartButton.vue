@@ -8,9 +8,13 @@
 <script>
 import * as d3 from 'd3';
 import { saveAs } from 'file-saver';
+import isBreakpointSmall from '../assets/js/isBreakpointSmall';
 
 export default {
   name: 'ExportChartButton',
+  mixins: [
+    isBreakpointSmall,
+  ],
   props: {
     disable: {
       type: Boolean,
@@ -19,11 +23,6 @@ export default {
     ID: {
       type: String,
       required: true,
-    },
-  },
-  computed: {
-    isBreakpointSmall() {
-      return this.$vuetify.breakpoint.name === 'xs' || this.$vuetify.breakpoint.name === 'sm';
     },
   },
   methods: {
