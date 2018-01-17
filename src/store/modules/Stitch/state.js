@@ -7,6 +7,7 @@ export default {
   uploaded: {},
   saved: {},
   filesSelected: [],
+  deleteKeys: [],
   filters: [],
   selectedData: [],
   colorDomain: [],
@@ -19,8 +20,21 @@ export default {
     y: { label: 'y', value: d3.scaleLinear() },
   },
   label: {
+    x: 'q = x',
+    y: 'I(q) = y',
+  },
+  isZoomBrush: true,
+  field: {
     x: 'x',
     y: 'y',
   },
-  isZoomBrush: true,
+  width: 960,
+  height: 600,
+  viewBox: '0 0 960 600',
+  defaultMargin: {
+    top: 20,
+    right: 50,
+    bottom: 50,
+    left: 100,
+  },
 };

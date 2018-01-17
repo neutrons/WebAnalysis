@@ -1,6 +1,6 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex';
-import Chart from './Chart';
+import Chart from './DefaultChart';
 
 export default {
   name: 'ChartStitch',
@@ -39,10 +39,6 @@ export default {
       'setWidth',
       'setHeight',
       'setViewBox',
-      'resetBrushSelection',
-      'resetBrushFile',
-      'resetSelectionLimits',
-      'setPreviousFit',
     ]),
   },
 };

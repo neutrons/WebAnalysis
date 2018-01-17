@@ -1,29 +1,41 @@
 import Vue from 'vue';
-import * as d3 from 'd3';
 import _ from 'lodash';
+import * as d3 from 'd3';
 
 export default {
   addFetchFiles(state, files) {
     const keys = Object.keys(files);
     keys.forEach((key) => {
       Vue.set(state.fetched, key, files[key]);
+
+      if (state.colorDomain.indexOf(key) === -1) {
+        state.colorDomain.push(key);
+      }
     });
   },
   addUploadFiles(state, files) {
     const keys = Object.keys(files);
     keys.forEach((key) => {
       Vue.set(state.uploaded, key, files[key]);
+
+      if (state.colorDomain.indexOf(key) === -1) {
+        state.colorDomain.push(key);
+      }
     });
   },
   updateFilesSelected(state, selected) {
+    const keys = [];
+
+    state.filesSelected.forEach((key) => {
+      if (selected.indexOf(key) === -1) {
+        keys.push(key);
+      }
+    });
+    // eslint-disable-next-line
+    state.deleteKeys = keys;
+    // now update new list
     // eslint-disable-next-line
     state.filesSelected = selected;
-
-    // If file to fit is not in files selected, remove it
-    if (state.filesSelected.indexOf(state.fileToFit) === -1) {
-      // eslint-disable-next-line
-      state.fileToFit = null;
-    }
   },
   updateFilters(state, selected) {
     // eslint-disable-next-line
@@ -34,16 +46,6 @@ export default {
     const data = payload.data;
 
     Vue.set(state.saved, filename, data);
-  },
-  resetAll(state) {
-    /* eslint-disable */
-    state.selectedData = [];
-    state.isZoomBrush = true;
-    state.plotScale = {
-      x: { label: 'x', value: d3.scaleLinear() },
-      y: { label: 'y', value: d3.scaleLinear() },
-    };
-    /* eslint-enable */
   },
   setCurrentData(state, chosenData) {
     const tempData = _.cloneDeep(chosenData);
@@ -64,6 +66,20 @@ export default {
     // eslint-disable-next-line
     state.selectedData = tempSelect;
   },
+  resetAll(state) {
+    /* eslint-disable */
+    state.selectedData = [];
+    state.plotScale = {
+      x: { label: 'x', value: d3.scaleLinear() },
+      y: { label: 'y', value: d3.scaleLinear() },
+    };
+    state.label = {
+      x: 'q = x',
+      y: 'I(q) = y',
+    };
+    state.deleteKeys = [];
+    /* eslint-enable */
+  },
   setXScale(state, x) {
     // eslint-disable-next-line
     state.plotScale.x = { label: x, value: state.scale.x[x].copy() };
@@ -78,6 +94,18 @@ export default {
       x: { label: 'x', value: d3.scaleLinear() },
       y: { label: 'y', value: d3.scaleLinear() },
     };
+  },
+  setWidth(state, value) {
+    // eslint-disable-next-line
+    state.width = value;
+  },
+  setHeight(state, value) {
+    // eslint-disable-next-line
+    state.height = value;
+  },
+  setViewBox(state, value) {
+    // eslint-disable-next-line
+    state.viewBox = value;
   },
   toggleZoomBrush(state, value) {
     // eslint-disable-next-line

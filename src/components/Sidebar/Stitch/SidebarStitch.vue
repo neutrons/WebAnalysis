@@ -4,25 +4,18 @@
     <v-file-explorer :fits='false'/>
 
     <!-- Scales -->
-    <v-scales v-if='isFilesPlotted' />
-
-    <!-- Tools -->
-    <v-tools v-if='isFilesPlotted' />
+    <v-scales v-if='isFilesPlotted' :collapse='false' />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import FileExplorer from '../../FileExplorer/FileExplorerStitch';
-import Scales from '../../Scales/ScalesStitch';
-import Tools from './Tools';
 
 export default {
   name: 'SidebarStitch',
   components: {
-    'v-file-explorer': FileExplorer,
-    'v-scales': Scales,
-    'v-tools': Tools,
+    'v-file-explorer': () => import('../../FileExplorer/FileExplorerStitch'),
+    'v-scales': () => import('../../Scales/ScalesStitch'),
   },
   computed: {
     ...mapGetters('Stitch', [

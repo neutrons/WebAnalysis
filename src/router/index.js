@@ -2,10 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import ORNL404 from '@/components/ORNL404';
-import SANS1D from '@/components/MainPages/SANS1D';
+import SANS1D from '@/components/MainPages/MainSANS1D';
 import SANS2D from '@/components/MainPages/SANS2D/Main';
-import Stitch from '@/components/MainPages/Stitch';
-import TAS from '@/components/MainPages/TAS';
+import Stitch from '@/components/MainPages/MainStitch';
+import TAS from '@/components/MainPages/MainTAS';
 
 Vue.use(Router);
 
