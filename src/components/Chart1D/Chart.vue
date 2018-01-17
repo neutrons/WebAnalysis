@@ -165,6 +165,7 @@ import grids from './grids';
 import resetChart from './resetChart';
 import zoom from './zoom';
 import drawChart from './drawChart';
+import isBreakpointSmall from '../../assets/js/isBreakpointSmall';
 
 export default {
   name: 'Chart',
@@ -183,6 +184,7 @@ export default {
     resetChart,
     getContainerWidth,
     drawChart,
+    isBreakpointSmall,
   ],
   props: {
     ID: {
@@ -208,9 +210,6 @@ export default {
     };
   },
   computed: {
-    isBreakpointSmall() {
-      return this.$vuetify.breakpoint.name !== 'xs' && this.$vuetify.breakpoint.name !== 'sm';
-    },
     title() {
       return this.$route.meta.title;
     },

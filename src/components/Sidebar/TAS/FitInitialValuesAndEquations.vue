@@ -61,8 +61,6 @@
         <v-icon right>fa-line-chart</v-icon>
       </v-btn>
     </v-flex>
-
-    <p>Fit(s) chosen: {{fitList}}</p>
   </v-layout>
 </div>
 </template>

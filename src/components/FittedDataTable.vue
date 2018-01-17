@@ -1,10 +1,9 @@
 <template>
 <v-card flat>
   <v-card-title class='pb-0'>
-    <v-spacer></v-spacer>
     <div>
-      <v-btn outline flat small color='green' @click='downloadCSV'>
-        <v-icon :left='isBreakpointSmall'>file_download</v-icon>
+      <v-btn outline flat small color='green' @click='downloadFittedData'>
+        <v-icon :left='!isBreakpointSmall'>file_download</v-icon>
         <span class='hidden-sm-and-down'>Export CSV</span>
       </v-btn>
     </div>
@@ -27,6 +26,9 @@
 </template>
 
 <script>
+import downloadCSV from '../assets/js/downloadCSV';
+import isBreakpointSmall from '../assets/js/isBreakpointSmall';
+
 export default {
   name: 'FittedDataTable',
   data() {
@@ -38,6 +40,10 @@ export default {
       ],
     };
   },
+  mixins: [
+    downloadCSV,
+    isBreakpointSmall,
+  ],
   props: {
     fittedData: {
       type: Array,
@@ -48,39 +54,16 @@ export default {
       required: true,
     },
   },
-  computed: {
-    isBreakpointSmall() {
-      return this.$vuetify.breakpoint.name !== 'xs' && this.$vuetify.breakpoint.name !== 'sm';
-    },
-  },
   methods: {
-    convertArrayOfObjectsToCSV() {
-      const data = this.fittedData || null;
-      if (data === null || !data.length) return null;
-
-      let result = 'x,y\n';
-      data.forEach((el) => {
-        result += `${el.x},${el.y}\n`;
+    downloadFittedData() {
+      const headers = 'x,y\n';
+      // eslint-disable-next-line
+      const arr = this.fittedData.map((d) => {
+        return [d.x, d.y];
       });
-
-      return result;
-    },
-    downloadCSV() {
-      let csv = this.convertArrayOfObjectsToCSV();
-      if (csv === null) return;
-
       const filename = `${this.fileToFit}_fitted_data.csv` || 'fitted_data.csv';
 
-      if (!csv.match(/^data:text\/csv/i)) {
-        csv = `data:text/csv;charset=utf-8,${csv}`;
-      }
-
-      const data = encodeURI(csv);
-
-      const link = document.createElement('a');
-      link.setAttribute('href', data);
-      link.setAttribute('download', filename);
-      link.click();
+      this.downloadCSV(arr, headers, filename);
     },
   },
 };
