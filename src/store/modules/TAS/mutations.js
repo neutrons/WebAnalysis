@@ -161,8 +161,13 @@ export default {
       }
     });
   },
+  setFitList(state, value = 'Linear') {
+    // eslint-disable-next-line
+    state.fitType = [...value];
+  },
   setFitType(state, type = state.fitType) {
     /* eslint-disable */
+    console.log('Set fit equation tas:', type);
     state.fitType = type;
     state.fitEquation = state.fits[type].equation;
     state.transformations.x = state.fits[type].transformations.x;

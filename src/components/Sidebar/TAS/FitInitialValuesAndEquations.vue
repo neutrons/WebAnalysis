@@ -61,6 +61,8 @@
         <v-icon right>fa-line-chart</v-icon>
       </v-btn>
     </v-flex>
+
+    <p>Fit(s) chosen: {{fitList}}</p>
   </v-layout>
 </div>
 </template>
@@ -77,10 +79,12 @@ export default {
   data() {
     return {
       selected: [],
+      fitList: [],
     };
   },
   created() {
     this.selected.push(_.cloneDeep(this.fits.Linear));
+    this.fitList.push('Linear');
     this.setFitInitialValues();
     this.setFitEquation();
   },
@@ -106,6 +110,7 @@ export default {
     ...mapMutations('TAS', [
       'setFitEquation',
       'setFitInitialValues',
+      'setFitList',
     ]),
     updateSelected(value, index) {
       let temp = _.cloneDeep(this.fits[value]);
@@ -113,6 +118,9 @@ export default {
       temp = this.formatCoefficients(temp, index);
 
       Vue.set(this.selected, index, temp);
+      Vue.set(this.fitList, index, value);
+      this.setFitList(this.fitList);
+      this.refit();
     },
     addNewEquation() {
       let temp = _.cloneDeep(this.fits.Linear);
@@ -120,9 +128,13 @@ export default {
       temp = this.formatCoefficients(temp, this.selected.length);
 
       this.selected.push(temp);
+      this.fitList.push('Linear');
+      this.setFitList(this.fitList);
     },
     removeEquation(index) {
       Vue.delete(this.selected, index);
+      this.setFitList(this.fitList);
+      Vue.delete(this.fitList, index);
 
       // Update coefficient positions
       this.selected.forEach((item, i) => {

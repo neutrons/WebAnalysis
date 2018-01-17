@@ -30,7 +30,7 @@ export default {
   },
   fitEquation: undefined,
   fitInitialValues: [],
-  fitType: 'Linear',
+  fitType: ['Linear'],
   fitError: null,
   fitNote: '',
   label: {

@@ -34,6 +34,32 @@ export default {
     },
   },
   methods: {
+    linspace(a, b, n) {
+      /*
+        Linear Space Function used from Numeric.js
+        Author: Sébastien Loisel
+        Source: http://www.numericjs.com/
+      */
+      const min = a;
+      const max = b;
+      let total = n;
+
+      if (typeof n === 'undefined') total = Math.max(Math.round(max - min) + 1, 1);
+
+      if (total < 2) {
+        return n === 1 ? [min] : [];
+      }
+
+      const ret = Array(total);
+
+      total -= 1;
+
+      for (let i = total; i >= 0; i -= 1) {
+        ret[i] = ((i * max) + ((total - i) * min)) / total;
+      }
+
+      return ret;
+    },
     fitFunction(data) {
       // Code to fit data on the transformed data
       // console.log('Fitting data', data);
@@ -49,13 +75,21 @@ export default {
         tempData.y.push(d.y);
       });
 
+      // Generate a linear space for yFitted
+      const xMin = Math.min(...tempData.x);
+      const xMax = Math.max(...tempData.x);
+      const xFit = this.linspace(xMin, xMax, 100);
+
       // console.log('temp data:', tempData);
 
       // First, grab initial values and check for constants and swap them out in equation
       // console.log('Init Values:', this.initialValues);
 
       this.initialValues.forEach((iv) => {
-        if (iv.constant) tempEquation = tempEquation.replace(iv.coefficient, iv.value);
+        if (iv.constant) {
+          const reg = new RegExp(iv.coefficient, 'g');
+          tempEquation = tempEquation.replace(reg, iv.value);
+        }
       });
 
       // console.log('Equation = ', tempEquation);
@@ -80,7 +114,7 @@ export default {
       // If parameter names is an empty array, then all values are constant
       // Just evaluate with mathjs and return values
       if (parameterNamesToFit.length === 0) {
-        const constantFitted = tempData.x.map(el => nCompiled.eval({
+        const constantFitted = xFit.map(el => nCompiled.eval({
           x: el,
         }));
 
@@ -89,7 +123,7 @@ export default {
         // Since all constants return and don't proceed with rest of function
         // Update fit results table values
         this.$store.commit(`${this.title}/updateFitTableResults`, {
-          fittedData: fittedPoints(constantFitted, tempData.x),
+          fittedData: fittedPoints(constantFitted, xFit),
           fitError: null,
           iv: _.cloneDeep(this.initialValues),
         });
@@ -139,7 +173,7 @@ export default {
         // only coefficients are set! Remember it returns a function!)
         // console.log("fittedParams.parameterValues = ", fittedParams.parameterValues);
         const fitFunctionFitted = fitFunction(fittedParams.parameterValues);
-        const yFitted = tempData.x.map(el => fitFunctionFitted(el));
+        const yFitted = xFit.map(el => fitFunctionFitted(el));
 
         // console.log('yFitted =', yFitted);
         const initValues = _.cloneDeep(this.initialValues);
@@ -159,7 +193,7 @@ export default {
 
         // Update fit results table values
         this.$store.commit(`${this.title}/updateFitTableResults`, {
-          fittedData: fittedPoints(yFitted, tempData.x),
+          fittedData: fittedPoints(yFitted, xFit),
           fitError: fittedParams.parameterError,
           iv: _.cloneDeep(initValues),
         });
