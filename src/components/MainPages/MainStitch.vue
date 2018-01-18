@@ -4,11 +4,11 @@
         <v-chart :ID='ID'>
 
           <template slot-scope='props' slot='toolbar-slot'>
-            <v-stitch-btn />
-            <v-remove-brushes-btn />
+            <v-stitch-btn @stitch-data='props.stitchData' />
+            <v-remove-brushes-btn @remove-brushes='props.removeBrushes' />
             <v-save-stitch-btn />
             <v-draw-brushes-btn />
-            <v-toggle-zoom-brush />
+            <v-toggle-zoom-brush @toggle-edit='props.toggleEdit' />
           </template>
 
         </v-chart>

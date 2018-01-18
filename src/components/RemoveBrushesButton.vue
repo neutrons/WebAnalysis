@@ -1,5 +1,5 @@
 <template>
-<v-btn flat small dark :icon='isBreakpointSmall'>
+<v-btn flat small dark :icon='isBreakpointSmall' @click='$emit("remove-brushes", false)'>
   <span class='hidden-sm-and-down'>Remove Selections</span>
   <v-icon :right='!isBreakpointSmall'>grid_off</v-icon>
 </v-btn>
@@ -13,11 +13,6 @@ export default {
   mixins: [
     isBreakpointSmall,
   ],
-  methods: {
-    removeBrushes() {
-      // where brushes are removed
-    },
-  },
 };
 </script>
 

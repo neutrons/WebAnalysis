@@ -8,6 +8,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
 import isBreakpointSmall from '../assets/js/isBreakpointSmall';
+import { eventBus } from '../assets/js/eventBus';
 
 export default {
   name: 'ToggleZoomBrush',
@@ -17,13 +18,19 @@ export default {
   computed: {
     ...mapState('Stitch', {
       isZoomBrush: state => state.isZoomBrush,
+      filesSelected: state => state.filesSelected,
     }),
     toggle: {
       get() {
         return this.isZoomBrush;
       },
       set(value) {
-        this.toggleZoomBrush(value);
+        if (this.filesSelected.length > 1) {
+          this.$emit('toggle-edit', value);
+        } else {
+          const errorMsg = 'Need two or more lines to select.';
+          eventBus.$emit('add-notification', errorMsg, 'error');
+        }
       },
     },
     label() {

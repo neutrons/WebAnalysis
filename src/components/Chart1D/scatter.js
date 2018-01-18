@@ -26,7 +26,10 @@ export default {
         .attr('cy', d => y(d.y))
         .attr('r', 4)
         .style('stroke', 'whitesmoke')
-        .style('fill', d => this.colorScale(d.name))
+        // eslint-disable-next-line
+        .style('fill', (d) => {
+          return typeof d.name === 'undefined' ? 'brown' : this.colorScale(d.name);
+        })
         .on('mouseover', this.tooltipEnter);
     },
     tooltipEnter(d) {

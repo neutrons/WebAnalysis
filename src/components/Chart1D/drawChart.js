@@ -49,6 +49,7 @@ export default {
 
         // Add Zoom Group
         this.g.append('g')
+          .attr('class', 'zoom-group')
           .attr('id', `zoom-group-${this.ID}`)
           .append('g')
             .attr('id', `zoom--${this.ID}`)
@@ -64,6 +65,24 @@ export default {
         this.g.select('.zoom').call(this.zoom);
 
         if (this.fileToFit) this.initSlider();
+        if (this.ID === 'Stitch') {
+          // Generate a SVG group to keep brushes
+          this.g.select(`#zoom-group-${this.ID}`).append('g')
+            .attr('class', 'brushes')
+            .attr('height', this.height)
+            .attr('width', this.width)
+            .attr('fill', 'none');
+
+          // add a stitch line group element
+          this.g.append('g')
+            .attr('class', 'stitched-line')
+            .attr('clip-path', `url(#clip-${this.ID})`);
+
+          // set up brush layer
+          this.newBrush();
+          this.drawBrushes();
+          this.toggleEdit(this.isZoomBrush);
+        }
       }
 
       if (this.filesSelected.length !== 0) {
@@ -158,6 +177,16 @@ export default {
       });
 
       if (this.fileToFit) this.updateSlider();
+      if (this.ID === 'Stitch') {
+        if (this.filesSelected.length < 2) {
+          this.removeStitchLine();
+          this.resetStitchedData();
+        }
+        this.removeBrushes();
+        this.updateStitchLine();
+        this.updateBrushScale();
+        this.reconvertBrushSelections();
+      }
 
       this.removeGroups();
     },

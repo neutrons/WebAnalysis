@@ -1,5 +1,5 @@
 <template>
-<v-btn small flat :disabled='false' :icon='isBreakpointSmall' dark>
+<v-btn small flat :disabled='false' :icon='isBreakpointSmall' dark @click='$emit("stitch-data")'>
   <span class='hidden-sm-and-down'>Stitch</span>
   <v-icon :right='!isBreakpointSmall'>fa-line-chart</v-icon>
 </v-btn>
@@ -13,11 +13,6 @@ export default {
   mixins: [
     isBreakpointSmall,
   ],
-  methods: {
-    stitchData() {
-    // where stitch line will be
-    },
-  },
 };
 </script>
 

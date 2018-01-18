@@ -14,7 +14,10 @@ export default {
         .attr('x2', d => x(d.x))
         .attr('y1', d => y(d.y + d.error))
         .attr('y2', d => this.errorBottomY(d, y))
-        .style('stroke', d => this.colorScale(d.name));
+        // eslint-disable-next-line
+        .style('stroke', (d) => {
+          return typeof d.name === 'undefined' ? 'brown' : this.colorScale(d.name);
+        });
 
       // UPDATE
       selection.transition(t)
@@ -40,8 +43,10 @@ export default {
         /* eslint-disable */
         .attr('y1', d => direction === 'top' ? y(d.y + d.error) : y(d.y - d.error))
         .attr('y2', d => direction === 'top' ? y(d.y + d.error) : y(d.y - d.error))
+        .style('stroke', (d) => {
+          return typeof d.name === 'undefined' ? 'brown' : this.colorScale(d.name);
+        });
         /* eslint-enable */
-        .style('stroke', d => this.colorScale(d.name));
 
       // UPDATE
       selection.transition(t)

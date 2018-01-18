@@ -9,7 +9,7 @@ export default {
         .append('path')
         .attr('d', line)
         .style('fill', 'none')
-        .style('stroke', this.colorScale(key));
+        .style('stroke', typeof key === 'undefined' ? 'brown' : this.colorScale(key));
 
       // UPDATE
       selection.transition(t)

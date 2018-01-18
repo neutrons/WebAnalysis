@@ -32,7 +32,7 @@
                       <v-export-chart-button :ID='ID' :disable='filesSelected.length === 0'></v-export-chart-button>
                       <v-legend-button @toggle-legend='drawerRight = !drawerRight' @close-legend='drawerRight = false' :disable='filesSelected.length === 0'></v-legend-button>
 
-                      <slot name='toolbar-slot' v-if='ID === "Stitch"'></slot>
+                      <slot name='toolbar-slot' v-if='ID === "Stitch"' :toggle-edit='toggleEdit' :remove-brushes='removeBrushes' :stitch-data='stitchData'></slot>
 
                       <v-spacer></v-spacer>
                       <!-- scatter point hover values -->
@@ -326,5 +326,28 @@ circle:hover {
 .handle {
   fill: gray;
   opacity: 0.75;
+}
+
+.zoom-group {
+  .brush-container .handle {
+    fill: none;
+  }
+
+  .brushes .selection {
+    fill: green;
+    stroke: black;
+    stroke-width: 1px;
+    stroke-dasharray: 3px 3px;
+  }
+
+  .brushes .handle {
+    fill: none;
+  }
+
+  .brushes text {
+    fill: white;
+    text-anchor: end;
+    letter-spacing: 1px;
+  }
 }
 </style>

@@ -45,6 +45,10 @@ export default {
         .call(this.updateLine, newLine, t);
 
       if (this.fileToFit) this.g.select('.fitted-line').attr('d', newLine);
+      if (this.ID === 'Stitch') {
+        this.updateBrushScale();
+        this.reconvertBrushSelections();
+      }
     },
   },
 };
