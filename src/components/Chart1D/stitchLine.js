@@ -172,9 +172,9 @@ export default {
 
         // Add scatter points
         group.append('g').attr('class', 'scatter')
-          .selectAll('circle')
+          .selectAll('.point')
           .data(tempData)
-          .call(this.updateScatter, newXScale, newYScale, trans);
+          .call(this.updateScatter, newXScale, newYScale, trans, 'cross');
       } else {
         const group = this.g.select('.stitch-group');
 
@@ -204,9 +204,9 @@ export default {
 
         // Update scatter
         group.select('.scatter')
-          .selectAll('circle')
+          .selectAll('.point')
           .data(tempData)
-          .call(this.updateScatter, newXScale, newYScale, trans);
+          .call(this.updateScatter, newXScale, newYScale, trans, 'cross');
       }
     },
     removeStitchLine() {

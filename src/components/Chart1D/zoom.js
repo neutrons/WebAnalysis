@@ -37,7 +37,7 @@ export default {
 
       // re-draw scatter plot;
       this.g.selectAll('.scatter')
-        .selectAll('circle')
+        .selectAll('.point')
         .call(this.updateScatter, newXScale, newYScale, t);
 
       // re-draw line paths

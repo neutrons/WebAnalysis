@@ -142,7 +142,7 @@ export default {
 
           // Add scatter points
           group.append('g').attr('class', 'scatter')
-            .selectAll('circle')
+            .selectAll('.point')
             .data(tempData)
             .call(this.updateScatter, newXScale, newYScale, trans);
         } else {
@@ -174,7 +174,7 @@ export default {
 
           // Update scatter
           group.select('.scatter')
-            .selectAll('circle')
+            .selectAll('.point')
             .data(tempData)
             .call(this.updateScatter, newXScale, newYScale, trans);
         }

@@ -96,7 +96,8 @@
     :drawer-right='drawerRight'
     :color-scale='colorScale'
     :files-selected='filesSelected'
-    :file-to-fit='fileToFit'></v-legend>
+    :file-to-fit='fileToFit'
+    :is-stitch='ID === "Stitch" && stitchedData.length > 0'></v-legend>
 </v-container>
 </template>
 
