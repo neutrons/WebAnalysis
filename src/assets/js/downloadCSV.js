@@ -5,7 +5,7 @@ export default {
 
       let result = headers;
       arr.forEach((el) => {
-        result += `${el[0]},${el[1]}\n`;
+        result += `${el.join(',')}\n`;
       });
 
       return result;

@@ -67,6 +67,71 @@
             </v-menu>
           </template>
 
+          <template slot-scope='props' slot='tabs-slot'>
+            <v-slide-y-transition>
+                <v-flex xs12 v-if='props.stitchedData.length'>
+                  <div v-show='props.showTabs'>
+                    <v-tabs v-model='props.activeParentTab'>
+
+                        <v-tabs-bar dark color='blue lighten-1' v-if='props.stitchedData'>
+                            <v-tabs-item href='#tab-fit' ripple v-if='props.stitchedData'>Stitch Results</v-tabs-item>
+                            <v-tabs-slider color='yellow'></v-tabs-slider>
+                        </v-tabs-bar>
+
+                        <!-- nested tab items  -->
+                        <v-tabs-items>
+                          <!-- fit results tab content -->
+                          <v-tabs-content id='tab-fit' ripple v-if='props.stitchedData'>
+                            <v-tabs>
+                              <v-tabs-bar dark color='blue lighten-3'>
+                                <v-tabs-slider color='yellow'></v-tabs-slider>
+                                <v-tabs-item href='fit-results'>
+                                  Selected Regions
+                                </v-tabs-item>
+
+                                <v-tabs-item href='fit-data'>
+                                  Stitched Data
+                                </v-tabs-item>
+                              </v-tabs-bar>
+
+                              <v-tabs-items>
+                                <v-tabs-content id='fit-results'>
+                                  <v-card flat>
+                                    <v-list>
+                                      <template v-for='(item, key, index) in props.brushSelections'>
+                                        <v-list-tile :key='index'>
+                                          <v-list-tile-avatar>
+                                            <v-icon color='blue'>crop_free</v-icon>
+                                          </v-list-tile-avatar>
+                                          <v-list-tile-content>
+                                            <span class='hidden-sm-and-down'>{{ key }}</span>
+                                            <span class='hidden-md-and-up'> {{ index }}</span>
+                                          </v-list-tile-content>
+                                          <v-list-tile-content>
+                                            {{ item.converted[0].toExponential(2) }} : {{ item.converted[1].toExponential(2) }}
+                                          </v-list-tile-content>
+                                        </v-list-tile>
+                                        <v-divider v-if='index < Object.keys(props.brushSelections).length - 1' :key='key'></v-divider>
+                                      </template>
+                                    </v-list>
+                                  </v-card>
+                                </v-tabs-content>
+
+
+                                <v-tabs-content id='fit-data'>
+                                    <v-stitched-data-table :stitched-data='props.stitchedData' :files-stitched='props.filesSelected'></v-stitched-data-table>
+                                </v-tabs-content>
+                                </v-tabs-items>
+                            </v-tabs>
+                          </v-tabs-content>
+                        </v-tabs-items>
+                    <!-- end of nested tab items -->
+                    </v-tabs>
+                  </div>
+                </v-flex>
+              </v-slide-y-transition>
+          </template>
+
         </v-chart>
       </keep-alive>
     </div>
@@ -93,6 +158,7 @@ export default {
     'v-remove-stitch-btn': () => import('../removeStitchButton'),
     'v-save-stitch-btn': () => import('../saveStitchButton'),
     'v-draw-brushes-btn': () => import('../drawBrushesButton'),
+    'v-stitched-data-table': () => import('../StitchedDataTable'),
   },
   computed: {
     ...mapState('Stitch', {

@@ -36,13 +36,16 @@
 
                       <v-spacer></v-spacer>
                       <!-- scatter point hover values -->
-                      <v-subheader class='hidden-xs-only white--text' v-if='filesSelected.length > 0 && xPoint'>
+                      <v-subheader class='hidden-sm-and-down white--text' v-if='filesSelected.length > 0 && xPoint'>
                         <span class='mr-2'>X: {{xPoint.toExponential(2)}}</span>
                         <span class='mr-2'>Y: {{yPoint.toExponential(2)}}</span>
                         <span class='mr-2'>Error: {{errorPoint.toExponential(2)}}</span>
                       </v-subheader>
                       <v-spacer></v-spacer>
                       <v-btn :icon='!isBreakpointSmall' flat @click='showTabs = !showTabs' v-if='fileToFit || metadataLength > 0'>
+                        <v-icon small>{{ showTabs ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
+                      </v-btn>
+                      <v-btn :icon='!isBreakpointSmall' flat @click='showTabs = !showTabs' v-if='ID === "Stitch" && stitchedData.length > 0'>
                         <v-icon small>{{ showTabs ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
                       </v-btn>
                     </v-layout>
@@ -65,6 +68,13 @@
                 :active-parent-tab='activeParentTab'
                 :metadata='metadata'
                 :metadata-length='metadataLength'
+              ></slot>
+              <slot name='tabs-slot' v-if='ID === "Stitch"'
+                :show-tabs='showTabs'
+                :files-selected='filesSelected'
+                :stitched-data='stitchedData'
+                :brush-selections='brushSelections'
+                :active-parent-tab='activeParentTab'
               ></slot>
             </v-layout>
           </v-tabs-content>
