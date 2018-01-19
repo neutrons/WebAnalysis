@@ -24,7 +24,7 @@ export default {
   brushes: [],
   brushSelections: {},
   savedBrushes: [],
-  savedSelections: {},
+  savedBrushSelections: {},
   label: {
     x: 'q = x',
     y: 'I(q) = y',

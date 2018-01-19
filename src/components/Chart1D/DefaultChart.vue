@@ -32,7 +32,13 @@
                       <v-export-chart-button :ID='ID' :disable='filesSelected.length === 0'></v-export-chart-button>
                       <v-legend-button @toggle-legend='drawerRight = !drawerRight' @close-legend='drawerRight = false' :disable='filesSelected.length === 0'></v-legend-button>
 
-                      <slot name='toolbar-slot' v-if='ID === "Stitch"' :toggle-edit='toggleEdit' :remove-brushes='removeBrushes' :stitch-data='stitchData' :remove-stitch-line='removeStitchLine'></slot>
+                      <slot name='toolbar-slot' v-if='ID === "Stitch"'
+                        :toggle-edit='toggleEdit'
+                        :remove-brushes='removeBrushes'
+                        :stitch-data='stitchData'
+                        :remove-stitch-line='removeStitchLine'
+                        :draw-saved-brushes='drawSavedBrushes'
+                      ></slot>
 
                       <v-spacer></v-spacer>
                       <!-- scatter point hover values -->
@@ -255,7 +261,7 @@ export default {
           console.log('chart configs changed...');
           if (this.filesSelected.length === 0 || this.fileToFit !== this.previousFit) {
             this.showTabs = true;
-            this.getContainerWidth();
+            // this.getContainerWidth();
             this.removeChart();
             this.drawChart();
             this.setResponsive();

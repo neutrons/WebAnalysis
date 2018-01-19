@@ -60,7 +60,7 @@ export default {
           },
         };
 
-        vm.setBrushSelections(obj);
+        vm.addBrushSelections(obj);
       }
 
       // console.log('new brush');
@@ -148,25 +148,25 @@ export default {
       selected.classed('selected', false);
 
       if (this.brushCount < this.savedBrushes.length) {
-        const errorMsg = `The brush settings were for 3 curves. There are only ${this.brushCount + 1} curves. Please plot 3 curves, or re-draw brushes for current curves.`;
+        const errorMsg = `The brush settings were for ${this.savedBrushes.length + 1} curves. There are only ${this.brushCount + 1} curves.`;
         eventBus.$emit('add-notification', errorMsg, 'warning');
 
         this.newBrush();
         this.drawBrushes();
         this.toggleEdit(!this.isZoomBrush);
-      } else if (!Object.keys(this.savedSelections).length) {
+      } else if (!Object.keys(this.savedBrushSelections).length) {
         const errorMsg = 'Unable to draw brushes. No brushes were stored.';
         eventBus.$emit('add-notification', errorMsg, 'warning');
 
-        this.brushes = _.cloneDeep(this.savedBrushes);
-        this.brushSelections = _.cloneDeep(this.savedSelections);
+        this.setBrushes(_.cloneDeep(this.savedBrushes));
+        this.setBrushSelections(_.cloneDeep(this.savedBrushSelections));
 
         this.newBrush();
         this.drawBrushes();
         this.toggleEdit(!this.isZoomBrush);
       } else {
-        this.brushes = _.cloneDeep(this.savedBrushes);
-        this.brushSelections = _.cloneDeep(this.savedSelections);
+        this.setBrushes(_.cloneDeep(this.savedBrushes));
+        this.setBrushSelections(_.cloneDeep(this.savedBrushSelections));
 
         this.drawBrushes();
         this.toggleEdit(!this.isZoomBrush);

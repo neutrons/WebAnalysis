@@ -116,12 +116,28 @@ export default {
     // eslint-disable-next-line
     state.isZoomBrush = value;
   },
+  setBrushes(state, value) {
+    // eslint-disable-next-line
+    state.brushes = value;
+  },
   addNewBrush(state, value) {
     state.brushes.push(value);
   },
   setBrushSelections(state, value) {
     // eslint-disable-next-line
+    state.brushSelections = value;
+  },
+  addBrushSelections(state, value) {
+    // eslint-disable-next-line
     state.brushSelections = Object.assign({}, state.brushSelections, value);
+  },
+  saveBrushSelections(state) {
+    // eslint-disable-next-line
+    state.savedBrushSelections = _.cloneDeep(state.brushSelections);
+  },
+  saveBrushes(state) {
+    // eslint-disable-next-line
+    state.savedBrushes = _.cloneDeep(state.brushes);
   },
   resetBrushes(state) {
     // eslint-disable-next-line

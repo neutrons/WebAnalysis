@@ -10,7 +10,7 @@
               <v-remove-brushes-btn @remove-brushes='props.removeBrushes' />
               <v-remove-stitch-btn @remove-stitch='props.removeStitchLine' />
               <v-save-stitch-btn />
-              <v-draw-brushes-btn />
+              <v-draw-brushes-btn @draw-saved-brushes='props.drawSavedBrushes' />
             </div>
 
             <v-menu bottom v-if='$vuetify.breakpoint.mdAndDown'>
