@@ -32,7 +32,7 @@
                       <v-export-chart-button :ID='ID' :disable='filesSelected.length === 0'></v-export-chart-button>
                       <v-legend-button @toggle-legend='drawerRight = !drawerRight' @close-legend='drawerRight = false' :disable='filesSelected.length === 0'></v-legend-button>
 
-                      <slot name='toolbar-slot' v-if='ID === "Stitch"' :toggle-edit='toggleEdit' :remove-brushes='removeBrushes' :stitch-data='stitchData'></slot>
+                      <slot name='toolbar-slot' v-if='ID === "Stitch"' :toggle-edit='toggleEdit' :remove-brushes='removeBrushes' :stitch-data='stitchData' :remove-stitch-line='removeStitchLine'></slot>
 
                       <v-spacer></v-spacer>
                       <!-- scatter point hover values -->
@@ -109,6 +109,7 @@ import grids from './grids';
 import resetChart from './resetChart';
 import zoom from './zoom';
 import drawChart from './drawChart';
+import filterForLog from './filterForLog';
 import isBreakpointSmall from '../../assets/js/isBreakpointSmall';
 
 export default {
@@ -129,6 +130,7 @@ export default {
     getContainerWidth,
     drawChart,
     isBreakpointSmall,
+    filterForLog,
   ],
   props: {
     ID: {
@@ -168,15 +170,20 @@ export default {
     xScale() {
       return this.plotScale.x.value
         .range([0, this.width])
-        .domain(this.xExtent);
+        .domain(this.xExtent)
+        .nice();
     },
     yScale() {
       return this.plotScale.y.value
         .range([this.height, 0])
-        .domain(this.yExtent);
+        .domain(this.yExtent)
+        .nice();
     },
     yType() {
       return this.plotScale.y.label;
+    },
+    xType() {
+      return this.plotScale.x.label;
     },
     colorScale() {
       return d3.scaleOrdinal(d3.schemeCategory20).domain(this.colorDomain);
@@ -207,6 +214,7 @@ export default {
     },
     line() {
       return d3.line()
+        .defined(this.filterForLog)
         .x(d => this.xScale(d.x))
         .y(d => this.yScale(d.y));
     },

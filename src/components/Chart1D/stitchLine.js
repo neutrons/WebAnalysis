@@ -132,11 +132,13 @@ export default {
     updateStitchLine() {
       if (!this.stitchedData.length) return;
 
+      const tempData = this.stitchedData.filter(this.filterForLog);
       const trans = d3.transition().duration(750);
       const t = d3.zoomTransform(this.g.select('.zoom').node());
       const newXScale = t.rescaleX(this.xScale);
       const newYScale = t.rescaleY(this.yScale);
       const newLine = d3.line()
+        .defined(this.filterForLog)
         .x(d => newXScale(d.x))
         .y(d => newYScale(d.y));
 
@@ -146,32 +148,32 @@ export default {
         // Add error lines
         group.append('g').attr('class', 'error-line')
           .selectAll('line')
-          .data(this.stitchedData)
+          .data(tempData)
           .call(this.updateErrorLine, newXScale, newYScale, trans);
 
         // Add error cap top
         group.append('g').attr('class', 'error-cap-top')
           .selectAll('line')
-          .data(this.stitchedData)
+          .data(tempData)
           .call(this.updateErrorCaps, 'top', newXScale, newYScale, trans);
 
         // Add error cap bottom
         group.append('g').attr('class', 'error-cap-bottom')
           .selectAll('line')
-          .data(this.stitchedData)
+          .data(tempData)
           .call(this.updateErrorCaps, 'bottom', newXScale, newYScale, trans);
 
         // Add line path
         group.append('g')
           .attr('class', 'scatter-line')
           .selectAll('path')
-          .data([this.stitchedData])
+          .data([tempData])
           .call(this.updateLine, newLine, trans);
 
         // Add scatter points
         group.append('g').attr('class', 'scatter')
           .selectAll('circle')
-          .data(this.stitchedData)
+          .data(tempData)
           .call(this.updateScatter, newXScale, newYScale, trans);
       } else {
         const group = this.g.select('.stitch-group');
@@ -179,36 +181,37 @@ export default {
         // Update error bars
         group.select('.error-line')
           .selectAll('line')
-          .data(this.stitchedData)
+          .data(tempData)
           .call(this.updateErrorLine, newXScale, newYScale, trans);
 
         // Update error cap top
         group.select('.error-cap-top')
           .selectAll('line')
-          .data(this.stitchedData)
+          .data(tempData)
           .call(this.updateErrorCaps, 'top', newXScale, newYScale, trans);
 
         // Update error cap top
         group.select('.error-cap-bottom')
           .selectAll('line')
-          .data(this.stitchedData)
+          .data(tempData)
           .call(this.updateErrorCaps, 'bottom', newXScale, newYScale, trans);
 
         // Update line paths
         group.select('.scatter-line')
           .selectAll('path')
-          .data([this.stitchedData])
+          .data([tempData])
           .call(this.updateLine, newLine, trans);
 
         // Update scatter
         group.select('.scatter')
           .selectAll('circle')
-          .data(this.stitchedData)
+          .data(tempData)
           .call(this.updateScatter, newXScale, newYScale, trans);
       }
     },
     removeStitchLine() {
       d3.select('.stitched-line').selectAll('*').remove();
+      this.resetStitchedData();
 
       return false;
     },

@@ -12,6 +12,7 @@ export default {
       const newXScale = d3.event.transform.rescaleX(this.xScale);
       const newYScale = d3.event.transform.rescaleY(this.yScale);
       const newLine = d3.line()
+        .defined(this.filterForLog)
         .x(d => newXScale(d.x))
         .y(d => newYScale(d.y));
       const t = d3.transition().duration(0);

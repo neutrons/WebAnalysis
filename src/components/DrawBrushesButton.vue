@@ -1,11 +1,12 @@
 <template>
-<v-btn flat small dark :icon='isBreakpointSmall' :disabled='false'>
-  <span class='hidden-sm-and-down'>Draw Selections</span>
+<v-btn flat small dark :icon='isBreakpointSmall' :disabled='!isBrushesStored'>
+  <span class='hidden-md-and-down'>Draw Selections</span>
   <v-icon :right='!isBreakpointSmall'>border_color</v-icon>
 </v-btn>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import isBreakpointSmall from '../assets/js/isBreakpointSmall';
 
 export default {
@@ -13,10 +14,10 @@ export default {
   mixins: [
     isBreakpointSmall,
   ],
-  methods: {
-    drawBrushes() {
-      // where brushes will be drawn
-    },
+  computed: {
+    ...mapState('Stitch', {
+      isBrushesStored: state => state.savedBrushes.length,
+    }),
   },
 };
 </script>

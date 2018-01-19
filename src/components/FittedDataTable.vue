@@ -4,7 +4,7 @@
     <div>
       <v-btn outline flat small color='green' @click='downloadFittedData'>
         <v-icon :left='!isBreakpointSmall'>file_download</v-icon>
-        <span class='hidden-sm-and-down'>Export CSV</span>
+        <span class='hidden-md-and-down'>Export CSV</span>
       </v-btn>
     </div>
   </v-card-title>

@@ -1,6 +1,6 @@
 <template>
-  <v-btn flat dark small :icon='isBreakpointSmall' @click='toggle = !toggle'>
-    <span class='hidden-sm-and-down'>{{ !isZoomBrush ? 'Zoom' : 'Select'}}</span>
+  <v-btn flat dark small :icon='isBreakpointSmall' @click='toggle = !toggle' :disabled='filesSelected.length < 2'>
+    <span class='hidden-md-and-down'>{{ !isZoomBrush ? 'Zoom' : 'Select'}}</span>
     <v-icon :right='!isBreakpointSmall'>{{ !isZoomBrush ? 'zoom_in' : 'crop_free' }}</v-icon>
   </v-btn>
 </template>

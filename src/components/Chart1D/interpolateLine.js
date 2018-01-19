@@ -3,24 +3,24 @@ import { linear } from 'everpolate'; // const everpolate = require('everpolate')
 const LM = require('ml-levenberg-marquardt');
 const _ = require('lodash');
 
-function fixNegatives(line) {
-  const temp = _.cloneDeep(line);
-  const minY = _.min(temp.y);
+// function fixNegatives(line) {
+//   const temp = _.cloneDeep(line);
+//   const minY = _.min(temp.y);
 
-  if (minY < 0) {
-    temp.y = temp.y.map((el) => {
-      const result = el + (-1 * minY);
+//   if (minY < 0) {
+//     temp.y = temp.y.map((el) => {
+//       const result = el + (-1 * minY);
 
-      if (result === 0) {
-        return Number.MIN_VALUE; // this is to prevent errors when log of zero
-      }
+//       if (result === 0) {
+//         return Number.MIN_VALUE; // this is to prevent errors when log of zero
+//       }
 
-      return result;
-    });
-  }
+//       return result;
+//     });
+//   }
 
-  return temp;
-}
+//   return temp;
+// }
 
 /* Shift Curves Function:
     The function takes the entire array of selected data and shifts the curve's data by y+k.
@@ -192,7 +192,7 @@ const interpolate = (() => {
       If so, find the minimum negative value of y and shifted all up by that value
       If no negative values, proceed as normal
     */
-    stitchedLine = fixNegatives(stitchedLine);
+    // stitchedLine = fixNegatives(stitchedLine);
     // console.log('Stitched Line:', stitchedLine);
 
     return stitchedLine;

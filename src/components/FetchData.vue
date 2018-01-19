@@ -1,6 +1,6 @@
 <template>
     <v-btn small flat color='success' @click='fetchFiles'>
-      <span class='hidden-sm-and-down'>Fetch Data</span>
+      <span class='hidden-md-and-down'>Fetch Data</span>
       <v-icon small :right='!isBreakpointSmall'>fa-cloud-download</v-icon>
     </v-btn>
 </template>

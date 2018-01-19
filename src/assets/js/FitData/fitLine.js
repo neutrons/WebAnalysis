@@ -17,13 +17,15 @@ export default {
       const newXScale = t.rescaleX(this.xScale);
       const newYScale = t.rescaleY(this.yScale);
       const newLine = d3.line()
+        .defined(this.filterForLog)
         .x(d => newXScale(d.x))
         .y(d => newYScale(d.y));
 
       // Re-draw plot lines with new data
+      const tempData = this.fittedData.filter(this.filterForLog);
       this.g.select('.fit-line')
         .select('path')
-        .data([this.fittedData])
+        .data([tempData])
         .attr('d', newLine)
         .style('stroke', this.colorScale(this.fileToFit))
         .style('stroke-width', '2px')
