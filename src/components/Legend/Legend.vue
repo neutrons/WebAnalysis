@@ -27,6 +27,20 @@
           </v-list-tile>
           <v-divider></v-divider>
         </div>
+
+        <!-- if component is stitched  -->
+        <div v-if='isStitch'>
+          <v-list-tile>
+           <v-list-tile-content>
+              <v-list-tile-title>Stitched Line</v-list-tile-title>
+            </v-list-tile-content>
+
+            <v-list-tile-avatar>
+              <v-icon color='error'>fa-plus</v-icon>
+            </v-list-tile-avatar>
+          </v-list-tile>
+          <v-divider></v-divider>
+        </div>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -46,6 +60,10 @@ export default {
     },
     drawerRight: {
       type: Boolean,
+    },
+    isStitch: {
+      type: Boolean,
+      default: false,
     },
   },
 };

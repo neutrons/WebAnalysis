@@ -1,6 +1,6 @@
 <template>
   <v-btn flat small :disabled='disable' @click='$emit("toggle-legend")' :icon='isBreakpointSmall'>
-    <span class='hidden-sm-and-down' >Legend</span>
+    <span class='hidden-md-and-down' >Legend</span>
     <v-icon :right='!isBreakpointSmall'>fa-th-list</v-icon>
   </v-btn>  
 </template>

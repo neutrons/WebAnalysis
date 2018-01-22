@@ -1,21 +1,131 @@
 <template>
-<v-btn flat small dark :disabled='false' :icon='isBreakpointSmall'>
-  <span class='hidden-sm-and-down'>Save Stitch</span>
-  <v-icon :right='!isBreakpointSmall'>fa-floppy-o</v-icon>
-</v-btn>
+<v-dialog v-model='show' persistent max-width='50%'>
+  <v-btn flat :icon='isBreakpointSmall' slot='activator' :disabled='!stitchedData.length'>
+    <span>Store Stitch</span>
+    <v-icon :right='!isBreakpointSmall'>fa-floppy-o</v-icon>
+  </v-btn>
+  <v-card>
+    <v-card-title class='green white--text'>
+      <div class='headline'>Save stitched line?</div>
+    </v-card-title>
+
+    <v-card-text>
+      <v-form v-model='valid' ref='form' lazy-validation>
+        <v-text-field label='File Name' placeholder='e.g. file_name' v-model='name' :rules='nameRules' required suffix='_IQ.txt' class='mb-3'></v-text-field>
+
+        <v-layout>
+          <v-spacer></v-spacer>
+          <v-btn @click='close' color='error' outline flat>cancel</v-btn>
+          <v-btn @click='submit' :disabled='!valid' outline flat color='success'>
+            submit
+          </v-btn>
+        </v-layout>
+
+      </v-form>
+    </v-card-text>
+  </v-card>
+</v-dialog>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+import axios from 'axios';
 import isBreakpointSmall from '../assets/js/isBreakpointSmall';
+import { eventBus } from '../assets/js/eventBus';
 
 export default {
   name: 'SaveStitchButton',
   mixins: [
     isBreakpointSmall,
   ],
+  data() {
+    return {
+      show: false,
+      valid: true,
+      name: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+        this.validateFileName,
+      ],
+    };
+  },
+  computed: {
+    ...mapState('Stitch', {
+      stitchedData: state => state.stitchedData,
+    }),
+  },
   methods: {
-    saveStitchLine() {
-      // where save stitch line will go
+    ...mapMutations('Stitch', [
+      'saveBrushes',
+      'saveBrushSelections',
+    ]),
+    close() {
+      this.name = '';
+      this.valid = true;
+      this.show = false;
+    },
+    submit() {
+      if (this.$refs.form.validate()) {
+        this.saveStitchLine('save-stitch-line', `${this.name}_IQ.txt`);
+        this.close();
+      }
+    },
+    validateFileName(value) {
+      /* eslint-disable */
+      const rg1 = /^[^\\/:\*\?'<>\|  .]+$/; // forbidden characters \ / : * ? ' < > |
+      const rg2 = /^[0-9]/; // cannot start with a number ([0-9])
+      const rg4 = /^[A-Za-z].*$/; // cannot start with a number ([0-9])
+      const rg3 = /^(nul|prn|con|lpt[0-9]|com[0-9])(\.|$)/i; // forbidden file names
+      /* eslint-enable */
+
+      if (!rg1.test(value)) {
+        return 'Invalid character(s).';
+      } else if (rg2.test(value)) {
+        return 'Do not start files with a number.';
+      } else if (rg3.test(value)) {
+        return 'Invalid file name.';
+      } else if (!rg4.test(value)) {
+        return 'Start file names with a character.';
+      }
+
+      return true;
+    },
+    saveStitchLine(filename) {
+      const vm = this;
+
+      axios.post('/external/save', {
+        id: filename,
+        content: vm.stitchedData,
+      })
+      .then((response) => {
+        if (response.status === 200) eventBus.$emit('add-notification', 'Save succesful!', 'success');
+
+        // If posting stitch line works, store brush selections
+        vm.saveBrushSelections();
+        vm.saveBrushes();
+
+        // console.log('Saved brushes:', savedBrushes);
+        // console.log('-----------------------------')
+
+        // console.log('Here are your saved brush selections:')
+        // for(let key in savedSelections) {
+        //     console.log('Key: ' + key);
+        //     console.log(savedSelections[key]);
+        //     console.log('---------------------------');
+        // }
+
+        // Then reset plot for next iteration of stitching
+        // vm.brushObj.brushSelections = {};
+        // vm.brushObj.brushes = [];
+        // eventBus.$emit('reset-stitch');
+
+        // Then fetch data to include the saved stitch file
+        // eventBus.$emit('fetch-files');
+      })
+      .catch((error) => {
+        const errorMSG = error;
+        eventBus.$emit('add-notification', errorMSG, 'error');
+      });
     },
   },
 };

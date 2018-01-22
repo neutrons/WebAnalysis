@@ -73,6 +73,7 @@ export default {
     },
     updateSlider() {
       // visually reflect the newly updated x axis
+      const tempData = this.dataToFit.filter(this.filterForLog);
       this.svg.select('.slider')
         .select('.slider-axis--x')
         .transition()
@@ -83,7 +84,7 @@ export default {
 
       const slider = this.svg.select('.slider-lines')
         .selectAll('line')
-        .data(this.dataToFit);
+        .data(tempData);
 
       // EXIT old slider lines
       slider.exit().remove();
@@ -109,7 +110,7 @@ export default {
       this.brush.on('brush', this.brushed);
 
       // set initial brushSelection
-      const xExtent = d3.extent(this.dataToFit, d => d.x);
+      const xExtent = d3.extent(tempData, d => d.x);
 
       if (this.brushSelection.length === 0 ||
         !_.isEqual(xExtent, this.prevExtent) ||
@@ -136,8 +137,9 @@ export default {
     },
     brushed() {
       this.$store.commit(`${this.ID}/setBrushSelection`, d3.event.selection);
+      const tempData = this.dataToFit.filter(this.filterForLog);
       const e = d3.event.selection.map(this.sliderScale.invert, this.sliderScale);
-      const selectedData = this.dataToFit.filter(d => e[0] <= d.x && d.x <= e[1]);
+      const selectedData = tempData.filter(d => e[0] <= d.x && d.x <= e[1]);
 
       // Update brush selections to the current selected data
       // This will be used to dynamically adjust brush location when new data is added

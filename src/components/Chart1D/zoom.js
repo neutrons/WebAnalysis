@@ -12,6 +12,7 @@ export default {
       const newXScale = d3.event.transform.rescaleX(this.xScale);
       const newYScale = d3.event.transform.rescaleY(this.yScale);
       const newLine = d3.line()
+        .defined(this.filterForLog)
         .x(d => newXScale(d.x))
         .y(d => newYScale(d.y));
       const t = d3.transition().duration(0);
@@ -36,7 +37,7 @@ export default {
 
       // re-draw scatter plot;
       this.g.selectAll('.scatter')
-        .selectAll('circle')
+        .selectAll('.point')
         .call(this.updateScatter, newXScale, newYScale, t);
 
       // re-draw line paths
@@ -45,6 +46,10 @@ export default {
         .call(this.updateLine, newLine, t);
 
       if (this.fileToFit) this.g.select('.fitted-line').attr('d', newLine);
+      if (this.ID === 'Stitch') {
+        this.updateBrushScale();
+        this.reconvertBrushSelections();
+      }
     },
   },
 };

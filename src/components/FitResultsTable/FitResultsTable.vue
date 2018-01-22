@@ -4,7 +4,7 @@
     <v-flex xs12>
       <v-btn color='green' outline flat @click='downloadFitEquation'>
         <v-icon :left='!isBreakpointSmall'>file_download</v-icon>
-        <span class='hidden-sm-and-down'>Fit Equation</span>
+        <span class='hidden-md-and-down'>Fit Equation</span>
       </v-btn>
     </v-flex>
     <v-flex md12 lg3 pa-1><b>Fit File:</b> {{fileToFit}}</v-flex>

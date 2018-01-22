@@ -32,17 +32,26 @@
                       <v-export-chart-button :ID='ID' :disable='filesSelected.length === 0'></v-export-chart-button>
                       <v-legend-button @toggle-legend='drawerRight = !drawerRight' @close-legend='drawerRight = false' :disable='filesSelected.length === 0'></v-legend-button>
 
-                      <slot name='toolbar-slot' v-if='ID === "Stitch"'></slot>
+                      <slot name='toolbar-slot' v-if='ID === "Stitch"'
+                        :toggle-edit='toggleEdit'
+                        :remove-brushes='removeBrushes'
+                        :stitch-data='stitchData'
+                        :remove-stitch-line='removeStitchLine'
+                        :draw-saved-brushes='drawSavedBrushes'
+                      ></slot>
 
                       <v-spacer></v-spacer>
                       <!-- scatter point hover values -->
-                      <v-subheader class='hidden-xs-only white--text' v-if='filesSelected.length > 0 && xPoint'>
+                      <v-subheader class='hidden-sm-and-down white--text' v-if='filesSelected.length > 0 && xPoint'>
                         <span class='mr-2'>X: {{xPoint.toExponential(2)}}</span>
                         <span class='mr-2'>Y: {{yPoint.toExponential(2)}}</span>
                         <span class='mr-2'>Error: {{errorPoint.toExponential(2)}}</span>
                       </v-subheader>
                       <v-spacer></v-spacer>
                       <v-btn :icon='!isBreakpointSmall' flat @click='showTabs = !showTabs' v-if='fileToFit || metadataLength > 0'>
+                        <v-icon small>{{ showTabs ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
+                      </v-btn>
+                      <v-btn :icon='!isBreakpointSmall' flat @click='showTabs = !showTabs' v-if='ID === "Stitch" && stitchedData.length > 0'>
                         <v-icon small>{{ showTabs ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
                       </v-btn>
                     </v-layout>
@@ -66,6 +75,13 @@
                 :metadata='metadata'
                 :metadata-length='metadataLength'
               ></slot>
+              <slot name='tabs-slot' v-if='ID === "Stitch"'
+                :show-tabs='showTabs'
+                :files-selected='filesSelected'
+                :stitched-data='stitchedData'
+                :brush-selections='brushSelections'
+                :active-parent-tab='activeParentTab'
+              ></slot>
             </v-layout>
           </v-tabs-content>
 
@@ -86,7 +102,8 @@
     :drawer-right='drawerRight'
     :color-scale='colorScale'
     :files-selected='filesSelected'
-    :file-to-fit='fileToFit'></v-legend>
+    :file-to-fit='fileToFit'
+    :is-stitch='ID === "Stitch" && stitchedData.length > 0'></v-legend>
 </v-container>
 </template>
 
@@ -109,6 +126,7 @@ import grids from './grids';
 import resetChart from './resetChart';
 import zoom from './zoom';
 import drawChart from './drawChart';
+import filterForLog from './filterForLog';
 import isBreakpointSmall from '../../assets/js/isBreakpointSmall';
 
 export default {
@@ -129,6 +147,7 @@ export default {
     getContainerWidth,
     drawChart,
     isBreakpointSmall,
+    filterForLog,
   ],
   props: {
     ID: {
@@ -168,15 +187,20 @@ export default {
     xScale() {
       return this.plotScale.x.value
         .range([0, this.width])
-        .domain(this.xExtent);
+        .domain(this.xExtent)
+        .nice();
     },
     yScale() {
       return this.plotScale.y.value
         .range([this.height, 0])
-        .domain(this.yExtent);
+        .domain(this.yExtent)
+        .nice();
     },
     yType() {
       return this.plotScale.y.label;
+    },
+    xType() {
+      return this.plotScale.x.label;
     },
     colorScale() {
       return d3.scaleOrdinal(d3.schemeCategory20).domain(this.colorDomain);
@@ -207,6 +231,7 @@ export default {
     },
     line() {
       return d3.line()
+        .defined(this.filterForLog)
         .x(d => this.xScale(d.x))
         .y(d => this.yScale(d.y));
     },
@@ -233,10 +258,9 @@ export default {
       deep: true,
       handler() {
         this.$nextTick(() => {
-          console.log('chart configs changed...');
           if (this.filesSelected.length === 0 || this.fileToFit !== this.previousFit) {
             this.showTabs = true;
-            this.getContainerWidth();
+            // this.getContainerWidth();
             this.removeChart();
             this.drawChart();
             this.setResponsive();
@@ -317,14 +341,31 @@ foreignObject {
   width: 200px;
 }
 
-circle:hover {
-  transition: all 0.1s ease;
-  transform-origin: center;
-  transform: scale(3);
-}
-
 .handle {
   fill: gray;
   opacity: 0.75;
+}
+
+.zoom-group {
+  .brush-container .handle {
+    fill: none;
+  }
+
+  .brushes .selection {
+    fill: green;
+    stroke: black;
+    stroke-width: 1px;
+    stroke-dasharray: 3px 3px;
+  }
+
+  .brushes .handle {
+    fill: none;
+  }
+
+  .brushes text {
+    fill: white;
+    text-anchor: end;
+    letter-spacing: 1px;
+  }
 }
 </style>
