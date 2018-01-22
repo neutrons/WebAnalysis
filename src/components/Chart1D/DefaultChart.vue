@@ -342,12 +342,6 @@ foreignObject {
   width: 200px;
 }
 
-circle:hover {
-  transition: all 0.1s ease;
-  transform-origin: center;
-  transform: scale(3);
-}
-
 .handle {
   fill: gray;
   opacity: 0.75;

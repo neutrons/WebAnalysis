@@ -9,26 +9,8 @@ export default {
     newBrush() {
       const vm = this;
 
-      function brushend() {
-        // console.log('Brush end...');
-        // Figure out if our latest brush has a selection
-        const lastBrushID = vm.brushes[vm.brushes.length - 1].id;
-        const lastBrush = document.getElementById(`selection-${lastBrushID}`);
-        const selection = d3.brushSelection(lastBrush);
-        if (selection === null) d3.select(`#selection-label-${lastBrushID}`).remove();
-
-        if (selection && selection[0] !== selection[1]) {
-          vm.brushes[vm.brushes.length - 1].selection =
-            [vm.brushScale.invert(selection[0]), vm.brushScale.invert(selection[1])];
-        }
-
-        // If it does, that means we need another one
-        if (vm.brushes.length < vm.brushCount && selection && selection[0] !== selection[1]) {
-          vm.newBrush();
-        }
-
-        // Always draw brushes
-        vm.drawBrushes();
+      function brushstart() {
+        // Brush start here
       }
 
       function brushed() {
@@ -63,12 +45,36 @@ export default {
         vm.addBrushSelections(obj);
       }
 
+      function brushend() {
+        // console.log('Brush end...');
+        // Figure out if our latest brush has a selection
+        const lastBrushID = vm.brushes[vm.brushes.length - 1].id;
+        const lastBrush = document.getElementById(`selection-${lastBrushID}`);
+        const selection = d3.brushSelection(lastBrush);
+
+        if (selection === null) d3.select(`#selection-label-${lastBrushID}`).remove();
+
+        if (selection && selection[0] !== selection[1]) {
+          vm.brushes[vm.brushes.length - 1].selection =
+            [vm.brushScale.invert(selection[0]), vm.brushScale.invert(selection[1])];
+        }
+
+        // If it does, that means we need another one
+        if (vm.brushes.length < vm.brushCount && selection && selection[0] !== selection[1]) {
+          vm.newBrush();
+        }
+
+        // Always draw brushes
+        vm.drawBrushes();
+      }
+
       // console.log('new brush');
       const brush = d3.brushX()
         .extent([
           [0, 0],
           [vm.width, vm.height],
         ])
+        .on('start', brushstart)
         .on('brush', brushed)
         .on('end', brushend);
 
@@ -82,7 +88,7 @@ export default {
         .selectAll('.brush')
         .data(vm.brushes, d => d.id);
 
-      // Set up new brushes
+      // ENTER Brushes
       brushSelection.enter()
         .insert('g', '.brush')
         .attr('class', 'brush')
@@ -96,6 +102,7 @@ export default {
           }
         });
 
+      // UPDATE Brushes
       brushSelection.each(function (brushItem) {
         d3.select(this)
           .attr('class', 'brush')
@@ -108,6 +115,7 @@ export default {
           });
       });
 
+      // EXIT Brushes
       brushSelection.exit().remove();
       /* eslint-enable */
     },

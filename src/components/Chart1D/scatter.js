@@ -19,6 +19,8 @@ export default {
   },
   methods: {
     updateScatter(selection, x, y, t, shape = 'circle') {
+      const vm = this;
+
       // EXIT
       selection.exit().remove();
 
@@ -34,7 +36,19 @@ export default {
           return typeof d.name === 'undefined' ? 'brown' : this.colorScale(d.name);
         })
         .style('stroke', 'whitesmoke')
-        .attr('transform', d => `translate( ${x(d.x)}, ${y(d.y)})`);
+        .attr('transform', d => `translate( ${x(d.x)}, ${y(d.y)})`)
+        // eslint-disable-next-line
+        .on('mouseover', function (d) {
+          d3.select(this).transition()
+            .attr('d', vm.symbols[shape].size(125));
+
+          vm.tooltipEnter(d);
+        })
+        // eslint-disable-next-line
+        .on('mouseout', function (d) {
+          d3.select(this).transition()
+            .attr('d', vm.symbols[shape].size(45));
+        });
     },
     tooltipEnter(d) {
       [this.xPoint, this.yPoint, this.errorPoint] = [d.x, d.y, d.error];
