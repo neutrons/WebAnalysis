@@ -46,7 +46,6 @@ export default {
       }
 
       function brushend() {
-        // console.log('Brush end...');
         // Figure out if our latest brush has a selection
         const lastBrushID = vm.brushes[vm.brushes.length - 1].id;
         const lastBrush = document.getElementById(`selection-${lastBrushID}`);
@@ -103,17 +102,19 @@ export default {
         });
 
       // UPDATE Brushes
-      brushSelection.each(function (brushItem) {
-        d3.select(this)
-          .attr('class', 'brush')
-          .selectAll('.overlay')
-          .style('pointer-events', () => {
-            const brush = brushItem.brush;
-            if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
+      vm.g.select(`#zoom-group-${vm.ID}`)
+        .select('.brushes')
+        .selectAll('.brush')
+        .each(function (brushItem) {
+          d3.select(this)
+            .selectAll('.overlay')
+            .style('pointer-events', () => {
+              const brush = brushItem.brush;
+              if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
 
-            return 'none';
-          });
-      });
+              return 'none';
+            });
+        });
 
       // EXIT Brushes
       brushSelection.exit().remove();
@@ -189,19 +190,24 @@ export default {
     },
     toggleEdit(choice) {
       // console.log('Toggle edit...', choice);
+      const vm = this;
       this.toggleZoomBrush(choice);
 
       if (choice || this.brushCount < 1) {
         // Toggle off all brushes
-        for (let i = 0, len = this.brushes.length; i < len; i += 1) {
-          d3.select(`#brush-${i}`).on('.brush', null);
-          this.svg.selectAll('.overlay').style('pointer-events', 'none');
-        }
 
         // Remove Brush Cursor Styles
         // d3.select('.stitch-chart').style('cursor', 'move');
+        this.g.select('.brushes').selectAll('.selection').style('pointer-events', 'none');
         this.g.select('.brushes').selectAll('.selection').style('cursor', 'move');
+        this.g.select('.brushes').selectAll('.overlay').style('pointer-events', 'none');
         this.g.select('.brushes').selectAll('.overlay').style('cursor', 'move');
+        this.g.select('.brushes').selectAll('.handle').style('pointer-events', 'none');
+        this.g.select('.brushes').selectAll('.handle').style('cursor', 'move');
+
+        for (let i = 0, len = this.brushes.length; i < len; i += 1) {
+          d3.select(`#brush-${i}`).on('.brush', null);
+        }
 
         this.g.select('.zoom').call(this.zoom);
       } else if (!choice) {
@@ -209,13 +215,29 @@ export default {
 
         // Toggle on all brushes
         for (let i = 0, len = this.brushes.length; i < len; i += 1) {
-          this.g.select('.brushes').selectAll('.overlay').style('pointer-events', 'all');
           this.brushes[i].brush(d3.select(`#brush-${i}`));
         }
 
         // Re-instate Brush Cursor Styles
+        this.g.select('.brushes').selectAll('.selection').style('pointer-events', 'all');
         this.g.select('.brushes').selectAll('.selection').style('cursor', 'move');
+        // Toggle overlay pointer-event
+        vm.g.select(`#zoom-group-${vm.ID}`)
+          .select('.brushes')
+          .selectAll('.brush')
+          .each(function (brushItem) {
+            d3.select(this)
+              .selectAll('.overlay')
+              .style('pointer-events', () => {
+                const brush = brushItem.brush;
+                if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
+
+                return 'none';
+              });
+          });
         this.g.select('.brushes').selectAll('.overlay').style('cursor', 'crosshair');
+        this.g.select('.brushes').selectAll('.handle').style('pointer-events', 'all');
+        this.g.select('.brushes').selectAll('.handle').style('cursor', 'ew-resize');
       }
     },
   },

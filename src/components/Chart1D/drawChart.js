@@ -182,10 +182,8 @@ export default {
 
       if (this.fileToFit) this.updateSlider();
       if (this.ID === 'Stitch') {
-        if (this.filesSelected.length < 2) {
-          this.removeStitchLine();
-          this.resetStitchedData();
-        }
+        this.removeStitchLine();
+        this.resetStitchedData();
         this.removeBrushes();
         this.updateStitchLine();
         this.updateBrushScale();

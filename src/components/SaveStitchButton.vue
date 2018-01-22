@@ -31,6 +31,7 @@
 import { mapState, mapMutations } from 'vuex';
 import axios from 'axios';
 import isBreakpointSmall from '../assets/js/isBreakpointSmall';
+import { eventBus } from '../assets/js/eventBus';
 
 export default {
   name: 'SaveStitchButton',
@@ -90,7 +91,6 @@ export default {
       return true;
     },
     saveStitchLine(filename) {
-      console.log('save stitch file:', filename);
       const vm = this;
 
       axios.post('/external/save', {
@@ -98,7 +98,7 @@ export default {
         content: vm.stitchedData,
       })
       .then((response) => {
-        console.log(response);
+        if (response.status === 200) eventBus.$emit('add-notification', 'Save succesful!', 'success');
 
         // If posting stitch line works, store brush selections
         vm.saveBrushSelections();
@@ -122,7 +122,10 @@ export default {
         // Then fetch data to include the saved stitch file
         // eventBus.$emit('fetch-files');
       })
-      .catch(error => console.log(error));
+      .catch((error) => {
+        const errorMSG = error;
+        eventBus.$emit('add-notification', errorMSG, 'error');
+      });
     },
   },
 };

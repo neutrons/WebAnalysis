@@ -258,7 +258,6 @@ export default {
       deep: true,
       handler() {
         this.$nextTick(() => {
-          console.log('chart configs changed...');
           if (this.filesSelected.length === 0 || this.fileToFit !== this.previousFit) {
             this.showTabs = true;
             // this.getContainerWidth();
