@@ -8,8 +8,8 @@ export default function (data, fields) {
 
     nObj.x = nObj[fields.x];
     nObj.y = nObj[fields.y];
-    delete nObj[fields.x];
-    delete nObj[fields.y];
+    if (fields.x !== 'error') delete nObj[fields.x];
+    if (fields.y !== 'error') delete nObj[fields.y];
 
     return nObj;
   });

@@ -304,6 +304,7 @@ export default {
   },
   watch: {
     plotData() {
+      console.log('Plot data', this.plotData);
       this.$nextTick(() => {
         if (!this.plotData.length) {
           this.label = { x: 'q = x', y: 'I(q) = y' };

@@ -73,6 +73,10 @@ export default {
       x: 'x',
       y: 'y',
     };
+    state.field = {
+      x: 'pt',
+      y: 'detector',
+    };
     state.label = {
       x: 'q = x',
       y: 'I(q) = y',
