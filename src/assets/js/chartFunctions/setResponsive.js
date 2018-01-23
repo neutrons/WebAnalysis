@@ -2,9 +2,7 @@ import $ from 'jquery';
 
 export default {
   methods: {
-    setResponsive() {
-      const vm = this;
-
+    setResponsive(iframeLabel, chartWrapperLabel, chartLabel) {
       // Add responsive elements
       // Essentially when the plot-1D gets resized it will look to the
       // width and scale the plot according to newly updated width.
@@ -13,13 +11,13 @@ export default {
       // Solution courtesy of: https://stackoverflow.com/a/26077110
       $.event.special.widthChanged = {
         remove() {
-          $(this).children(`iframe.width-changed-${vm.ID}`).remove();
+          $(this).children(`iframe.${iframeLabel}`).remove();
         },
         add() {
           const elm = $(this);
-          let iframe = elm.children(`iframe.width-changed-${vm.ID}`);
+          let iframe = elm.children(`iframe.${iframeLabel}`);
           if (!iframe.length) {
-            iframe = $('<iframe/>').addClass(`width-changed width-changed-${vm.ID}`).prependTo(this);
+            iframe = $('<iframe/>').addClass(`width-changed ${iframeLabel}`).prependTo(this);
           }
           let oldWidth = elm.width();
 
@@ -40,11 +38,11 @@ export default {
         },
       };
 
-      const chart = $(`.chart-${vm.ID}`);
+      const chart = $(chartLabel);
       const aspectRatio = chart.width() / chart.height();
       const container = chart.parent();
 
-      $(`#chart-wrapper-${vm.ID}`).on('widthChanged', () => {
+      $(chartWrapperLabel).on('widthChanged', () => {
         const targetWidth = container.width();
         chart.attr('width', targetWidth);
         chart.attr('height', Math.round(targetWidth / aspectRatio));

@@ -12,6 +12,7 @@ export default {
   deleteKeys: [],
   filters: [],
   selectedData: [],
+  browseData: [],
   fittedData: [],
   fileToFit: null,
   previousFit: '',

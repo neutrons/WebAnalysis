@@ -46,7 +46,7 @@ export default {
         .call(this.updateLine, newLine, t);
 
       if (this.fileToFit) this.g.select('.fitted-line').attr('d', newLine);
-      if (this.ID === 'Stitch') {
+      if (this.ID === 'Stitch' && this.$options.name !== 'StitchBrowse') {
         this.updateBrushScale();
         this.reconvertBrushSelections();
       }

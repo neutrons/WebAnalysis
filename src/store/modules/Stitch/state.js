@@ -8,6 +8,7 @@ export default {
   saved: {},
   filesSelected: [],
   stitchedData: [],
+  browseData: [],
   deleteKeys: [],
   filters: [],
   selectedData: [],

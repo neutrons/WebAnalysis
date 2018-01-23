@@ -328,4 +328,15 @@ export default {
     // eslint-disable-next-line
     state.selectedData = tempSelect;
   },
+  setBrowseData(state, value) {
+    // eslint-disable-next-line
+    state.browseData = value;
+  },
+  updateTags(state, payload) {
+    if (payload.loadType === 'fetched') {
+      Vue.set(state.fetched[payload.filename], 'tags', payload.tags);
+    } else {
+      Vue.set(state.uploaded[payload.filename], 'tags', payload.tags);
+    }
+  },
 };

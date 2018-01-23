@@ -19,9 +19,6 @@ export default {
     ...mapState('TAS', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
-      width: state => state.width,
-      height: state => state.height,
-      viewBox: state => state.viewBox,
       colorDomain: state => state.colorDomain,
       deleteKeys: state => state.deleteKeys,
       label: state => state.label,

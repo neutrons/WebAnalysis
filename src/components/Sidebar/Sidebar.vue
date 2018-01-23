@@ -13,16 +13,13 @@
     >
 
     <keep-alive>
-      <component :is='`Sidebar${title}`'></component>
+      <component :is='$route.meta.sidebar'></component>
     </keep-alive>
 
     </v-navigation-drawer>
 </template>
 
 <script>
-/* Import Mixins */
-import getTitle from '../../assets/js/getTitle';
-
 export default {
   name: 'Sidebar',
   components: {
@@ -31,10 +28,10 @@ export default {
     SidebarStitch: () => import('./Stitch/SidebarStitch'),
     SidebarTAS: () => import('./TAS/SidebarTAS'),
     Sidebar404: () => import('./Sidebar404'),
+    SidebarSANS1DBrowse: () => import('./SANS1D/SidebarSANS1DBrowse'),
+    SidebarStitchBrowse: () => import('./Stitch/SidebarStitchBrowse'),
+    SidebarTASBrowse: () => import('./TAS/SidebarTASBrowse'),
   },
-  mixins: [
-    getTitle,
-  ],
   props: {
     drawer: {
       type: Boolean,

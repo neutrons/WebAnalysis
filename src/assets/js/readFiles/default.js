@@ -4,7 +4,7 @@ import { eventBus } from '../eventBus';
 
 export default {
   methods: {
-    read1DData(fileURLs, tempData) {
+    read1DData(fileURLs, tempData, plotType = 'default') {
       /*
        When a user selects data to be plotted,
       it first must be fetched, either from
@@ -58,7 +58,11 @@ export default {
         Promise.all(promises).then((results) => {
           const plotData = _.concat(tempData, results);
 
-          vm.setCurrentData(plotData);
+          if (plotType === 'default') {
+            vm.setCurrentData(plotData);
+          } else {
+            vm.setBrowseData(plotData[0]);
+          }
         }).catch((reason) => {
           const errorMsg = `Error! ${reason}`;
 
