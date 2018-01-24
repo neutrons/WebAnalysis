@@ -168,6 +168,22 @@ export default {
       g: undefined,
       drawerRight: false,
       showTabs: true,
+      width: 960,
+      height: 600,
+      viewBox: '0 0 960 600',
+      defaultMargin: {
+        top: 20,
+        right: 50,
+        bottom: 50,
+        left: 100,
+      },
+      sliderMargin: {
+        top: 50,
+        right: 50,
+        bottom: 130,
+        left: 100,
+      },
+      sliderHeight: 25,
     };
   },
   computed: {
@@ -249,9 +265,9 @@ export default {
     },
   },
   mounted() {
-    this.getContainerWidth();
+    this.getContainerWidth(`#chart-wrapper-${this.ID}`);
     this.drawChart();
-    this.setResponsive();
+    this.setResponsive(`chart-width-change-${this.ID}`, `#chart-wrapper-${this.ID}`, `.chart-${this.ID}`);
   },
   watch: {
     chartConfigurations: {
@@ -260,10 +276,10 @@ export default {
         this.$nextTick(() => {
           if (this.filesSelected.length === 0 || this.fileToFit !== this.previousFit) {
             this.showTabs = true;
-            // this.getContainerWidth();
+            this.getContainerWidth(`#chart-wrapper-${this.ID}`);
             this.removeChart();
             this.drawChart();
-            this.setResponsive();
+            this.setResponsive(`chart-width-change-${this.ID}`, `#chart-wrapper-${this.ID}`, `.chart-${this.ID}`);
           } else {
             this.drawChart();
           }
@@ -272,7 +288,7 @@ export default {
     },
     title() {
       // maintain responsive charts when switching between plot components
-      this.setResponsive();
+      this.setResponsive(`chart-width-change-${this.ID}`, `#chart-wrapper-${this.ID}`, `.chart-${this.ID}`);
     },
   },
 };

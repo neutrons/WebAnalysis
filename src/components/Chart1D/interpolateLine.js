@@ -1,26 +1,7 @@
-import { linear } from 'everpolate'; // const everpolate = require('everpolate');
+import { linear } from 'everpolate';
 
 const LM = require('ml-levenberg-marquardt');
 const _ = require('lodash');
-
-// function fixNegatives(line) {
-//   const temp = _.cloneDeep(line);
-//   const minY = _.min(temp.y);
-
-//   if (minY < 0) {
-//     temp.y = temp.y.map((el) => {
-//       const result = el + (-1 * minY);
-
-//       if (result === 0) {
-//         return Number.MIN_VALUE; // this is to prevent errors when log of zero
-//       }
-
-//       return result;
-//     });
-//   }
-
-//   return temp;
-// }
 
 /* Shift Curves Function:
     The function takes the entire array of selected data and shifts the curve's data by y+k.
@@ -116,7 +97,7 @@ function mergeSegs(s1, s2, s3) {
 const interpolate = (() => {
   const my = {};
 
-  my.linear = function (selected) {
+  my.linear = function myLinear(selected) {
     let sel = _.cloneDeep(selected);
     let stitchedLine = null;
 

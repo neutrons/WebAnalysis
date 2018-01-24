@@ -5,7 +5,7 @@
 
   <v-toolbar fixed app :clipped-left='true' :clipped-right='true'>
 
-    <v-toolbar-side-icon @click.stop="drawer = !drawer">
+    <v-toolbar-side-icon @click.stop='drawer = !drawer'>
       <v-icon color='grey darken-4'>fa-sliders</v-icon>
     </v-toolbar-side-icon>
 
@@ -15,19 +15,123 @@
     <v-spacer></v-spacer>
 
     <v-toolbar-items class='hidden-xs-only'>
-      <v-btn flat v-for='(link, index) in links' :key='index' :to='link.path' exact active-class='default-class my-active-class'>{{ link.name }}</v-btn>
+      <v-menu bottom left open-on-hover>
+        <v-btn flat slot='activator'>
+          SANS1D
+          <v-icon right>arrow_drop_down</v-icon>
+        </v-btn>
+        <v-list>
+          <v-list-tile to='/SANS1D-Browse' exact active-class='my-active-class'>
+            <v-list-tile-title>Browse Data</v-list-tile-title>
+          </v-list-tile>
+
+          <v-list-tile to='/SANS1D' exact active-class='my-active-class'>
+            <v-list-tile-title>Graph Data</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+
+      <v-menu bottom left open-on-hover>
+        <v-btn flat slot='activator'>
+          Stitch
+          <v-icon right>arrow_drop_down</v-icon>
+        </v-btn>
+        <v-list>
+          <v-list-tile to='/Stitch-Browse' exact active-class='my-active-class'>
+            <v-list-tile-title>Browse Data</v-list-tile-title>
+          </v-list-tile>
+
+          <v-list-tile to='/Stitch' exact active-class='my-active-class'>
+            <v-list-tile-title>Graph Data</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+
+      <v-menu bottom left open-on-hover>
+        <v-btn flat slot='activator'>
+          TAS
+          <v-icon right>arrow_drop_down</v-icon>
+        </v-btn>
+        <v-list>
+          <v-list-tile to='/TAS-Browse' exact active-class='my-active-class'>
+            <v-list-tile-title>Browse Data</v-list-tile-title>
+          </v-list-tile>
+
+          <v-list-tile to='/TAS' exact active-class='my-active-class'>
+            <v-list-tile-title>Graph Data</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+      <v-btn flat to='SANS2D' exact active-class='my-active-class'>SANS2D</v-btn>
     </v-toolbar-items>
 
-    <v-menu bottom left class='hidden-sm-and-up'>
-      <v-btn icon slot='activator'>
-        <v-icon>more_vert</v-icon>
-      </v-btn>
-      <v-list>
-        <v-list-tile v-for='(link, index) in links' :key='index' :to='link.path' exact active-class='default-class my-active-class'>
-          <v-list-tile-title>{{ link.name }}</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-menu>
+    <v-menu offset-y bottom class='hidden-sm-and-up'>
+        <v-btn flat icon slot='activator'>
+          <v-icon>more_vert</v-icon>
+        </v-btn>
+        <v-list dense>
+          <v-list-tile>
+            <v-menu offset-x open-on-hover>
+              <v-list-tile slot='activator'>
+                <v-list-tile-title>SANS1D</v-list-tile-title>
+                <v-list-tile-action class='justify-end'>
+                  <v-icon>play_arrow</v-icon>
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-list dense>
+                <v-list-tile to='/SANS1D-Browse' exact active-class='my-active-class'>
+                  <v-list-tile-title>Browse Data</v-list-tile-title>
+                </v-list-tile>
+
+                <v-list-tile to='/SANS1D' exact active-class='my-active-class'>
+                  <v-list-tile-title>Graph Data</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
+          </v-list-tile>
+          <v-list-tile>
+            <v-menu offset-x open-on-hover>
+              <v-list-tile slot='activator'>
+                <v-list-tile-title>Stitch</v-list-tile-title>
+                <v-list-tile-action class='justify-end'>
+                  <v-icon>play_arrow</v-icon>
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-list dense>
+                <v-list-tile to='/Stitch-Browse' exact active-class='my-active-class'>
+                  <v-list-tile-title>Browse Data</v-list-tile-title>
+                </v-list-tile>
+
+                <v-list-tile to='/Stitch' exact active-class='my-active-class'>
+                  <v-list-tile-title>Graph Data</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
+          </v-list-tile>
+          <v-list-tile to='/SANS2D' exact active-class='my-active-class'>
+            <v-list-tile-title>SANS2D</v-list-tile-title>
+          </v-list-tile>
+          <v-list-tile>
+            <v-menu offset-x open-on-hover>
+              <v-list-tile slot='activator'>
+                <v-list-tile-title>TAS</v-list-tile-title>
+                <v-list-tile-action class='justify-end'>
+                  <v-icon>play_arrow</v-icon>
+                </v-list-tile-action>
+              </v-list-tile>
+              <v-list dense>
+                <v-list-tile to='/TAS-Browse' exact active-class='my-active-class'>
+                  <v-list-tile-title>Browse Data</v-list-tile-title>
+                </v-list-tile>
+
+                <v-list-tile to='/TAS' exact active-class='my-active-class'>
+                  <v-list-tile-title>Graph Data</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
 
   </v-toolbar>
 

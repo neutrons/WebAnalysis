@@ -4,6 +4,19 @@ import _ from 'lodash';
 // The eventBus serves as the means to communicating between components.
 import { eventBus } from '../../assets/js/eventBus';
 
+function enableBrushPointerEvents(selection, vm) {
+  selection.each(function a(brushItem) {
+    d3.select(this)
+      .selectAll('.overlay')
+      .style('pointer-events', () => {
+        const brush = brushItem.brush;
+        if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
+
+        return 'none';
+      });
+  });
+}
+
 export default {
   methods: {
     newBrush() {
@@ -88,33 +101,26 @@ export default {
         .data(vm.brushes, d => d.id);
 
       // ENTER Brushes
+      function moveBrushTo(brushItem) {
+        // call the brush
+        brushItem.brush(d3.select(this));
+
+        if (brushItem.selection !== undefined) {
+          brushItem.brush.move(d3.select(this), brushItem.selection.map(vm.brushScale));
+        }
+      }
+
       brushSelection.enter()
         .insert('g', '.brush')
         .attr('class', 'brush')
         .attr('id', brush => `selection-${brush.id}`)
-        .each(function (brushItem) {
-          // call the brush
-          brushItem.brush(d3.select(this));
-
-          if (brushItem.selection !== undefined) {
-            brushItem.brush.move(d3.select(this), brushItem.selection.map(vm.brushScale));
-          }
-        });
+        .each(moveBrushTo);
 
       // UPDATE Brushes
       vm.g.select(`#zoom-group-${vm.ID}`)
         .select('.brushes')
         .selectAll('.brush')
-        .each(function (brushItem) {
-          d3.select(this)
-            .selectAll('.overlay')
-            .style('pointer-events', () => {
-              const brush = brushItem.brush;
-              if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
-
-              return 'none';
-            });
-        });
+        .call(enableBrushPointerEvents, vm);
 
       // EXIT Brushes
       brushSelection.exit().remove();
@@ -225,16 +231,8 @@ export default {
         vm.g.select(`#zoom-group-${vm.ID}`)
           .select('.brushes')
           .selectAll('.brush')
-          .each(function (brushItem) {
-            d3.select(this)
-              .selectAll('.overlay')
-              .style('pointer-events', () => {
-                const brush = brushItem.brush;
-                if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
+          .call(enableBrushPointerEvents, vm);
 
-                return 'none';
-              });
-          });
         this.g.select('.brushes').selectAll('.overlay').style('cursor', 'crosshair');
         this.g.select('.brushes').selectAll('.handle').style('pointer-events', 'all');
         this.g.select('.brushes').selectAll('.handle').style('cursor', 'ew-resize');

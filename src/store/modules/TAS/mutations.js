@@ -73,6 +73,10 @@ export default {
       x: 'x',
       y: 'y',
     };
+    state.field = {
+      x: 'pt',
+      y: 'detector',
+    };
     state.label = {
       x: 'q = x',
       y: 'I(q) = y',
@@ -167,7 +171,6 @@ export default {
   },
   setFitType(state, type = state.fitType) {
     /* eslint-disable */
-    console.log('Set fit equation tas:', type);
     state.fitType = type;
     state.fitEquation = state.fits[type].equation;
     state.transformations.x = state.fits[type].transformations.x;
@@ -254,18 +257,6 @@ export default {
     };
     /* eslint-enable */
   },
-  setWidth(state, value) {
-    // eslint-disable-next-line
-    state.width = value;
-  },
-  setHeight(state, value) {
-    // eslint-disable-next-line
-    state.height = value;
-  },
-  setViewBox(state, value) {
-    // eslint-disable-next-line
-    state.viewBox = value;
-  },
   resetSelectionLimits(state) {
     // eslint-disable-next-line
     state.selectionLimits = [];
@@ -327,5 +318,16 @@ export default {
 
     // eslint-disable-next-line
     state.selectedData = tempSelect;
+  },
+  setBrowseData(state, value) {
+    // eslint-disable-next-line
+    state.browseData = value;
+  },
+  updateTags(state, payload) {
+    if (payload.loadType === 'fetched') {
+      Vue.set(state.fetched[payload.filename], 'tags', payload.tags);
+    } else {
+      Vue.set(state.uploaded[payload.filename], 'tags', payload.tags);
+    }
   },
 };

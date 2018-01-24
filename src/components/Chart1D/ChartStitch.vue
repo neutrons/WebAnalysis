@@ -21,16 +21,11 @@ export default {
     ...mapState('Stitch', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
-      width: state => state.width,
-      height: state => state.height,
-      viewBox: state => state.viewBox,
       colorDomain: state => state.colorDomain,
       deleteKeys: state => state.deleteKeys,
       label: state => state.label,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,
-      defaultMargin: state => state.defaultMargin,
-      sliderMargin: state => state.sliderMargin,
       fittedData: state => state.fittedData,
       brushes: state => state.brushes,
       brushScale: state => state.brushScale,
@@ -54,9 +49,6 @@ export default {
   },
   methods: {
     ...mapMutations('Stitch', [
-      'setWidth',
-      'setHeight',
-      'setViewBox',
       'addNewBrush',
       'setBrushes',
       'resetBrushes',

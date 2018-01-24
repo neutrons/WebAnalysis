@@ -19,16 +19,11 @@ export default {
     ...mapState('TAS', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
-      width: state => state.width,
-      height: state => state.height,
-      viewBox: state => state.viewBox,
       colorDomain: state => state.colorDomain,
       deleteKeys: state => state.deleteKeys,
       label: state => state.label,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,
-      defaultMargin: state => state.defaultMargin,
-      sliderMargin: state => state.sliderMargin,
       fittedData: state => state.fittedData,
     }),
     ...mapGetters('TAS', {
@@ -41,9 +36,6 @@ export default {
   },
   methods: {
     ...mapMutations('TAS', [
-      'setWidth',
-      'setHeight',
-      'setViewBox',
       'resetBrushSelection',
       'resetBrushFile',
       'resetSelectionLimits',

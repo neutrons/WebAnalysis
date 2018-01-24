@@ -259,18 +259,6 @@ export default {
     };
     /* eslint-enable */
   },
-  setWidth(state, value) {
-    // eslint-disable-next-line
-    state.width = value;
-  },
-  setHeight(state, value) {
-    // eslint-disable-next-line
-    state.height = value;
-  },
-  setViewBox(state, value) {
-    // eslint-disable-next-line
-    state.viewBox = value;
-  },
   resetSelectionLimits(state) {
     // eslint-disable-next-line
     state.selectionLimits = [];
@@ -304,5 +292,16 @@ export default {
   setBrushSelection(state, value) {
     // eslint-disable-next-line
     state.brushSelection = value;
+  },
+  setBrowseData(state, value) {
+    // eslint-disable-next-line
+    state.browseData = value.length === 0 ? value : value.data;
+  },
+  updateTags(state, payload) {
+    if (payload.loadType === 'fetched') {
+      Vue.set(state.fetched[payload.filename], 'tags', payload.tags);
+    } else {
+      Vue.set(state.uploaded[payload.filename], 'tags', payload.tags);
+    }
   },
 };
