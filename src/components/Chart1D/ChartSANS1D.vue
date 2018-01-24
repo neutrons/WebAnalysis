@@ -36,7 +36,6 @@ export default {
   methods: {
     ...mapMutations('SANS1D', [
       'resetBrushSelection',
-      'resetBrushFile',
       'resetSelectionLimits',
       'setPreviousFit',
     ]),

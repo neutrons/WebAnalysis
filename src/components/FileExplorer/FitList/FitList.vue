@@ -6,13 +6,20 @@
         deletable-chips
         hint='Pick a file to fit'
         light
-        :disabled='filesToFit.length === 0'>
+        :disabled='!filesToFit.length'>
     </v-select>
 </template>
 
 <script>
 export default {
   name: 'FitList',
+  watch: {
+    filesToFit() {
+      if (!this.filesToFit.length) {
+        this.selected = null;
+      }
+    },
+  },
 };
 </script>
 

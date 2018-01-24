@@ -1,0 +1,16 @@
+
+scantitle "002 field dependence: base Temp, H = %1 T"
+scan h 0 k 0 l 1.94 2.06 .005 preset 2
+
+scantitle "220 field dependence:  base Temp, H = %1 T"
+scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+
+scantitle "222 field dependence:  base Temp, H = %1 T"
+scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+
+scantitle "hhh (.5,.5,.5) field dependence:  base Temp, H = %1 T"
+scan h .47 .53 .0025 k .47 .53 .0025  l .47 .53 .0025  preset mcu 5
+
+scantitle "h,h,h (1.5,1.5,1.5) field dependence:  base Temp, H = %1 T"
+scan h 1.47 1.53 .0025  k  1.47 1.53 .0025  l  1.47 1.53 .0025  preset mcu 10
+

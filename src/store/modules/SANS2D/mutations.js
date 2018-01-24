@@ -1,7 +1,12 @@
 import Vue from 'vue';
 import _ from 'lodash';
 
+import storeData from '../../shared/mutations/storeData';
+import updateFilters from '../../shared/mutations/updateFilters';
+
 export default {
+  storeData,
+  updateFilters,
   addFetchFiles(state, files) {
     const keys = Object.keys(files);
     keys.forEach((key) => {
@@ -17,16 +22,6 @@ export default {
   updateFilesSelected(state, selected) {
     // eslint-disable-next-line
     state.filesSelected = selected;
-  },
-  updateFilters(state, selected) {
-    // eslint-disable-next-line
-    state.filters = selected;
-  },
-  storeData(state, payload) {
-    const filename = payload.filename;
-    const data = payload.data;
-
-    Vue.set(state.saved, filename, data);
   },
   resetAll(state) {
     /* eslint-disable */

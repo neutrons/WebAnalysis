@@ -1,51 +1,29 @@
-import Vue from 'vue';
 import _ from 'lodash';
 import * as d3 from 'd3';
 
+import addFetchFiles from '../../shared/mutations/addFetchFiles';
+import addUploadFiles from '../../shared/mutations/addUploadFiles';
+import updateFilesSelected from '../../shared/mutations/updateFilesSelected';
+import updateFilters from '../../shared/mutations/updateFilters';
+import storeData from '../../shared/mutations/storeData';
+import setXScale from '../../shared/mutations/setXScale';
+import setYScale from '../../shared/mutations/setYScale';
+import resetScales from '../../shared/mutations/resetScales';
+import updateTags from '../../shared/mutations/updateTags';
+
 export default {
-  addFetchFiles(state, files) {
-    const keys = Object.keys(files);
-    keys.forEach((key) => {
-      Vue.set(state.fetched, key, files[key]);
-
-      if (state.colorDomain.indexOf(key) === -1) {
-        state.colorDomain.push(key);
-      }
-    });
-  },
-  addUploadFiles(state, files) {
-    const keys = Object.keys(files);
-    keys.forEach((key) => {
-      Vue.set(state.uploaded, key, files[key]);
-
-      if (state.colorDomain.indexOf(key) === -1) {
-        state.colorDomain.push(key);
-      }
-    });
-  },
-  updateFilesSelected(state, selected) {
-    const keys = [];
-
-    state.filesSelected.forEach((key) => {
-      if (selected.indexOf(key) === -1) {
-        keys.push(key);
-      }
-    });
+  addFetchFiles,
+  addUploadFiles,
+  updateFilesSelected,
+  updateFilters,
+  storeData,
+  setXScale,
+  setYScale,
+  resetScales,
+  updateTags,
+  setBrowseData(state, value) {
     // eslint-disable-next-line
-    state.deleteKeys = keys;
-    // now update new list
-    // eslint-disable-next-line
-    state.filesSelected = selected;
-  },
-  updateFilters(state, selected) {
-    // eslint-disable-next-line
-    state.filters = selected;
-  },
-  storeData(state, payload) {
-    const filename = payload.filename;
-    const data = payload.data;
-
-    Vue.set(state.saved, filename, data);
+    state.browseData = value.length === 0 ? value : value.data;
   },
   setCurrentData(state, chosenData) {
     const tempData = _.cloneDeep(chosenData);
@@ -84,21 +62,6 @@ export default {
     state.brushScale = d3.scaleLinear();
     state.stitchedData = [];
     /* eslint-enable */
-  },
-  setXScale(state, x) {
-    // eslint-disable-next-line
-    state.plotScale.x = { label: x, value: state.scale.x[x].copy() };
-  },
-  setYScale(state, y) {
-    // eslint-disable-next-line
-    state.plotScale.y = { label: y, value: state.scale.y[y].copy() };
-  },
-  resetScales(state) {
-    // eslint-disable-next-line
-    state.plotScale = {
-      x: { label: 'x', value: d3.scaleLinear() },
-      y: { label: 'y', value: d3.scaleLinear() },
-    };
   },
   toggleZoomBrush(state, value) {
     // eslint-disable-next-line
@@ -155,16 +118,5 @@ export default {
   resetStitchedData(state) {
     // eslint-disable-next-line
     state.stitchedData = [];
-  },
-  setBrowseData(state, value) {
-    // eslint-disable-next-line
-    state.browseData = value.length === 0 ? value : value.data;
-  },
-  updateTags(state, payload) {
-    if (payload.loadType === 'fetched') {
-      Vue.set(state.fetched[payload.filename], 'tags', payload.tags);
-    } else {
-      Vue.set(state.uploaded[payload.filename], 'tags', payload.tags);
-    }
   },
 };

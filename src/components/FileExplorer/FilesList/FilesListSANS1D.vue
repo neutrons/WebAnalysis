@@ -11,6 +11,7 @@ export default {
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
       filters: state => state.filters,
+      fileToFit: state => state.fileToFit,
     }),
     selected: {
       get() {
@@ -24,6 +25,7 @@ export default {
   methods: {
     ...mapMutations('SANS1D', [
       'updateFilesSelected',
+      'updateFileToFit',
     ]),
   },
 };

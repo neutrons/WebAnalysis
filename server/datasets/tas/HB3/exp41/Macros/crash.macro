@@ -1,0 +1,3 @@
+loop  i=1,100
+ct preset time 1000
+endloop

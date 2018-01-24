@@ -174,7 +174,6 @@ export default {
   methods: {
     ...mapMutations('Stitch', [
       'setCurrentData',
-      'resetFitConfiguration',
       'storeData',
       'resetAll',
     ]),
