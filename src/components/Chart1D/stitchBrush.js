@@ -4,6 +4,19 @@ import _ from 'lodash';
 // The eventBus serves as the means to communicating between components.
 import { eventBus } from '../../assets/js/eventBus';
 
+function enableBrushPointerEvents(selection, vm) {
+  selection.each(function a(brushItem) {
+    d3.select(this)
+      .selectAll('.overlay')
+      .style('pointer-events', () => {
+        const brush = brushItem.brush;
+        if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
+
+        return 'none';
+      });
+  });
+}
+
 export default {
   methods: {
     newBrush() {
@@ -104,21 +117,10 @@ export default {
         .each(moveBrushTo);
 
       // UPDATE Brushes
-      function enableBrushPointerEvents(brushItem) {
-        d3.select(this)
-          .selectAll('.overlay')
-          .style('pointer-events', () => {
-            const brush = brushItem.brush;
-            if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
-
-            return 'none';
-          });
-      }
-
       vm.g.select(`#zoom-group-${vm.ID}`)
         .select('.brushes')
         .selectAll('.brush')
-        .each(enableBrushPointerEvents);
+        .call(enableBrushPointerEvents, vm);
 
       // EXIT Brushes
       brushSelection.exit().remove();
@@ -229,16 +231,8 @@ export default {
         vm.g.select(`#zoom-group-${vm.ID}`)
           .select('.brushes')
           .selectAll('.brush')
-          .each(function enableBrushPointerEvents(brushItem) {
-            d3.select(this)
-              .selectAll('.overlay')
-              .style('pointer-events', () => {
-                const brush = brushItem.brush;
-                if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
+          .call(enableBrushPointerEvents, vm);
 
-                return 'none';
-              });
-          });
         this.g.select('.brushes').selectAll('.overlay').style('cursor', 'crosshair');
         this.g.select('.brushes').selectAll('.handle').style('pointer-events', 'all');
         this.g.select('.brushes').selectAll('.handle').style('cursor', 'ew-resize');

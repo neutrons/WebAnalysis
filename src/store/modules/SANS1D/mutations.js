@@ -259,18 +259,6 @@ export default {
     };
     /* eslint-enable */
   },
-  setWidth(state, value) {
-    // eslint-disable-next-line
-    state.width = value;
-  },
-  setHeight(state, value) {
-    // eslint-disable-next-line
-    state.height = value;
-  },
-  setViewBox(state, value) {
-    // eslint-disable-next-line
-    state.viewBox = value;
-  },
   resetSelectionLimits(state) {
     // eslint-disable-next-line
     state.selectionLimits = [];

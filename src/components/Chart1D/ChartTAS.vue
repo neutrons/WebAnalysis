@@ -24,8 +24,6 @@ export default {
       label: state => state.label,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,
-      defaultMargin: state => state.defaultMargin,
-      sliderMargin: state => state.sliderMargin,
       fittedData: state => state.fittedData,
     }),
     ...mapGetters('TAS', {
@@ -38,9 +36,6 @@ export default {
   },
   methods: {
     ...mapMutations('TAS', [
-      'setWidth',
-      'setHeight',
-      'setViewBox',
       'resetBrushSelection',
       'resetBrushFile',
       'resetSelectionLimits',

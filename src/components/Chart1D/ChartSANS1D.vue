@@ -24,8 +24,6 @@ export default {
       label: state => state.label,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,
-      defaultMargin: state => state.defaultMargin,
-      sliderMargin: state => state.sliderMargin,
       fittedData: state => state.fittedData,
     }),
     ...mapGetters('SANS1D', {
@@ -37,9 +35,6 @@ export default {
   },
   methods: {
     ...mapMutations('SANS1D', [
-      'setWidth',
-      'setHeight',
-      'setViewBox',
       'resetBrushSelection',
       'resetBrushFile',
       'resetSelectionLimits',

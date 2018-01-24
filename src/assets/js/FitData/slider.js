@@ -35,9 +35,6 @@ export default {
           [this.width, this.sliderHeight],
         ]);
     },
-    sliderHeight() {
-      return this.$store.state[this.title].sliderHeight;
-    },
     brushSelection() {
       return this.$store.state[this.title].brushSelection;
     },

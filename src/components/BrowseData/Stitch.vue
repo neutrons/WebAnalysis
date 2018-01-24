@@ -17,7 +17,6 @@ export default {
   computed: {
     ...mapState('Stitch', {
       ID: state => state.ID,
-      defaultMargin: state => state.defaultMargin,
       browseData: state => state.browseData,
     }),
     plotData() {

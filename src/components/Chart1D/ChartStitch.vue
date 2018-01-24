@@ -26,8 +26,6 @@ export default {
       label: state => state.label,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,
-      defaultMargin: state => state.defaultMargin,
-      sliderMargin: state => state.sliderMargin,
       fittedData: state => state.fittedData,
       brushes: state => state.brushes,
       brushScale: state => state.brushScale,
@@ -51,9 +49,6 @@ export default {
   },
   methods: {
     ...mapMutations('Stitch', [
-      'setWidth',
-      'setHeight',
-      'setViewBox',
       'addNewBrush',
       'setBrushes',
       'resetBrushes',

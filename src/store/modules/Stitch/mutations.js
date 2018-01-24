@@ -100,18 +100,6 @@ export default {
       y: { label: 'y', value: d3.scaleLinear() },
     };
   },
-  setWidth(state, value) {
-    // eslint-disable-next-line
-    state.width = value;
-  },
-  setHeight(state, value) {
-    // eslint-disable-next-line
-    state.height = value;
-  },
-  setViewBox(state, value) {
-    // eslint-disable-next-line
-    state.viewBox = value;
-  },
   toggleZoomBrush(state, value) {
     // eslint-disable-next-line
     state.isZoomBrush = value;

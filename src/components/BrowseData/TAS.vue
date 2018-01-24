@@ -18,7 +18,6 @@ export default {
   computed: {
     ...mapState('TAS', {
       ID: state => state.ID,
-      defaultMargin: state => state.defaultMargin,
       browseData: state => state.browseData,
     }),
     plotData() {

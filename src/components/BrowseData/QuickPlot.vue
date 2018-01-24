@@ -90,6 +90,12 @@ export default {
       height: 600,
       viewBox: '0 0 960 600',
       show: true,
+      defaultMargin: {
+        top: 20,
+        right: 50,
+        bottom: 50,
+        left: 100,
+      },
     };
   },
   computed: {
