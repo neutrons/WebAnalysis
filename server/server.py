@@ -64,6 +64,8 @@ def save():
     '{"id":"1","content":"12456"}' http://localhost:8000/save
     '''
     json_data = request.json
+    print(80*"=")
+    print(request.headers)
     print(80*"*")
     pprint(json_data)
     print(80*"*")

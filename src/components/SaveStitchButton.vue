@@ -66,7 +66,7 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate()) {
-        this.saveStitchLine('save-stitch-line', `${this.name}_IQ.txt`);
+        this.saveStitchLine(`${this.name}_IQ.txt`);
         this.close();
       }
     },
@@ -92,10 +92,13 @@ export default {
     },
     saveStitchLine(filename) {
       const vm = this;
-
+ 
       axios.post('/external/save', {
-        id: filename,
-        content: vm.stitchedData,
+        method: 'post',
+        data: {
+          id: filename,
+          content: vm.stitchedData,
+        },
       })
       .then((response) => {
         if (response.status === 200) eventBus.$emit('add-notification', 'Save succesful!', 'success');
