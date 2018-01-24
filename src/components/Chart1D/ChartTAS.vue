@@ -37,7 +37,6 @@ export default {
   methods: {
     ...mapMutations('TAS', [
       'resetBrushSelection',
-      'resetBrushFile',
       'resetSelectionLimits',
       'setPreviousFit',
     ]),

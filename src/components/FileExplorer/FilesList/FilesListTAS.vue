@@ -8,6 +8,7 @@ export default {
   computed: {
     ...mapState('TAS', {
       filesSelected: state => state.filesSelected,
+      fileToFit: state => state.fileToFit,
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
       filters: state => state.filters,
@@ -24,6 +25,7 @@ export default {
   methods: {
     ...mapMutations('TAS', [
       'updateFilesSelected',
+      'updateFileToFit',
     ]),
   },
 };

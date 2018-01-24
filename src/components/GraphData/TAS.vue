@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 import filesToPlotWatcher from './filesToPlotWatcher';
 import read1DData from '../../assets/js/readFiles/default';
 import parseData from '../../assets/js//readFiles/parse/TAS';
@@ -116,10 +116,12 @@ export default {
   methods: {
     ...mapMutations('TAS', [
       'setCurrentData',
-      'resetFitConfiguration',
       'storeData',
       'resetAll',
       'transformData',
+    ]),
+    ...mapActions('TAS', [
+      'resetFitConfiguration',
     ]),
   },
   watch: {

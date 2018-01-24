@@ -1,0 +1,967 @@
+11/8/2003 10:40 AM        drive s2 -77.8
+11/8/2003 10:41 AM        drive s1 -38.9
+11/8/2003 10:44 AM        drive sgu 0
+11/8/2003 10:44 AM        drive sgl 0
+11/8/2003 10:46 AM        scanrel s1 10 -10 -.1 preset mcu 4
+11/8/2003 10:50 AM        drive s2 -36.6
+11/8/2003 10:51 AM        drive s1 -18.3
+11/8/2003 10:54 AM        drive s2 -75.83
+11/8/2003 10:54 AM        drive s1 -37.9
+11/8/2003 10:56 AM        scanrel s1 1 -1 -.1 preset mcu 4
+11/8/2003 10:57 AM        drive s1 -37.69
+11/8/2003 10:57 AM        scan sgl -4 4 .25 preset mcu 4
+11/8/2003 11:00 AM        drive sgl .3524
+11/8/2003 11:01 AM        count
+11/8/2003 11:01 AM        ubcalc file c:\user\exp41\ubconf\tmp\ub08nov2003_110150am.ini
+11/8/2003 11:02 AM        br 0  0 2
+11/8/2003 11:02 AM        br 1 1 0
+11/8/2003 11:03 AM        scan sgu -8 8 .4 preset mcu 4
+11/8/2003 11:09 AM        drive sgu 0
+11/8/2003 11:10 AM        scanrel s1 1 -1 -.15
+11/8/2003 11:11 AM        drive s1 72.27
+11/8/2003 11:11 AM        drive sgu -3
+11/8/2003 11:11 AM        drive sgu 3
+11/8/2003 11:12 AM        count preset mcu 4
+11/8/2003 11:14 AM        drive sgu 0
+11/8/2003 11:15 AM        scanrel s1 1 -1 -.15
+11/8/2003 11:16 AM        drive s1 72.32
+11/8/2003 11:16 AM        drive sgu -1
+11/8/2003 11:16 AM        drive sgu -1.5
+11/8/2003 11:17 AM        drive sgu -2
+11/8/2003 11:17 AM        drive sgu -2.5
+11/8/2003 11:17 AM        scan sgu -3 1 .4
+11/8/2003 11:21 AM        drive sgu 0
+11/8/2003 11:31 AM        scanrel s1 1 -1 -.15
+11/8/2003 11:40 AM        scan s1 -80 65 -.2 preset mcu 2
+11/8/2003 11:41 AM        scan s1 80 65 -.2 preset mcu 2
+11/8/2003 11:45 AM        drive s1 72
+11/8/2003 11:55 AM        scanrel s1 4 -4 -.15 preset mcu 2
+11/8/2003 11:57 AM        br 0 0 2
+11/8/2003 11:58 AM        scanrel s1 1 -1 -.15 preset mcu 2
+11/8/2003 11:59 AM        drive s2 0
+11/8/2003 11:59 AM        count
+11/8/2003 12:00 PM        br 0 0 2
+11/8/2003 12:01 PM        scanrel s1 4 -4 -.15 preset mcu 2
+11/8/2003 12:15 PM        drive h 0.000000 k 0.000000 l 2.000000 e 0.000000
+11/8/2003 12:15 PM        scanrel s1 4 -4 -.15 preset mcu 2
+11/8/2003 12:17 PM        drive s1 -35.1
+11/8/2003 12:19 PM        scan sgl -4 4 .4 preset mcu 2
+11/8/2003 12:21 PM        drive sgl .56
+11/8/2003 12:21 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub08nov2003_122135pm.ini
+11/8/2003 12:21 PM        drive h 0.000000 k 0.000000 l 2.000000 e 0.000000
+11/8/2003 12:21 PM        count preset mcu 2
+11/8/2003 12:22 PM        br 0 0 2
+11/8/2003 12:22 PM        br 1 1 0
+11/8/2003 12:30 PM        scanrel s1 4 -4 -.15 preset mcu 2
+11/8/2003 12:38 PM        scanrel s1 1 -1 -.1 preset 2
+11/8/2003 12:39 PM        drive s1 74.6
+11/8/2003 12:39 PM        scan sgu -4 4 .4 preset mcu 2
+11/8/2003 12:41 PM        drive sgu -1.5
+11/8/2003 12:41 PM        count
+11/8/2003 12:42 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub08nov2003_124212pm.ini
+11/8/2003 12:42 PM        br 1 1 0
+11/8/2003 12:42 PM        br 0 0 2
+11/8/2003 12:43 PM        br 2 2 2
+11/8/2003 12:43 PM        br 1 1 0
+11/8/2003 2:27 PM        br 0 0 2
+11/8/2003 2:39 PM        scanrel s1 1 -1 -.1 preset mcu 2
+11/8/2003 2:41 PM        drive s1 -35.095
+11/8/2003 2:41 PM        scan sgl -3 3 .4 preset mcu 2
+11/8/2003 2:43 PM        drive sgl 1.331
+11/8/2003 2:43 PM        count preset mcu 2
+11/8/2003 2:43 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub08nov2003_24334pm.ini
+11/8/2003 2:43 PM        br 0 0 2
+11/8/2003 2:44 PM        br 1 1 0
+11/8/2003 2:45 PM        scanrel s1 1 -1 -.1 preset mcu 2
+11/8/2003 2:45 PM        br 1 1 0
+11/8/2003 2:46 PM        scan sgu -4 4 .4 preset mcu 2
+11/8/2003 2:47 PM        drive sgu -.8
+11/8/2003 2:47 PM        drive sgu -.82
+11/8/2003 2:48 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub08nov2003_24816pm.ini
+11/8/2003 2:48 PM        br 1 1 0
+11/8/2003 9:48 PM        scantitle "calibration scans at base Temp (9.4K)"
+11/8/2003 9:48 PM        scantitle "220 L"
+11/8/2003 9:48 PM        scan h 1.96 2.04 .005 k 1.96 2.04 .005 l 0 preset 1
+11/8/2003 9:49 PM        drive h 1.993
+11/8/2003 9:50 PM        drive h 1.993 k 1.993
+11/8/2003 9:50 PM        scan s1 55 53 -.1 preset mcu 2
+11/8/2003 9:51 PM        drive s1 54.1115
+11/8/2003 9:52 PM        scan sgu -4 3.4 .4 preset 2
+11/8/2003 9:53 PM        drive sgu -1.5695
+11/8/2003 9:53 PM        drive sgu -1.5745
+11/8/2003 9:55 PM        lattice a 7.554017 b 7.554017 c 3.846800
+11/8/2003 9:56 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub08nov2003_95608pm.ini
+11/8/2003 9:56 PM        br 2 2 0
+11/8/2003 9:56 PM        scantitle "calibration scans at base Temp (9.4K)"
+11/8/2003 9:56 PM        scantitle "002 L"
+11/8/2003 9:56 PM        scan h 0 k 0 l 1.96 2.04 .005 preset 2
+11/8/2003 9:59 PM        drive l 1.9995
+11/8/2003 9:59 PM        scan s1 -34 -36 -.1 preset 2
+11/8/2003 10:01 PM        drive s1 -35.0806
+11/8/2003 10:01 PM        scan sgl -3 5 .4 preset 2
+11/8/2003 10:03 PM        drive sgl 1.2698
+11/8/2003 10:04 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub08nov2003_100400pm.ini
+11/8/2003 10:04 PM        br 0 0 2 
+11/8/2003 10:04 PM        drive l 1.9995
+11/8/2003 10:05 PM        drive s1 -35.0806
+11/8/2003 10:05 PM        drive sgl 1.2698
+11/8/2003 10:05 PM        lattice a 7.554017 b 7.554017 c 3.847681
+11/8/2003 10:05 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub08nov2003_100553pm.ini
+11/8/2003 10:06 PM        br 0 0 2 
+11/8/2003 10:06 PM        scantitle "calibration scans at base Temp (9.4K)"
+11/8/2003 10:06 PM        scantitle "002 L"
+11/8/2003 10:06 PM        scan h 0 k 0 l 1.96 2.04 .005 preset 2
+11/8/2003 10:07 PM        scantitle "002 T"
+11/8/2003 10:07 PM        scan h -.025 .025 .0025 k -.025 .025 .0025 l 2 preset 2
+11/8/2003 10:09 PM        scantitle "220 L"
+11/8/2003 10:09 PM        scan h 1.96 2.04 .005 k 1.96 2.04 .005 l 0 preset 2
+11/8/2003 10:10 PM        scantitle "220 T"
+11/8/2003 10:10 PM        scan h 2 k 2 l -.025 .025 .0025 preset 2
+11/8/2003 10:19 PM        scantitle "hhh scan"
+11/8/2003 10:19 PM        scan h 0.3 2.08 .005 k 0.3 2.08 .005 l 0.3 2.08 .005 preset mcu 6
+11/8/2003 11:06 PM        scantitle "hh0 scan"
+11/8/2003 11:06 PM        scan h 0.3 2.07 .005 k 0.3 2.07 .005 l 0 preset 6
+11/8/2003 11:51 PM        scantitle "00l scan"
+11/8/2003 11:51 PM        scan h 0 k 0 l 0.3 2.7 .005 preset 6
+11/9/2003 12:51 AM        scantitle "h,h,h+1 scan"
+11/9/2003 12:51 AM        scan h -.3 1.52 .005 k -.3 1.52 .005 l .7 2.52 .005 preset mcu 6
+11/9/2003 1:39 AM        scantitle "h,h,h-1 scan"
+11/9/2003 1:39 AM        scan h 0.7 2.505 .005 k 0.7 2.505 .005 l -0.3 1.505 .005 preset mcu 6
+11/9/2003 2:26 AM        scantitle "h,h,h-2 scan"
+11/9/2003 2:26 AM        scan h 1.7 2.8 .005 k 1.7 2.8 .005 l -.3 .8 .005 preset mcu 6
+11/9/2003 2:55 AM        scantitle "h,h,h+2 scan"
+11/9/2003 2:55 AM        scan h -.3 .8 .005 k -.3 .8 .005 l 1.7 2.8 .005 preset mcu 6
+11/9/2003 3:24 AM        scantitle "hh1 scan"
+11/9/2003 3:24 AM        scan h -0.3 2.7 .005 k -0.3 2.7 .005 l 1 preset 6
+11/9/2003 4:43 AM        scantitle "11l scan"
+11/9/2003 4:43 AM        scan h 1 k 1 l -.3 2.7 .005 preset 6
+11/9/2003 6:00 AM        scantitle "hh2 scan"
+11/9/2003 6:00 AM        scan h -0.3 2.1 .005 k -0.3 2.1 .005 l 2 preset 6
+11/9/2003 7:04 AM        scantitle "22l scan"
+11/9/2003 7:04 AM        scan h 2 k 2 l -.3 2.1 .005 preset 6
+11/9/2003 9:56 AM        br 2 2 2
+11/9/2003 9:56 AM        count
+11/9/2003 10:04 AM        drive s2 -132
+11/9/2003 10:05 AM        lowerlimit s1 -166.000000 s2 -135.000000 sgl -19.700000 sgu -19.402500 stl -11.747000 stu -11.749000 a1 -223.865779 a2 -48.247521 temp 2.000000 
+11/9/2003 10:05 AM        upperlimit s1 169.000000 s2 2.204982 sgl 20.000000 sgu 19.800000 stl 14.900000 stu 14.900000 a1 300.000000 a2 117.604724 temp 310.000000 
+11/9/2003 10:05 AM        drive s2 -134
+11/9/2003 10:06 AM        drive s2 -135
+11/9/2003 10:10 AM        scantitle "h,h,h+1 scan extension add to #36"
+11/9/2003 10:10 AM        scan h 1.4 1.55 .005 k 1.4 1.55 .005 l 2.4 2.55 .005 preset mcu 6
+11/9/2003 10:14 AM        scantitle "h,h,h-1 scan extension add to #37"
+11/9/2003 10:14 AM        scan h 2.4 2.535 .005 k 2.4 2.535 .005 l 1.4 1.535 .005 preset mcu 6
+11/9/2003 10:23 AM        scantitle "002 order parameter scan base T"
+11/9/2003 10:23 AM        scan h 0 k 0 l 1.96 2.04 .005 preset 2
+11/9/2003 10:25 AM        scantitle "220 order parameter scan base T"
+11/9/2003 10:25 AM        scan h 1.96 2.04 .005 k 1.96 2.04 .005 l 0 preset 2
+11/9/2003 10:26 AM        scantitle "hhh order parameter scan base T"
+11/9/2003 10:26 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 10:34 AM        scantitle "h,h,h+1 order parameter scan base T"
+11/9/2003 10:34 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 10:42 AM        scantitle "222 order parameter scan base T"
+11/9/2003 10:42 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 10:52 AM        tolerance s1 0.007500 s2 0.007500 sgl 0.010000 sgu 0.010000 stl 0.005000 stu 0.005000 a1 0.007500 a2 0.007500 temp 0.500000 
+11/9/2003 10:52 AM        drive temp 13.0000
+11/9/2003 10:52 AM        wait 00:05:00
+11/9/2003 10:57 AM        scantitle "002 order parameter UP T = 13.0000"
+11/9/2003 10:57 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 10:59 AM        scantitle "220 order parameter UP T = 13.0000"
+11/9/2003 10:59 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 11:01 AM        scantitle "hhh order parameter UP T = 13.0000"
+11/9/2003 11:01 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 11:09 AM        scantitle "h,h,h+1 order parameter UP T = 13.0000"
+11/9/2003 11:09 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 11:17 AM        scantitle "222 order parameter UP T = 13.0000"
+11/9/2003 11:17 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 11:26 AM        drive temp 16.0000
+11/9/2003 11:27 AM        wait 00:05:00
+11/9/2003 11:32 AM        scantitle "002 order parameter UP T = 16.0000"
+11/9/2003 11:32 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 11:34 AM        scantitle "220 order parameter UP T = 16.0000"
+11/9/2003 11:34 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 11:36 AM        scantitle "hhh order parameter UP T = 16.0000"
+11/9/2003 11:36 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 11:44 AM        scantitle "h,h,h+1 order parameter UP T = 16.0000"
+11/9/2003 11:44 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 11:51 AM        scantitle "222 order parameter UP T = 16.0000"
+11/9/2003 11:51 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 12:01 PM        drive temp 19.0000
+11/9/2003 12:01 PM        wait 00:05:00
+11/9/2003 12:06 PM        scantitle "002 order parameter UP T = 19.0000"
+11/9/2003 12:06 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 12:08 PM        scantitle "220 order parameter UP T = 19.0000"
+11/9/2003 12:08 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 12:10 PM        scantitle "hhh order parameter UP T = 19.0000"
+11/9/2003 12:10 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 12:18 PM        scantitle "h,h,h+1 order parameter UP T = 19.0000"
+11/9/2003 12:18 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 12:26 PM        scantitle "222 order parameter UP T = 19.0000"
+11/9/2003 12:26 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 12:35 PM        drive temp 22.0000
+11/9/2003 12:35 PM        wait 00:05:00
+11/9/2003 12:40 PM        scantitle "002 order parameter UP T = 22.0000"
+11/9/2003 12:40 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 12:42 PM        scantitle "220 order parameter UP T = 22.0000"
+11/9/2003 12:42 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 12:45 PM        scantitle "hhh order parameter UP T = 22.0000"
+11/9/2003 12:45 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 12:52 PM        scantitle "h,h,h+1 order parameter UP T = 22.0000"
+11/9/2003 12:52 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 1:00 PM        scantitle "222 order parameter UP T = 22.0000"
+11/9/2003 1:00 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 1:09 PM        drive temp 25.0000
+11/9/2003 1:10 PM        wait 00:05:00
+11/9/2003 1:15 PM        scantitle "002 order parameter UP T = 25.0000"
+11/9/2003 1:15 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 1:17 PM        scantitle "220 order parameter UP T = 25.0000"
+11/9/2003 1:17 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 1:19 PM        scantitle "hhh order parameter UP T = 25.0000"
+11/9/2003 1:19 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 1:27 PM        scantitle "h,h,h+1 order parameter UP T = 25.0000"
+11/9/2003 1:27 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 1:35 PM        scantitle "222 order parameter UP T = 25.0000"
+11/9/2003 1:35 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 1:44 PM        drive temp 28.0000
+11/9/2003 1:45 PM        wait 00:05:00
+11/9/2003 1:50 PM        scantitle "002 order parameter UP T = 28.0000"
+11/9/2003 1:50 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 1:52 PM        scantitle "220 order parameter UP T = 28.0000"
+11/9/2003 1:52 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 1:54 PM        scantitle "hhh order parameter UP T = 28.0000"
+11/9/2003 1:54 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 2:02 PM        scantitle "h,h,h+1 order parameter UP T = 28.0000"
+11/9/2003 2:02 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 2:09 PM        scantitle "222 order parameter UP T = 28.0000"
+11/9/2003 2:09 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 2:18 PM        drive temp 31.0000
+11/9/2003 2:19 PM        wait 00:05:00
+11/9/2003 2:24 PM        scantitle "002 order parameter UP T = 31.0000"
+11/9/2003 2:24 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 2:26 PM        scantitle "220 order parameter UP T = 31.0000"
+11/9/2003 2:26 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 2:28 PM        scantitle "hhh order parameter UP T = 31.0000"
+11/9/2003 2:28 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 2:36 PM        scantitle "h,h,h+1 order parameter UP T = 31.0000"
+11/9/2003 2:36 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 2:44 PM        scantitle "222 order parameter UP T = 31.0000"
+11/9/2003 2:44 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 2:53 PM        drive temp 34.0000
+11/9/2003 2:54 PM        wait 00:05:00
+11/9/2003 2:59 PM        scantitle "002 order parameter UP T = 34.0000"
+11/9/2003 2:59 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 3:01 PM        scantitle "220 order parameter UP T = 34.0000"
+11/9/2003 3:01 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 3:03 PM        scantitle "hhh order parameter UP T = 34.0000"
+11/9/2003 3:03 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 3:11 PM        scantitle "h,h,h+1 order parameter UP T = 34.0000"
+11/9/2003 3:11 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 3:19 PM        scantitle "222 order parameter UP T = 34.0000"
+11/9/2003 3:19 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 3:28 PM        drive temp 37.0000
+11/9/2003 3:29 PM        wait 00:05:00
+11/9/2003 3:34 PM        scantitle "002 order parameter UP T = 37.0000"
+11/9/2003 3:34 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 3:36 PM        scantitle "220 order parameter UP T = 37.0000"
+11/9/2003 3:36 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 3:38 PM        scantitle "hhh order parameter UP T = 37.0000"
+11/9/2003 3:38 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 3:46 PM        scantitle "h,h,h+1 order parameter UP T = 37.0000"
+11/9/2003 3:46 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 3:54 PM        scantitle "222 order parameter UP T = 37.0000"
+11/9/2003 3:54 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 4:03 PM        drive temp 40.0000
+11/9/2003 4:04 PM        wait 00:05:00
+11/9/2003 4:09 PM        scantitle "002 order parameter UP T = 40.0000"
+11/9/2003 4:09 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 4:11 PM        scantitle "220 order parameter UP T = 40.0000"
+11/9/2003 4:11 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 4:13 PM        scantitle "hhh order parameter UP T = 40.0000"
+11/9/2003 4:13 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 4:21 PM        scantitle "h,h,h+1 order parameter UP T = 40.0000"
+11/9/2003 4:21 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 4:28 PM        scantitle "222 order parameter UP T = 40.0000"
+11/9/2003 4:28 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 4:38 PM        drive temp 43.0000
+11/9/2003 4:39 PM        wait 00:05:00
+11/9/2003 4:44 PM        scantitle "002 order parameter UP T = 43.0000"
+11/9/2003 4:44 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 4:46 PM        scantitle "220 order parameter UP T = 43.0000"
+11/9/2003 4:46 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 4:48 PM        scantitle "hhh order parameter UP T = 43.0000"
+11/9/2003 4:48 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 4:56 PM        scantitle "h,h,h+1 order parameter UP T = 43.0000"
+11/9/2003 4:56 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 5:03 PM        scantitle "222 order parameter UP T = 43.0000"
+11/9/2003 5:03 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 5:12 PM        drive temp 46.0000
+11/9/2003 5:14 PM        wait 00:05:00
+11/9/2003 5:19 PM        scantitle "002 order parameter UP T = 46.0000"
+11/9/2003 5:19 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 5:21 PM        scantitle "220 order parameter UP T = 46.0000"
+11/9/2003 5:21 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 5:23 PM        scantitle "hhh order parameter UP T = 46.0000"
+11/9/2003 5:23 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 5:31 PM        scantitle "h,h,h+1 order parameter UP T = 46.0000"
+11/9/2003 5:31 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 5:38 PM        scantitle "222 order parameter UP T = 46.0000"
+11/9/2003 5:38 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 5:47 PM        drive temp 49.0000
+11/9/2003 5:49 PM        wait 00:05:00
+11/9/2003 5:54 PM        scantitle "002 order parameter UP T = 49.0000"
+11/9/2003 5:54 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 5:56 PM        scantitle "220 order parameter UP T = 49.0000"
+11/9/2003 5:56 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 5:58 PM        scantitle "hhh order parameter UP T = 49.0000"
+11/9/2003 5:58 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 6:06 PM        scantitle "h,h,h+1 order parameter UP T = 49.0000"
+11/9/2003 6:06 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 6:13 PM        scantitle "222 order parameter UP T = 49.0000"
+11/9/2003 6:13 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 6:22 PM        drive temp 52.0000
+11/9/2003 6:24 PM        wait 00:05:00
+11/9/2003 6:29 PM        scantitle "002 order parameter UP T = 52.0000"
+11/9/2003 6:29 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 6:31 PM        scantitle "220 order parameter UP T = 52.0000"
+11/9/2003 6:31 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 6:33 PM        scantitle "hhh order parameter UP T = 52.0000"
+11/9/2003 6:33 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 6:41 PM        scantitle "h,h,h+1 order parameter UP T = 52.0000"
+11/9/2003 6:41 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 6:48 PM        scantitle "222 order parameter UP T = 52.0000"
+11/9/2003 6:48 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 6:58 PM        drive temp 55.0000
+11/9/2003 6:59 PM        wait 00:05:00
+11/9/2003 7:04 PM        scantitle "002 order parameter UP T = 55.0000"
+11/9/2003 7:04 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 7:06 PM        scantitle "220 order parameter UP T = 55.0000"
+11/9/2003 7:06 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 7:08 PM        scantitle "hhh order parameter UP T = 55.0000"
+11/9/2003 7:08 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 7:16 PM        scantitle "h,h,h+1 order parameter UP T = 55.0000"
+11/9/2003 7:16 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 7:24 PM        scantitle "222 order parameter UP T = 55.0000"
+11/9/2003 7:24 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 7:33 PM        drive temp 58.0000
+11/9/2003 7:34 PM        wait 00:05:00
+11/9/2003 7:39 PM        scantitle "002 order parameter UP T = 58.0000"
+11/9/2003 7:39 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 7:41 PM        scantitle "220 order parameter UP T = 58.0000"
+11/9/2003 7:41 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 7:43 PM        scantitle "hhh order parameter UP T = 58.0000"
+11/9/2003 7:43 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 7:51 PM        scantitle "h,h,h+1 order parameter UP T = 58.0000"
+11/9/2003 7:51 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 7:59 PM        scantitle "222 order parameter UP T = 58.0000"
+11/9/2003 7:59 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 8:08 PM        drive temp 55.0000
+11/9/2003 8:08 PM        wait 00:05:00
+11/9/2003 8:13 PM        scantitle "002 order parameter DN T = 55.0000"
+11/9/2003 8:13 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 8:15 PM        scantitle "220 order parameter DN T = 55.0000"
+11/9/2003 8:15 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 8:17 PM        scantitle "hhh order parameter DN T = 55.0000"
+11/9/2003 8:17 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 8:25 PM        scantitle "h,h,h+1 order parameter DN T = 55.0000"
+11/9/2003 8:25 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 8:33 PM        scantitle "222 order parameter DN T = 55.0000"
+11/9/2003 8:33 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 8:42 PM        drive temp 52.0000
+11/9/2003 8:43 PM        wait 00:05:00
+11/9/2003 8:48 PM        scantitle "002 order parameter DN T = 52.0000"
+11/9/2003 8:48 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 8:50 PM        scantitle "220 order parameter DN T = 52.0000"
+11/9/2003 8:50 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 8:52 PM        scantitle "hhh order parameter DN T = 52.0000"
+11/9/2003 8:52 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 9:00 PM        scantitle "h,h,h+1 order parameter DN T = 52.0000"
+11/9/2003 9:00 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 9:07 PM        scantitle "222 order parameter DN T = 52.0000"
+11/9/2003 9:07 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 9:16 PM        drive temp 49.0000
+11/9/2003 9:17 PM        wait 00:05:00
+11/9/2003 9:22 PM        scantitle "002 order parameter DN T = 49.0000"
+11/9/2003 9:22 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 9:24 PM        scantitle "220 order parameter DN T = 49.0000"
+11/9/2003 9:24 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 9:26 PM        scantitle "hhh order parameter DN T = 49.0000"
+11/9/2003 9:26 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 9:34 PM        scantitle "h,h,h+1 order parameter DN T = 49.0000"
+11/9/2003 9:34 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 9:42 PM        scantitle "222 order parameter DN T = 49.0000"
+11/9/2003 9:42 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 9:51 PM        drive temp 46.0000
+11/9/2003 9:51 PM        wait 00:05:00
+11/9/2003 9:56 PM        scantitle "002 order parameter DN T = 46.0000"
+11/9/2003 9:56 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 9:58 PM        scantitle "220 order parameter DN T = 46.0000"
+11/9/2003 9:58 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 10:00 PM        scantitle "hhh order parameter DN T = 46.0000"
+11/9/2003 10:00 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 10:08 PM        scantitle "h,h,h+1 order parameter DN T = 46.0000"
+11/9/2003 10:08 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 10:16 PM        scantitle "222 order parameter DN T = 46.0000"
+11/9/2003 10:16 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 10:25 PM        drive temp 43.0000
+11/9/2003 10:25 PM        wait 00:05:00
+11/9/2003 10:30 PM        scantitle "002 order parameter DN T = 43.0000"
+11/9/2003 10:30 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 10:32 PM        scantitle "220 order parameter DN T = 43.0000"
+11/9/2003 10:32 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 10:34 PM        scantitle "hhh order parameter DN T = 43.0000"
+11/9/2003 10:34 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 10:42 PM        scantitle "h,h,h+1 order parameter DN T = 43.0000"
+11/9/2003 10:42 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 10:50 PM        scantitle "222 order parameter DN T = 43.0000"
+11/9/2003 10:50 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 10:59 PM        drive temp 40.0000
+11/9/2003 10:59 PM        wait 00:05:00
+11/9/2003 11:04 PM        scantitle "002 order parameter DN T = 40.0000"
+11/9/2003 11:04 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 11:06 PM        scantitle "220 order parameter DN T = 40.0000"
+11/9/2003 11:06 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 11:08 PM        scantitle "hhh order parameter DN T = 40.0000"
+11/9/2003 11:08 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 11:16 PM        scantitle "h,h,h+1 order parameter DN T = 40.0000"
+11/9/2003 11:16 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 11:24 PM        scantitle "222 order parameter DN T = 40.0000"
+11/9/2003 11:24 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/9/2003 11:33 PM        drive temp 37.0000
+11/9/2003 11:33 PM        wait 00:05:00
+11/9/2003 11:38 PM        scantitle "002 order parameter DN T = 37.0000"
+11/9/2003 11:38 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/9/2003 11:40 PM        scantitle "220 order parameter DN T = 37.0000"
+11/9/2003 11:40 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/9/2003 11:42 PM        scantitle "hhh order parameter DN T = 37.0000"
+11/9/2003 11:42 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/9/2003 11:50 PM        scantitle "h,h,h+1 order parameter DN T = 37.0000"
+11/9/2003 11:50 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/9/2003 11:58 PM        scantitle "222 order parameter DN T = 37.0000"
+11/9/2003 11:58 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 12:07 AM        drive temp 34.0000
+11/10/2003 12:07 AM        wait 00:05:00
+11/10/2003 12:12 AM        scantitle "002 order parameter DN T = 34.0000"
+11/10/2003 12:12 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 12:14 AM        scantitle "220 order parameter DN T = 34.0000"
+11/10/2003 12:14 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/10/2003 12:16 AM        scantitle "hhh order parameter DN T = 34.0000"
+11/10/2003 12:16 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/10/2003 12:24 AM        scantitle "h,h,h+1 order parameter DN T = 34.0000"
+11/10/2003 12:24 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/10/2003 12:32 AM        scantitle "222 order parameter DN T = 34.0000"
+11/10/2003 12:32 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 12:41 AM        drive temp 31.0000
+11/10/2003 12:41 AM        wait 00:05:00
+11/10/2003 12:46 AM        scantitle "002 order parameter DN T = 31.0000"
+11/10/2003 12:46 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 12:48 AM        scantitle "220 order parameter DN T = 31.0000"
+11/10/2003 12:48 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/10/2003 12:50 AM        scantitle "hhh order parameter DN T = 31.0000"
+11/10/2003 12:50 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/10/2003 12:58 AM        scantitle "h,h,h+1 order parameter DN T = 31.0000"
+11/10/2003 12:58 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/10/2003 1:06 AM        scantitle "222 order parameter DN T = 31.0000"
+11/10/2003 1:06 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 1:15 AM        drive temp 28.0000
+11/10/2003 1:15 AM        wait 00:05:00
+11/10/2003 1:20 AM        scantitle "002 order parameter DN T = 28.0000"
+11/10/2003 1:20 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 1:22 AM        scantitle "220 order parameter DN T = 28.0000"
+11/10/2003 1:22 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/10/2003 1:24 AM        scantitle "hhh order parameter DN T = 28.0000"
+11/10/2003 1:24 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/10/2003 1:32 AM        scantitle "h,h,h+1 order parameter DN T = 28.0000"
+11/10/2003 1:32 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/10/2003 1:40 AM        scantitle "222 order parameter DN T = 28.0000"
+11/10/2003 1:40 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 1:49 AM        drive temp 25.0000
+11/10/2003 1:49 AM        wait 00:05:00
+11/10/2003 1:54 AM        scantitle "002 order parameter DN T = 25.0000"
+11/10/2003 1:54 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 1:56 AM        scantitle "220 order parameter DN T = 25.0000"
+11/10/2003 1:56 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/10/2003 1:58 AM        scantitle "hhh order parameter DN T = 25.0000"
+11/10/2003 1:58 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/10/2003 2:06 AM        scantitle "h,h,h+1 order parameter DN T = 25.0000"
+11/10/2003 2:06 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/10/2003 2:14 AM        scantitle "222 order parameter DN T = 25.0000"
+11/10/2003 2:14 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 2:23 AM        drive temp 22.0000
+11/10/2003 2:23 AM        wait 00:05:00
+11/10/2003 2:28 AM        scantitle "002 order parameter DN T = 22.0000"
+11/10/2003 2:28 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 2:30 AM        scantitle "220 order parameter DN T = 22.0000"
+11/10/2003 2:30 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/10/2003 2:32 AM        scantitle "hhh order parameter DN T = 22.0000"
+11/10/2003 2:32 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/10/2003 2:40 AM        scantitle "h,h,h+1 order parameter DN T = 22.0000"
+11/10/2003 2:40 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/10/2003 2:48 AM        scantitle "222 order parameter DN T = 22.0000"
+11/10/2003 2:48 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 2:57 AM        drive temp 19.0000
+11/10/2003 2:57 AM        wait 00:05:00
+11/10/2003 3:02 AM        scantitle "002 order parameter DN T = 19.0000"
+11/10/2003 3:02 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 3:04 AM        scantitle "220 order parameter DN T = 19.0000"
+11/10/2003 3:04 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/10/2003 3:06 AM        scantitle "hhh order parameter DN T = 19.0000"
+11/10/2003 3:06 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/10/2003 3:14 AM        scantitle "h,h,h+1 order parameter DN T = 19.0000"
+11/10/2003 3:14 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/10/2003 3:22 AM        scantitle "222 order parameter DN T = 19.0000"
+11/10/2003 3:22 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 3:31 AM        drive temp 16.0000
+11/10/2003 3:31 AM        wait 00:05:00
+11/10/2003 3:36 AM        scantitle "002 order parameter DN T = 16.0000"
+11/10/2003 3:36 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 3:38 AM        scantitle "220 order parameter DN T = 16.0000"
+11/10/2003 3:38 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/10/2003 3:40 AM        scantitle "hhh order parameter DN T = 16.0000"
+11/10/2003 3:40 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/10/2003 3:48 AM        scantitle "h,h,h+1 order parameter DN T = 16.0000"
+11/10/2003 3:48 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/10/2003 3:56 AM        scantitle "222 order parameter DN T = 16.0000"
+11/10/2003 3:56 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 4:05 AM        drive temp 13.0000
+11/10/2003 4:05 AM        wait 00:05:00
+11/10/2003 4:10 AM        scantitle "002 order parameter DN T = 13.0000"
+11/10/2003 4:10 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 4:12 AM        scantitle "220 order parameter DN T = 13.0000"
+11/10/2003 4:12 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/10/2003 4:14 AM        scantitle "hhh order parameter DN T = 13.0000"
+11/10/2003 4:14 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/10/2003 4:22 AM        scantitle "h,h,h+1 order parameter DN T = 13.0000"
+11/10/2003 4:22 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/10/2003 4:29 AM        scantitle "222 order parameter DN T = 13.0000"
+11/10/2003 4:29 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 4:39 AM        drive temp 10.0000
+11/10/2003 4:39 AM        wait 00:05:00
+11/10/2003 4:44 AM        scantitle "002 order parameter DN T = 10.0000"
+11/10/2003 4:44 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 4:46 AM        scantitle "220 order parameter DN T = 10.0000"
+11/10/2003 4:46 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/10/2003 4:48 AM        scantitle "hhh order parameter DN T = 10.0000"
+11/10/2003 4:48 AM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/10/2003 4:56 AM        scantitle "h,h,h+1 order parameter DN T = 10.0000"
+11/10/2003 4:56 AM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/10/2003 5:04 AM        scantitle "222 order parameter DN T = 10.0000"
+11/10/2003 5:04 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 8:00 AM        drive s2 -80
+11/10/2003 12:09 PM        br 2 2 0
+11/10/2003 12:17 PM        scan s1 58 50 -.15 preset mcu 2
+11/10/2003 1:16 PM        drive sgu 0
+11/10/2003 1:18 PM        scan s1 51 49 .1 preset 2
+11/10/2003 1:19 PM        br 0 0 2
+11/10/2003 1:19 PM        drive sgl 0
+11/10/2003 1:19 PM        drive sgu 0
+11/10/2003 1:25 PM        scanrel .5 -.5 -.1 preset 2
+11/10/2003 1:25 PM        scanrel s1 .5 -.5 -.1 preset 2
+11/10/2003 1:26 PM        drive s1 -34.88
+11/10/2003 1:26 PM        scan sgl -4 4 .4
+11/10/2003 1:27 PM        drive sgl -1.2
+11/10/2003 1:28 PM        drive sgl 0
+11/10/2003 1:29 PM        scanrel s1 .5 -.5 -.1 preset 2
+11/10/2003 1:30 PM        drive s1 -35.05
+11/10/2003 1:31 PM        scanrel s2 1 -1 .2
+11/10/2003 1:31 PM        drive s2 -75.4
+11/10/2003 1:32 PM        scanrel sgl -1 1 .2
+11/10/2003 1:33 PM        scan sgl -2 0 .4
+11/10/2003 1:34 PM        scanrel s1 .5 -.5 -.1 preset 2
+11/10/2003 1:35 PM        drive s1 -35.27
+11/10/2003 1:35 PM        scan sgl -2 1 .4
+11/10/2003 1:36 PM        scan sgl 1 2 .4
+11/10/2003 1:53 PM        drive sgu 0
+11/10/2003 1:53 PM        drive sgl 0
+11/10/2003 1:54 PM        alias za "drive sgu 0 sgl 0"
+11/10/2003 1:54 PM        drive sgu 1
+11/10/2003 1:54 PM        drive sgl 1
+11/10/2003 1:54 PM        za
+11/10/2003 1:54 PM        alias brg "br"
+11/10/2003 1:55 PM        brg 0 0 2
+11/10/2003 1:57 PM        za
+11/10/2003 2:30 PM        br 2 2 0
+11/10/2003 3:01 PM        scan s1 57 50 -.15 preset mcu 2
+11/10/2003 3:04 PM        comment "7 Tesla vertical field magnet installed"
+11/10/2003 3:04 PM        scantitle "looking for relflections, 220 and 002"
+11/10/2003 3:04 PM        za
+11/10/2003 3:05 PM        drive s1 54.1
+11/10/2003 3:11 PM        scan s1 55 53 0.1 preset 2
+11/10/2003 3:12 PM        drive s1 54
+11/10/2003 3:12 PM        scan s2 -77 -79 -.1
+11/10/2003 3:13 PM        drive s2 -77.6
+11/10/2003 3:13 PM        scan sgu -4 4 .4 preset 2
+11/10/2003 3:16 PM        drive sgu 2.2
+11/10/2003 3:17 PM        scan s1 55 53 -.1 preset 2
+11/10/2003 3:18 PM        drive s1 53.9
+11/10/2003 3:26 PM        drive stu .5
+11/10/2003 3:28 PM        drive s1 0
+11/10/2003 3:30 PM        setpos stu 0
+11/10/2003 3:31 PM        drive stu .5
+11/10/2003 3:32 PM        drive stl .5
+11/10/2003 3:35 PM        setpos stl 0
+11/10/2003 3:35 PM        setpos stu 0
+11/10/2003 3:35 PM        drive stl .5
+11/10/2003 3:38 PM        setpos stl 0
+11/10/2003 3:38 PM        drive stl .5
+11/10/2003 3:41 PM        setpos stl 0
+11/10/2003 3:41 PM        drive stl .5
+11/10/2003 3:42 PM        za
+11/10/2003 3:43 PM        drive stl .5
+11/10/2003 3:43 PM        drive stl 5
+11/10/2003 3:43 PM        drive stl -2
+11/10/2003 3:47 PM        drive stl 2
+11/10/2003 3:54 PM        drive stl 0
+11/10/2003 3:57 PM        drive s1 -90
+11/10/2003 4:04 PM        drive s1 -80
+11/10/2003 4:04 PM        drive s1 -75
+11/10/2003 4:06 PM        drive s1 -70
+11/10/2003 4:16 PM        br 0 0 2
+11/10/2003 4:17 PM        setpos sgu 0
+11/10/2003 4:17 PM        setpos sgl 0
+11/10/2003 4:19 PM        scan s1 -34 36 preset 2
+11/10/2003 4:19 PM        scan s1 -34 36 .1 preset 2
+11/10/2003 4:20 PM        scan s1 -34 -36 .1 preset 2
+11/10/2003 4:22 PM        drive s1 -35.27
+11/10/2003 4:23 PM        scan sgl -3 3 .4
+11/10/2003 4:24 PM        drive sgl -0.2
+11/10/2003 4:25 PM        drive sgl -0.2
+11/10/2003 4:26 PM        count preset mcu 2
+11/10/2003 4:27 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub10nov2003_42731pm.ini
+11/10/2003 4:28 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub10nov2003_42834pm.ini
+11/10/2003 4:28 PM        br 2 2 0
+11/10/2003 4:30 PM        scanrel s1 -1 1 .1
+11/10/2003 4:32 PM        drive sgu 2.2
+11/10/2003 4:33 PM        scanrel s1 -1 1 .1
+11/10/2003 4:34 PM        drive s1 53.92
+11/10/2003 4:48 PM        scanrel s1 -1 1 .1
+11/10/2003 4:50 PM        drive s1 53.727
+11/10/2003 4:50 PM        scan sgu -3 3 .4
+11/10/2003 4:56 PM        drive sgu 1.56
+11/10/2003 4:57 PM        scan s2 -76.6 -77.6 -.1 preset mcu 2
+11/10/2003 4:58 PM        drive s2 -77.5
+11/10/2003 5:23 PM        br 0 0 2
+11/10/2003 5:29 PM        drive s1 -90
+11/10/2003 5:36 PM        drive stu 5
+11/10/2003 5:36 PM        drive stu -5
+11/10/2003 5:41 PM        setpos stu -4
+11/10/2003 5:41 PM        drive s1 0
+11/10/2003 5:48 PM        setpos stl -4
+11/10/2003 5:48 PM        setpos stl 0
+11/10/2003 5:48 PM        setpos stl -4
+11/10/2003 5:48 PM        setpos stl 0
+11/10/2003 5:49 PM        drive stl -4
+11/10/2003 5:50 PM        drive stl -4
+11/10/2003 5:50 PM        drive stl 4
+11/10/2003 5:50 PM        drive stl 20
+11/10/2003 5:50 PM        drive stl 14
+11/10/2003 5:50 PM        drive stl -14
+11/10/2003 5:51 PM        drive stl -11
+11/10/2003 5:51 PM        drive stl 14
+11/10/2003 5:52 PM        drive stl -11
+11/10/2003 5:53 PM        drive stl 0
+11/10/2003 5:53 PM        setpos stl .5
+11/10/2003 5:54 PM        drive stl 0
+11/10/2003 5:55 PM        drive stl 4
+11/10/2003 6:00 PM        drive stl 2
+11/10/2003 6:01 PM        drive stl 2
+11/10/2003 6:02 PM        drive stl 1
+11/10/2003 6:11 PM        drive s1 -90
+11/10/2003 6:15 PM        br 0 0 2
+11/10/2003 6:18 PM        scan s1 -34 -36 -.1 preset mcu 2
+11/10/2003 6:19 PM        drive s1 -35.535
+11/10/2003 6:20 PM        scan s2 -75.2 -77 -.1 preset mcu 2
+11/10/2003 6:21 PM        drive s2 -75.86
+11/10/2003 6:22 PM        wait 00:00:10
+11/10/2003 6:23 PM        scan sgl -4 4 .4 preset mcu 2
+11/10/2003 6:25 PM        wait 00:00:10
+11/10/2003 6:25 PM        drive sgl -.1
+11/10/2003 6:26 PM        count preset mcu 2
+11/10/2003 6:26 PM        drive s2 -75.83
+11/10/2003 6:27 PM        count preset mcu 2
+11/10/2003 6:29 PM        lattice a 7.554017 b 7.554017 c 3.838887
+11/10/2003 6:30 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub10nov2003_62958pm.ini
+11/10/2003 6:30 PM        lattice a 7.554017 b 7.554017 c 3.846679
+11/10/2003 6:31 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub10nov2003_63058pm.ini
+11/10/2003 6:31 PM        drive h 0.000000 k 0.000000 l 2.000000 e 0.000000
+11/10/2003 6:31 PM        drive h 2.000000 k 2.000000 l 0.000000 e 0.000000
+11/10/2003 6:32 PM        wait 00:00:10
+11/10/2003 6:33 PM        scan sgu -4 4 .4
+11/10/2003 6:36 PM        wait 00:00:10
+11/10/2003 6:36 PM        drive sgu 1.958
+11/10/2003 6:37 PM        count preset mcu 2
+11/10/2003 6:38 PM        lattice a 7.554053 b 7.554053 c 3.846679
+11/10/2003 6:38 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub10nov2003_63850pm.ini
+11/10/2003 6:39 PM        drive h 2.000000 k 2.000000 l 0.000000 e 0.000000
+11/10/2003 6:40 PM        ubcalc file c:\user\exp41\ubconf\tmp\ub10nov2003_64048pm.ini
+11/10/2003 6:40 PM        drive h 2.000000 k 2.000000 l 0.000000 e 0.000000
+11/10/2003 6:41 PM        drive h 0.000000 k 0.000000 l 2.000000 e 0.000000
+11/10/2003 6:42 PM        scantitle "calibration scans at base Temp (5.13K)"
+11/10/2003 6:42 PM        scantitle "7 Tesla VF: 002 L"
+11/10/2003 6:42 PM        scan h 0 k 0 l 1.96 2.04 .005 preset 2
+11/10/2003 6:44 PM        scantitle "7 Tesla VF: 002 T"
+11/10/2003 6:44 PM        scan h -.025 .025 .0025 k -.025 .025 .0025 l 2 preset 2
+11/10/2003 6:47 PM        scantitle "7 Tesla VF: 220 L"
+11/10/2003 6:47 PM        scan h 1.96 2.04 .005 k 1.96 2.04 .005 l 0 preset 2
+11/10/2003 6:49 PM        wait 00:10:00
+11/10/2003 6:49 PM        scantitle "7 Tesla VF: 220 T"
+11/10/2003 6:49 PM        scan h 2 k 2 l -.025 .025 .0025 preset 2
+11/10/2003 7:13 PM        drive s1 90
+11/10/2003 7:29 PM        br 2 2 0
+11/10/2003 7:31 PM        count preset mcu 2
+11/10/2003 7:48 PM        br 1 1 0
+11/10/2003 7:48 PM        count preset mcu 2
+11/10/2003 7:54 PM        scantitle "002 field dependence: base Temp, H = 0 T"
+11/10/2003 7:54 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 7:56 PM        scantitle "220 field dependence: base Temp, H = 0 T"
+11/10/2003 7:56 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 2
+11/10/2003 7:58 PM        scantitle "222 field dependence: base Temp, H = 0 T"
+11/10/2003 7:58 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 1.94 2.06 .005 preset mcu 20
+11/10/2003 8:08 PM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 0 T"
+11/10/2003 8:08 PM        scan h .45 .55 .0025 k .45 .55 .0025 l .45 .55 .0025 preset mcu 10
+11/10/2003 8:15 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 0 T"
+11/10/2003 8:15 PM        scan h .45 .55 .0025 k .45 .55 .0025 l 1.45 1.55 .0025 preset mcu 10
+11/10/2003 8:17 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 0 T"
+11/10/2003 8:17 PM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/10/2003 8:30 PM        run test 6
+11/10/2003 8:30 PM        comment "Running macro C:\DataAcquisition\System\Macros\test.macro"
+11/10/2003 8:30 PM         count preset mon 1.0000*10
+11/10/2003 8:30 PM         count preset mon 3.0000*10
+11/10/2003 8:30 PM         count preset mon 5.0000*10
+11/10/2003 8:30 PM         count preset mon 7.0000*10
+11/10/2003 8:30 PM         count preset mon 9.0000*10
+11/10/2003 8:31 PM        run jerel 6
+11/10/2003 8:31 PM        comment "Running macro C:\User\exp41\Macros\jerel.macro"
+11/10/2003 8:31 PM        scantitle "test 6.000000"
+11/10/2003 8:32 PM        run jerel "6K"
+11/10/2003 8:32 PM        comment "Running macro C:\User\exp41\Macros\jerel.macro"
+11/10/2003 8:32 PM        scantitle "6K"
+11/10/2003 8:59 PM        run field_dependence 0.4
+11/10/2003 8:59 PM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/10/2003 8:59 PM        scantitle "002 field dependence: base Temp, H = 0.400000 T"
+11/10/2003 8:59 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 9:03 PM        run field_dependence 0
+11/10/2003 9:03 PM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/10/2003 9:03 PM        scantitle "002 field dependence: base Temp, H = 0.000000 T"
+11/10/2003 9:03 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 9:04 PM        scantitle "220 field dependence: base Temp, H = 0.000000 T"
+11/10/2003 9:04 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/10/2003 9:07 PM        scantitle "222 field dependence: base Temp, H = 0.000000 T"
+11/10/2003 9:07 PM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/10/2003 9:12 PM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 0.000000 T"
+11/10/2003 9:12 PM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/10/2003 9:15 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 0.000000 T"
+11/10/2003 9:15 PM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/10/2003 9:23 PM        run field_dependence 0.4
+11/10/2003 9:23 PM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/10/2003 9:23 PM        scantitle "002 field dependence: base Temp, H = 0.400000 T"
+11/10/2003 9:23 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 9:25 PM        scantitle "220 field dependence: base Temp, H = 0.400000 T"
+11/10/2003 9:25 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/10/2003 9:28 PM        scantitle "222 field dependence: base Temp, H = 0.400000 T"
+11/10/2003 9:28 PM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/10/2003 9:32 PM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 0.400000 T"
+11/10/2003 9:32 PM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/10/2003 9:36 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 0.400000 T"
+11/10/2003 9:36 PM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/10/2003 9:43 PM        run field_dependence 0.8
+11/10/2003 9:43 PM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/10/2003 9:43 PM        scantitle "002 field dependence: base Temp, H = 0.800000 T"
+11/10/2003 9:43 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 9:45 PM        scantitle "220 field dependence: base Temp, H = 0.800000 T"
+11/10/2003 9:45 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/10/2003 9:47 PM        scantitle "222 field dependence: base Temp, H = 0.800000 T"
+11/10/2003 9:47 PM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/10/2003 9:52 PM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 0.800000 T"
+11/10/2003 9:52 PM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/10/2003 9:55 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 0.800000 T"
+11/10/2003 9:55 PM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/10/2003 10:02 PM        run field_dependence 1.2
+11/10/2003 10:02 PM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/10/2003 10:02 PM        scantitle "002 field dependence: base Temp, H = 1.200000 T"
+11/10/2003 10:02 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 10:04 PM        scantitle "220 field dependence: base Temp, H = 1.200000 T"
+11/10/2003 10:04 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/10/2003 10:07 PM        scantitle "222 field dependence: base Temp, H = 1.200000 T"
+11/10/2003 10:07 PM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/10/2003 10:12 PM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 1.200000 T"
+11/10/2003 10:12 PM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/10/2003 10:15 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 1.200000 T"
+11/10/2003 10:15 PM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/10/2003 10:22 PM        run field_dependence 1.6
+11/10/2003 10:22 PM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/10/2003 10:22 PM        scantitle "002 field dependence: base Temp, H = 1.600000 T"
+11/10/2003 10:22 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 10:24 PM        scantitle "220 field dependence: base Temp, H = 1.600000 T"
+11/10/2003 10:24 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/10/2003 10:27 PM        scantitle "222 field dependence: base Temp, H = 1.600000 T"
+11/10/2003 10:27 PM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/10/2003 10:32 PM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 1.600000 T"
+11/10/2003 10:32 PM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/10/2003 10:35 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 1.600000 T"
+11/10/2003 10:35 PM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/10/2003 10:41 PM        run field_dependence 1.8
+11/10/2003 10:41 PM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/10/2003 10:41 PM        scantitle "002 field dependence: base Temp, H = 1.800000 T"
+11/10/2003 10:41 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 10:43 PM        scantitle "220 field dependence: base Temp, H = 1.800000 T"
+11/10/2003 10:43 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/10/2003 10:46 PM        scantitle "222 field dependence: base Temp, H = 1.800000 T"
+11/10/2003 10:46 PM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/10/2003 10:51 PM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 1.800000 T"
+11/10/2003 10:51 PM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/10/2003 10:54 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 1.800000 T"
+11/10/2003 10:54 PM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/10/2003 11:01 PM        run field_dependence 2.2
+11/10/2003 11:01 PM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/10/2003 11:01 PM        scantitle "002 field dependence: base Temp, H = 2.200000 T"
+11/10/2003 11:01 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 11:03 PM        scantitle "220 field dependence: base Temp, H = 2.200000 T"
+11/10/2003 11:03 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/10/2003 11:06 PM        scantitle "222 field dependence: base Temp, H = 2.200000 T"
+11/10/2003 11:06 PM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/10/2003 11:11 PM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 2.200000 T"
+11/10/2003 11:11 PM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/10/2003 11:14 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 2.200000 T"
+11/10/2003 11:14 PM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/10/2003 11:21 PM        run field_dependence 2.4
+11/10/2003 11:21 PM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/10/2003 11:21 PM        scantitle "002 field dependence: base Temp, H = 2.400000 T"
+11/10/2003 11:21 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 11:23 PM        scantitle "220 field dependence: base Temp, H = 2.400000 T"
+11/10/2003 11:23 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/10/2003 11:26 PM        scantitle "222 field dependence: base Temp, H = 2.400000 T"
+11/10/2003 11:26 PM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/10/2003 11:30 PM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 2.400000 T"
+11/10/2003 11:30 PM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/10/2003 11:34 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 2.400000 T"
+11/10/2003 11:34 PM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/10/2003 11:41 PM        run field_dependence 2.8
+11/10/2003 11:41 PM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/10/2003 11:41 PM        scantitle "002 field dependence: base Temp, H = 2.800000 T"
+11/10/2003 11:41 PM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/10/2003 11:43 PM        scantitle "220 field dependence: base Temp, H = 2.800000 T"
+11/10/2003 11:43 PM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/10/2003 11:46 PM        scantitle "222 field dependence: base Temp, H = 2.800000 T"
+11/10/2003 11:46 PM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/10/2003 11:50 PM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 2.800000 T"
+11/10/2003 11:50 PM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/10/2003 11:53 PM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 2.800000 T"
+11/10/2003 11:53 PM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/11/2003 12:02 AM        run field_dependence 3.2
+11/11/2003 12:02 AM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/11/2003 12:02 AM        scantitle "002 field dependence: base Temp, H = 3.200000 T"
+11/11/2003 12:02 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/11/2003 12:04 AM        scantitle "220 field dependence: base Temp, H = 3.200000 T"
+11/11/2003 12:04 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/11/2003 12:07 AM        scantitle "222 field dependence: base Temp, H = 3.200000 T"
+11/11/2003 12:07 AM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/11/2003 12:11 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 3.200000 T"
+11/11/2003 12:11 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 12:14 AM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 3.200000 T"
+11/11/2003 12:14 AM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/11/2003 12:24 AM        run field_dependence 4
+11/11/2003 12:24 AM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/11/2003 12:24 AM        scantitle "002 field dependence: base Temp, H = 4.000000 T"
+11/11/2003 12:24 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/11/2003 12:26 AM        scantitle "220 field dependence: base Temp, H = 4.000000 T"
+11/11/2003 12:26 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/11/2003 12:29 AM        scantitle "222 field dependence: base Temp, H = 4.000000 T"
+11/11/2003 12:29 AM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/11/2003 12:33 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 4.000000 T"
+11/11/2003 12:33 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 12:37 AM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 4.000000 T"
+11/11/2003 12:37 AM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/11/2003 12:43 AM        run field_dependence 4.5
+11/11/2003 12:43 AM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/11/2003 12:43 AM        scantitle "002 field dependence: base Temp, H = 4.500000 T"
+11/11/2003 12:43 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/11/2003 12:45 AM        scantitle "220 field dependence: base Temp, H = 4.500000 T"
+11/11/2003 12:45 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/11/2003 12:48 AM        scantitle "222 field dependence: base Temp, H = 4.500000 T"
+11/11/2003 12:48 AM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/11/2003 12:53 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 4.500000 T"
+11/11/2003 12:53 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 12:56 AM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 4.500000 T"
+11/11/2003 12:56 AM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/11/2003 1:03 AM        run field_dependence 4.7
+11/11/2003 1:03 AM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/11/2003 1:03 AM        scantitle "002 field dependence: base Temp, H = 4.700000 T"
+11/11/2003 1:03 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/11/2003 1:05 AM        scantitle "220 field dependence: base Temp, H = 4.700000 T"
+11/11/2003 1:05 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/11/2003 1:08 AM        scantitle "222 field dependence: base Temp, H = 4.700000 T"
+11/11/2003 1:08 AM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/11/2003 1:13 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 4.700000 T"
+11/11/2003 1:13 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 1:16 AM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 4.700000 T"
+11/11/2003 1:16 AM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/11/2003 1:23 AM        run field_dependence 5
+11/11/2003 1:23 AM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/11/2003 1:23 AM        scantitle "002 field dependence: base Temp, H = 5.000000 T"
+11/11/2003 1:23 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/11/2003 1:24 AM        scantitle "220 field dependence: base Temp, H = 5.000000 T"
+11/11/2003 1:24 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/11/2003 1:27 AM        scantitle "222 field dependence: base Temp, H = 5.000000 T"
+11/11/2003 1:27 AM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/11/2003 1:32 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 5.000000 T"
+11/11/2003 1:32 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 1:35 AM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 5.000000 T"
+11/11/2003 1:35 AM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/11/2003 1:48 AM        run field_dependence 5.5
+11/11/2003 1:48 AM        comment "Running macro C:\User\exp41\Macros\field_dependence.macro"
+11/11/2003 1:48 AM        scantitle "002 field dependence: base Temp, H = 5.500000 T"
+11/11/2003 1:48 AM        scan h 0 k 0 l 1.94 2.06 .005 preset 2
+11/11/2003 1:50 AM        scantitle "220 field dependence: base Temp, H = 5.500000 T"
+11/11/2003 1:50 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/11/2003 1:53 AM        scantitle "222 field dependence: base Temp, H = 5.500000 T"
+11/11/2003 1:53 AM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/11/2003 1:58 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 5.500000 T"
+11/11/2003 1:58 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 2:01 AM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 5.500000 T"
+11/11/2003 2:01 AM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/11/2003 2:13 AM        scantitle "220 field dependence: base Temp, H = 5.8 T"
+11/11/2003 2:13 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset 4
+11/11/2003 2:15 AM        scantitle "222 field dependence: base Temp, H = 5.8 T"
+11/11/2003 2:15 AM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/11/2003 2:20 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 5.8 T"
+11/11/2003 2:20 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 2:23 AM        scantitle "h,h,h (1,1,1) field dependence: base Temp, H = 5.8 T"
+11/11/2003 2:23 AM        scan h 0.95 1.05 .005 k 0.95 1.05 .005 l 0.95 1.05 .005 preset mcu 4
+11/11/2003 2:40 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp,decreasing the field H = 4.7 T"
+11/11/2003 2:40 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 2:52 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp,decreasing the field H = 3 T"
+11/11/2003 2:52 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 3:04 AM        scantitle "002 field dependence: base Temp, H = 0 T down"
+11/11/2003 3:04 AM        scan h 0 k 0 l 1.94 2.06 .005 preset mcu 2
+11/11/2003 3:06 AM        scantitle "220 field dependence: base Temp, H = 0 T down"
+11/11/2003 3:06 AM        scan h 1.94 2.06 .005 k 1.94 2.06 .005 l 0 preset mcu 4
+11/11/2003 3:09 AM        scantitle "222 field dependence: base Temp, H = 0 T down"
+11/11/2003 3:09 AM        scan h 1.95 2.05 .005 k 1.95 2.05 .005 l 1.95 2.05 .005 preset mcu 10
+11/11/2003 3:14 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 0 T down"
+11/11/2003 3:14 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 3:17 AM        scantitle "111 field dependence: base Temp, H = 0 T down"
+11/11/2003 3:17 AM        scan h 0.95 1.05 .005 k 0.95 1.05 .005 l 0.95 1.05 .005 preset mcu 4
+11/11/2003 3:19 AM        scantitle "h,h,h (1.5,1.5,1.5) field dependence: base Temp, H = 0 T down"
+11/11/2003 3:19 AM        scan h 1.47 1.53 .0025 k 1.47 1.53 .0025 l 1.47 1.53 .0025 preset mcu 10
+11/11/2003 8:46 AM        scantitle "hhh scan, base temp, H = 3 T"
+11/11/2003 8:46 AM        scan h 0.3 2.08 .005 k 0.3 2.08 .005 l 0.3 2.08 .005 preset mcu 6
+11/11/2003 9:33 AM        scantitle "hh0 scan, base temp, H = 3 T"
+11/11/2003 9:33 AM        scan h 0.3 2.07 .005 k 0.3 2.07 .005 l 0 preset 6
+11/11/2003 10:19 AM        scantitle "00l scan, base temp, H = 3 T"
+11/11/2003 10:19 AM        scan h 0 k 0 l 0.3 2.7 .005 preset 6
+11/11/2003 11:25 AM        br 0.5 0.5 0.5
+11/11/2003 11:26 AM        count n=40
+11/11/2003 11:26 AM        scan n=40
+11/11/2003 11:27 AM        scan n=40 preset mcu=2
+11/11/2003 11:29 AM        scan n=40 preset mcu=2
+11/11/2003 11:35 AM        scantitle "hhh (.5,.5,.5) field dependence: base Temp, H = 0 T going down from 3 T"
+11/11/2003 11:35 AM        scan h .47 .53 .0025 k .47 .53 .0025 l .47 .53 .0025 preset mcu 5
+11/11/2003 11:37 AM        br 0.5 0.5 0.5
+11/11/2003 11:38 AM        scan n=20 preset mcu=5
+11/11/2003 11:40 AM        scan n=2000 preset mcu=5
+11/11/2003 1:06 PM        drive s2 -80
+11/11/2003 1:10 PM        alias ct "drive stu 0 stl 0"
+11/11/2003 1:10 PM        alias ctrans "drive stu 0 stl 0"
+11/11/2003 1:10 PM        ctrans
+11/11/2003 1:21 PM        drive s2 -70
+11/11/2003 1:24 PM        drive s1 0
+11/11/2003 1:38 PM        begin

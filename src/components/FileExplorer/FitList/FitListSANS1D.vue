@@ -8,6 +8,7 @@ export default {
   computed: {
     ...mapState('SANS1D', {
       filesToFit: state => state.filesSelected,
+      fileToFit: state => state.fileToFit,
     }),
     selected: {
       get() {

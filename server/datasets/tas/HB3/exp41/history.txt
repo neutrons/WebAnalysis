@@ -1,0 +1,188 @@
+10/22/2003 6:26 PM        drive ei 14.7
+10/22/2003 6:29 PM        drive s2 0 s1 0
+10/22/2003 6:30 PM        drive su 0 sgl 0 stl 0 stu 0
+10/22/2003 6:30 PM        drive sgu 0 sgl 0 stl 0 stu 0
+10/22/2003 6:31 PM        drive stu -6
+10/22/2003 6:31 PM        drive stu -16
+10/22/2003 6:32 PM        setpos stu 5
+10/22/2003 6:32 PM        drive stu 0
+10/22/2003 6:33 PM        drive stl -12
+10/22/2003 6:34 PM        setpos stl .5
+10/22/2003 6:34 PM        drive stl 0
+10/22/2003 6:34 PM        drive sgu @(sgu) -2.3
+10/22/2003 6:35 PM        drive sgu @(sgu)-2.3
+10/22/2003 6:35 PM        setpos sgu 0 sgl 0
+10/22/2003 6:35 PM        driverel s2 -10
+10/22/2003 6:36 PM        driverel s2 4
+10/22/2003 6:43 PM        count preset time 1
+10/22/2003 6:44 PM        driverel s2 -2
+10/22/2003 6:44 PM        driverel s2 -1
+10/22/2003 6:44 PM        setpos s2 0
+10/22/2003 6:44 PM        scan s2 -2 2 .25 preset time 1
+10/22/2003 6:45 PM        drive s2 -1.4
+10/22/2003 6:46 PM        setpos s2 0
+10/22/2003 6:46 PM        scanrel s2 -1.5 1.5 .25 preset time 1
+10/22/2003 6:47 PM        drive s2 -1.5
+10/22/2003 6:47 PM        preset time 1
+10/22/2003 6:47 PM        ct
+10/22/2003 6:47 PM        setpos s2 0
+10/22/2003 6:47 PM        scan s2 -1.5 1.5 .25 preset time 1
+10/22/2003 6:48 PM        drive s2 -.73
+10/22/2003 6:48 PM        ct
+10/22/2003 6:49 PM        scanrel m1 -1 1 .05
+10/22/2003 6:49 PM        zero m1 0.000000 m2 -0.065321 s1 0.000000 s2 -11.884460 sgl 0.002500 sgu -1.298500 stl 2.504000 stu 4.002000 a1 0.000000 a2 0.000000 temp 0.000000 coldtip 0.000000 tsample 0.000000 
+10/22/2003 6:49 PM        hold m1 0 m2 0 s1 0 s2 0 sgl 0 sgu 0 stl 0 stu 0 a1 0 a2 0 temp 0 
+10/22/2003 6:49 PM        scanrel m1 -1 1 .05
+10/22/2003 6:51 PM        ct
+10/22/2003 6:51 PM        drive m1 49
+10/22/2003 6:52 PM        drive m1 51.013
+10/22/2003 6:52 PM        ct
+10/22/2003 6:52 PM        ct
+10/22/2003 6:52 PM        driverel m1 .05
+10/22/2003 6:52 PM        ct
+10/22/2003 6:53 PM        drive m1 49
+10/22/2003 6:53 PM        drive m1 51.04
+10/22/2003 6:53 PM        ct
+10/22/2003 6:53 PM        ct
+10/22/2003 6:54 PM        scanrel s2 -2 2 .1
+10/22/2003 6:56 PM        drive s2 -.737
+10/22/2003 6:56 PM        setpos s2 0
+10/22/2003 7:08 PM        ct
+10/22/2003 7:09 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:10 PM        ct
+10/22/2003 7:11 PM        ct
+10/22/2003 7:11 PM        ct
+10/22/2003 7:11 PM        ct
+10/22/2003 7:11 PM        ct
+10/22/2003 7:11 PM        ct
+10/22/2003 7:11 PM        ct
+10/22/2003 7:11 PM        ct
+10/22/2003 7:11 PM        ct
+10/22/2003 7:11 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct
+10/22/2003 7:12 PM        ct preset time 1000
+10/22/2003 7:28 PM        ct preset time 1000
+10/22/2003 7:43 PM        init
+10/22/2003 7:44 PM        preset time 1
+10/22/2003 7:44 PM        count
+10/22/2003 7:48 PM        init
+10/22/2003 7:57 PM        init
+10/22/2003 8:20 PM        preset time 1
+10/22/2003 8:20 PM        count
+10/22/2003 8:38 PM        preset time 2
+10/22/2003 8:38 PM        scanrel m1 -3 3 .1
+10/22/2003 8:59 PM        com m1
+10/22/2003 9:00 PM        drive m1 51.052
+10/22/2003 9:04 PM        preset time 1
+10/22/2003 9:06 PM        scanrel a2 -1.5 1.5 .1
+10/22/2003 9:07 PM        drive a2 @(a2)+(1.00000)
+10/22/2003 9:08 PM        drive a2 @(a2)+(1.00000)
+10/22/2003 9:08 PM        drive a2 @(a2)+(1.00000)
+10/22/2003 9:08 PM        drive a2 @(a2)+(1.00000)
+10/22/2003 9:08 PM        drive a2 @(a2)+(1.00000)
+10/22/2003 9:08 PM        drive a2 @(a2)+(1.00000)
+10/22/2003 9:08 PM        drive a2 @(a2)+(1.00000)
+10/22/2003 9:08 PM        drive a2 @(a2)-(1.00000)
+10/22/2003 9:08 PM        scanrel a2 -2 2 .25
+10/22/2003 9:10 PM        drive a2 16.2
+10/22/2003 9:10 PM        setpos a2 0
+10/22/2003 9:11 PM        scanrel s2 -1 1 .1
+10/22/2003 9:12 PM        drive s2 -.655
+10/22/2003 9:12 PM        scanrel a2 -4 4 .25
+10/22/2003 9:14 PM        drive a2 .4225
+10/22/2003 9:14 PM        scanrel s2 -1 1 .1
+10/22/2003 9:15 PM        drive s2 -.6954
+10/22/2003 9:15 PM        scanrel a2 -4 4 .25
+10/22/2003 9:16 PM        drive a1 90
+10/22/2003 9:17 PM        scan a2 -3.5 4.5 .25
+10/22/2003 9:18 PM        drive a2 .3744
+10/22/2003 9:19 PM        setpos s2 0
+10/22/2003 9:19 PM        setpos a2 0
+10/22/2003 9:20 PM        driverel a1 -30
+10/22/2003 9:21 PM        driverel a1 -5
+10/22/2003 9:21 PM        setpos a1 90
+10/22/2003 9:23 PM        scanrel a2 -4 4 .25
+10/22/2003 9:26 PM        drive ei 30.5
+10/22/2003 9:28 PM        powcalib ni 1.000000 energy 30.500000 maxpeaks 6
+10/22/2003 9:40 PM        powcalib ni 1.000000 energy 30.500000 maxpeaks 6
+10/22/2003 9:52 PM        comment "Setting zeros based on calibration file C:\User\exp41\Calibration\ni22Oct2003_94014PM"
+10/22/2003 9:52 PM        zero m2 -0.068898
+10/22/2003 9:52 PM        zero s2 -13.284816
+10/22/2003 10:01 PM        setpos a2 0
+10/22/2003 10:06 PM        drive ei 30.5
+10/22/2003 10:06 PM        ei 30.5
+10/22/2003 10:07 PM        scan n=5 
+10/22/2003 10:09 PM        drive s2 30
+10/22/2003 10:10 PM        ct preset time 10
+10/22/2003 10:12 PM        ct preset time 10
+10/22/2003 10:13 PM        ct preset time 100
+10/22/2003 10:17 PM        drive ei 13.5
+10/22/2003 10:18 PM        ct preset time 100
+10/22/2003 10:22 PM        ct preset time 100
+10/22/2003 10:26 PM        ct preset time 100
+10/22/2003 10:29 PM        drive ei 30.5
+10/22/2003 10:30 PM        ct preset time 100
+10/22/2003 10:34 PM        ct preset time 100
+10/22/2003 10:36 PM        ct preset time 100
+10/22/2003 10:39 PM        ct preset time 100
+10/22/2003 10:41 PM        drive ei 13.5
+10/22/2003 10:41 PM        ct preset time 100
+10/22/2003 10:44 PM        ct preset time 100
+10/22/2003 10:47 PM        drive ei 30.5
+10/22/2003 10:48 PM        ei 30.5
+10/22/2003 10:53 PM        drive ef 30.5
+10/22/2003 10:54 PM        drive a1 -14
+10/22/2003 10:54 PM        drive a1 -16
+10/22/2003 10:55 PM        drive a1 -18
+10/22/2003 10:55 PM        drive a1 -20
+10/22/2003 10:55 PM        drive a1 -19
+10/22/2003 10:55 PM        drive a1 -18
+10/22/2003 10:56 PM        preset time 1
+10/22/2003 10:56 PM        scanrel a1 -2 2 .1
+10/22/2003 10:58 PM        com a1
+10/22/2003 10:59 PM        scanrel a2 -3 3 .2
+10/22/2003 11:00 PM        com a2
+10/22/2003 11:01 PM        scanrel a1 -2 2 .1
+10/22/2003 11:03 PM        com a1
+10/22/2003 11:03 PM        scanrel a2 -3 3 .2
+10/22/2003 11:05 PM        com a2
+10/22/2003 11:06 PM        scanrel a1 -2 2 .1
+10/22/2003 11:09 PM        com a1
+10/22/2003 11:09 PM        preset time 3
+10/22/2003 11:11 PM        Comment "Current Analyzer setting corresponds to Ef = 30.500962 meV "
+10/22/2003 11:11 PM        setpos a2 -28.253370
+10/22/2003 11:11 PM        setpos a1 165.873315
+10/22/2003 11:11 PM        scanrel ef -2.4 2.4 .2
+10/22/2003 11:13 PM        scanrel ef -3.4 3.4 .2
+10/22/2003 11:17 PM        com ef
+10/22/2003 11:18 PM        Comment "Current Analyzer setting corresponds to Ef = 30.500962 meV "
+10/22/2003 11:18 PM        setpos a2 -28.253370
+10/22/2003 11:18 PM        setpos a1 165.873315
+10/22/2003 11:18 PM        begin
