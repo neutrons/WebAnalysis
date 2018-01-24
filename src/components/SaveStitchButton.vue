@@ -99,6 +99,9 @@ export default {
           id: filename,
           content: vm.stitchedData,
         },
+        headers: {
+          'Content-Disposition': `attachment; filename=${filename}`,
+        },
       })
       .then((response) => {
         if (response.status === 200) eventBus.$emit('add-notification', 'Save succesful!', 'success');
