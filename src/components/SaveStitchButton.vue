@@ -92,7 +92,7 @@ export default {
     },
     saveStitchLine(filename) {
       const vm = this;
- 
+
       axios.post('/external/save', {
         method: 'post',
         data: {
