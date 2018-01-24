@@ -171,7 +171,6 @@ export default {
   },
   setFitType(state, type = state.fitType) {
     /* eslint-disable */
-    console.log('Set fit equation tas:', type);
     state.fitType = type;
     state.fitEquation = state.fits[type].equation;
     state.transformations.x = state.fits[type].transformations.x;

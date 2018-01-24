@@ -88,33 +88,37 @@ export default {
         .data(vm.brushes, d => d.id);
 
       // ENTER Brushes
+      function moveBrushTo(brushItem) {
+        // call the brush
+        brushItem.brush(d3.select(this));
+
+        if (brushItem.selection !== undefined) {
+          brushItem.brush.move(d3.select(this), brushItem.selection.map(vm.brushScale));
+        }
+      }
+
       brushSelection.enter()
         .insert('g', '.brush')
         .attr('class', 'brush')
         .attr('id', brush => `selection-${brush.id}`)
-        .each(function (brushItem) {
-          // call the brush
-          brushItem.brush(d3.select(this));
-
-          if (brushItem.selection !== undefined) {
-            brushItem.brush.move(d3.select(this), brushItem.selection.map(vm.brushScale));
-          }
-        });
+        .each(moveBrushTo);
 
       // UPDATE Brushes
+      function enableBrushPointerEvents(brushItem) {
+        d3.select(this)
+          .selectAll('.overlay')
+          .style('pointer-events', () => {
+            const brush = brushItem.brush;
+            if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
+
+            return 'none';
+          });
+      }
+
       vm.g.select(`#zoom-group-${vm.ID}`)
         .select('.brushes')
         .selectAll('.brush')
-        .each(function (brushItem) {
-          d3.select(this)
-            .selectAll('.overlay')
-            .style('pointer-events', () => {
-              const brush = brushItem.brush;
-              if (brushItem.id === vm.brushes.length - 1 && brush !== undefined) return 'all';
-
-              return 'none';
-            });
-        });
+        .each(enableBrushPointerEvents);
 
       // EXIT Brushes
       brushSelection.exit().remove();
@@ -225,7 +229,7 @@ export default {
         vm.g.select(`#zoom-group-${vm.ID}`)
           .select('.brushes')
           .selectAll('.brush')
-          .each(function (brushItem) {
+          .each(function enableBrushPointerEvents(brushItem) {
             d3.select(this)
               .selectAll('.overlay')
               .style('pointer-events', () => {

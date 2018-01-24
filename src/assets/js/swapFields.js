@@ -8,8 +8,11 @@ export default function (data, fields) {
 
     nObj.x = nObj[fields.x];
     nObj.y = nObj[fields.y];
-    if (fields.x !== 'error') delete nObj[fields.x];
-    if (fields.y !== 'error') delete nObj[fields.y];
+    // Set up error points - SQRT(y)
+    nObj.error = nObj.y < 0 ? 0 : Math.sqrt(nObj.y);
+
+    delete nObj[fields.x];
+    delete nObj[fields.y];
 
     return nObj;
   });

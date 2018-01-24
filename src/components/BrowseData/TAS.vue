@@ -40,11 +40,9 @@ export default {
         const yMatch = /^def_y/.exec(el);
 
         if (xMatch !== null) {
-          const val = el.trim().split(' = ')[1];
-          obj.x = val === 'e' ? 'error' : val;
+          obj.x = el.trim().split(' = ')[1];
         } else if (yMatch !== null) {
-          const val = el.trim().split(' = ')[1];
-          obj.y = val === 'e' ? 'error' : val;
+          obj.y = el.trim().split(' = ')[1];
         }
       });
 
