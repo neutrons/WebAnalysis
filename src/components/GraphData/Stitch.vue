@@ -152,12 +152,12 @@ export default {
   ],
   components: {
     'v-chart': () => import('../Chart1D/ChartStitch'),
-    'v-toggle-zoom-brush': () => import('../toggleZoomBrush'),
-    'v-stitch-btn': () => import('../stitchButton'),
-    'v-remove-brushes-btn': () => import('../removeBrushesButton'),
-    'v-remove-stitch-btn': () => import('../removeStitchButton'),
-    'v-save-stitch-btn': () => import('../saveStitchButton'),
-    'v-draw-brushes-btn': () => import('../drawBrushesButton'),
+    'v-toggle-zoom-brush': () => import('../ToggleZoomBrush'),
+    'v-stitch-btn': () => import('../StitchButton'),
+    'v-remove-brushes-btn': () => import('../RemoveBrushesButton'),
+    'v-remove-stitch-btn': () => import('../RemoveStitchButton'),
+    'v-save-stitch-btn': () => import('../SaveStitchButton'),
+    'v-draw-brushes-btn': () => import('../DrawBrushesButton'),
     'v-stitched-data-table': () => import('../StitchedDataTable'),
   },
   computed: {

@@ -4,7 +4,7 @@ import Router from 'vue-router';
 import ORNL404 from '@/components/ORNL404';
 import SANS1DGraph from '@/components/GraphData/SANS1D';
 import Stitch from '@/components/GraphData/Stitch';
-import SANS2DGraph from '@/components/GraphData/SANS2D/SANS2D';
+import SANS2DGraph from '@/components/GraphData/SANS2D';
 import TASGraph from '@/components/GraphData/TAS';
 
 import SANS1DBrowse from '@/components/BrowseData/SANS1D';

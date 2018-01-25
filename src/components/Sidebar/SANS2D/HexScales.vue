@@ -28,7 +28,7 @@ export default {
   props: {
     collapse: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   computed: {
