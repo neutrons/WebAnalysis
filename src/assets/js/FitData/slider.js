@@ -136,16 +136,17 @@ export default {
       this.$store.commit(`${this.ID}/setBrushSelection`, d3.event.selection);
       const tempData = this.dataToFit.filter(this.filterForLog);
       const e = d3.event.selection.map(this.sliderScale.invert, this.sliderScale);
-      const selectedData = tempData.filter(d => e[0] <= d.x && d.x <= e[1]);
+      const filteredData = tempData.filter(d => e[0] <= d.x && d.x <= e[1]);
+      this.$store.commit(`${this.ID}/setFilteredData`, _.cloneDeep(filteredData));
 
       // Update brush selections to the current selected data
       // This will be used to dynamically adjust brush location when new data is added
-      const xExtent = d3.extent(selectedData, d => d.x);
+      const xExtent = d3.extent(filteredData, d => d.x);
       this.selLimits = [...xExtent];
       const newXScale2 = this.sliderScale.copy();
       this.$store.commit(`${this.ID}/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
 
-      if (this.brushSelection !== null && selectedData.length > 1) {
+      if (this.brushSelection !== null && filteredData.length > 1) {
         this.svg.select('.slider-lines')
           .selectAll('line')
           .style('stroke', (d) => {
@@ -156,7 +157,7 @@ export default {
             return 'slategray';
           });
 
-        this.fitFunction(selectedData);
+        this.fitFunction(filteredData);
 
         if (this.fittedData.length <= 0) {
           const errorMsg = '<strong>Error!</strong> Fitted y-values < 0, thus no fit-line to display.';

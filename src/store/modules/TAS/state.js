@@ -11,6 +11,7 @@ export default {
   filesSelected: [],
   filters: [],
   selectedData: [],
+  filteredData: [],
   browseData: {},
   fileToFit: null,
   colorDomain: [],

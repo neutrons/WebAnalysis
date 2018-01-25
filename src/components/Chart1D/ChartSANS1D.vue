@@ -14,6 +14,7 @@ export default {
   },
   created() {
     eventBus.$on('refit-data-SANS1D', this.drawChart);
+    eventBus.$on('revise-fit-line', this.reviseFitLine);
   },
   computed: {
     ...mapState('SANS1D', {
@@ -25,6 +26,8 @@ export default {
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,
       fittedData: state => state.fittedData,
+      filteredData: state => state.filteredData,
+      fitEquation: state => state.fitEquation,
     }),
     ...mapGetters('SANS1D', {
       chartConfigurations: 'getChartConfigurations',

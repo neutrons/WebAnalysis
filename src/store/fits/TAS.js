@@ -16,7 +16,7 @@ export default {
     note: '',
   },
   Guassian: {
-    title: 'Guassian',
+    title: 'Gaussian',
     equation: `(A*exp(${(-4 * Math.log(2)).toFixed(3)}*(x-center)^2/fwhm^2))`,
     initialValues: [
       { coefficient: 'A', value: 1, constant: false },

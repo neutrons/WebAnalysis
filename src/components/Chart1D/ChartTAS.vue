@@ -14,6 +14,7 @@ export default {
   },
   created() {
     eventBus.$on('refit-data-TAS', this.drawChart);
+    eventBus.$on('revise-fit-line', this.reviseFitLine);
   },
   computed: {
     ...mapState('TAS', {
@@ -25,6 +26,8 @@ export default {
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,
       fittedData: state => state.fittedData,
+      fitEquation: state => state.fitEquation,
+      filteredData: state => state.filteredData,
     }),
     ...mapGetters('TAS', {
       chartConfigurations: 'getChartConfigurations',
