@@ -171,7 +171,7 @@ export default {
         // console.log('Fitted params:', fittedParams);
         // Get's the fitted function from the fitted parameters
         // only coefficients are set! Remember it returns a function!)
-        // console.log("fittedParams.parameterValues = ", fittedParams.parameterValues);
+        // console.log('fittedParams.parameterValues = ', fittedParams.parameterValues);
         const fitFunctionFitted = fitFunction(fittedParams.parameterValues);
         const yFitted = xFit.map(el => fitFunctionFitted(el));
 

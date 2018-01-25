@@ -38,6 +38,7 @@
         :label='iv.coefficient'
         hint='Edit initial value for fit coefficients'
         v-model.number='iv.value'
+        @input='inputInitialValues'
         :append-icon='iv.constant ? "fa-circle constant" : "fa-circle non-constant"'
         :append-icon-cb='() => iv.constant = !iv.constant'
         @keydown.enter.native='refit'
@@ -196,6 +197,17 @@ export default {
       this.setFitInitialValues(temp);
       this.setFitEquation(this.finalEquation);
       eventBus.$emit('refit-data-TAS');
+    },
+    inputInitialValues() {
+      const temp = [];
+
+      this.selected.forEach((s) => {
+        s.initialValues.forEach((iv) => {
+          temp.push(iv);
+        });
+      });
+
+      eventBus.$emit('revise-fit-line', temp);
     },
   },
   watch: {

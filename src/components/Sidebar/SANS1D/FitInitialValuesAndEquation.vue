@@ -20,6 +20,7 @@
         :label='item.coefficient'
         hint='Edit initial value for fit coefficients'
         v-model.number='item.value'
+        @input='inputInitialValues'
         :append-icon='item.constant ? "fa-circle constant" : "fa-circle non-constant"'
         :append-icon-cb='() => toggleConstant(item.constant, index)'
         @keydown.enter.native='setInitialValues'
@@ -30,6 +31,8 @@
       <v-btn block outline @click='setInitialValues' color='green darken-1 white--text'>
         <v-icon left>fa-line-chart</v-icon> Re-fit
       </v-btn>
+
+      <div>Initial Values: {{initialValues}}</div>
     </div>
 </template>
 
@@ -137,6 +140,9 @@ export default {
 
         eventBus.$emit('refit-data-SANS1D');
       }
+    },
+    inputInitialValues() {
+      eventBus.$emit('revise-fit-line', this.initialValues);
     },
   },
   watch: {
