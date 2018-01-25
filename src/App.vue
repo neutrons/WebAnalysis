@@ -5,16 +5,25 @@
 
   <v-toolbar fixed app :clipped-left='true' :clipped-right='true'>
 
-    <v-toolbar-side-icon @click.stop='drawer = !drawer'>
+    <v-toolbar-side-icon @click.stop='drawer = !drawer' class='ml-3 mr-3'>
       <v-icon color='grey darken-4'>fa-sliders</v-icon>
     </v-toolbar-side-icon>
 
+    <v-breadcrumbs>
+      <v-icon slot='divider'>chevron_right</v-icon>
+      <v-breadcrumbs-item 
+        v-for='(item, index) in $route.meta.breadcrumb' :key='index'
+      >
+        {{ item }}
+      </v-breadcrumbs-item>
+    </v-breadcrumbs>
+    <v-spacer></v-spacer>
+    <v-toolbar-items>
     <v-fetch-data></v-fetch-data>
     <v-upload-data></v-upload-data>
+    </v-toolbar-items>
 
-    <v-spacer></v-spacer>
-
-    <v-toolbar-items class='hidden-xs-only'>
+    <v-toolbar-items class='hidden-xs-down'>
       <v-menu bottom left open-on-hover>
         <v-btn flat slot='activator'>
           SANS1D
@@ -65,7 +74,7 @@
       <v-btn flat to='SANS2D' exact active-class='my-active-class'>SANS2D</v-btn>
     </v-toolbar-items>
 
-    <v-menu offset-y bottom class='hidden-sm-and-up'>
+    <v-menu offset-y bottom class='hidden-md-and-up'>
         <v-btn flat icon slot='activator'>
           <v-icon>more_vert</v-icon>
         </v-btn>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <label id='file-load-btn' class='btn btn--flat success--text btn-upload'>
+  <div class='btn btn--flat'>
+    <label id='file-load-btn' class='btn__content btn-upload'>
         <span class='hidden-md-and-down'>Upload file <i class='fa fa-upload fa-lg'></i></span>
         <span class='hidden-lg-and-up'><i class='fa fa-upload fa-lg'></i></span>
         <input id='file-upload-input' type='file' style='display: none;' @change='validateFiles($event.target.files)' multiple>
@@ -82,16 +82,15 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.fa-upload {
+  color: #4CAF50;
+}
+
 .btn-upload {
   cursor: pointer;
+}
 
-  span {
-    padding: 5px 5px;
-  }
-
-  :hover {
-    background-color: rgba(76, 175, 80,0.15);
-    transition: all 0.5s ease;
-  }
+.btn--flat {
+  border-right: 1px solid gainsboro !important;
 }
 </style>

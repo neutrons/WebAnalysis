@@ -3,7 +3,9 @@
     <v-data-table
       :headers='headers'
       :items='data'
-      class='text-xs-center'>
+      class='text-xs-center'
+      :rows-per-page-items='[100, 25, 75, { text: "All", value: -1 }]'
+    >
       <template slot='items' slot-scope='props'>
         <td class='text-xs-left' v-for='(item, index) in fieldnames' :key='index'>{{props.item[item]}}</td>
       </template>

@@ -4,7 +4,6 @@ export default (state, getters) => {
   const fitSettings = _.cloneDeep(state.fitSettings);
   const data = getters.getPreparedData;
   const scales = state.plotScale;
-  const labels = state.label;
   const fileToFit = state.fileToFit;
 
   return {
@@ -12,6 +11,5 @@ export default (state, getters) => {
     fileToFit,
     data,
     scales,
-    labels,
   };
 };

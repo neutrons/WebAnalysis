@@ -21,7 +21,7 @@ export default {
       plotScale: state => state.plotScale,
       colorDomain: state => state.colorDomain,
       deleteKeys: state => state.deleteKeys,
-      label: state => state.label,
+      label: state => state.transformations,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,
       fittedData: state => state.fittedData,

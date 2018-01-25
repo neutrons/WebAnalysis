@@ -1,16 +1,16 @@
 <template>
 <v-expansion-panel flat>
   <v-expansion-panel-content :value='!collapse' class='green white--text'>
-    <div slot='header' class='title'>Fields</div>
+    <div slot='header' class='title'>Axes</div>
 
     <v-container class='grey lighten-4'>
       <v-layout row wrap>
 
         <v-flex xs12>
-          <v-select label='X Field' :items='getFields' v-model='selectX' hint='Select X Variable'>
+          <v-select label='X Axes' :items='getFields' v-model='selectX' hint='Select X Variable'>
           </v-select>
 
-          <v-select label='Y Field' :items='getFields' v-model='selectY' hint='Select Y Variable'>
+          <v-select label='Y Axes' :items='getFields' v-model='selectY' hint='Select Y Variable'>
           </v-select>
         </v-flex>
         

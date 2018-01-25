@@ -33,6 +33,7 @@ export default new Router({
         title: 'SANS1D-Browse',
         group: 'SANS',
         sidebar: 'SidebarSANS1DBrowse',
+        breadcrumb: ['SANS1D', 'Browse'],
       },
     },
     {
@@ -43,6 +44,7 @@ export default new Router({
         title: 'SANS1D',
         group: 'SANS',
         sidebar: 'SidebarSANS1D',
+        breadcrumb: ['SANS1D', 'Graph'],
       },
     },
     {
@@ -53,6 +55,7 @@ export default new Router({
         title: 'Stitch',
         group: 'SANS',
         sidebar: 'SidebarStitch',
+        breadcrumb: ['Stitch', 'Graph'],
       },
     },
     {
@@ -63,6 +66,7 @@ export default new Router({
         title: 'Stitch',
         group: 'SANS',
         sidebar: 'SidebarStitchBrowse',
+        breadcrumb: ['Stitch', 'Browse'],
       },
     },
     {
@@ -73,6 +77,7 @@ export default new Router({
         title: 'SANS2D',
         group: 'SANS',
         sidebar: 'SidebarSANS2D',
+        breadcrumb: ['SANS2D', 'Graph'],
       },
     },
     {
@@ -83,6 +88,7 @@ export default new Router({
         title: 'TAS-Browse',
         group: 'TAS',
         sidebar: 'SidebarTASBrowse',
+        breadcrumb: ['TAS', 'Browse'],
       },
     },
     {
@@ -93,6 +99,7 @@ export default new Router({
         title: 'TAS',
         group: 'TAS',
         sidebar: 'SidebarTAS',
+        breadcrumb: ['TAS', 'Graph'],
       },
     },
   ],

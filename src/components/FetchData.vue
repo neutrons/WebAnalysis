@@ -1,7 +1,7 @@
 <template>
-    <v-btn small flat color='success' @click='fetchFiles'>
+    <v-btn small flat @click='fetchFiles' class='fetch-btn'>
       <span class='hidden-md-and-down'>Fetch Data</span>
-      <v-icon small :right='!isBreakpointSmall'>fa-cloud-download</v-icon>
+      <v-icon small :right='!isBreakpointSmall' color='success'>fa-cloud-download</v-icon>
     </v-btn>
 </template>
 
@@ -39,6 +39,9 @@ export default {
         } else {
           vm.fetchSANS(data);
         }
+
+        // Notify that fetch was a success
+        eventBus.$emit('add-notification', 'Data fetched!', 'success');
       }).catch((err) => {
         eventBus.$emit('add-notification', err.message, 'error');
       });
@@ -90,3 +93,9 @@ export default {
   },
 };
 </script>
+
+<style lang='scss' scoped>
+.fetch-btn {
+  border-left: 1px solid gainsboro !important;
+}
+</style>

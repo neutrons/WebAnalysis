@@ -9,7 +9,7 @@
     </div>
   </v-card-title>
   <v-card-text class='pt-1'>
-    <v-data-table :headers='fittedHeaders' :items='fittedData' class='text-xs-center'>
+    <v-data-table :headers='fittedHeaders' :items='fittedData' class='text-xs-center' :rows-per-page-items='[25, 50, 100, { text: "All", value: -1 }]'>
       <template slot='items' slot-scope='props'>
         <td class='text-xs-left'>{{props.item.x}}</td>
         <td class='text-xs-left'>{{props.item.y}}</td>
