@@ -2,7 +2,7 @@
 <div class='text-cs-center'>
     <v-data-table
       :headers='headers'
-      :items='data'
+      :items='plottedData'
       class='text-xs-center'>
       <template slot='items' slot-scope='props'>
         <td class='text-xs-left' v-for='(item, index) in fieldnames' :key='index'>{{props.item[item]}}</td>
@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import _ from 'lodash';
-
 export default {
   name: 'PlottedDataTable',
   data() {
@@ -33,12 +31,9 @@ export default {
     },
   },
   computed: {
-    data() {
-      return _.flatten(this.plottedData.map(el => el.values));
-    },
     fieldnames() {
-      if (this.data.length === 0) return [];
-      return Object.keys(this.data[0]);
+      if (this.plottedData.length === 0) return [];
+      return Object.keys(this.plottedData[0]);
     },
     headers() {
       // eslint-disable-next-line
