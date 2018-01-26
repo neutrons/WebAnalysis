@@ -1,18 +1,17 @@
 <template>
-    <v-container fluid class='main-container'>
-        <p>Files to plot: {{fileToPlot}}</p>
-        <p>Hex Bin Size: {{hexBinSize}}</p>
-        <p>Hex Scale: {{hexScale}}</p>
-        <p>Data to plot: {{selectedData}}</p>
-    </v-container>
+<div>
+  <keep-alive>
+    <v-chart :ID='ID'></v-chart>
+  </keep-alive>
+</div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex';
 
 // Import Mixins
-import read2DData from '../../../assets/js/readFiles/readSANS2D';
-import parseData from '../../../assets/js//readFiles/parse/SANS2D';
+import read2DData from '../../assets/js/readFiles/readSANS2D';
+import parseData from '../../assets/js//readFiles/parse/SANS2D';
 
 export default {
   name: 'SANS2D',
@@ -20,17 +19,20 @@ export default {
     read2DData,
     parseData,
   ],
+  components: {
+    'v-chart': () => import('../Chart2D/ChartSANS2D'),
+  },
   computed: {
     ...mapState('SANS2D', {
       ID: state => state.ID,
       fileToPlot: state => state.filesSelected,
-      selectedData: state => state.selectedData,
       hexBinSize: state => state.hexBinSize,
       hexScale: state => state.hexScale,
     }),
     ...mapGetters('SANS2D', [
       'getSavedFile',
       'getURLs',
+      'getPreparedData',
     ]),
   },
   methods: {

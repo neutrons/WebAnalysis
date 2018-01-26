@@ -13,7 +13,7 @@ export default {
   hexScale: 'Log',
   hexBinSize: 15,
   label: {
-    x: 'x',
-    y: 'y',
+    x: 'Qx',
+    y: 'Qy',
   },
 };

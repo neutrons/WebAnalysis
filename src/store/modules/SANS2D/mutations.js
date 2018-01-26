@@ -32,10 +32,9 @@ export default {
   },
   setCurrentData(state, payload) {
     const data = _.cloneDeep(payload.data);
-    const filename = payload.filename;
 
     // eslint-disable-next-line
-    state.selectedData = [{ data, filename }];
+    state.selectedData = data;
   },
   setScale(state, value) {
     // eslint-disable-next-line
