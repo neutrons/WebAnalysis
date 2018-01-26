@@ -15,7 +15,7 @@ export default {
     xLabel: 'x',
     note: '',
   },
-  Guassian: {
+  Gaussian: {
     title: 'Gaussian',
     equation: `(A*exp(${(-4 * Math.log(2)).toFixed(3)}*(x-center)^2/fwhm^2))`,
     initialValues: [
