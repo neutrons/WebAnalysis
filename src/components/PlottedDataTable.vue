@@ -2,7 +2,7 @@
 <div class='text-cs-center'>
     <v-data-table
       :headers='headers'
-      :items='data'
+      :items='plottedData'
       class='text-xs-center'
       :rows-per-page-items='[100, 25, 75, { text: "All", value: -1 }]'
     >
