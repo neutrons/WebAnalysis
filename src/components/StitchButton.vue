@@ -1,5 +1,5 @@
 <template>
-<v-btn small flat :disabled='!isBrushes' :icon='isBreakpointSmall' dark @click='$emit("stitch-data")'>
+<v-btn small flat :disabled='!isBrushes' :icon='isBreakpointSmall' @click='$emit("stitch-data")'>
   <span class='hidden-md-and-down'>Stitch</span>
   <v-icon :right='!isBreakpointSmall'>fa-line-chart</v-icon>
 </v-btn>

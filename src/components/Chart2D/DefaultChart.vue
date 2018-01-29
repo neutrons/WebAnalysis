@@ -4,14 +4,14 @@
     <v-tabs>
 
       <!-- Tabs Bar -->
-      <v-tabs-bar class='blue' dark>
+      <v-tabs-bar>
         <v-tabs-item href='#plot' ripple>
           Plot
         </v-tabs-item>
         <v-tabs-item href='#data-table' ripple>
           Data Table
         </v-tabs-item>
-        <v-tabs-slider color='yellow'></v-tabs-slider>
+        <v-tabs-slider color='accent'></v-tabs-slider>
       </v-tabs-bar>
 
       <!-- First level of tab items  -->
@@ -25,7 +25,7 @@
             </v-flex>
 
             <v-flex xs12>
-              <v-toolbar color='blue' dark height='auto'>
+              <v-toolbar height='auto'>
                 <v-container class='pa-0' fluid>
                   <v-layout row wrap class='pa-0'>
                     <v-reset-chart-button @reset-chart='resetChart' :disable='filesSelected === null'></v-reset-chart-button>
@@ -33,7 +33,7 @@
 
                     <v-spacer></v-spacer>
                     <!-- scatter point hover values -->
-                    <v-subheader class='hidden-sm-and-down white--text' v-if='filesSelected !== null && xPoint !== null'>
+                    <v-subheader class='hidden-sm-and-down' v-if='filesSelected !== null && xPoint !== null'>
                       <span class='mr-2'>Qx: {{xPoint.toExponential(2)}}</span>
                       <span class='mr-2'>Qy: {{yPoint.toExponential(2)}}</span>
                       <span class='mr-2'>Intensity: {{intensityPoint.toExponential(2)}}</span>
@@ -105,7 +105,7 @@ export default {
       viewBox: '0 0 960 600',
       defaultMargin: {
         top: 20,
-        right: 75,
+        right: 80,
         bottom: 50,
         left: 75,
       },
@@ -190,6 +190,20 @@ export default {
 </script>
 
 <style lang='scss'>
+.axis {
+  path {
+    shape-rendering: optimizeQuality;
+  }
+  .tick text {
+    font-size: 14px;
+    fill: black;
+  }
+  .tick line {
+    shape-rendering: optimizeQuality;
+    stroke: black;
+  }
+}
+
 iframe.width-changed {
   width: 100%;
   display: block;

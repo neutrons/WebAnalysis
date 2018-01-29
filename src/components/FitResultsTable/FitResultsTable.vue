@@ -2,7 +2,7 @@
 <v-container pt-0>
   <v-layout row wrap>
     <v-flex xs12>
-      <v-btn color='green' outline flat @click='downloadFitEquation'>
+      <v-btn outline flat @click='downloadFitEquation' color='success'>
         <v-icon :left='!isBreakpointSmall'>file_download</v-icon>
         <span class='hidden-md-and-down'>Fit Equation</span>
       </v-btn>

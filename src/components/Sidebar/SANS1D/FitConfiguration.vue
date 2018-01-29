@@ -1,13 +1,13 @@
 <template>
 <v-expansion-panel flat>
-  <v-expansion-panel-content :value='!collapse' class='green'>
-    <div slot='header' class='title white--text'>Fit Configuration</div>
+  <v-expansion-panel-content :value='!collapse'>
+    <div slot='header' class='title'>Fit Configuration</div>
 
-    <v-container class='grey lighten-4'>
+    <v-container>
       <v-layout row wrap>
 
         <v-flex xs12>
-          <v-subheader class='pl-0 green--text darken-4'>Fit Selection:</v-subheader>
+          <v-subheader class='pl-0'>Fit Selection:</v-subheader>
         </v-flex>
 
         <v-flex xs12 pl-2>
@@ -19,7 +19,7 @@
         </v-flex>
 
         <v-flex xs12>
-          <v-subheader class='pl-0 green--text darken-4'>Levenberg-marquardt Settings:</v-subheader>
+          <v-subheader class='pl-0'>Levenberg-marquardt Settings:</v-subheader>
         </v-flex>
 
         <v-flex xs12 pl-2>

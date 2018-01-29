@@ -14,7 +14,7 @@ export default {
   },
   created() {
     eventBus.$on('refit-data-TAS', this.drawChart);
-    eventBus.$on('revise-fit-line', this.reviseFitLine);
+    eventBus.$on('revise-fit-line-TAS', this.reviseFitLine);
   },
   computed: {
     ...mapState('TAS', {

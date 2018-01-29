@@ -10,6 +10,7 @@ export default {
       this.g.select('.axis--x')
         .transition(t)
         .call(xa);
+
       this.g.select('.axis--y')
         .transition(t)
         .call(ya);

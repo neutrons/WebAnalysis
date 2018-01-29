@@ -45,11 +45,11 @@ export default {
           .attr('class', 'hexagon');
 
         // Add axes
-        const axe = this.g.append('g').attr('class', 'axis');
+        const axis = this.g.append('g').attr('class', 'axis');
 
-        axe.append('g').attr('class', 'axis--y');
+        axis.append('g').attr('class', 'axis--y');
 
-        axe.append('g')
+        axis.append('g')
           .attr('class', 'axis--x')
           .attr('transform', `translate(0, ${this.height})`);
 
@@ -63,7 +63,7 @@ export default {
 
         legend.append('g')
             .attr('transform', `translate(${this.legendWidth}, 0)`)
-            .attr('class', 'legend-axis legend-axis-y');
+            .attr('class', 'axis legend-axis legend-axis-y');
       } else {
         // toggle zoom on
         this.g.select('.zoom').attr('pointer-events', 'all');
@@ -71,7 +71,7 @@ export default {
       }
 
       const trans = d3.transition().duration(750);
-      const t = d3.zoomTransform(this.g.select('.zoom').node());
+      const t = d3.zoomTransform(this.g.node());
       const newXScale = t.rescaleX(this.xScale);
       const newYScale = t.rescaleY(this.yScale);
       this.updateAxes(newXScale, newYScale, trans);

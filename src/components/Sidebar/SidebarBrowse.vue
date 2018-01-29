@@ -1,9 +1,9 @@
 <template>
 <v-expansion-panel expand>
-  <v-expansion-panel-content class='green' :value='true'>
-    <div slot='header' class='title white--text'>Browse Files</div>
+  <v-expansion-panel-content :value='true'>
+    <div slot='header' class='title'>Browse Files</div>
     
-    <v-card class='grey lighten-4'>
+    <v-card>
       <v-card-text>
       <v-select
         prepend-icon='keyboard_arrow_left'
@@ -22,9 +22,9 @@
       </v-card>
   </v-expansion-panel-content>
 
-  <v-expansion-panel-content class='green' :value='true'>
-    <div slot='header' class='title white--text'>Tags</div>
-    <v-card :class='!edit ? "grey lighten-4" : "dark"'>
+  <v-expansion-panel-content :value='true'>
+    <div slot='header' class='title'>Tags</div>
+    <v-card :class='edit ? "grey lighten-3" : ""'>
       <v-card-text>
       <v-select
         :prepend-icon='edit ? "cancel" : "edit"'
@@ -38,11 +38,11 @@
         :readonly='!edit'
       ></v-select>
       <div class='text-xs-right'>
-        <v-btn small color='error' outline flat v-if='edit' @click='cancelEdit'>
+        <v-btn small outline flat v-if='edit' @click='cancelEdit'>
           <v-icon left>cancel</v-icon>
           <span>Cancel</span>
         </v-btn>
-        <v-btn small color='green' outline flat v-if='edit' @click='saveEdit'>
+        <v-btn small outline flat v-if='edit' @click='saveEdit'>
           <v-icon left>check_circle</v-icon>
           <span>Save Tags</span>
         </v-btn>

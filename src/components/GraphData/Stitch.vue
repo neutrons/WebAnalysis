@@ -14,7 +14,7 @@
             </div>
 
             <v-menu bottom v-if='$vuetify.breakpoint.mdAndDown'>
-              <v-btn :icon='$vuetify.breakpoint.mdAndDown' slot='activator' flat dark small>
+              <v-btn :icon='$vuetify.breakpoint.mdAndDown' slot='activator' flat small>
                 <span class='hidden-md-and-down'>Stitch options</span>
                 <v-icon :right='!$vuetify.breakpoint.mdAndDown'>more_vert</v-icon>
               </v-btn>
@@ -73,9 +73,9 @@
                   <div v-show='props.showTabs'>
                     <v-tabs v-model='props.activeParentTab'>
 
-                        <v-tabs-bar dark color='blue lighten-1' v-if='props.stitchedData'>
+                        <v-tabs-bar v-if='props.stitchedData'>
                             <v-tabs-item href='#tab-fit' ripple v-if='props.stitchedData'>Stitch Results</v-tabs-item>
-                            <v-tabs-slider color='yellow'></v-tabs-slider>
+                            <v-tabs-slider color='accent'></v-tabs-slider>
                         </v-tabs-bar>
 
                         <!-- nested tab items  -->
@@ -83,8 +83,8 @@
                           <!-- fit results tab content -->
                           <v-tabs-content id='tab-fit' ripple v-if='props.stitchedData'>
                             <v-tabs>
-                              <v-tabs-bar dark color='blue lighten-3'>
-                                <v-tabs-slider color='yellow'></v-tabs-slider>
+                              <v-tabs-bar>
+                                <v-tabs-slider color='accent'></v-tabs-slider>
                                 <v-tabs-item href='fit-results'>
                                   Selected Regions
                                 </v-tabs-item>
@@ -101,7 +101,7 @@
                                       <template v-for='(item, key, index) in props.brushSelections'>
                                         <v-list-tile :key='index'>
                                           <v-list-tile-avatar>
-                                            <v-icon color='blue'>crop_free</v-icon>
+                                            <v-icon>crop_free</v-icon>
                                           </v-list-tile-avatar>
                                           <v-list-tile-content>
                                             <span class='hidden-sm-and-down'>{{ key }}</span>

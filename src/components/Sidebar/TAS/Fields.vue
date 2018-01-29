@@ -1,9 +1,9 @@
 <template>
 <v-expansion-panel flat>
-  <v-expansion-panel-content :value='!collapse' class='green white--text'>
+  <v-expansion-panel-content :value='!collapse'>
     <div slot='header' class='title'>Axes</div>
 
-    <v-container class='grey lighten-4'>
+    <v-container>
       <v-layout row wrap>
 
         <v-flex xs12>

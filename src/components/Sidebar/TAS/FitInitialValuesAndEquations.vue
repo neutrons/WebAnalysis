@@ -3,11 +3,11 @@
   <v-layout row wrap v-for='(s, index) in selected' :key='index'>
 
     <v-flex xs2>
-      <v-btn flat outline icon color='green' v-if='index === 0' @click='addNewEquation'>
+      <v-btn flat outline icon v-if='index === 0' @click='addNewEquation' color='success'>
         <v-icon>fa-plus</v-icon>
       </v-btn>
 
-      <v-btn outline @click='removeEquation(index)' flat icon color='red' v-else>
+      <v-btn outline @click='removeEquation(index)' flat icon color='error' v-else>
         <v-icon>fa-times</v-icon>
       </v-btn>
     </v-flex>
@@ -28,7 +28,7 @@
   </v-layout>
 
   <v-flex xs12>
-    <v-subheader class='pl-0 green--text darken-4'>Initial Values:</v-subheader>
+    <v-subheader class='pl-0'>Initial Values:</v-subheader>
   </v-flex>
 
   <v-layout row wrap v-for='(select, selectedIndex) in selected'>
@@ -49,7 +49,7 @@
 
   <v-layout row wrap>
     <v-flex xs12>
-     <v-subheader class='pl-0 green--text darken-4'>Final Fit Equation:</v-subheader>
+     <v-subheader class='pl-0'>Final Fit Equation:</v-subheader>
     </v-flex>
 
     <v-flex xs12 pl-2>
@@ -57,7 +57,7 @@
     </v-flex>
 
     <v-flex xs12>
-      <v-btn outline flat block color='green' @click='refit'>
+      <v-btn outline flat block @click='refit' color='success'>
         Re-fit
         <v-icon right>fa-line-chart</v-icon>
       </v-btn>
@@ -207,7 +207,7 @@ export default {
         });
       });
 
-      eventBus.$emit('revise-fit-line', temp);
+      eventBus.$emit('revise-fit-line-TAS', temp);
     },
   },
   watch: {

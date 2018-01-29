@@ -1,9 +1,9 @@
 <template>
 <v-expansion-panel flat>
-  <v-expansion-panel-content :value='!collapse' class='green white--text'>
+  <v-expansion-panel-content :value='!collapse'>
     <div slot='header' class='title'>Bin Settings</div>
 
-    <v-container class='grey lighten-4'>
+    <v-container>
       <v-layout row wrap>
 
         <v-flex xs12>
@@ -15,11 +15,11 @@
             :max='25'
             ticks
             thumb-label
-            color='green'
+            thumb-color='primary'
           ></v-slider>
 
-          <v-btn block outline @click='resetBS' color='orange darken-1 white--text'>
-            <v-icon left color='orange darken-1'>fa-undo</v-icon> Reset Bin Size
+          <v-btn block outline @click='resetBS' color='warning'>
+            <v-icon left>fa-undo</v-icon> Reset Bin Size
           </v-btn>
         </v-flex>
 

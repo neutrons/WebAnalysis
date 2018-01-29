@@ -6,13 +6,13 @@
       </v-flex>
 
       <v-flex xs12>
-        <v-toolbar flat color='blue' dark height='auto'>
+        <v-toolbar flat height='auto'>
           <v-container class='pa-0' fluid>
             <v-layout row wrap class='pa-0'>
               <v-reset-chart-button @reset-chart='resetChart'></v-reset-chart-button>
               <v-spacer></v-spacer>
               <!-- scatter point hover values -->
-              <v-subheader class='hidden-sm-and-down white--text' v-if='xPoint'>
+              <v-subheader class='hidden-sm-and-down' v-if='xPoint'>
                 <span class='mr-2'>X: {{xPoint.toExponential(2)}}</span>
                 <span class='mr-2'>Y: {{yPoint.toExponential(2)}}</span>
                 <span class='mr-2'>Error: {{errorPoint.toExponential(2)}}</span>
@@ -24,7 +24,7 @@
 
       <v-flex xs12 v-if='isMetadata && metadataLength'>
         <v-card>
-          <v-toolbar color='blue' dark flat>
+          <v-toolbar flat>
             <v-toolbar-title>Metadata</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn icon @click='show = !show'>

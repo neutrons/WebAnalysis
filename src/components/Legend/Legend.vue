@@ -8,7 +8,7 @@
       disable-resize-watcher
       disable-route-watcher
     >
-    <v-list light>
+    <v-list>
         <v-subheader>Legend</v-subheader>
         <v-divider></v-divider>
         <div v-for='(file, index) in filesSelected' :key='index'>

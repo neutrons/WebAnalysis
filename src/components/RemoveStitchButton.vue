@@ -1,5 +1,5 @@
 <template>
-<v-btn flat small dark :icon='isBreakpointSmall' @click='$emit("remove-stitch")' :disabled='!isStitched'>
+<v-btn flat small :icon='isBreakpointSmall' @click='$emit("remove-stitch")' :disabled='!isStitched'>
   <span class='hidden-md-and-down'>Remove Stitch Line</span>
   <v-icon :right='!isBreakpointSmall'>remove</v-icon>
 </v-btn>

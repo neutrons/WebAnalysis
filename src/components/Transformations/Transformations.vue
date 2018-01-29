@@ -1,9 +1,9 @@
 <template>
 <v-expansion-panel flat>
-  <v-expansion-panel-content :value='!collapse' class='green'>
-    <div slot='header' class='title white--text'>Transformations</div>
+  <v-expansion-panel-content :value='!collapse'>
+    <div slot='header' class='title'>Transformations</div>
 
-    <v-container class='grey lighten-4'>
+    <v-container>
       <v-layout row wrap>
 
         <v-flex xs12>
@@ -25,12 +25,13 @@
             @keydown.enter.native='enterY'
             />
 
-          <v-btn block outline @click='setAllTransformations' color='green darken-1 white--text' :disabled='!canEnter'>
+          <v-btn block outline @click='setAllTransformations' :disabled='!canEnter' color='success'>
             Transform Data
           </v-btn>
 
-          <v-btn block outline @click='resetAllTransformations' color='orange darken-1 white--text'>
-            <v-icon left color='orange darken-1'>fa-undo</v-icon> Reset Transformations
+          <v-btn block outline @click='resetAllTransformations' color='warning'>
+            <v-icon left>fa-undo</v-icon>
+            <span>Reset Transformations</span>
           </v-btn>
         </v-flex>
       </v-layout>

@@ -18,6 +18,7 @@ export default {
         return this.filesSelected;
       },
       set(value) {
+        if (value.indexOf(this.fileToFit) === -1) this.updateFileToFit(null);
         this.updateFilesSelected(value);
       },
     },

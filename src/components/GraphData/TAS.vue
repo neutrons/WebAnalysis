@@ -8,10 +8,10 @@
                 <div v-show='props.showTabs'>
                 <v-tabs v-model='props.activeParentTab'>
 
-                    <v-tabs-bar dark color='blue lighten-1' v-if='props.fileToFit || props.metadataLength > 0'>
+                    <v-tabs-bar v-if='props.fileToFit || props.metadataLength > 0'>
                     <v-tabs-item href='#tab-fit' ripple v-if='props.fileToFit'>Fit</v-tabs-item>
                     <v-tabs-item href='#tab-metadata' ripple v-if='props.metadataLength > 0'>Metadata</v-tabs-item>
-                    <v-tabs-slider color='yellow'></v-tabs-slider>
+                    <v-tabs-slider color='accent'></v-tabs-slider>
                     </v-tabs-bar>
 
                     <!-- nested tab items  -->
@@ -19,8 +19,8 @@
                     <!-- fit results tab content -->
                     <v-tabs-content id='tab-fit' ripple v-if='props.fileToFit'>
                         <v-tabs>
-                        <v-tabs-bar dark color='blue lighten-3'>
-                            <v-tabs-slider color='yellow'></v-tabs-slider>
+                        <v-tabs-bar>
+                            <v-tabs-slider color='accent'></v-tabs-slider>
                             <v-tabs-item href='fit-results'>
                             Fit Results
                             </v-tabs-item>
@@ -49,8 +49,8 @@
                     <!-- metadata tab content -->
                     <v-tabs-content id='tab-metadata' ripple v-if='props.metadataLength > 0'>
                         <v-tabs mobile-break-point='300px'>
-                        <v-tabs-bar dark color='blue lighten-3'>
-                            <v-tabs-slider color='yellow'></v-tabs-slider>
+                        <v-tabs-bar>
+                            <v-tabs-slider color='accent'></v-tabs-slider>
                             <v-tabs-item v-for='(item, filename) in props.metadata' :key='filename' :href='`#md-${filename}`'>
                             {{filename}}
                             </v-tabs-item>
