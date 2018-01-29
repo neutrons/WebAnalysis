@@ -24,7 +24,7 @@
 
   <v-expansion-panel-content :value='true'>
     <div slot='header' class='title'>Tags</div>
-    <v-card :class='edit ? "grey lighten-3" : ""'>
+    <v-card>
       <v-card-text>
       <v-select
         :prepend-icon='edit ? "cancel" : "edit"'
@@ -38,11 +38,11 @@
         :readonly='!edit'
       ></v-select>
       <div class='text-xs-right'>
-        <v-btn small outline flat v-if='edit' @click='cancelEdit'>
+        <v-btn small outline flat v-if='edit' @click='cancelEdit' color='error'>
           <v-icon left>cancel</v-icon>
           <span>Cancel</span>
         </v-btn>
-        <v-btn small outline flat v-if='edit' @click='saveEdit'>
+        <v-btn small outline flat v-if='edit' @click='saveEdit' color='success'>
           <v-icon left>check_circle</v-icon>
           <span>Save Tags</span>
         </v-btn>
