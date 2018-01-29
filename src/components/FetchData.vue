@@ -1,7 +1,7 @@
 <template>
     <v-btn small flat @click='fetchFiles' class='fetch-btn'>
       <span class='hidden-md-and-down'>Fetch Data</span>
-      <v-icon small :right='!isBreakpointSmall' color='success'>fa-cloud-download</v-icon>
+      <v-icon small :right='!isBreakpointSmall' color='white'>fa-cloud-download</v-icon>
     </v-btn>
 </template>
 

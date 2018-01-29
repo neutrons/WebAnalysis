@@ -5,7 +5,7 @@ export default {
   methods: {
     addLabels() {
       const L = this.svg.append('g')
-        .attr('class', `labels-${this.ID}`);
+        .attr('class', `labels labels-${this.ID}`);
 
       const yTranslate = [
         `translate(10, ${(this.height + this.margin.top + this.margin.bottom) / 2}) rotate(-90)`,

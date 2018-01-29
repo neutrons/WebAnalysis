@@ -1,5 +1,5 @@
 <template>
-<v-btn flat small dark :icon='isBreakpointSmall' @click='$emit("remove-brushes", false)' :disabled='!isBrushes'>
+<v-btn flat small :icon='isBreakpointSmall' @click='$emit("remove-brushes", false)' :disabled='!isBrushes'>
   <span class='hidden-md-and-down'>Remove Selections</span>
   <v-icon :right='!isBreakpointSmall'>grid_off</v-icon>
 </v-btn>

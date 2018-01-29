@@ -5,7 +5,6 @@
         chips
         deletable-chips
         hint='Pick a file to fit'
-        light
         :disabled='!filesToFit.length'>
     </v-select>
 </template>

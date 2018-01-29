@@ -9,7 +9,7 @@
         hide-overlay
         width='450'
         mobile-break-point='600'
-        class='grey lighten-4'
+        :dark='$vuetify.theme.name !== "white"'
     >
 
     <keep-alive>
@@ -49,6 +49,8 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
-
+<style lang='scss'>
+.chip__close {
+  color: black !important;
+}
 </style>

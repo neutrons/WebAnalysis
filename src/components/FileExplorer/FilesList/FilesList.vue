@@ -8,7 +8,6 @@
         deletable-chips
         hide-selected
         hint='Pick a file to plot'
-        light
         :disabled='filteredFiles.length === 0'>
     </v-select>
 </template>

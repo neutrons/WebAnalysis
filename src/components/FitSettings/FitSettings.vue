@@ -8,7 +8,6 @@
         :max='10'
         ticks
         thumb-label
-        color='green'
         ></v-slider>
 
       <v-slider :label='`Gradient - ${editGradient.toFixed(1)}`'
@@ -19,7 +18,6 @@
         :max='1'
         ticks
         thumb-label
-        color='green'
         ></v-slider>
 
       <v-slider :label='`Iterations - ${editIterations}`'
@@ -30,7 +28,6 @@
         :max='10000'
         ticks
         thumb-label
-        color='green'
         ></v-slider>
 
       <v-slider :label='`Error - ${editError.toFixed(1)}`'
@@ -41,11 +38,11 @@
         :max='1'
         ticks
         thumb-label
-        color='green'
         ></v-slider>
 
-      <v-btn block outline @click='resetEditFitSettings' color='orange darken-1 white--text'>
-        <v-icon left color='orange darken-1'>fa-undo</v-icon> Reset Levenberg
+      <v-btn block outline @click='resetEditFitSettings' color='warning'>
+        <v-icon left>fa-undo</v-icon>
+        <span>Reset Levenberg</span>
       </v-btn>
     </div>
 </template>

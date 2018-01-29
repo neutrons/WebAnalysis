@@ -83,7 +83,7 @@ export default {
 
 <style lang='scss' scoped>
 .fa-upload {
-  color: #4CAF50;
+  color: white;
 }
 
 .btn-upload {

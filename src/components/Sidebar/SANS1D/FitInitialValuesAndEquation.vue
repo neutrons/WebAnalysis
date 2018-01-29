@@ -1,6 +1,6 @@
 <template>
     <div>
-      <v-subheader class='pl-0 green--text darken-4'>Fit Equation:</v-subheader>
+      <v-subheader class='pl-0'>Fit Equation:</v-subheader>
 
       <v-text-field
         id='fitEquationInput'
@@ -12,7 +12,7 @@
         class='ml-2'
      />
 
-     <v-subheader class='pl-0 green--text darken-4'>Initial Values:</v-subheader>
+     <v-subheader class='pl-0'>Initial Values:</v-subheader>
 
       <v-text-field
         v-for='(item, index) in initialValues'
@@ -28,11 +28,10 @@
         class='ml-2'
       ></v-text-field>
 
-      <v-btn block outline @click='setInitialValues' color='green darken-1 white--text'>
-        <v-icon left>fa-line-chart</v-icon> Re-fit
+      <v-btn block outline @click='setInitialValues' color='success'>
+        <v-icon left>fa-line-chart</v-icon>
+        <span>Re-fit</span>
       </v-btn>
-
-      <div>Initial Values: {{initialValues}}</div>
     </div>
 </template>
 
@@ -142,7 +141,7 @@ export default {
       }
     },
     inputInitialValues() {
-      eventBus.$emit('revise-fit-line', this.initialValues);
+      eventBus.$emit('revise-fit-line-SANS1D', this.initialValues);
     },
   },
   watch: {

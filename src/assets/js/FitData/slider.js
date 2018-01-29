@@ -62,7 +62,7 @@ export default {
         .attr('class', 'brush');
 
       slider.append('g')
-        .attr('class', 'slider-axis--x')
+        .attr('class', 'axis slider-axis--x')
         .attr('transform', `translate(0, ${this.sliderHeight})`);
 
       // Add a fit line element since a slider is means data is fitted
