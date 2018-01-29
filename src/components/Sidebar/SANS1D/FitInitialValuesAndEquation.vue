@@ -23,14 +23,14 @@
         @input='inputInitialValues'
         :append-icon='item.constant ? "fa-circle constant" : "fa-circle non-constant"'
         :append-icon-cb='() => toggleConstant(item.constant, index)'
-        @keydown.enter.native='setInitialValues'
+        @keydown.enter.native='inputInitialValues'
         type='number'
         class='ml-2'
       ></v-text-field>
 
       <v-btn block outline @click='setInitialValues' color='success'>
         <v-icon left>fa-line-chart</v-icon>
-        <span>Re-fit</span>
+        <span>Fit</span>
       </v-btn>
     </div>
 </template>

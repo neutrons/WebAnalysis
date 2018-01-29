@@ -41,7 +41,7 @@
         @input='inputInitialValues'
         :append-icon='iv.constant ? "fa-circle constant" : "fa-circle non-constant"'
         :append-icon-cb='() => iv.constant = !iv.constant'
-        @keydown.enter.native='refit'
+        @keydown.enter.native='inputInitialValues'
         type='number'
       ></v-text-field>
     </v-flex>
@@ -57,8 +57,8 @@
     </v-flex>
 
     <v-flex xs12>
-      <v-btn outline flat block @click='refit' color='success'>
-        Re-fit
+      <v-btn outline flat block @click='refit' color='success' :disabled='isBeingFit'>
+        Fit
         <v-icon right>fa-line-chart</v-icon>
       </v-btn>
     </v-flex>
@@ -91,6 +91,7 @@ export default {
     ...mapState('TAS', {
       fits: state => state.fit,
       fitInitialValues: state => state.fitInitialValues,
+      isBeingFit: state => state.isBeingFit,
     }),
     ...mapGetters('TAS', [
       'fitNames',
