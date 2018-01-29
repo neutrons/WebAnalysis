@@ -67,9 +67,6 @@ export default {
       tags: [],
     };
   },
-  activated() {
-    if (this.fileList.length) this.selectedFile = this.fileList[0];
-  },
   computed: {
     allFiles() {
       return Object.assign({}, this.fetched, this.uploaded);
