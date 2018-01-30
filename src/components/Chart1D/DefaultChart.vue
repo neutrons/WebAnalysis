@@ -113,7 +113,7 @@
           <v-card-title class='primary pl-3 pt-1 pb-1 pr-0 white--text'>
               <div class='headline'>Select Initial Value</div>
               <v-spacer></v-spacer>
-              <v-btn icon flat small dark class='error white--text' @click='closePicker'>
+              <v-btn icon flat small dark class='error white--text' @click='showPicker = false'>
                 <v-icon>close</v-icon>
               </v-btn>
           </v-card-title>
@@ -313,11 +313,6 @@ export default {
         .style('opacity', value ? 1 : 0);
 
       if (!value) this.pickerPoints = [0, 0];
-    },
-    closePicker() {
-      this.showPicker = false;
-      this.togglePointArea(false);
-      eventBus.$emit(`toggle-picker-icon-${this.ID}`);
     },
   },
   mounted() {
