@@ -104,12 +104,44 @@
     :files-selected='filesSelected'
     :file-to-fit='fileToFit'
     :is-stitch='ID === "Stitch" && stitchedData.length > 0'></v-legend>
+
+  <!-- Modal Picker for Fit Initial Values -->
+  <v-slide-y-transition>
+    <v-flex xs12 :class='`modal-picker modal-picker-${ID}`' v-if='showPicker'>
+      <v-flex xs4 offset-xs4>
+        <v-card class='mt-5 text-xs-center'>
+          <v-card-title class='primary pl-3 pt-1 pb-1 pr-0 white--text'>
+              <div class='headline'>Select Initial Value</div>
+              <v-spacer></v-spacer>
+              <v-btn icon flat small dark class='error white--text' @click='closePicker'>
+                <v-icon>close</v-icon>
+              </v-btn>
+          </v-card-title>
+          <v-card-text>
+            <v-layout row>
+              <v-flex xs12>
+                <v-btn flat outline @click='selectPickerPoints(pickerPoints[0])'>
+                  Select X: <span :class='`pl-2`'>{{ pickerPoints[0].toFixed(2) }}</span>
+                </v-btn>
+              </v-flex>
+              <v-flex xs12>
+                <v-btn flat outline @click='selectPickerPoints(pickerPoints[1])'>
+                  Select Y: <span :class='`pl-2`'>{{ pickerPoints[1].toFixed(2) }}</span>
+                </v-btn>
+              </v-flex>
+            </v-layout>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-flex>
+  </v-slide-y-transition>
 </v-container>
 </template>
 
 <script>
 // Import Packages
 import * as d3 from 'd3';
+import { eventBus } from '../../assets/js/eventBus';
 
 // Import Mixins
 import setResponsive from '../../assets/js/chartFunctions/setResponsive';
@@ -184,6 +216,8 @@ export default {
         left: 100,
       },
       sliderHeight: 25,
+      showPicker: false,
+      pickerPoints: [0, 0],
     };
   },
   computed: {
@@ -264,7 +298,31 @@ export default {
       return Object.keys(this.metadata).length;
     },
   },
+  methods: {
+    selectPickerPoints(value) {
+      this.showPicker = false;
+      this.togglePointArea(false);
+
+      eventBus.$emit(`update-initial-value-pick-${this.ID}`, value);
+    },
+    togglePointArea(value) {
+      this.svg.select('.pick-area')
+        .style('visibility', value ? 'visible' : 'hidden');
+
+      this.svg.select('.tooltip')
+        .style('opacity', value ? 1 : 0);
+
+      if (!value) this.pickerPoints = [0, 0];
+    },
+    closePicker() {
+      this.showPicker = false;
+      this.togglePointArea(false);
+      eventBus.$emit(`toggle-picker-icon-${this.ID}`);
+    },
+  },
   mounted() {
+    eventBus.$on(`toggle-pick-area-${this.ID}`, this.togglePointArea);
+
     this.getContainerWidth(`#chart-wrapper-${this.ID}`);
     this.drawChart();
     this.setResponsive(`chart-width-change-${this.ID}`, `#chart-wrapper-${this.ID}`, `.chart-${this.ID}`);
@@ -384,5 +442,19 @@ foreignObject {
     text-anchor: end;
     letter-spacing: 1px;
   }
+}
+
+/* Modal Picker Styles */
+   /* The Modal (background) */
+.modal-picker {
+  position: absolute; /* Stay in place */
+  z-index: 999999; /* Sit on top */
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 </style>

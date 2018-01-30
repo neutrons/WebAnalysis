@@ -4,6 +4,8 @@ import * as d3 from 'd3';
 export default {
   methods: {
     drawChart() {
+      const vm = this;
+
       if (this.filesSelected.length === 0 || this.fileToFit !== this.previousFit) {
         this.svg = d3.select(`.chart-${this.ID}`)
           .attr('viewBox', this.viewBox)
@@ -64,7 +66,54 @@ export default {
 
         this.g.select('.zoom').call(this.zoom);
 
-        if (this.fileToFit) this.initSlider();
+        if (this.fileToFit) {
+          // add pick area & tooltip for selecting initial values
+          const tooltip = this.svg.append('g')
+            .attr('class', `tooltip tooltip-${this.ID}`)
+            .append('text')
+            .style('opacity', 0);
+
+          const pointArea = this.svg.append('g')
+            .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
+
+          pointArea.append('rect')
+            .attr('class', `pick-area pick-area-${this.ID}`)
+            .attr('width', this.width)
+            .attr('height', this.height)
+            .style('fill', 'transparent')
+            .style('stroke', 'blue')
+            .style('cursor', 'crosshair')
+            .style('visibility', 'hidden')
+            .on('click', function click() {
+              const pos = d3.mouse(this);
+              const t = d3.zoomTransform(vm.g.select('.zoom').node());
+              const newXScale = t.rescaleX(vm.xScale);
+              const newYScale = t.rescaleY(vm.yScale);
+              vm.pickerPoints = [
+                newXScale.invert(pos[0]),
+                newYScale.invert(pos[1]),
+              ];
+
+              vm.showPicker = true;
+            })
+            .on('mousemove', function hover() {
+              const pos = d3.mouse(this);
+              const t = d3.zoomTransform(vm.g.select('.zoom').node());
+              const newXScale = t.rescaleX(vm.xScale);
+              const newYScale = t.rescaleY(vm.yScale);
+
+              tooltip.style('opacity', 1)
+                .attr('transform', `translate(${pos[0] + 75}, ${pos[1] + 30})`)
+                .text(`(${newXScale.invert(pos[0]).toFixed(2)}, ${newYScale.invert(pos[1]).toFixed(2)})`);
+            })
+            .on('mouseout', () => {
+              tooltip.style('opacity', 0)
+                .text('');
+            });
+
+          this.initSlider();
+        }
+
         if (this.ID === 'Stitch') {
           // Generate a SVG group to keep brushes
           this.g.select(`#zoom-group-${this.ID}`).append('g')
