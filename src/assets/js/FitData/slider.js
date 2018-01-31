@@ -211,7 +211,7 @@ export default {
         .attr('y', this.height / 2)
         .style('font-size', '32px')
         .style('font-weight', 'bold')
-        .style('font-family', 'sans-serif')
+        .style('font-family', 'Trebuchet MS, Helvetica, sans-serif')
         .text('Fitting...');
 
       let counter = 0;
