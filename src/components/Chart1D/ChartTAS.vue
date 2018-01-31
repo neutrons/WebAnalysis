@@ -28,6 +28,9 @@ export default {
       fittedData: state => state.fittedData,
       fitEquation: state => state.fitEquation,
       filteredData: state => state.filteredData,
+      fitInitialValues: state => state.fitInitialValues,
+      fitSettings: state => state.fitSettings,
+      isFitting: state => state.isFitting,
     }),
     ...mapGetters('TAS', {
       chartConfigurations: 'getChartConfigurations',
@@ -42,6 +45,8 @@ export default {
       'resetBrushSelection',
       'resetSelectionLimits',
       'setPreviousFit',
+      'updateFitTableResults',
+      'toggleIsFitting',
     ]),
   },
 };

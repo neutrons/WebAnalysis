@@ -28,6 +28,9 @@ export default {
       fittedData: state => state.fittedData,
       filteredData: state => state.filteredData,
       fitEquation: state => state.fitEquation,
+      fitInitialValues: state => state.fitInitialValues,
+      fitSettings: state => state.fitSettings,
+      isFitting: state => state.isFitting,
     }),
     ...mapGetters('SANS1D', {
       chartConfigurations: 'getChartConfigurations',
@@ -41,6 +44,8 @@ export default {
       'resetBrushSelection',
       'resetSelectionLimits',
       'setPreviousFit',
+      'updateFitTableResults',
+      'toggleIsFitting',
     ]),
   },
 };

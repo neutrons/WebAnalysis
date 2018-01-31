@@ -2,13 +2,15 @@ import * as d3 from 'd3';
 import _ from 'lodash';
 import { eventBus } from '../eventBus';
 import getTitle from '../getTitle';
-import fitFunction from './fitFunction';
 import fitLine from './fitLine';
+// eslint-disable-next-line
+const Worker = require('worker-loader!./fitWorker');
+const myWorker = new Worker();
+myWorker.postMessage('Starting');
 
 export default {
   mixins: [
     getTitle,
-    fitFunction,
     fitLine,
   ],
   data() {
@@ -104,7 +106,7 @@ export default {
         .style('stroke', 'slategray');
 
       // Call brush
-      this.brush.on('brush', this.brushed);
+      this.brush.on('end', this.brushed);
 
       // set initial brushSelection
       const xExtent = d3.extent(tempData, d => d.x);
@@ -157,19 +159,73 @@ export default {
             return 'slategray';
           });
 
-        this.fitFunction(filteredData);
-
-        if (this.fittedData.length <= 0) {
-          const errorMsg = '<strong>Error!</strong> Fitted y-values < 0, thus no fit-line to display.';
-          eventBus.$emit('add-notification', errorMsg, 'error');
-        } else {
-          // update line plot
-          this.updateFitLine();
-        }
+        this.fitData(filteredData);
       } else {
         const errorMsg = 'Not enough data selected, please select 2 or more points. If plot is blank, no data is available for generating a fit line.';
         eventBus.$emit('add-notification', errorMsg, 'error');
       }
+    },
+    fitData(filteredData) {
+      const vm = this;
+      const args = {
+        data: filteredData,
+        equation: this.fitEquation,
+        initialValues: this.fitInitialValues,
+        fitSettings: this.fitSettings,
+      };
+
+      this.toggleIsFitting(true);
+      this.addLoader();
+      myWorker.postMessage(JSON.stringify(args));
+      myWorker.onmessage = function wmsg(result) {
+        // Update fit results table values
+        vm.updateFitTableResults(JSON.parse(result.data));
+
+        if (vm.fittedData.length <= 0) {
+          const errorMsg = '<strong>Error!</strong> Fitted y-values < 0, thus no fit-line to display.';
+          eventBus.$emit('add-notification', errorMsg, 'error');
+        } else {
+          // update line plot
+          vm.updateFitLine();
+        }
+
+        vm.toggleIsFitting(false);
+      };
+      myWorker.onerror = function emsg(result) {
+        console.log('Error message:', result.data);
+      };
+    },
+    addLoader() {
+      const vm = this;
+      const loading = this.g.append('g').attr('class', 'loader');
+      loading.append('rect')
+        .attr('class', 'loading-bg')
+        .attr('height', this.height)
+        .attr('width', this.width)
+        .style('fill', 'rgba(0, 0, 0, 0.5)');
+
+      const loadText = loading.append('text')
+        .attr('class', 'loading-text')
+        .style('fill', 'white')
+        .attr('x', this.width / 3)
+        .attr('y', this.height / 2)
+        .style('font-size', '32px')
+        .style('font-weight', 'bold')
+        .style('font-family', 'sans-serif')
+        .text('Fitting...');
+
+      let counter = 0;
+      const t = d3.interval(() => {
+        loadText.text(`Fitting${'.'.repeat((counter % 3) + 1)}`);
+
+        if (!vm.isFitting) {
+          t.stop();
+          loading.transition().duration(300)
+            .style('opacity', 0)
+            .remove();
+        }
+        counter += 1;
+      }, 300);
     },
   },
 };

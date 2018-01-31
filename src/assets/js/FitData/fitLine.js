@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import * as d3 from 'd3';
 import math from 'mathjs';
+import linearspace from './linearspace';
 
 export default {
   methods: {
@@ -44,7 +45,7 @@ export default {
       // Generate a linear space for yFitted
       const xMin = Math.min(...x);
       const xMax = Math.max(...x);
-      const xFit = this.linspace(xMin, xMax, 100);
+      const xFit = linearspace(xMin, xMax, 100);
       const fitY = [];
       xFit.forEach((d) => {
         scope.x = d;

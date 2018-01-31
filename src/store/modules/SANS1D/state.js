@@ -56,4 +56,5 @@ export default {
   brushSelection: [],
   brushLimits: [],
   brushFile: undefined,
+  isFitting: false,
 };

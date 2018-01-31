@@ -30,9 +30,9 @@
         class='ml-2'
       ></v-text-field>
 
-      <v-btn block outline @click='setInitialValues' color='success'>
+      <v-btn block outline @click='setInitialValues' color='success' :disabled='isFitting'>
         <v-icon left>fa-line-chart</v-icon>
-        <span>Fit</span>
+        <span>{{ isFitting ? 'Fitting...' : 'Fit' }}</span>
       </v-btn>
     </div>
 </template>
@@ -69,6 +69,7 @@ export default {
     ...mapState('SANS1D', {
       fitEquation: state => state.fitEquation,
       fitInitialValues: state => state.fitInitialValues,
+      isFitting: state => state.isFitting,
     }),
     coefficients() {
       return this.fitInitialValues.map(el => el.coefficient);
@@ -132,7 +133,7 @@ export default {
     setInitialValues() {
       const response = this.validateEntry(this.equation);
 
-      if (!_.isEqual(this.initialValues, this.fitInitialValues) && response === true) {
+      if (response === true) {
         this.setFitInitialValues(this.initialValues);
 
         if (this.fitEquation !== this.equation) {
