@@ -83,6 +83,13 @@ module.exports = {
             loader: "sass-loader" // compiles Sass to CSS
         }]
       },
+      {
+        test: /\.worker\.js$/,
+        use: {
+          loader: 'worker-loader',
+          options: { inline: true, fallback: false },
+        },
+      },
     ]
   }
 }

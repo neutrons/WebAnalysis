@@ -59,8 +59,8 @@
     </v-flex>
 
     <v-flex xs12>
-      <v-btn outline flat block @click='refit' color='success' :disabled='isBeingFit'>
-        Fit
+      <v-btn outline flat block @click='refit' color='success' :disabled='isFitting'>
+        {{ isFitting ? 'Fitting...' : 'Fit' }}
         <v-icon right>fa-line-chart</v-icon>
       </v-btn>
     </v-flex>
@@ -101,7 +101,7 @@ export default {
     ...mapState('TAS', {
       fits: state => state.fit,
       fitInitialValues: state => state.fitInitialValues,
-      isBeingFit: state => state.isBeingFit,
+      isFitting: state => state.isFitting,
     }),
     ...mapGetters('TAS', [
       'fitNames',

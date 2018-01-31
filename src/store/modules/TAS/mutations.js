@@ -27,6 +27,7 @@ import updateTags from '../../shared/mutations/updateTags';
 import updateFitTableResults from '../../shared/mutations/updateFitTableResults';
 import { setXField, setYField } from '../../shared/mutations/fields';
 import setFilteredData from '../../shared/mutations/setFilteredData';
+import toggleIsFitting from '../../shared/mutations/toggleIsFitting';
 
 export default {
   addFetchFiles,
@@ -66,6 +67,7 @@ export default {
   setXField,
   setYField,
   setFilteredData,
+  toggleIsFitting,
   setBrowseData(state, value) {
     // eslint-disable-next-line
     state.browseData = value;
