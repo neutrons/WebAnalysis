@@ -1,10 +1,15 @@
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 import FitSettings from './FitSettings';
 
 export default {
   name: 'FitSettingsSANS1D',
   extends: FitSettings,
+  computed: {
+    ...mapState('SANS1D', {
+      defaultSettings: state => state.defaultFitSettings,
+    }),
+  },
   methods: {
     ...mapMutations('SANS1D', [
       'setFitDamping',
@@ -14,10 +19,7 @@ export default {
       'resetFitSettings',
     ]),
     resetEditFitSettings() {
-      this.editDamping = 0.1;
-      this.editGradient = 0.1;
-      this.editIterations = 100;
-      this.editError = 0.1;
+      this.initEditValues();
       this.resetFitSettings();
     },
   },

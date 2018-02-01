@@ -3,9 +3,9 @@
       <v-slider :label='`Damping - ${editDamping.toFixed(1)}`'
         v-model='editDamping'
         @mouseup.native='setFitDamping(editDamping)'
-        :step='0.1'
-        :min='0.1'
-        :max='10'
+        :step='defaultSettings.damping.increment'
+        :min='defaultSettings.damping.min'
+        :max='defaultSettings.damping.max'
         ticks
         thumb-label
         ></v-slider>
@@ -13,9 +13,9 @@
       <v-slider :label='`Gradient - ${editGradient.toFixed(1)}`'
         v-model='editGradient'
         @mouseup.native='setFitGradient(editGradient)'
-        :step='0.1'
-        :min='0.1'
-        :max='1'
+        :step='defaultSettings.gradientDifference.increment'
+        :min='defaultSettings.gradientDifference.min'
+        :max='defaultSettings.gradientDifference.max'
         ticks
         thumb-label
         ></v-slider>
@@ -23,9 +23,9 @@
       <v-slider :label='`Iterations - ${editIterations}`'
         v-model='editIterations'
         @mouseup.native='setFitIterations(editIterations)'
-        :step='100'
-        :min='100'
-        :max='10000'
+        :step='defaultSettings.maxIterations.increment'
+        :min='defaultSettings.maxIterations.min'
+        :max='defaultSettings.maxIterations.max'
         ticks
         thumb-label
         ></v-slider>
@@ -33,9 +33,9 @@
       <v-slider :label='`Error - ${editError.toFixed(1)}`'
         v-model='editError'
         @mouseup.native='setFitError(editError)'
-        :step='0.1'
-        :min='0.1'
-        :max='1'
+        :step='defaultSettings.errorTolerance.increment'
+        :min='defaultSettings.errorTolerance.min'
+        :max='defaultSettings.errorTolerance.max'
         ticks
         thumb-label
         ></v-slider>
@@ -50,13 +50,24 @@
 <script>
 export default {
   name: 'FitSettings',
+  created() {
+    this.initEditValues();
+  },
   data() {
     return {
-      editDamping: 0.1,
-      editGradient: 0.1,
-      editIterations: 100,
-      editError: 0.1,
+      editDamping: null,
+      editGradient: null,
+      editIterations: null,
+      editError: null,
     };
+  },
+  methods: {
+    initEditValues() {
+      this.editDamping = this.defaultSettings.damping.value;
+      this.editGradient = this.defaultSettings.gradientDifference.value;
+      this.editIterations = this.defaultSettings.maxIterations.value;
+      this.editError = this.defaultSettings.errorTolerance.value;
+    },
   },
 };
 </script>
