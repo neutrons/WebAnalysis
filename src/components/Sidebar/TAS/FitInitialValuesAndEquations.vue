@@ -43,8 +43,8 @@
         :append-icon-cb='() => iv.constant = !iv.constant'
         @keydown.enter.native='inputInitialValues'
         type='number'
-        :prepend-icon='isPick ? "cancel" : "fa-crosshairs"'
-        :prepend-icon-cb='() => isPick ? togglePick(false, selectedIndex, ivIndex) : togglePick(true, selectedIndex, ivIndex)'
+        :prepend-icon='pickIndex === ivIndex ? "cancel" : "fa-crosshairs"'
+        :prepend-icon-cb='() => pickIndex === ivIndex ? togglePick(false, selectedIndex, ivIndex) : togglePick(true, selectedIndex, ivIndex)'
       ></v-text-field>
     </v-flex>
   </v-layout>
@@ -81,9 +81,8 @@ export default {
     return {
       selected: [],
       fitList: [],
-      isPick: false,
-      selectedIndex: null,
-      ivIndex: null,
+      selectIndex: null,
+      pickIndex: null,
     };
   },
   created() {
@@ -93,9 +92,7 @@ export default {
     this.setFitEquation();
 
     eventBus.$on('update-initial-value-pick-TAS', this.updateInitialValueWithPick);
-    eventBus.$on('toggle-picker-icon-TAS', () => {
-      this.isPick = false;
-    });
+    eventBus.$on('toggle-picker-icon-TAS', this.resetIndices);
   },
   computed: {
     ...mapState('TAS', {
@@ -221,22 +218,23 @@ export default {
       eventBus.$emit('revise-fit-line-TAS', temp);
     },
     togglePick(value, selectedIndex, ivIndex) {
-      this.isPick = value;
-
       if (value) {
         eventBus.$emit('toggle-pick-area-TAS', true);
-        this.selectedIndex = selectedIndex;
-        this.ivIndex = ivIndex;
+        this.selectIndex = selectedIndex;
+        this.pickIndex = ivIndex;
       } else {
         eventBus.$emit('toggle-pick-area-TAS', false);
+        this.resetIndices();
       }
     },
     updateInitialValueWithPick(value) {
-      this.selected[this.selectedIndex].initialValues[this.ivIndex].value = +value.toFixed(2);
-      this.isPick = false;
-      this.selectedIndex = null;
-      this.ivIndex = null;
+      this.selected[this.selectIndex].initialValues[this.pickIndex].value = +value.toFixed(2);
+      this.resetIndices();
       this.inputInitialValues();
+    },
+    resetIndices() {
+      this.selectIndex = null;
+      this.pickIndex = null;
     },
   },
   watch: {

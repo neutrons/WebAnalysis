@@ -24,8 +24,8 @@
         :append-icon='item.constant ? "fa-circle constant" : "fa-circle non-constant"'
         :append-icon-cb='() => toggleConstant(item.constant, index)'
         @keydown.enter.native='inputInitialValues'
-        :prepend-icon='isPick ? "cancel" : "fa-crosshairs"'
-        :prepend-icon-cb='() => isPick ? togglePick(false, index) : togglePick(true, index)'
+        :prepend-icon='pickIndex === index ? "cancel" : "fa-crosshairs"'
+        :prepend-icon-cb='() => pickIndex === index ? togglePick(false, index) : togglePick(true, index)'
         type='number'
         class='ml-2'
       ></v-text-field>
@@ -53,16 +53,13 @@ export default {
     this.initialValues = _.cloneDeep(this.fitInitialValues);
 
     eventBus.$on('update-initial-value-pick-SANS1D', this.updateInitialValueWithPick);
-    eventBus.$on('toggle-picker-icon-SANS1D', () => {
-      this.isPick = false;
-    });
+    eventBus.$on('toggle-picker-icon-SANS1D', this.resetPickIndex);
   },
   data() {
     return {
       equation: '',
       initialValues: {},
       pickIndex: null,
-      isPick: false,
     };
   },
   computed: {
@@ -154,20 +151,21 @@ export default {
       eventBus.$emit('revise-fit-line-SANS1D', this.initialValues);
     },
     togglePick(value, index) {
-      this.isPick = value;
-
       if (value) {
         eventBus.$emit('toggle-pick-area-SANS1D', true);
         this.pickIndex = index;
       } else {
         eventBus.$emit('toggle-pick-area-SANS1D', false);
+        this.resetPickIndex();
       }
     },
     updateInitialValueWithPick(value) {
       this.initialValues[this.pickIndex].value = +value.toFixed(2);
-      this.isPick = false;
-      this.pickIndex = null;
+      this.resetPickIndex();
       eventBus.$emit('revise-fit-line-SANS1D', this.initialValues);
+    },
+    resetPickIndex() {
+      this.pickIndex = null;
     },
   },
   watch: {
