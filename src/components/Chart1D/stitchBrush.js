@@ -201,15 +201,10 @@ export default {
 
       if (choice || this.brushCount < 1) {
         // Toggle off all brushes
-
-        // Remove Brush Cursor Styles
-        // d3.select('.stitch-chart').style('cursor', 'move');
+        // Disable brush pointer events
         this.g.select('.brushes').selectAll('.selection').style('pointer-events', 'none');
-        this.g.select('.brushes').selectAll('.selection').style('cursor', 'move');
         this.g.select('.brushes').selectAll('.overlay').style('pointer-events', 'none');
-        this.g.select('.brushes').selectAll('.overlay').style('cursor', 'move');
         this.g.select('.brushes').selectAll('.handle').style('pointer-events', 'none');
-        this.g.select('.brushes').selectAll('.handle').style('cursor', 'move');
 
         for (let i = 0, len = this.brushes.length; i < len; i += 1) {
           d3.select(`#brush-${i}`).on('.brush', null);
@@ -224,18 +219,15 @@ export default {
           this.brushes[i].brush(d3.select(`#brush-${i}`));
         }
 
-        // Re-instate Brush Cursor Styles
+        // Enable brush pointer events
         this.g.select('.brushes').selectAll('.selection').style('pointer-events', 'all');
-        this.g.select('.brushes').selectAll('.selection').style('cursor', 'move');
+        this.g.select('.brushes').selectAll('.handle').style('pointer-events', 'all');
+
         // Toggle overlay pointer-event
         vm.g.select(`#zoom-group-${vm.ID}`)
           .select('.brushes')
           .selectAll('.brush')
           .call(enableBrushPointerEvents, vm);
-
-        this.g.select('.brushes').selectAll('.overlay').style('cursor', 'crosshair');
-        this.g.select('.brushes').selectAll('.handle').style('pointer-events', 'all');
-        this.g.select('.brushes').selectAll('.handle').style('cursor', 'ew-resize');
       }
     },
   },
