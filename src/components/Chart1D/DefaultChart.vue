@@ -118,7 +118,7 @@
               </v-btn>
           </v-card-title>
           <v-card-text>
-            <v-layout row>
+            <v-layout row wrap>
               <v-flex xs12>
                 <v-btn flat outline @click='selectPickerPoints(pickerPoints[0])'>
                   Select X: <span :class='`pl-2`'>{{ pickerPoints[0].toFixed(2) }}</span>
@@ -301,22 +301,25 @@ export default {
   methods: {
     selectPickerPoints(value) {
       this.showPicker = false;
-      this.togglePointArea(false);
+      this.togglePickArea(false);
 
       eventBus.$emit(`update-initial-value-pick-${this.ID}`, value);
     },
-    togglePointArea(value) {
+    togglePickArea(value) {
       this.svg.select('.pick-area')
         .style('visibility', value ? 'visible' : 'hidden');
 
       this.svg.select('.tooltip')
         .style('opacity', value ? 1 : 0);
 
+      // Disable brush to prevent fitting data
+      this.svg.select('.brush').style('pointer-events', value ? 'none' : 'all');
+
       if (!value) this.pickerPoints = [0, 0];
     },
   },
   mounted() {
-    eventBus.$on(`toggle-pick-area-${this.ID}`, this.togglePointArea);
+    eventBus.$on(`toggle-pick-area-${this.ID}`, this.togglePickArea);
 
     this.getContainerWidth(`#chart-wrapper-${this.ID}`);
     this.drawChart();
