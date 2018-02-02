@@ -7,14 +7,18 @@
 
     <v-toolbar-side-icon @click.stop='drawer = !drawer' class='ml-3 mr-3'></v-toolbar-side-icon>
 
+    <!-- bread crumb component -->
     <v-breadcrumbs>
       <v-icon slot='divider'>chevron_right</v-icon>
       <v-breadcrumbs-item 
-        v-for='(item, index) in $route.meta.breadcrumb' :key='index'
+        v-for='(item, key) in $route.meta.breadcrumb' :key='key'
+        :to='item.href'
+        :disabled='item.disabled'
       >
-        {{ item }}
+        {{ item.text }}
       </v-breadcrumbs-item>
     </v-breadcrumbs>
+
     <v-spacer></v-spacer>
     <v-toolbar-items>
     <v-fetch-data></v-fetch-data>
@@ -192,9 +196,6 @@ export default {
     return {
       drawer: true,
     };
-  },
-  mounted() {
-    this.getTitle();
   },
   computed: {
     links() {

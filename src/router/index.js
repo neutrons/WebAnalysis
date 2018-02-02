@@ -32,18 +32,6 @@ export default new Router({
       component: HomePage,
       meta: {
         title: 'Home',
-        breadcrumb: ['Home'],
-      },
-    },
-    {
-      path: '/SANS1D-Browse',
-      name: 'SANS1D-Browse',
-      component: SANS1DBrowse,
-      meta: {
-        title: 'SANS1D-Browse',
-        group: 'SANS',
-        sidebar: 'SidebarSANS1DBrowse',
-        breadcrumb: ['SANS1D', 'Browse'],
       },
     },
     {
@@ -54,7 +42,26 @@ export default new Router({
         title: 'SANS1D',
         group: 'SANS',
         sidebar: 'SidebarSANS1D',
-        breadcrumb: ['SANS1D', 'Graph'],
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage' },
+          { text: 'SANS', href: '/', disabled: true },
+          { text: 'Fit', href: '/', disabled: true },
+        ],
+      },
+    },
+    {
+      path: '/SANS1D-Browse',
+      name: 'SANS1D-Browse',
+      component: SANS1DBrowse,
+      meta: {
+        title: 'SANS1D-Browse',
+        group: 'SANS',
+        sidebar: 'SidebarSANS1DBrowse',
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage' },
+          { text: 'SANS', href: '/', disabled: true },
+          { text: 'Browse', href: '/', disabled: true },
+        ],
       },
     },
     {
@@ -65,7 +72,11 @@ export default new Router({
         title: 'Stitch',
         group: 'SANS',
         sidebar: 'SidebarStitch',
-        breadcrumb: ['Stitch', 'Graph'],
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage' },
+          { text: 'SANS', href: '/', disabled: true },
+          { text: 'Stitch', href: '/', disabled: true },
+        ],
       },
     },
     {
@@ -76,7 +87,11 @@ export default new Router({
         title: 'Stitch',
         group: 'SANS',
         sidebar: 'SidebarStitchBrowse',
-        breadcrumb: ['Stitch', 'Browse'],
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage' },
+          { text: 'SANS', href: '/', disabled: true },
+          { text: 'Stitch Browse', href: '/', disabled: true },
+        ],
       },
     },
     {
@@ -87,18 +102,11 @@ export default new Router({
         title: 'SANS2D',
         group: 'SANS',
         sidebar: 'SidebarSANS2D',
-        breadcrumb: ['SANS2D', 'Graph'],
-      },
-    },
-    {
-      path: '/TAS-Browse',
-      name: 'TAS-Browse',
-      component: TASBrowse,
-      meta: {
-        title: 'TAS-Browse',
-        group: 'TAS',
-        sidebar: 'SidebarTASBrowse',
-        breadcrumb: ['TAS', 'Browse'],
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage' },
+          { text: 'SANS', href: '/', disabled: true },
+          { text: 'Plot 2D', href: '/', disabled: true },
+        ],
       },
     },
     {
@@ -109,7 +117,26 @@ export default new Router({
         title: 'TAS',
         group: 'TAS',
         sidebar: 'SidebarTAS',
-        breadcrumb: ['TAS', 'Graph'],
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage' },
+          { text: 'TAS', href: '/', disabled: true },
+          { text: 'Fit', href: '/', disabled: true },
+        ],
+      },
+    },
+    {
+      path: '/TAS-Browse',
+      name: 'TAS-Browse',
+      component: TASBrowse,
+      meta: {
+        title: 'TAS-Browse',
+        group: 'TAS',
+        sidebar: 'SidebarTASBrowse',
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage' },
+          { text: 'TAS', href: '/', disabled: true },
+          { text: 'Browse', href: '/', disabled: true },
+        ],
       },
     },
   ],
