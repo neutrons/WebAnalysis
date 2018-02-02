@@ -135,6 +135,19 @@ export default {
 
       this.updateTags(payload);
     },
+    onKeyUp(event) {
+      const isRight = event.key === 'ArrowRight' || event.code === 'ArrowRight';
+      const isLeft = event.key === 'ArrowLeft' || event.code === 'ArrowLeft';
+      if (isRight || isLeft) this.move(isRight ? 'right' : 'left');
+    },
+  },
+  activated() {
+    // When activated toggle on arrow keys for browsing files
+    window.addEventListener('keyup', this.onKeyUp);
+  },
+  deactivated() {
+    // when deactivated toggle off arrows keys for browsing files
+    window.removeEventListener('keyup', this.onKeyUp);
   },
   watch: {
     selectedFile() {

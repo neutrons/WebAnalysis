@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import HomePage from '@/components/HomePage';
 import ORNL404 from '@/components/ORNL404';
 import SANS1DGraph from '@/components/GraphData/SANS1D';
 import Stitch from '@/components/GraphData/Stitch';
@@ -23,7 +24,16 @@ export default new Router({
     },
     {
       path: '/',
-      redirect: '/SANS1D',
+      redirect: '/HomePage',
+    },
+    {
+      path: '/HomePage',
+      name: 'HomePage',
+      component: HomePage,
+      meta: {
+        title: 'Home',
+        breadcrumb: ['Home'],
+      },
     },
     {
       path: '/SANS1D-Browse',
