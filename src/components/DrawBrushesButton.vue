@@ -17,7 +17,6 @@ export default {
   computed: {
     ...mapState('Stitch', {
       isBrushesStored: state => state.savedBrushes.length,
-      filesSelected: state => state.filesSelected,
     }),
   },
 };

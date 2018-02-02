@@ -38,6 +38,7 @@
                         :stitch-data='stitchData'
                         :remove-stitch-line='removeStitchLine'
                         :draw-saved-brushes='drawSavedBrushes'
+                        :files-selected='filesSelected'
                       ></slot>
 
                       <v-spacer></v-spacer>

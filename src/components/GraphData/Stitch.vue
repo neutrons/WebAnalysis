@@ -14,7 +14,7 @@
             </div>
 
             <v-menu bottom v-if='$vuetify.breakpoint.mdAndDown'>
-              <v-btn :icon='$vuetify.breakpoint.mdAndDown' slot='activator' flat small>
+              <v-btn :icon='$vuetify.breakpoint.mdAndDown' slot='activator' flat small :disabled='props.filesSelected.length < 2'>
                 <span class='hidden-md-and-down'>Stitch options</span>
                 <v-icon :right='!$vuetify.breakpoint.mdAndDown'>more_vert</v-icon>
               </v-btn>
@@ -33,11 +33,11 @@
                     <v-icon>grid_off</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>Remove Brushes</v-list-tile-title>
+                    <v-list-tile-title>Remove Selections</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
 
-                <v-list-tile @click='props.removeStitchLine'>
+                <v-list-tile @click='props.removeStitchLine' :disabled='!stitchedData.length'>
                   <v-list-tile-action>
                     <v-icon>remove</v-icon>
                   </v-list-tile-action>
@@ -47,20 +47,15 @@
                 </v-list-tile>
 
                 <v-list-tile>
-                  <v-list-tile-action>
-                    <v-icon>fa-floppy-o</v-icon>
-                  </v-list-tile-action>
-                  <v-list-tile-content>
-                    <v-list-tile-title>Store Brushes</v-list-tile-title>
-                  </v-list-tile-content>
+                  <v-save-stitch-btn />
                 </v-list-tile>
 
-                <v-list-tile>
+                <v-list-tile @click='props.drawSavedBrushes' :disabled='!isBrushesStored'>
                   <v-list-tile-action>
                     <v-icon>border_color</v-icon>
                   </v-list-tile-action>
                   <v-list-tile-content>
-                    <v-list-tile-title>Draw Stored Brushes</v-list-tile-title>
+                    <v-list-tile-title>Draw Selections</v-list-tile-title>
                   </v-list-tile-content>
                 </v-list-tile>
               </v-list>
@@ -165,6 +160,8 @@ export default {
       ID: state => state.ID,
       filesToPlot: state => state.filesSelected,
       fileToFit: state => state.fileToFit,
+      isBrushesStored: state => state.savedBrushes.length,
+      stitchedData: state => state.stitchedData,
     }),
     ...mapGetters('Stitch', [
       'getURLs',
