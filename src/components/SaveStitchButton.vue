@@ -1,8 +1,9 @@
 <template>
 <v-dialog v-model='show' persistent max-width='50%'>
-  <v-btn flat :icon='isBreakpointSmall' slot='activator' :disabled='!stitchedData.length'>
+  <v-btn flat slot='activator' :disabled='!stitchedData.length'>
+    <v-icon left v-if='isBreakpointSmall'>fa-floppy-o</v-icon>
     <span>Store Stitch</span>
-    <v-icon :right='!isBreakpointSmall'>fa-floppy-o</v-icon>
+    <v-icon right v-if='!isBreakpointSmall'>fa-floppy-o</v-icon>
   </v-btn>
   <v-card>
     <v-card-title class='green white--text'>
