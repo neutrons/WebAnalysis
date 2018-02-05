@@ -51,22 +51,6 @@
         </v-list>
       </v-menu>
 
-      <!-- <v-menu bottom left open-on-hover>
-        <v-btn flat slot='activator'>
-          Stitch
-          <v-icon right>arrow_drop_down</v-icon>
-        </v-btn>
-        <v-list>
-          <v-list-tile to='/Stitch-Browse' exact :active-class='activeClass'>
-            <v-list-tile-title>Browse Data</v-list-tile-title>
-          </v-list-tile>
-
-          <v-list-tile to='/Stitch' exact :active-class='activeClass'>
-            <v-list-tile-title>Graph Data</v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-menu> -->
-
       <v-menu bottom left open-on-hover>
         <v-btn flat slot='activator'>
           TAS
@@ -82,7 +66,6 @@
           </v-list-tile>
         </v-list>
       </v-menu>
-      <!-- <v-btn flat to='SANS2D' exact :active-class='activeClass'>SANS2D</v-btn> -->
     </v-toolbar-items>
 
     <v-menu offset-y bottom class='hidden-md-and-up'>
@@ -118,28 +101,6 @@
               </v-list>
             </v-menu>
           </v-list-tile>
-          <!-- <v-list-tile>
-            <v-menu offset-x open-on-hover>
-              <v-list-tile slot='activator'>
-                <v-list-tile-title>Stitch</v-list-tile-title>
-                <v-list-tile-action class='justify-end'>
-                  <v-icon>play_arrow</v-icon>
-                </v-list-tile-action>
-              </v-list-tile>
-              <v-list dense>
-                <v-list-tile to='/Stitch-Browse' exact :active-class='activeClass'>
-                  <v-list-tile-title>Browse Data</v-list-tile-title>
-                </v-list-tile>
-
-                <v-list-tile to='/Stitch' exact :active-class='activeClass'>
-                  <v-list-tile-title>Graph Data</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
-            </v-menu>
-          </v-list-tile> -->
-          <!-- <v-list-tile to='/SANS2D' exact :active-class='activeClass'>
-            <v-list-tile-title>SANS2D</v-list-tile-title>
-          </v-list-tile> -->
           <v-list-tile>
             <v-menu offset-x open-on-hover>
               <v-list-tile slot='activator'>
