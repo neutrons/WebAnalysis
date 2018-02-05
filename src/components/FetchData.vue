@@ -28,16 +28,19 @@ export default {
     },
   },
   methods: {
-    fetchFiles() {
+    fetchFiles(e, URL = this.fetchURL) {
       const vm = this;
 
-      axios.get(this.fetchURL).then((response) => {
+      axios.get(URL).then((response) => {
         const data = response.data;
 
-        if (vm.title === 'TAS') {
-          vm.fetchTAS(data);
-        } else {
-          vm.fetchSANS(data);
+        switch (vm.$route.meta.group) {
+          case 'TAS':
+            vm.fetchTAS(data);
+            break;
+          case 'SANS':
+          default:
+            vm.fetchSANS(data);
         }
 
         // Notify that fetch was a success
@@ -89,6 +92,11 @@ export default {
       });
 
       this.$store.commit(`${this.title}/addFetchFiles`, temp);
+    },
+  },
+  watch: {
+    $route() {
+      if (this.$route.query.fetch) this.fetchFiles(this.$route.query.fetch);
     },
   },
 };

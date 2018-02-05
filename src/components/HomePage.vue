@@ -52,7 +52,7 @@
     </v-subheader>
     <v-layout row wrap>
       <v-flex xs6 sm3 md2 pa-1>
-        <v-card height='100%' hover ripple exact to='/SANS1D-Browse' dark>
+        <v-card height='100%' hover ripple exact to='/SANS1D-Browse?fetch=/external/fetch/sans' dark>
           <v-card-media class='pa-0 pb-3'>
             <v-avatar tile class='primary icon-size'>
               <v-icon x-large dark>search</v-icon>
@@ -70,7 +70,7 @@
       </v-flex>
 
       <v-flex xs6 sm3 md2 pa-1>
-        <v-card height='100%' hover ripple exact to='/SANS1D' dark>
+        <v-card height='100%' hover ripple exact to='/SANS1D?fetch=/external/fetch/sans' dark>
           <v-card-media class='pa-0 pb-3'>
             <v-avatar tile class='primary icon-size'>
               <v-icon x-large dark>trending_up</v-icon>
@@ -88,7 +88,7 @@
       </v-flex>
 
       <v-flex xs6 sm3 md2 pa-1>
-        <v-card height='100%' hover ripple exact to='/Stitch' dark>
+        <v-card height='100%' hover ripple exact to='/Stitch?fetch=/external/fetch/sans' dark>
           <v-card-media class='pa-0 pb-3'>
             <v-avatar tile class='primary icon-size'>
               <v-icon x-large dark>timeline</v-icon>
@@ -106,7 +106,7 @@
       </v-flex>
 
       <v-flex xs6 sm3 md2 pa-1>
-        <v-card height='100%' hover ripple exact to='/SANS2D' dark>
+        <v-card height='100%' hover ripple exact to='/SANS2D?fetch=/external/fetch/sans' dark>
           <v-card-media class='pa-0 pb-3'>
             <v-avatar tile class='primary icon-size'>
               <v-icon x-large dark>dashboard</v-icon>
@@ -132,7 +132,7 @@
     </v-subheader>
     <v-layout row wrap>
       <v-flex xs6 sm3 md2 pa-1>
-        <v-card height='100%' hover ripple exact to='/TAS-Browse' dark>
+        <v-card height='100%' hover ripple exact to='/TAS-Browse?fetch=/external/fetch/tas' dark>
           <v-card-media class='pa-0 pb-3'>
             <v-avatar tile class='primary icon-size'>
               <v-icon x-large dark>search</v-icon>
@@ -150,7 +150,7 @@
       </v-flex>
 
       <v-flex xs6 sm3 md2 pa-1>
-        <v-card height='100%' hover ripple exact to='/TAS' dark>
+        <v-card height='100%' hover ripple exact to='/TAS?fetch=/external/fetch/tas' dark>
           <v-card-media class='pa-0 pb-3'>
             <v-avatar tile class='primary icon-size'>
               <v-icon x-large dark>trending_up</v-icon>
