@@ -16,11 +16,12 @@ export default {
     };
   },
   computed: {
-    ...mapState('SANS', {
+    ...mapState('SANS/Browse', {
       browseData: state => state.browseData,
     }),
     plotData() {
-      return this.browseData;
+      if (!Object.keys(this.browseData).length) return [];
+      return this.browseData.data;
     },
   },
 };

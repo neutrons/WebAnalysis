@@ -2,7 +2,6 @@ import * as d3 from 'd3';
 import scales from '../../scales/scales';
 
 export default {
-  ID: 'SANS-Stitch',
   filesSelected: [],
   stitchedData: [],
   deleteKeys: [],

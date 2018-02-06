@@ -29,8 +29,10 @@ export default {
   methods: {
     ...mapMutations('SANS', [
       'storeData',
-      'setBrowseData',
       'updateTags',
+    ]),
+    ...mapMutations('SANS/Browse', [
+      'setBrowseData',
     ]),
   },
 };

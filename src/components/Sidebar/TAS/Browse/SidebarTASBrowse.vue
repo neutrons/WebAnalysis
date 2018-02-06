@@ -24,8 +24,10 @@ export default {
   methods: {
     ...mapMutations('TAS', [
       'storeData',
-      'setBrowseData',
       'updateTags',
+    ]),
+    ...mapMutations('TAS/Browse', [
+      'setBrowseData',
     ]),
   },
 };

@@ -12,7 +12,6 @@ export default {
   filters: [],
   selectedData: [],
   filteredData: [],
-  browseData: {},
   fileToFit: null,
   colorDomain: [],
   scale: {

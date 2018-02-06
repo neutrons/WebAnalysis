@@ -17,7 +17,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('TAS', {
+    ...mapState('TAS/Browse', {
       browseData: state => state.browseData,
     }),
     plotData() {

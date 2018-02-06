@@ -67,10 +67,6 @@ export default {
   setYField,
   setFilteredData,
   toggleIsFitting,
-  setBrowseData(state, value) {
-    // eslint-disable-next-line
-    state.browseData = value.length === 0 ? value : value.data;
-  },
   resetAll(state) {
     /* eslint-disable */
     state.selectedData = [];
