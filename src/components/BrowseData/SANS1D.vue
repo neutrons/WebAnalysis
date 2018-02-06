@@ -1,10 +1,10 @@
 <script>
 import { mapState } from 'vuex';
-import QuickPlot from './QuickPlot';
+import DefaultChart from './DefaultChart';
 
 export default {
   name: 'SANS1DBrowse',
-  extends: QuickPlot,
+  extends: DefaultChart,
   data() {
     return {
       isMathJax: true,
@@ -12,11 +12,11 @@ export default {
         x: 'q = x',
         y: 'I(q) = y',
       },
+      ID: 'SANS-Browse',
     };
   },
   computed: {
-    ...mapState('SANS1D', {
-      ID: state => state.ID,
+    ...mapState('SANS', {
       browseData: state => state.browseData,
     }),
     plotData() {

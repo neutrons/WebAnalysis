@@ -11,12 +11,12 @@ export default {
     };
   },
   computed: {
-    ...mapState('SANS2D', {
+    ...mapState('SANS/SANS2D', {
       filesSelected: state => state.filesSelected,
       label: state => state.label,
       hexBinSize: state => state.hexBinSize,
     }),
-    ...mapGetters('SANS2D', {
+    ...mapGetters('SANS/SANS2D', {
       chartConfigurations: 'getChartConfigurations',
       preparedData: 'getPreparedData',
     }),

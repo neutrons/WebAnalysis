@@ -1,8 +1,3 @@
-export const resetSelectionLimits = (state) => {
-  // eslint-disable-next-line
-  state.selectionLimits = [];
-};
-
 export const resetBrushSelection = (state) => {
   // eslint-disable-next-line
   state.brushSelection = [];

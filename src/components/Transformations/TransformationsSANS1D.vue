@@ -10,14 +10,14 @@ export default {
     this.yTransformation = this.transformations.y;
   },
   computed: {
-    ...mapState('SANS1D', {
+    ...mapState('SANS', {
       transformations: state => state.transformations,
       xTrans: state => state.transformations.x,
       yTrans: state => state.transformations.y,
     }),
   },
   methods: {
-    ...mapMutations('SANS1D', [
+    ...mapMutations('SANS', [
       'resetTransformations',
       'transformData',
       'setXTransformation',

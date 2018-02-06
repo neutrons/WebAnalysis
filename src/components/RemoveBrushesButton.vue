@@ -1,12 +1,11 @@
 <template>
-<v-btn flat small :icon='isBreakpointSmall' @click='$emit("remove-brushes", false)' :disabled='!isBrushes'>
+<v-btn flat small :icon='isBreakpointSmall' @click='$emit("remove-brushes", false)' :disabled='disable'>
   <span class='hidden-md-and-down'>Remove Selections</span>
   <v-icon :right='!isBreakpointSmall'>grid_off</v-icon>
 </v-btn>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import isBreakpointSmall from '../assets/js/isBreakpointSmall';
 
 export default {
@@ -14,10 +13,11 @@ export default {
   mixins: [
     isBreakpointSmall,
   ],
-  computed: {
-    ...mapState('Stitch', {
-      isBrushes: state => Object.keys(state.brushSelections).length,
-    }),
+  props: {
+    disable: {
+      type: Boolean,
+      default: true,
+    },
   },
 };
 </script>

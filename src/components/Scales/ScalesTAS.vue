@@ -40,6 +40,11 @@ export default {
       'setYScale',
       'setXScale',
     ]),
+    resetPlotScales() {
+      if (this.xScaleLabel !== 'x' || this.yScaleLabel !== 'y') {
+        this.resetScales();
+      }
+    },
   },
 };
 

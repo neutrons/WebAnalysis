@@ -30,14 +30,13 @@
 export default {
   name: 'Sidebar',
   components: {
-    SidebarSANS1D: () => import('./SANS1D/SidebarSANS1D'),
-    SidebarSANS2D: () => import('./SANS2D/SidebarSANS2D'),
-    SidebarStitch: () => import('./Stitch/SidebarStitch'),
-    SidebarTAS: () => import('./TAS/SidebarTAS'),
+    SidebarSANS1DBrowse: () => import('./SANS/Browse/SidebarSANS1DBrowse'),
+    SidebarSANS1DFit: () => import('./SANS/Fit/SidebarSANS1DFit'),
+    SidebarSANS1DStitch: () => import('./SANS/Stitch/SidebarSANS1DStitch'),
+    SidebarSANS2D: () => import('./SANS/SANS2D/SidebarSANS2D'),
+    SidebarTASFit: () => import('./TAS/Fit/SidebarTASFit'),
+    SidebarTASBrowse: () => import('./TAS/Browse/SidebarTASBrowse'),
     Sidebar404: () => import('./Sidebar404'),
-    SidebarSANS1DBrowse: () => import('./SANS1D/SidebarSANS1DBrowse'),
-    SidebarStitchBrowse: () => import('./Stitch/SidebarStitchBrowse'),
-    SidebarTASBrowse: () => import('./TAS/SidebarTASBrowse'),
   },
   props: {
     drawer: {

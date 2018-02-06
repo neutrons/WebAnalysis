@@ -1,4 +1,4 @@
-import transformDataFunc from '../../../assets/js/FitData/transformData';
+import transformDataFunc from '../../../assets/js/transformData';
 
 export default (state) => {
   state.selectedData.forEach((el) => {

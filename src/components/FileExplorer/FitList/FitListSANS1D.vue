@@ -6,7 +6,7 @@ export default {
   name: 'FitListSANS1D',
   extends: FitList,
   computed: {
-    ...mapState('SANS1D', {
+    ...mapState('SANS', {
       filesToFit: state => state.filesSelected,
       fileToFit: state => state.fileToFit,
     }),
@@ -20,7 +20,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS1D', [
+    ...mapMutations('SANS', [
       'updateFileToFit',
     ]),
   },

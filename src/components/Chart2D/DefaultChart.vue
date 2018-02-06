@@ -66,23 +66,12 @@
 import * as d3 from 'd3';
 import * as d3hex from 'd3-hexbin';
 
-// Import Mixins
-import setResponsive from '../../assets/js/chartFunctions/setResponsive';
-import getContainerWidth from '../../assets/js/chartFunctions/getContainerWidth';
-import axes from '../Chart1D/axes';
-import labels from '../Chart1D/labels';
-import drawChart from './drawChart';
-import zoom from './zoom';
+import chartMethods from './chartMethods';
 
 export default {
   name: 'Chart2D',
   mixins: [
-    setResponsive,
-    getContainerWidth,
-    axes,
-    labels,
-    drawChart,
-    zoom,
+    chartMethods,
   ],
   props: {
     ID: {

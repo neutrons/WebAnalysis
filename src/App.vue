@@ -33,19 +33,19 @@
           <v-icon right>arrow_drop_down</v-icon>
         </v-btn>
         <v-list>
-          <v-list-tile to='/SANS1D-Browse' exact :active-class='activeClass'>
+          <v-list-tile to='/SANS/Browse' exact :active-class='activeClass'>
             <v-list-tile-title>Browse Data</v-list-tile-title>
           </v-list-tile>
 
-          <v-list-tile to='/SANS1D' exact :active-class='activeClass'>
-            <v-list-tile-title>Graph Data</v-list-tile-title>
+          <v-list-tile to='/SANS/Fit' exact :active-class='activeClass'>
+            <v-list-tile-title>Fit Data</v-list-tile-title>
           </v-list-tile>
 
-          <v-list-tile to='/Stitch' exact :active-class='activeClass'>
+          <v-list-tile to='/SANS/Stitch' exact :active-class='activeClass'>
             <v-list-tile-title>Stitch Data</v-list-tile-title>
           </v-list-tile>
 
-          <v-list-tile to='/SANS2D' exact :active-class='activeClass'>
+          <v-list-tile to='/SANS/SANS2D' exact :active-class='activeClass'>
             <v-list-tile-title>SANS2D</v-list-tile-title>
           </v-list-tile>
         </v-list>
@@ -57,12 +57,12 @@
           <v-icon right>arrow_drop_down</v-icon>
         </v-btn>
         <v-list>
-          <v-list-tile to='/TAS-Browse' exact :active-class='activeClass'>
+          <v-list-tile to='/TAS/Browse' exact :active-class='activeClass'>
             <v-list-tile-title>Browse Data</v-list-tile-title>
           </v-list-tile>
 
-          <v-list-tile to='/TAS' exact :active-class='activeClass'>
-            <v-list-tile-title>Graph Data</v-list-tile-title>
+          <v-list-tile to='/TAS/Fit' exact :active-class='activeClass'>
+            <v-list-tile-title>Fit Data</v-list-tile-title>
           </v-list-tile>
         </v-list>
       </v-menu>
@@ -83,19 +83,19 @@
                 </v-list-tile-action>
               </v-list-tile>
               <v-list dense>
-                <v-list-tile to='/SANS1D-Browse' exact :active-class='activeClass'>
+                <v-list-tile to='/SANS/Browse' exact :active-class='activeClass'>
                   <v-list-tile-title>Browse Data</v-list-tile-title>
                 </v-list-tile>
 
-                <v-list-tile to='/SANS1D' exact :active-class='activeClass'>
-                  <v-list-tile-title>Graph Data</v-list-tile-title>
+                <v-list-tile to='/SANS/Fit' exact :active-class='activeClass'>
+                  <v-list-tile-title>Fit Data</v-list-tile-title>
                 </v-list-tile>
 
-                <v-list-tile to='/Stitch' exact :active-class='activeClass'>
+                <v-list-tile to='/SANS/Stitch' exact :active-class='activeClass'>
                   <v-list-tile-title>Stitch Data</v-list-tile-title>
                 </v-list-tile>
 
-                <v-list-tile to='/SANS2D' exact :active-class='activeClass'>
+                <v-list-tile to='/SANS/SANS2D' exact :active-class='activeClass'>
                   <v-list-tile-title>SANS2D</v-list-tile-title>
                 </v-list-tile>
               </v-list>
@@ -110,12 +110,12 @@
                 </v-list-tile-action>
               </v-list-tile>
               <v-list dense>
-                <v-list-tile to='/TAS-Browse' exact :active-class='activeClass'>
+                <v-list-tile to='/TAS/Browse' exact :active-class='activeClass'>
                   <v-list-tile-title>Browse Data</v-list-tile-title>
                 </v-list-tile>
 
-                <v-list-tile to='/TAS' exact :active-class='activeClass'>
-                  <v-list-tile-title>Graph Data</v-list-tile-title>
+                <v-list-tile to='/TAS/Fit' exact :active-class='activeClass'>
+                  <v-list-tile-title>Fit Data</v-list-tile-title>
                 </v-list-tile>
               </v-list>
             </v-menu>

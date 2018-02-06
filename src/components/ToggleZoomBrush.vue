@@ -16,7 +16,7 @@ export default {
     isBreakpointSmall,
   ],
   computed: {
-    ...mapState('Stitch', {
+    ...mapState('SANS/Stitch', {
       isZoomBrush: state => state.isZoomBrush,
       filesSelected: state => state.filesSelected,
     }),
@@ -38,7 +38,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('Stitch', [
+    ...mapMutations('SANS/Stitch', [
       'toggleZoomBrush',
     ]),
   },

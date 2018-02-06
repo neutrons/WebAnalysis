@@ -6,7 +6,7 @@ export default {
   name: 'ScalesSANS1D',
   extends: Scales,
   computed: {
-    ...mapState('SANS1D', {
+    ...mapState('SANS', {
       scales: state => state.scale,
       xScaleLabel: state => state.plotScale.x.label,
       yScaleLabel: state => state.plotScale.y.label,
@@ -35,11 +35,16 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS1D', [
+    ...mapMutations('SANS', [
       'resetScales',
       'setYScale',
       'setXScale',
     ]),
+    resetPlotScales() {
+      if (this.xScaleLabel !== 'x' || this.yScaleLabel !== 'y') {
+        this.resetScales();
+      }
+    },
   },
 };
 

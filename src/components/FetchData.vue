@@ -8,14 +8,12 @@
 <script>
 import axios from 'axios';
 import pathParse from 'path-parse';
-import getTitle from '../assets/js/getTitle';
 import { eventBus } from '../assets/js/eventBus';
 import isBreakpointSmall from '../assets/js/isBreakpointSmall';
 
 export default {
   name: 'FetchDataButton',
   mixins: [
-    getTitle,
     isBreakpointSmall,
   ],
   mounted() {
@@ -24,7 +22,7 @@ export default {
   },
   computed: {
     fetchURL() {
-      return this.title === 'TAS' ? process.env.FETCH_TAS_URL : process.env.FETCH_SANS_URL;
+      return this.$route.meta.group === 'TAS' ? process.env.FETCH_TAS_URL : process.env.FETCH_SANS_URL;
     },
   },
   methods: {
@@ -65,7 +63,7 @@ export default {
         };
       });
 
-      this.$store.commit(`${this.title}/addFetchFiles`, temp);
+      this.$store.commit('TAS/addFetchFiles', temp);
     },
     fetchSANS(data) {
       const temp = {};
@@ -75,9 +73,9 @@ export default {
         const jobModified = el.date_modified;
 
         el.results.forEach((r) => {
-          const key = r.type.split('-');
+          const key = r.type;
 
-          if (key.indexOf(this.title) > -1) {
+          if (key === this.$route.meta.subgroup) {
             temp[r.filename] = {
               id: r.id,
               filename: r.filename,
@@ -91,7 +89,8 @@ export default {
         });
       });
 
-      this.$store.commit(`${this.title}/addFetchFiles`, temp);
+      const namespace = this.$route.name !== 'SANS2D' ? 'SANS' : 'SANS/SANS2D';
+      this.$store.commit(`${namespace}/addFetchFiles`, temp);
     },
   },
   watch: {

@@ -20,7 +20,7 @@ import transformData from '../../shared/mutations/transformData';
 import { setFitDamping, setFitGradient, setFitIterations, setFitError, resetFitSettings } from '../../shared/mutations/setFitSettings';
 import { setFitEquation, updateFitEquation } from '../../shared/mutations/fitEquation';
 import { removeFitInitialValue, addFitInitialValue, setFitInitialValues, reviseFitInitialValues } from '../../shared/mutations/initialValues';
-import { resetSelectionLimits, resetBrushSelection, setBrushLimits, setBrushSelection } from '../../shared/mutations/selections';
+import { resetBrushSelection, setBrushLimits, setBrushSelection } from '../../shared/mutations/selections';
 import setFitType from '../../shared/mutations/setFitType';
 import setFitList from '../../shared/mutations/setFitList';
 import updateTags from '../../shared/mutations/updateTags';
@@ -58,7 +58,6 @@ export default {
   addFitInitialValue,
   setFitInitialValues,
   reviseFitInitialValues,
-  resetSelectionLimits,
   resetBrushSelection,
   setBrushLimits,
   setBrushSelection,
@@ -94,6 +93,7 @@ export default {
     state.deleteKeys = [];
     state.fittedData = [];
     state.filteredData = [];
+    state.brushSelection = [];
     /* eslint-enable */
   },
   setCurrentData(state, chosenData) {

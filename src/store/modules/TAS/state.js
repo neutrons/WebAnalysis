@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import settings from '../../fits/settings';
 import fits from '../../fits/TAS';
-import scales from '../../Scales/scales';
+import scales from '../../scales/scales';
 
 export default {
   ID: 'TAS',
@@ -55,7 +55,6 @@ export default {
   fits: { ...fits },
   selectionLimits: [],
   brushSelection: [],
-  brushLimits: [],
   brushFile: undefined,
   isFitting: false,
 };

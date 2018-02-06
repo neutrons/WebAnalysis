@@ -6,7 +6,7 @@ export default {
   name: 'FilesListSANS1D',
   extends: FilesList,
   computed: {
-    ...mapState('SANS1D', {
+    ...mapState('SANS', {
       filesSelected: state => state.filesSelected,
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
@@ -24,7 +24,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS1D', [
+    ...mapMutations('SANS', [
       'updateFilesSelected',
       'updateFileToFit',
     ]),
