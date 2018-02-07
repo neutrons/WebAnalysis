@@ -18,9 +18,11 @@ export default {
   },
   computed: {
     ...mapState('SANS', {
+      colorDomain: state => state.colorDomain,
+    }),
+    ...mapState('SANS/Fit', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
-      colorDomain: state => state.colorDomain,
       deleteKeys: state => state.deleteKeys,
       label: state => state.transformations,
       fileToFit: state => state.fileToFit,
@@ -32,7 +34,7 @@ export default {
       fitSettings: state => state.fitSettings,
       isFitting: state => state.isFitting,
     }),
-    ...mapGetters('SANS', {
+    ...mapGetters('SANS/Fit', {
       chartConfigurations: 'getChartConfigurations',
       getExtent: 'getExtent',
       isFileFit: 'isFileFit',
@@ -40,7 +42,7 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations('SANS', [
+    ...mapMutations('SANS/Fit', [
       'resetBrushSelection',
       'setPreviousFit',
       'updateFitTableResults',

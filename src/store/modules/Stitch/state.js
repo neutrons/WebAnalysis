@@ -7,7 +7,6 @@ export default {
   deleteKeys: [],
   filters: [],
   selectedData: [],
-  colorDomain: [],
   scale: {
     x: { ...scales.x },
     y: { ...scales.y },

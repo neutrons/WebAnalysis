@@ -7,10 +7,12 @@ export default {
   extends: FilesList,
   computed: {
     ...mapState('TAS', {
-      filesSelected: state => state.filesSelected,
-      fileToFit: state => state.fileToFit,
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
+    }),
+    ...mapState('TAS/Fit', {
+      filesSelected: state => state.filesSelected,
+      fileToFit: state => state.fileToFit,
       filters: state => state.filters,
     }),
     selected: {
@@ -24,7 +26,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('TAS', [
+    ...mapMutations('TAS/Fit', [
       'updateFilesSelected',
       'updateFileToFit',
     ]),

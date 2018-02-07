@@ -7,13 +7,15 @@ export default {
   extends: FilterList,
   computed: {
     ...mapState('SANS', {
-      selected: state => state.filters,
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
     }),
+    ...mapState('SANS/Fit', {
+      selected: state => state.filters,
+    }),
   },
   methods: {
-    ...mapMutations('SANS', [
+    ...mapMutations('SANS/Fit', [
       'updateFilters',
     ]),
   },

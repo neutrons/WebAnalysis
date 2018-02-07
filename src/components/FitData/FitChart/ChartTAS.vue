@@ -18,9 +18,11 @@ export default {
   },
   computed: {
     ...mapState('TAS', {
+      colorDomain: state => state.colorDomain,
+    }),
+    ...mapState('TAS/Fit', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
-      colorDomain: state => state.colorDomain,
       deleteKeys: state => state.deleteKeys,
       label: state => state.field,
       fileToFit: state => state.fileToFit,
@@ -32,7 +34,7 @@ export default {
       fitSettings: state => state.fitSettings,
       isFitting: state => state.isFitting,
     }),
-    ...mapGetters('TAS', {
+    ...mapGetters('TAS/Fit', {
       chartConfigurations: 'getChartConfigurations',
       getExtent: 'getExtent',
       isFileFit: 'isFileFit',
@@ -41,7 +43,7 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations('TAS', [
+    ...mapMutations('TAS/Fit', [
       'resetBrushSelection',
       'setPreviousFit',
       'updateFitTableResults',

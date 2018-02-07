@@ -48,14 +48,14 @@
                 </v-toolbar>
               </v-flex>
 
-              <slot name='tabs-slot' v-if='ID === "SANS1D"'
+              <slot name='tabs-slot' v-if='ID === "SANS-Fit"'
                 :show-tabs='showTabs'
                 :file-to-fit='fileToFit'
                 :fitted-data='fittedData'
                 :x-scale='xScale'
                 :active-parent-tab='activeParentTab'
               ></slot>
-              <slot name='tabs-slot' v-if='ID === "TAS"'
+              <slot name='tabs-slot' v-if='ID === "TAS-Fit"'
                 :show-tabs='showTabs'
                 :file-to-fit='fileToFit'
                 :fitted-data='fittedData'
@@ -252,7 +252,7 @@ export default {
       this.showPicker = false;
       this.togglePickArea(false);
 
-      eventBus.$emit(`update-initial-value-pick-${this.ID}`, value);
+      eventBus.$emit(`update-initial-value-pick-${this.$route.meta.group}`, value);
     },
     togglePickArea(value) {
       this.svg.select('.pick-area')
@@ -268,7 +268,7 @@ export default {
     },
   },
   mounted() {
-    eventBus.$on(`toggle-pick-area-${this.ID}`, this.togglePickArea);
+    eventBus.$on(`toggle-pick-area-${this.$route.meta.group}`, this.togglePickArea);
 
     this.getContainerWidth(`#fit-chart-wrapper-${this.ID}`);
     this.drawChart();

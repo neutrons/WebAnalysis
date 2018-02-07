@@ -7,9 +7,11 @@ export default {
   extends: FilesList,
   computed: {
     ...mapState('SANS', {
-      filesSelected: state => state.filesSelected,
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
+    }),
+    ...mapState('SANS/Fit', {
+      filesSelected: state => state.filesSelected,
       filters: state => state.filters,
       fileToFit: state => state.fileToFit,
     }),
@@ -24,7 +26,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS', [
+    ...mapMutations('SANS/Fit', [
       'updateFilesSelected',
       'updateFileToFit',
     ]),

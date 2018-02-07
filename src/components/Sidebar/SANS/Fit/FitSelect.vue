@@ -15,10 +15,10 @@ export default {
     this.select = 'Linear';
   },
   computed: {
-    ...mapGetters('SANS', [
+    ...mapGetters('SANS/Fit', [
       'fitKeys',
     ]),
-    ...mapState('SANS', {
+    ...mapState('SANS/Fit', {
       fitType: state => state.fitType,
     }),
     select: {
@@ -32,7 +32,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS', [
+    ...mapMutations('SANS/Fit', [
       'setFitType',
       'transformData',
     ]),

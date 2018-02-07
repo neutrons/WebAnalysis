@@ -52,8 +52,8 @@ export default {
     this.setFitInitialValues();
     this.initialValues = _.cloneDeep(this.fitInitialValues);
 
-    eventBus.$on('update-initial-value-pick-SANS1D', this.updateInitialValueWithPick);
-    eventBus.$on('toggle-picker-icon-SANS1D', this.resetPickIndex);
+    eventBus.$on('update-initial-value-pick-SANS', this.updateInitialValueWithPick);
+    eventBus.$on('toggle-picker-icon-SANS', this.resetPickIndex);
   },
   data() {
     return {
@@ -63,7 +63,7 @@ export default {
     };
   },
   computed: {
-    ...mapState('SANS', {
+    ...mapState('SANS/Fit', {
       fitEquation: state => state.fitEquation,
       fitInitialValues: state => state.fitInitialValues,
       isFitting: state => state.isFitting,
@@ -73,7 +73,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS', [
+    ...mapMutations('SANS/Fit', [
       'setFitEquation',
       'addFitInitialValue',
       'removeFitInitialValue',
@@ -152,10 +152,10 @@ export default {
     },
     togglePick(value, index) {
       if (value) {
-        eventBus.$emit('toggle-pick-area-SANS1D', true);
+        eventBus.$emit('toggle-pick-area-SANS', true);
         this.pickIndex = index;
       } else {
-        eventBus.$emit('toggle-pick-area-SANS1D', false);
+        eventBus.$emit('toggle-pick-area-SANS', false);
         this.resetPickIndex();
       }
     },

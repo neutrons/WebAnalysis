@@ -31,7 +31,7 @@ export default {
     'v-fit-configuration': FitConfiguration,
   },
   computed: {
-    ...mapState('TAS', {
+    ...mapState('TAS/Fit', {
       fileToFit: state => state.fileToFit,
       filesSelected: state => state.filesSelected,
     }),

@@ -103,24 +103,26 @@ export default {
     'v-metadata-table': () => import('../MetadataTable'),
   },
   computed: {
-    ...mapState('TAS', {
-      filesToPlot: state => state.filesSelected,
-      fileToFit: state => state.fileToFit,
-    }),
     ...mapGetters('TAS', [
       'getURLs',
       'getSavedFile',
     ]),
+    ...mapState('TAS/Fit', {
+      filesToPlot: state => state.filesSelected,
+      fileToFit: state => state.fileToFit,
+    }),
   },
   methods: {
     ...mapMutations('TAS', [
-      'setCurrentData',
       'storeData',
+    ]),
+    ...mapMutations('TAS/Fit', [
+      'setCurrentData',
       'resetAll',
       'transformData',
       'resetBrushSelection',
     ]),
-    ...mapActions('TAS', [
+    ...mapActions('TAS/Fit', [
       'resetFitConfiguration',
     ]),
   },

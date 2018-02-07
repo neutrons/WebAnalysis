@@ -95,12 +95,12 @@ export default {
     eventBus.$on('toggle-picker-icon-TAS', this.resetIndices);
   },
   computed: {
-    ...mapState('TAS', {
+    ...mapState('TAS/Fit', {
       fits: state => state.fit,
       fitInitialValues: state => state.fitInitialValues,
       isFitting: state => state.isFitting,
     }),
-    ...mapGetters('TAS', [
+    ...mapGetters('TAS/Fit', [
       'fitNames',
     ]),
     allEquations() {
@@ -114,7 +114,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('TAS', [
+    ...mapMutations('TAS/Fit', [
       'setFitEquation',
       'setFitInitialValues',
       'setFitList',

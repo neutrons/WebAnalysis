@@ -37,16 +37,16 @@ export default {
         ]);
     },
     brushSelection() {
-      return this.$store.state[this.$route.meta.group].brushSelection;
+      return this.$store.state[this.$route.meta.group].Fit.brushSelection;
     },
     dataToFit() {
-      return this.$store.getters[`${this.$route.meta.group}/dataToFit`];
+      return this.$store.getters[`${this.$route.meta.group}/Fit/dataToFit`];
     },
     transformations() {
-      return this.$store.state[this.$route.meta.group].transformations;
+      return this.$store.state[this.$route.meta.group].Fit.transformations;
     },
     fitType() {
-      return this.$store.state[this.$route.meta.group].fitType;
+      return this.$store.state[this.$route.meta.group].Fit.fitType;
     },
   },
   methods: {
@@ -114,19 +114,19 @@ export default {
         !_.isEqual(xExtent, this.prevExtent) ||
         (this.fileToFit !== this.previousFit) ||
         (this.brushTransformation !== this.transformations.x)) {
-        this.$store.commit(`${this.$route.meta.group}/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
+        this.$store.commit(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
 
         this.prevExtent = xExtent;
         this.brushFit = this.fitType;
         this.brushTransformation = this.transformations.x;
       } else if (!(this.brushFit === this.fitType)) {
         // if same file to fit, but new fit transformation, change brush selections
-        this.$store.commit(`${this.$route.meta.group}/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
+        this.$store.commit(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
         this.brushFit = this.fitType;
       } else {
         // if same file to fit after update and same fit transformation,
         // simply update brush selection to current selection
-        this.$store.commit(`${this.$route.meta.group}/setBrushLimits`, { limits: this.selLimits, scale: newXScale2 });
+        this.$store.commit(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: this.selLimits, scale: newXScale2 });
       }
 
       this.svg.select('.brush')
@@ -134,18 +134,18 @@ export default {
         .call(this.brush.move, this.brushSelection);
     },
     brushed() {
-      this.$store.commit(`${this.$route.meta.group}/setBrushSelection`, d3.event.selection);
+      this.$store.commit(`${this.$route.meta.group}/Fit/setBrushSelection`, d3.event.selection);
       const tempData = this.dataToFit.filter(this.filterForLog);
       const e = d3.event.selection.map(this.sliderScale.invert, this.sliderScale);
       const filteredData = tempData.filter(d => e[0] <= d.x && d.x <= e[1]);
-      this.$store.commit(`${this.$route.meta.group}/setFilteredData`, _.cloneDeep(filteredData));
+      this.$store.commit(`${this.$route.meta.group}/Fit/setFilteredData`, _.cloneDeep(filteredData));
 
       // Update brush selections to the current selected data
       // This will be used to dynamically adjust brush location when new data is added
       const xExtent = d3.extent(filteredData, d => d.x);
       this.selLimits = [...xExtent];
       const newXScale2 = this.sliderScale.copy();
-      this.$store.commit(`${this.$route.meta.group}/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
+      this.$store.commit(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
 
       if (this.brushSelection !== null && filteredData.length > 1) {
         this.svg.select('.slider-lines')

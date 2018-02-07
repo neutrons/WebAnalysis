@@ -6,12 +6,12 @@ export default {
   name: 'FitSettingsSANS1D',
   extends: FitSettings,
   computed: {
-    ...mapState('SANS', {
+    ...mapState('SANS/Fit', {
       defaultSettings: state => state.defaultFitSettings,
     }),
   },
   methods: {
-    ...mapMutations('SANS', [
+    ...mapMutations('SANS/Fit', [
       'setFitDamping',
       'setFitGradient',
       'setFitIterations',

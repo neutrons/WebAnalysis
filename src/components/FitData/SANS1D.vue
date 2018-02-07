@@ -77,7 +77,7 @@ export default {
     'v-fitted-data-table': () => import('../FittedDataTable'),
   },
   computed: {
-    ...mapState('SANS', {
+    ...mapState('SANS/Fit', {
       filesToPlot: state => state.filesSelected,
       fileToFit: state => state.fileToFit,
     }),
@@ -88,13 +88,15 @@ export default {
   },
   methods: {
     ...mapMutations('SANS', [
-      'setCurrentData',
       'storeData',
+    ]),
+    ...mapMutations('SANS/Fit', [
+      'setCurrentData',
       'resetAll',
       'transformData',
       'resetBrushSelection',
     ]),
-    ...mapActions('SANS', [
+    ...mapActions('SANS/Fit', [
       'resetFitConfiguration',
     ]),
   },

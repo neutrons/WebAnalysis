@@ -6,12 +6,12 @@ export default {
   name: 'FitSettingsTAS',
   extends: FitSettings,
   computed: {
-    ...mapState('TAS', {
+    ...mapState('TAS/Fit', {
       defaultSettings: state => state.defaultFitSettings,
     }),
   },
   methods: {
-    ...mapMutations('TAS', [
+    ...mapMutations('TAS/Fit', [
       'setFitDamping',
       'setFitGradient',
       'setFitIterations',

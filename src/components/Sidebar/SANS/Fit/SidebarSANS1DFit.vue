@@ -31,7 +31,7 @@ export default {
     'v-fit-configuration': FitConfiguration,
   },
   computed: {
-    ...mapGetters('SANS', [
+    ...mapGetters('SANS/Fit', [
       'isFilesPlotted',
       'isFileFit',
     ]),

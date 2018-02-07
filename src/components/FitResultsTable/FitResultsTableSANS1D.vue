@@ -7,7 +7,7 @@ export default {
   name: 'FitResultsSANS1D',
   extends: FitResultsTable,
   computed: {
-    ...mapState('SANS', {
+    ...mapState('SANS/Fit', {
       fileToFit: state => state.fileToFit,
       fitType: state => state.fitType,
       fittedData: state => state.fittedData,

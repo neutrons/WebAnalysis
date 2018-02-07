@@ -63,26 +63,31 @@ export default {
           // Update error bars
           group.select('.error-line')
             .selectAll('line')
+            .data(tempData)
             .call(this.updateErrorLine, newXScale, newYScale, trans);
 
           // Update error cap top
           group.select('.error-cap-top')
             .selectAll('line')
+            .data(tempData)
             .call(this.updateErrorCaps, 'top', newXScale, newYScale, trans);
 
           // Update error cap top
           group.select('.error-cap-bottom')
             .selectAll('line')
+            .data(tempData)
             .call(this.updateErrorCaps, 'bottom', newXScale, newYScale, trans);
 
           // Update line paths
           group.select('.scatter-line')
             .selectAll('path')
+            .data([tempData])
             .call(this.updateLine, newLine, trans, data.key);
 
           // Update scatter
           group.select('.scatter')
             .selectAll('.point')
+            .data(tempData)
             .call(this.updateScatter, newXScale, newYScale, trans);
         }
       });

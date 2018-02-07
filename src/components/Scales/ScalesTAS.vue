@@ -6,7 +6,7 @@ export default {
   name: 'ScalesTAS',
   extends: Scales,
   computed: {
-    ...mapState('TAS', {
+    ...mapState('TAS/Fit', {
       scales: state => state.scale,
       xScaleLabel: state => state.plotScale.x.label,
       yScaleLabel: state => state.plotScale.y.label,
@@ -35,7 +35,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('TAS', [
+    ...mapMutations('TAS/Fit', [
       'resetScales',
       'setYScale',
       'setXScale',

@@ -6,7 +6,7 @@ export default {
   name: 'FitListTAS',
   extends: FitList,
   computed: {
-    ...mapState('TAS', {
+    ...mapState('TAS/Fit', {
       filesToFit: state => state.filesSelected,
       fileToFit: state => state.fileToFit,
     }),
@@ -20,7 +20,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('TAS', [
+    ...mapMutations('TAS/Fit', [
       'updateFileToFit',
     ]),
   },

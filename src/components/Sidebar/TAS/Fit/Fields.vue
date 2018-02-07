@@ -32,10 +32,10 @@ export default {
     },
   },
   computed: {
-    ...mapGetters('TAS', [
+    ...mapGetters('TAS/Fit', [
       'getFields',
     ]),
-    ...mapState('TAS', {
+    ...mapState('TAS/Fit', {
       field: state => state.field,
     }),
     selectX: {
@@ -58,7 +58,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('TAS', [
+    ...mapMutations('TAS/Fit', [
       'setXField',
       'setYField',
       'changeFields',
