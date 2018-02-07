@@ -2,9 +2,11 @@
     <v-select label='Fit' 
         :items='filesToFit'
         v-model='selected'
+        autocomplete
         chips
         deletable-chips
         hint='Pick a file to fit'
+        max-height='150'
         :disabled='!filesToFit.length'>
     </v-select>
 </template>

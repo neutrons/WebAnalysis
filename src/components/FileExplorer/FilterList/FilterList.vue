@@ -4,7 +4,8 @@
         :values='selected'
         @input='updateFilters'
         multiple
-        max-height='400'
+        autocomplete
+        max-height='150'
         chips
         deletable-chips
         hint='Pick tags to filter files'

@@ -3,7 +3,8 @@
         :items='filteredFiles'
         v-model='selected'
         :multiple='multiple'
-        max-height='400'
+        max-height='150'
+        autocomplete
         chips
         deletable-chips
         hide-selected
