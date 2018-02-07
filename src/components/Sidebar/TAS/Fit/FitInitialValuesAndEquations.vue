@@ -43,8 +43,8 @@
         :append-icon-cb='() => iv.constant = !iv.constant'
         @keydown.enter.native='inputInitialValues'
         type='number'
-        :prepend-icon='pickIndex === ivIndex ? "cancel" : "fa-crosshairs"'
-        :prepend-icon-cb='() => pickIndex === ivIndex ? togglePick(false, selectedIndex, ivIndex) : togglePick(true, selectedIndex, ivIndex)'
+        :prepend-icon='pickIndex === ivIndex && selectIndex === selectedIndex ? "cancel" : "fa-crosshairs"'
+        :prepend-icon-cb='() => pickIndex === ivIndex && selectIndex === selectedIndex ? togglePick(false, selectedIndex, ivIndex) : togglePick(true, selectedIndex, ivIndex)'
       ></v-text-field>
     </v-flex>
   </v-layout>
@@ -160,6 +160,7 @@ export default {
           });
         }
       });
+      this.refit();
     },
     parse(value) {
       // Parse the string
