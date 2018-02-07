@@ -62,6 +62,21 @@ mutations.setCurrentData = (st, chosenData) => {
   st.selectedData = tempSelect;
 };
 
+mutations.setFitType = (st, type = state.fitType) => {
+  /* eslint-disable */
+  st.fitType = type;
+  st.fitEquation = st.fits[type].equation;
+  st.transformations.x = st.fits[type].transformations.x;
+  st.label.x = `q = ${st.transformations.x}`;
+  st.transformations.y = st.fits[type].transformations.y;
+  st.label.y = `I(q) = ${st.transformations.y}`;
+  st.transformations.error = st.fits[type].transformations.error;
+  st.fitInitialValues = _.cloneDeep(st.fits[type].initialValues);
+  st.fitNote = st.fits[type].note;
+  /* eslint-enable */
+};
+
+
 state.label = {
   x: 'q = x',
   y: 'I(q) = y',

@@ -56,6 +56,14 @@ mutations.setCurrentData = (st, chosenData) => {
   st.selectedData = tempSelect;
 };
 
+mutations.setFitType = (st, type = state.fitType) => {
+  /* eslint-disable */
+  st.fitType = type;
+  st.fitEquation = st.fits[type].equation;
+  st.fitInitialValues = _.cloneDeep(st.fits[type].initialValues);
+  /* eslint-enable */
+};
+
 mutations.changeFields = (st) => {
   const tempSelect = [];
 

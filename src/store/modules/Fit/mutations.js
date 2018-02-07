@@ -14,7 +14,6 @@ import { setFitDamping, setFitGradient, setFitIterations, setFitError, resetFitS
 import { setFitEquation, updateFitEquation } from '../../shared/mutations/fitEquation';
 import { removeFitInitialValue, addFitInitialValue, setFitInitialValues, reviseFitInitialValues } from '../../shared/mutations/initialValues';
 import { resetBrushSelection, setBrushLimits, setBrushSelection } from '../../shared/mutations/selections';
-import setFitType from '../../shared/mutations/setFitType';
 import setFitList from '../../shared/mutations/setFitList';
 import updateFitTableResults from '../../shared/mutations/updateFitTableResults';
 import { setXField, setYField } from '../../shared/mutations/fields';
@@ -35,7 +34,6 @@ export default {
   resetTransformations,
   transformData,
   setFitList,
-  setFitType,
   setFitDamping,
   setFitGradient,
   setFitIterations,

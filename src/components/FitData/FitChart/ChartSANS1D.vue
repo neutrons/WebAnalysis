@@ -24,7 +24,7 @@ export default {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
       deleteKeys: state => state.deleteKeys,
-      label: state => state.transformations,
+      label: state => state.label,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,
       fittedData: state => state.fittedData,
