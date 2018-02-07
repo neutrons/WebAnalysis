@@ -157,7 +157,6 @@ export default {
     plotData() {
       this.$nextTick(() => {
         if (!this.plotData.length) {
-          this.label = { x: 'q = x', y: 'I(q) = y' };
           this.getContainerWidth(`#quickplot-wrapper-${this.ID}`);
           this.removeChart();
           this.drawChart();

@@ -10,8 +10,8 @@ export default {
     return {
       isMathJax: false,
       label: {
-        x: 'q = x',
-        y: 'I(q) = y',
+        x: 'x',
+        y: 'y',
       },
       ID: 'TAS-Browse',
     };
