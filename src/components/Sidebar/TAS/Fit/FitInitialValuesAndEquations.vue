@@ -108,7 +108,6 @@ export default {
     },
     finalEquation() {
       const temp = this.allEquations.map(item => item).join('+');
-      // this.setFitEquation(temp);
 
       return temp;
     },
@@ -127,7 +126,8 @@ export default {
       Vue.set(this.selected, index, temp);
       Vue.set(this.fitList, index, value);
       this.setFitList(this.fitList);
-      this.refit();
+      this.updateCurrentValues();
+      this.inputInitialValues();
     },
     addNewEquation() {
       let temp = _.cloneDeep(this.fits.Linear);
@@ -137,6 +137,8 @@ export default {
       this.selected.push(temp);
       this.fitList.push('Linear');
       this.setFitList(this.fitList);
+      this.updateCurrentValues();
+      this.inputInitialValues();
     },
     removeEquation(index) {
       Vue.delete(this.selected, index);
@@ -160,7 +162,20 @@ export default {
           });
         }
       });
-      this.refit();
+      this.updateCurrentValues();
+      this.inputInitialValues();
+    },
+    updateCurrentValues() {
+      const temp = [];
+
+      this.selected.forEach((s) => {
+        s.initialValues.forEach((iv) => {
+          temp.push(iv);
+        });
+      });
+
+      this.setFitInitialValues(temp);
+      this.setFitEquation(this.finalEquation);
     },
     parse(value) {
       // Parse the string
@@ -195,16 +210,7 @@ export default {
       return value;
     },
     refit() {
-      const temp = [];
-
-      this.selected.forEach((s) => {
-        s.initialValues.forEach((iv) => {
-          temp.push(iv);
-        });
-      });
-
-      this.setFitInitialValues(temp);
-      this.setFitEquation(this.finalEquation);
+      this.updateCurrentValues();
       eventBus.$emit('refit-data-TAS');
     },
     inputInitialValues() {
