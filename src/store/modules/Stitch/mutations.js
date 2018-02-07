@@ -1,30 +1,18 @@
 import _ from 'lodash';
 import * as d3 from 'd3';
 
-import addFetchFiles from '../../shared/mutations/addFetchFiles';
-import addUploadFiles from '../../shared/mutations/addUploadFiles';
 import updateFilesSelected from '../../shared/mutations/updateFilesSelected';
 import updateFilters from '../../shared/mutations/updateFilters';
-import storeData from '../../shared/mutations/storeData';
 import setXScale from '../../shared/mutations/setXScale';
 import setYScale from '../../shared/mutations/setYScale';
 import resetScales from '../../shared/mutations/resetScales';
-import updateTags from '../../shared/mutations/updateTags';
 
 export default {
-  addFetchFiles,
-  addUploadFiles,
   updateFilesSelected,
   updateFilters,
-  storeData,
   setXScale,
   setYScale,
   resetScales,
-  updateTags,
-  setBrowseData(state, value) {
-    // eslint-disable-next-line
-    state.browseData = value.length === 0 ? value : value.data;
-  },
   setCurrentData(state, chosenData) {
     const tempData = _.cloneDeep(chosenData);
     const tempSelect = [];

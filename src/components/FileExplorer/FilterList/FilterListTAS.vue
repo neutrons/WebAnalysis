@@ -7,13 +7,15 @@ export default {
   extends: FilterList,
   computed: {
     ...mapState('TAS', {
-      selected: state => state.filters,
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
     }),
+    ...mapState('TAS/Fit', {
+      selected: state => state.filters,
+    }),
   },
   methods: {
-    ...mapMutations('TAS', [
+    ...mapMutations('TAS/Fit', [
       'updateFilters',
     ]),
   },

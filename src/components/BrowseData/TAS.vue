@@ -1,11 +1,11 @@
 <script>
 import { mapState } from 'vuex';
-import QuickPlot from './QuickPlot';
+import DefaultChart from './DefaultChart';
 import swapFields from '../../assets/js/swapFields';
 
 export default {
   name: 'TASBrowse',
-  extends: QuickPlot,
+  extends: DefaultChart,
   data() {
     return {
       isMathJax: false,
@@ -13,11 +13,11 @@ export default {
         x: 'q = x',
         y: 'I(q) = y',
       },
+      ID: 'TAS-Browse',
     };
   },
   computed: {
-    ...mapState('TAS', {
-      ID: state => state.ID,
+    ...mapState('TAS/Browse', {
       browseData: state => state.browseData,
     }),
     plotData() {

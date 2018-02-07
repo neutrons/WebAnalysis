@@ -1,14 +1,17 @@
 <template>
     <v-select label='Filter' 
-        :items='tags'
-        :values='selected'
-        @input='updateFilters'
-        multiple
-        max-height='400'
-        chips
-        deletable-chips
-        hint='Pick tags to filter files'
-        :disabled='tags.length === 0'>
+      ref='filterList'
+      :items='tags'
+      :values='selected'
+      @input='updateFilters'
+      multiple
+      autocomplete
+      max-height='250'
+      chips
+      deletable-chips
+      hint='Pick tags to filter files'
+      :disabled='tags.length === 0'
+      @change='$refs.filterList.isActive = $event.length > 1'>
     </v-select>
 </template>
 

@@ -18,7 +18,7 @@
             },
             {
                 "id": "3",
-                "type": "SANS1D-Stitch",
+                "type": "SANS1D",
                 "filename": "A3_m_Iq",
                 "url": "/external/files/sans1d/A3_m_Iq.txt"
             },
@@ -37,13 +37,13 @@
         "results": [
             {
                 "id": "1",
-                "type": "SANS1D-Stitch",
+                "type": "SANS1D",
                 "filename": "A4_m_Iq",
                 "url": "/external/files/sans1d/A3_m_Iq.txt"
             },
             {
                 "id": "2",
-                "type": "SANS1D-Stitch",
+                "type": "SANS1D",
                 "filename": "A3_w_Iq",
                 "url": "/external/files/sans1d/A3_w_Iq.txt"
             },

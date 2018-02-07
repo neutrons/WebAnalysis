@@ -13,7 +13,7 @@
           <v-select label='Y Scale' :items='yScales' v-model='selectY' hint='Select Y Scale'>
           </v-select>
 
-          <v-btn block outline @click='resetScales' color='warning'>
+          <v-btn block outline @click='resetPlotScales' color='warning'>
             <v-icon left>fa-undo</v-icon>
             <span>Reset Scales</span>
           </v-btn>

@@ -17,6 +17,8 @@
         deletable-chips
         bottom
         hide-details
+        max-height='150'
+        autocomplete
       ></v-select>
       </v-card-text>
       </v-card>
@@ -65,6 +67,7 @@ export default {
       tempSelectedTags: [],
       selectedTags: [],
       tags: [],
+      active: false,
     };
   },
   computed: {
@@ -142,14 +145,26 @@ export default {
     },
   },
   activated() {
+    // automatically plot file when activated
+    if (this.fileList.length && this.selectedFile === null) {
+      this.selectedFile = this.fileList[0];
+    }
+    this.active = true;
     // When activated toggle on arrow keys for browsing files
     window.addEventListener('keyup', this.onKeyUp);
   },
   deactivated() {
+    this.active = false;
     // when deactivated toggle off arrows keys for browsing files
     window.removeEventListener('keyup', this.onKeyUp);
   },
   watch: {
+    fileList() {
+      // automatically plot file when fetched
+      if (this.fileList.length && this.selectedFile === null && this.active) {
+        this.selectedFile = this.fileList[0];
+      }
+    },
     selectedFile() {
       if (this.selectedFile === null) {
         this.xPoint = null;

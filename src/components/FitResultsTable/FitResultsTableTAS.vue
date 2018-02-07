@@ -7,7 +7,7 @@ export default {
   name: 'FitResultsTAS',
   extends: FitResultsTable,
   computed: {
-    ...mapState('TAS', {
+    ...mapState('TAS/Fit', {
       fileToFit: state => state.fileToFit,
       fitType: state => state.fitType,
       fittedData: state => state.fittedData,

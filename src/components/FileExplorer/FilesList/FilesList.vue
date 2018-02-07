@@ -1,14 +1,17 @@
 <template>
     <v-select label='Files' 
-        :items='filteredFiles'
-        v-model='selected'
-        :multiple='multiple'
-        max-height='400'
-        chips
-        deletable-chips
-        hide-selected
-        hint='Pick a file to plot'
-        :disabled='filteredFiles.length === 0'>
+      ref='filesList'
+      :items='filteredFiles'
+      v-model='selected'
+      :multiple='multiple'
+      max-height='250'
+      autocomplete
+      chips
+      deletable-chips
+      hide-selected
+      hint='Pick a file to plot'
+      :disabled='filteredFiles.length === 0'
+      @change='$refs.filesList.isActive = $event.length > 1'>
     </v-select>
 </template>
 

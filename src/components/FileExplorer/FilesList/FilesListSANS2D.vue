@@ -6,7 +6,7 @@ export default {
   name: 'FilesListSANS2D',
   extends: FilesList,
   computed: {
-    ...mapState('SANS2D', {
+    ...mapState('SANS/SANS2D', {
       filesSelected: state => state.filesSelected,
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
@@ -22,7 +22,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS2D', [
+    ...mapMutations('SANS/SANS2D', [
       'updateFilesSelected',
     ]),
   },

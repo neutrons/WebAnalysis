@@ -1,18 +1,12 @@
 import * as d3 from 'd3';
-import scales from '../../Scales/scales';
+import scales from '../../scales/scales';
 
 export default {
-  ID: 'Stitch',
-  fetched: {},
-  uploaded: {},
-  saved: {},
   filesSelected: [],
   stitchedData: [],
-  browseData: [],
   deleteKeys: [],
   filters: [],
   selectedData: [],
-  colorDomain: [],
   scale: {
     x: { ...scales.x },
     y: { ...scales.y },

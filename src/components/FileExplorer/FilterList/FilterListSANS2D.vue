@@ -6,14 +6,14 @@ export default {
   name: 'FilterListSANS2D',
   extends: FilterList,
   computed: {
-    ...mapState('SANS2D', {
+    ...mapState('SANS/SANS2D', {
       selected: state => state.filters,
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
     }),
   },
   methods: {
-    ...mapMutations('SANS2D', [
+    ...mapMutations('SANS/SANS2D', [
       'updateFilters',
     ]),
   },
