@@ -16,20 +16,39 @@ export default {
   mixins: [
     isBreakpointSmall,
   ],
+  data() {
+    return {
+      savedFetchURL: undefined,
+    };
+  },
   mounted() {
     // Event listener for when stitch lines are saved
     eventBus.$on('fetch-files', this.fetchFiles);
   },
   computed: {
+    isFetchURL() {
+      return typeof process.env.FETCH_TAS_URL !== 'undefined'
+        && typeof process.env.FETCH_SANS_URL !== 'undefined';
+    },
     fetchURL() {
-      return this.$route.meta.group === 'TAS' ? process.env.FETCH_TAS_URL : process.env.FETCH_SANS_URL;
+      if (typeof this.savedFetchURL !== 'undefined') {
+        return this.savedFetchURL;
+      } else if (this.isFetchURL) {
+        return this.$route.meta.group === 'TAS' ? process.env.FETCH_TAS_URL : process.env.FETCH_SANS_URL;
+      }
+
+      return undefined;
     },
   },
   methods: {
-    fetchFiles(e, URL = this.fetchURL) {
+    fetchFiles() {
       const vm = this;
+      if (typeof this.fetchURL === 'undefined') {
+        eventBus.$emit('add-notification', 'Unable to fetch.', 'error');
+        return;
+      }
 
-      axios.get(URL).then((response) => {
+      axios.get(this.fetchURL).then((response) => {
         const data = response.data;
 
         switch (vm.$route.meta.group) {
@@ -95,7 +114,12 @@ export default {
   },
   watch: {
     $route() {
-      if (this.$route.query.fetch) this.fetchFiles(this.$route.query.fetch);
+      if (typeof this.$route.query.fetch !== 'undefined') {
+        if (this.savedFetchURL !== this.$route.query.fetch) {
+          this.savedFetchURL = this.$route.query.fetch;
+          this.fetchFiles();
+        }
+      }
     },
   },
 };
