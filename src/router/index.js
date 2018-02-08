@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import HomePage from '@/components/HomePage';
-import ORNL404 from '@/components/ORNL404';
-import SANS1DFit from '@/components/FitData/SANS1D';
-import SANS1DBrowse from '@/components/BrowseData/SANS1D';
-import SANS1DStitch from '@/components/StitchData/SANS';
-import SANS2DGraph from '@/components/Chart2D/SANS2D';
-import TASFit from '@/components/FitData/TAS';
-import TASBrowse from '@/components/BrowseData/TAS';
+const HomePage = () => import('@/components/HomePage');
+const ORNL404 = () => import('@/components/ORNL404');
+const SANS1DFit = () => import('@/components/FitData/SANS1D');
+const SANS1DBrowse = () => import('@/components/BrowseData/SANS1D');
+const SANS1DStitch = () => import('@/components/StitchData/SANS');
+const SANS2DGraph = () => import('@/components/Chart2D/SANS2D');
+const TASFit = () => import('@/components/FitData/TAS');
+const TASBrowse = () => import('@/components/BrowseData/TAS');
 
 Vue.use(Router);
 
@@ -34,11 +34,11 @@ export default new Router({
     },
     {
       path: '/Documentation',
-      redirect: { path: '/HomePage', query: { filter: 'Documentation' } },
+      redirect: '/HomePage',
     },
     {
       path: '/SANS',
-      redirect: { path: '/HomePage', query: { filter: 'SANS' } },
+      redirect: '/HomePage',
     },
     {
       path: '/SANS/Fit',
@@ -110,7 +110,7 @@ export default new Router({
     },
     {
       path: '/TAS',
-      redirect: { path: '/HomePage', query: { filter: 'TAS' } },
+      redirect: '/HomePage',
     },
     {
       path: '/TAS/Fit',

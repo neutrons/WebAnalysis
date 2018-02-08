@@ -2,7 +2,7 @@
 <v-layout row wrap class='home-container'>
 
   <!-- Documentation Menu -->
-  <v-flex xs12 mb-3 v-if='isQuery || $route.query.filter === "Documentation"'>
+  <v-flex xs12 mb-3>
     <v-subheader>
       <div class='headline'>Documentation</div>
     </v-subheader>
@@ -46,7 +46,7 @@
 
 
   <!-- SANS Menu -->
-  <v-flex xs12 mb-3 v-if='isQuery || $route.query.filter === "SANS"'>
+  <v-flex xs12 mb-3>
     <v-subheader>
       <div class='headline'>SANS</div>
     </v-subheader>
@@ -126,7 +126,7 @@
   </v-flex>
 
   <!-- TAS Menu -->
-  <v-flex xs12 mb-3 v-if='isQuery || $route.query.filter === "TAS"'>
+  <v-flex xs12 mb-3>
     <v-subheader>
       <div class='headline'>TAS</div>
     </v-subheader>
@@ -175,11 +175,6 @@
 <script>
 export default {
   name: 'HomePage',
-  computed: {
-    isQuery() {
-      return !Object.keys(this.$route.query).length;
-    },
-  },
 };
 </script>
 

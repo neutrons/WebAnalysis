@@ -170,9 +170,6 @@ export default {
     };
   },
   computed: {
-    title() {
-      return this.$route.meta.title;
-    },
     margin() {
       if (this.fileToFit) {
         return this.sliderMargin;
