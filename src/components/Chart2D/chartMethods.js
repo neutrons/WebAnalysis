@@ -2,8 +2,10 @@ import * as d3 from 'd3';
 
 import setResponsive from '../../assets/js/chartFunctions/setResponsive';
 import getContainerWidth from '../../assets/js/chartFunctions/getContainerWidth';
+import addClipPath from '../../assets/js/chartFunctions/addClipPath';
 import axes from '../../assets/js/chartFunctions/axes';
 import labels from '../../assets/js/chartFunctions/labels';
+import addZoomGroup from '../../assets/js/chartFunctions/addZoomGroup';
 import zoom from './zoom';
 
 export default {
@@ -13,6 +15,8 @@ export default {
     axes,
     labels,
     zoom,
+    addClipPath,
+    addZoomGroup,
   ],
   methods: {
     drawChart() {
@@ -27,30 +31,14 @@ export default {
         this.addLabels();
 
         // Add clip path so hexagons do not exceed boundaries
-        this.svg.append('defs').append('clipPath')
-          .attr('id', `clip-${this.ID}`)
-          .append('rect')
-          .style('fill', 'none')
-          .attr('width', this.width)
-          .attr('height', this.height);
+        this.addClipPath();
 
         this.g = this.svg.append('g')
           .attr('class', 'chart-group')
           .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
 
         // Add Zoom Group
-        this.g.append('g')
-          .attr('class', 'zoom-group')
-          .attr('id', `zoom-group-${this.ID}`)
-          .append('g')
-            .attr('id', `zoom--${this.ID}`)
-            .append('rect')
-            .attr('class', 'zoom')
-            .attr('opacity', 0)
-            .attr('pointer-events', 'none')
-            .style('fill', 'none')
-            .attr('width', this.width)
-            .attr('height', this.height);
+        this.addZoomGroup();
 
         this.g.append('g').attr('class', 'chart-area')
           .attr('clip-path', `url(#clip-${this.ID})`)

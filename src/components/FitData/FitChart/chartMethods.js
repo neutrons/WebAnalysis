@@ -18,6 +18,8 @@ import resetChart from '../../../assets/js/chartFunctions/resetChart';
 import zoom from '../../../assets/js/chartFunctions/zoom';
 import filterForLog from '../../../assets/js/chartFunctions/filterForLog';
 import isBreakpointSmall from '../../../assets/js/isBreakpointSmall';
+import addClipPath from '../../../assets/js/chartFunctions/addClipPath';
+import addZoomGroup from '../../../assets/js/chartFunctions/addZoomGroup';
 
 export default {
   mixins: [
@@ -38,6 +40,8 @@ export default {
     getContainerWidth,
     isBreakpointSmall,
     filterForLog,
+    addClipPath,
+    addZoomGroup,
   ],
   methods: {
     drawChart() {
@@ -67,9 +71,7 @@ export default {
             .style('visibility', 'hidden')
             .on('click', function click() {
               const pos = d3.mouse(this);
-              const t = d3.zoomTransform(vm.g.select('.zoom').node());
-              const newXScale = t.rescaleX(vm.xScale);
-              const newYScale = t.rescaleY(vm.yScale);
+              const [newXScale, newYScale] = vm.rescaleToZoom();
               vm.pickerPoints = [
                 newXScale.invert(pos[0]),
                 newYScale.invert(pos[1]),
@@ -79,9 +81,7 @@ export default {
             })
             .on('mousemove', function hover() {
               const pos = d3.mouse(this);
-              const t = d3.zoomTransform(vm.g.select('.zoom').node());
-              const newXScale = t.rescaleX(vm.xScale);
-              const newYScale = t.rescaleY(vm.yScale);
+              const [newXScale, newYScale] = vm.rescaleToZoom();
 
               tooltip.style('opacity', 1)
                 .attr('transform', `translate(${pos[0] + 75}, ${pos[1] + 30})`)

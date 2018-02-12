@@ -9,9 +9,7 @@ export default {
   },
   methods: {
     zoomed() {
-      const t = d3.zoomTransform(this.g.select('.zoom').node());
-      const newXScale = t.rescaleX(this.xScale);
-      const newYScale = t.rescaleY(this.yScale);
+      const [newXScale, newYScale] = this.rescaleToZoom();
       const newLine = d3.line()
         .defined(this.filterForLog)
         .x(d => newXScale(d.x))
@@ -51,6 +49,13 @@ export default {
         this.updateBrushScale();
         this.reconvertBrushSelections();
       }
+    },
+    rescaleToZoom() {
+      const t = d3.zoomTransform(this.g.select('.zoom').node());
+      const newXScale = t.rescaleX(this.xScale);
+      const newYScale = t.rescaleY(this.yScale);
+
+      return [newXScale, newYScale];
     },
   },
 };

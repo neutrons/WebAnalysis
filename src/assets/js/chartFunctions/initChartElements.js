@@ -10,6 +10,7 @@ export default {
         .attr('width', this.width + this.margin.left + this.margin.right);
 
       this.addLabels();
+      this.addClipPath();
 
       const clipPath = this.svg.append('defs').append('clipPath');
       clipPath.attr('id', `clip-${this.ID}`)
@@ -44,19 +45,7 @@ export default {
           .call(this.yAxis);
 
       // Add Zoom Group
-      this.g.append('g')
-        .attr('class', 'zoom-group')
-        .attr('id', `zoom-group-${this.ID}`)
-        .append('g')
-          .attr('id', `zoom--${this.ID}`)
-          .append('rect')
-          .attr('class', 'zoom')
-          .attr('opacity', 0)
-          .attr('cursor', 'move')
-          .attr('pointer-events', 'none')
-          .style('fill', 'none')
-          .attr('width', this.width)
-          .attr('height', this.height);
+      this.addZoomGroup();
 
       this.g.select('.zoom').call(this.zoom);
 

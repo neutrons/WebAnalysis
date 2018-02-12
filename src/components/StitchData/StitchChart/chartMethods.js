@@ -19,6 +19,8 @@ import resetChart from '../../../assets/js/chartFunctions/resetChart';
 import zoom from '../../../assets/js/chartFunctions/zoom';
 import filterForLog from '../../../assets/js/chartFunctions/filterForLog';
 import isBreakpointSmall from '../../../assets/js/isBreakpointSmall';
+import addClipPath from '../../../assets/js/chartFunctions/addClipPath';
+import addZoomGroup from '../../../assets/js/chartFunctions/addZoomGroup';
 
 export default {
   mixins: [
@@ -40,6 +42,8 @@ export default {
     filterForLog,
     brush,
     stitchLine,
+    addClipPath,
+    addZoomGroup,
   ],
   methods: {
     drawChart() {

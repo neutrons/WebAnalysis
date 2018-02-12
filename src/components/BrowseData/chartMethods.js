@@ -13,6 +13,8 @@ import resetChart from '../../assets/js/chartFunctions/resetChart';
 import zoom from '../../assets/js/chartFunctions/zoom';
 import filterForLog from '../../assets/js/chartFunctions/filterForLog';
 import removeChart from '../../assets/js/chartFunctions/removeChart';
+import addClipPath from '../../assets/js/chartFunctions/addClipPath';
+import addZoomGroup from '../../assets/js/chartFunctions/addZoomGroup';
 
 export default {
   mixins: [
@@ -28,6 +30,8 @@ export default {
     getContainerWidth,
     filterForLog,
     removeChart,
+    addClipPath,
+    addZoomGroup,
   ],
   methods: {
     drawChart() {
@@ -39,13 +43,7 @@ export default {
           .attr('width', this.width + this.margin.left + this.margin.right);
 
         this.addLabels();
-
-        const clipPath = this.svg.append('defs').append('clipPath');
-        clipPath.attr('id', `clip-quickplot-${this.ID}`)
-          .append('rect')
-          .style('fill', 'none')
-          .attr('width', this.width)
-          .attr('height', this.height);
+        this.addClipPath();
 
         this.g = this.svg.append('g')
           .attr('class', 'chart-group')
@@ -73,24 +71,12 @@ export default {
             .call(this.yAxis);
 
         // Add Zoom Group
-        this.g.append('g')
-          .attr('class', 'zoom-group')
-          .attr('id', `zoom-group-${this.ID}`)
-          .append('g')
-            .attr('id', `zoom--${this.ID}`)
-            .append('rect')
-            .attr('class', 'zoom')
-            .attr('opacity', 0)
-            .attr('cursor', 'move')
-            .attr('pointer-events', 'none')
-            .style('fill', 'none')
-            .attr('width', this.width)
-            .attr('height', this.height);
+        this.addZoomGroup();
 
         // Add chart element groups
         const group = this.g.append('g')
           .attr('class', 'quickplot-group')
-          .attr('clip-path', `url(#clip-quickplot-${this.ID})`);
+          .attr('clip-path', `url(#clip-${this.ID})`);
 
         group.append('g').attr('class', 'error-line');
         group.append('g').attr('class', 'error-cap-top');
@@ -109,9 +95,7 @@ export default {
 
       const trans = d3.transition().duration(750);
       // Then rescale to zoom's scale
-      const t = d3.zoomTransform(this.g.select('.zoom').node());
-      const newXScale = t.rescaleX(this.xScale);
-      const newYScale = t.rescaleY(this.yScale);
+      const [newXScale, newYScale] = this.rescaleToZoom();
       const newLine = d3.line()
         .defined(this.filterForLog)
         .x(d => newXScale(d.x))

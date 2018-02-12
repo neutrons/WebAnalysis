@@ -5,9 +5,7 @@ export default {
     updateChartElements() {
       const trans = d3.transition().duration(750);
       // Then rescale to zoom's scale
-      const t = d3.zoomTransform(this.g.select('.zoom').node());
-      const newXScale = t.rescaleX(this.xScale);
-      const newYScale = t.rescaleY(this.yScale);
+      const [newXScale, newYScale] = this.rescaleToZoom();
       const newLine = d3.line()
         .defined(this.filterForLog)
         .x(d => newXScale(d.x))
