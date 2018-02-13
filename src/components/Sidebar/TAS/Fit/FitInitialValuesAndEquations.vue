@@ -74,9 +74,13 @@ import _ from 'lodash';
 import Vue from 'vue';
 import math from 'mathjs';
 import { eventBus } from '../../../../assets/js/eventBus';
+import initialGuess from '../../../../assets/js/initialGuess';
 
 export default {
   name: 'FitInitialValuesAndEquations',
+  mixins: [
+    initialGuess,
+  ],
   data() {
     return {
       selected: [],
@@ -86,19 +90,22 @@ export default {
     };
   },
   created() {
-    this.selected.push(_.cloneDeep(this.fits.Linear));
+    const temp = this.getInitialGuesses(this.fits.Linear);
+    this.selected.push(temp);
     this.fitList.push('Linear');
-    this.setFitInitialValues();
-    this.setFitEquation();
+
+    this.setFitInitialValues(temp.initialValues);
+    this.setFitEquation(temp.equation);
 
     eventBus.$on('update-initial-value-pick-TAS', this.updateInitialValueWithPick);
-    eventBus.$on('toggle-picker-icon-TAS', this.resetIndices);
   },
   computed: {
     ...mapState('TAS/Fit', {
       fits: state => state.fit,
       fitInitialValues: state => state.fitInitialValues,
       isFitting: state => state.isFitting,
+      selectedData: state => state.selectedData,
+      fileToFit: state => state.fileToFit,
     }),
     ...mapGetters('TAS/Fit', [
       'fitNames',
@@ -119,7 +126,7 @@ export default {
       'setFitList',
     ]),
     updateSelected(value, index) {
-      let temp = _.cloneDeep(this.fits[value]);
+      let temp = this.getInitialGuesses(this.fits[value]);
 
       temp = this.formatCoefficients(temp, index);
 
@@ -130,7 +137,7 @@ export default {
       this.inputInitialValues();
     },
     addNewEquation() {
-      let temp = _.cloneDeep(this.fits.Linear);
+      let temp = this.getInitialGuesses(this.fits.Linear);
 
       temp = this.formatCoefficients(temp, this.selected.length);
 
