@@ -16,6 +16,10 @@ export default {
     eventBus.$on('refit-data-SANS1D', this.drawChart);
     eventBus.$on('revise-fit-line-SANS1D', this.reviseFitLine);
   },
+  destroyed() {
+    eventBus.$off('refit-data-SANS1D');
+    eventBus.$off('revise-fit-line-SANS1D');
+  },
   computed: {
     ...mapState('SANS', {
       colorDomain: state => state.colorDomain,

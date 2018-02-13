@@ -16,6 +16,10 @@ export default {
     eventBus.$on('refit-data-TAS', this.drawChart);
     eventBus.$on('revise-fit-line-TAS', this.reviseFitLine);
   },
+  destroyed() {
+    eventBus.$off('refit-data-TAS');
+    eventBus.$off('revise-fit-line-TAS');
+  },
   computed: {
     ...mapState('TAS', {
       colorDomain: state => state.colorDomain,

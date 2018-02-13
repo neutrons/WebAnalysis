@@ -53,7 +53,9 @@ export default {
     this.initialValues = _.cloneDeep(this.fitInitialValues);
 
     eventBus.$on('update-initial-value-pick-SANS', this.updateInitialValueWithPick);
-    eventBus.$on('toggle-picker-icon-SANS', this.resetPickIndex);
+  },
+  destroyed() {
+    eventBus.$off('update-initial-value-pick-SANS');
   },
   data() {
     return {
