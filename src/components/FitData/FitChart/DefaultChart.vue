@@ -246,10 +246,9 @@ export default {
   },
   methods: {
     selectPickerPoints(value) {
+      eventBus.$emit(`update-initial-value-pick-${this.$route.meta.group}`, value);
       this.showPicker = false;
       this.togglePickArea(false);
-
-      eventBus.$emit(`update-initial-value-pick-${this.$route.meta.group}`, value);
     },
     togglePickArea(value) {
       this.svg.select('.pick-area')
