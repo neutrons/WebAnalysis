@@ -15,6 +15,7 @@ export default {
       filesSelected: state => state.filesSelected,
       label: state => state.label,
       hexBinSize: state => state.hexBinSize,
+      fileToPlot: state => state.filesSelected,
     }),
     ...mapGetters('SANS/SANS2D', {
       chartConfigurations: 'getChartConfigurations',

@@ -49,7 +49,7 @@
         <v-tabs-content id='data-table'>
           <v-card flat>
             <v-card-text>
-              <v-plotted-data-table :plotted-data='plotData' />
+              <v-plotted-data-table :plotted-data='plotData' :files='fileToPlot' />
             </v-card-text>
           </v-card>
         </v-tabs-content>

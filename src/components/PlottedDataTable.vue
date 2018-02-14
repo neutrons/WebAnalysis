@@ -1,11 +1,15 @@
 <template>
-<div class='text-cs-center'>
-    <v-data-table
-      :headers='headers'
-      :items='plottedData'
-      class='text-xs-center'
-      :rows-per-page-items='[100, 25, 75, { text: "All", value: -1 }]'
-    >
+<v-card flat>
+  <v-card-title class='pb-0'>
+    <div v-if='plottedData.length'>
+      <v-btn outline flat small color='success' @click='downloadPlottedData'>
+        <v-icon :left='!isBreakpointSmall'>file_download</v-icon>
+        <span class='hidden-md-and-down'>Export CSV</span>
+      </v-btn>
+    </div>
+  </v-card-title>
+  <v-card-text class='pt-1'>
+    <v-data-table :headers='headers' :items='plottedData' class='text-xs-center' :rows-per-page-items='[25, 50, 100, { text: "All", value: -1 }]'>
       <template slot='items' slot-scope='props'>
         <td class='text-xs-left' v-for='(item, index) in fieldnames' :key='index'>{{props.item[item]}}</td>
       </template>
@@ -15,10 +19,14 @@
         </v-alert>
       </template>
     </v-data-table>
-</div>
+  </v-card-text>
+</v-card>
 </template>
 
 <script>
+import downloadCSV from '../assets/js/downloadCSV';
+import isBreakpointSmall from '../assets/js/isBreakpointSmall';
+
 export default {
   name: 'PlottedDataTable',
   data() {
@@ -31,7 +39,14 @@ export default {
       type: Array,
       required: true,
     },
+    files: {
+      required: true,
+    },
   },
+  mixins: [
+    downloadCSV,
+    isBreakpointSmall,
+  ],
   computed: {
     fieldnames() {
       if (this.plottedData.length === 0) return [];
@@ -46,6 +61,28 @@ export default {
           value: key,
         };
       });
+    },
+    filename() {
+      if (Array.isArray(this.files)) {
+        return `${this.files.join('_')}_plotted_data.csv`;
+      } else if (typeof this.files === 'string') {
+        return `${this.files}_plotted_data.csv`;
+      }
+
+      return 'plotted_data.csv';
+    },
+  },
+  methods: {
+    downloadPlottedData() {
+      let headers = this.fieldnames.join(',');
+      headers += '\n';
+
+      // eslint-disable-next-line
+      const arr = this.plottedData.map((d) => {
+        return Object.values(d);
+      });
+
+      this.downloadCSV(arr, headers, this.filename);
     },
   },
 };

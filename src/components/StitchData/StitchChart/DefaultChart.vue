@@ -70,7 +70,7 @@
           <v-tabs-content id='data-table'>
             <v-card flat>
               <v-card-text>
-                <v-plotted-data-table :plotted-data='preparedData.map(d => d.values).reduce((a,b) => a.concat(b), [])' />
+                <v-plotted-data-table :plotted-data='preparedData.map(d => d.values).reduce((a,b) => a.concat(b), [])' :files='filesSelected' />
               </v-card-text>
             </v-card>
           </v-tabs-content>
