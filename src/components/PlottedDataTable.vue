@@ -1,6 +1,6 @@
 <template>
 <v-card flat>
-  <v-card-title class='pb-0'>
+  <v-card-title class='pb-0' v-if='allowExport'>
     <div v-if='plottedData.length'>
       <v-btn outline flat small color='success' @click='downloadPlottedData'>
         <v-icon :left='!isBreakpointSmall'>file_download</v-icon>
@@ -41,6 +41,10 @@ export default {
     },
     files: {
       required: true,
+    },
+    allowExport: {
+      type: Boolean,
+      default: true,
     },
   },
   mixins: [

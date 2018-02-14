@@ -92,29 +92,35 @@
                               <v-tabs-items>
                                 <v-tabs-content id='fit-results'>
                                   <v-card flat>
-                                    <v-list>
-                                      <template v-for='(item, key, index) in props.brushSelections'>
-                                        <v-list-tile :key='index'>
-                                          <v-list-tile-avatar>
-                                            <v-icon>crop_free</v-icon>
-                                          </v-list-tile-avatar>
-                                          <v-list-tile-content>
-                                            <span class='hidden-sm-and-down'>{{ key }}</span>
-                                            <span class='hidden-md-and-up'> {{ index }}</span>
-                                          </v-list-tile-content>
-                                          <v-list-tile-content>
-                                            {{ item.converted[0].toExponential(2) }} : {{ item.converted[1].toExponential(2) }}
-                                          </v-list-tile-content>
-                                        </v-list-tile>
-                                        <v-divider v-if='index < Object.keys(props.brushSelections).length - 1' :key='key'></v-divider>
-                                      </template>
-                                    </v-list>
+                                    <v-card-text class='tab-card-text'>
+                                      <v-list>
+                                        <template v-for='(item, key, index) in props.brushSelections'>
+                                          <v-list-tile :key='index'>
+                                            <v-list-tile-avatar>
+                                              <v-icon>crop_free</v-icon>
+                                            </v-list-tile-avatar>
+                                            <v-list-tile-content>
+                                              <span class='hidden-sm-and-down'>{{ key }}</span>
+                                              <span class='hidden-md-and-up'> {{ index }}</span>
+                                            </v-list-tile-content>
+                                            <v-list-tile-content>
+                                              {{ item.converted[0].toExponential(2) }} : {{ item.converted[1].toExponential(2) }}
+                                            </v-list-tile-content>
+                                          </v-list-tile>
+                                          <v-divider v-if='index < Object.keys(props.brushSelections).length - 1' :key='key'></v-divider>
+                                        </template>
+                                      </v-list>
+                                    </v-card-text>
                                   </v-card>
                                 </v-tabs-content>
 
 
                                 <v-tabs-content id='fit-data'>
-                                    <v-stitched-data-table :stitched-data='props.stitchedData' :files-stitched='props.filesSelected'></v-stitched-data-table>
+                                  <v-card>
+                                    <v-card-text class='tab-card-text'>
+                                      <v-stitched-data-table :stitched-data='props.stitchedData' :files-stitched='props.filesSelected'></v-stitched-data-table>
+                                    </v-card-text>
+                                  </v-card>
                                 </v-tabs-content>
                                 </v-tabs-items>
                             </v-tabs>
@@ -178,3 +184,10 @@ export default {
   },
 };
 </script>
+
+<style lang='scss' scoped>
+.tab-card-text {
+  max-height: 350px;
+  overflow-y: auto;
+}
+</style>

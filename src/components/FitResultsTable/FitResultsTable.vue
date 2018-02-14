@@ -1,7 +1,7 @@
 <template>
 <v-container pt-0>
   <v-layout row wrap>
-    <v-flex xs12>
+    <v-flex xs12 v-if='allowExport'>
       <v-btn outline flat @click='downloadFitEquation' color='success'>
         <v-icon :left='!isBreakpointSmall'>file_download</v-icon>
         <span class='hidden-md-and-down'>Fit Equation</span>
@@ -55,6 +55,10 @@ export default {
   props: {
     xScale: {
       type: Function,
+    },
+    allowExport: {
+      type: Boolean,
+      default: true,
     },
   },
   methods: {

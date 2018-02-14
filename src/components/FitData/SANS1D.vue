@@ -32,15 +32,19 @@
 
                               <v-tabs-items>
                                 <v-tabs-content id='fit-results'>
-                                    <v-card flat>
-                                      <v-card-text>
+                                    <v-card>
+                                      <v-card-text class='tab-card-text'>
                                         <v-fit-results-table :x-scale='props.xScale'></v-fit-results-table>
                                       </v-card-text>
                                     </v-card>
                                 </v-tabs-content>
 
                                 <v-tabs-content id='fit-data'>
-                                    <v-fitted-data-table :fitted-data='props.fittedData' :file-to-fit='props.fileToFit'></v-fitted-data-table>
+                                  <v-card>
+                                    <v-card-text class='tab-card-text'>
+                                      <v-fitted-data-table :fitted-data='props.fittedData' :file-to-fit='props.fileToFit'></v-fitted-data-table>
+                                    </v-card-text>
+                                  </v-card>
                                 </v-tabs-content>
                                 </v-tabs-items>
                             </v-tabs>
@@ -111,3 +115,10 @@ export default {
   },
 };
 </script>
+
+<style lang='scss' scoped>
+.tab-card-text {
+  max-height: 350px;
+  overflow-y: auto;
+}
+</style>
