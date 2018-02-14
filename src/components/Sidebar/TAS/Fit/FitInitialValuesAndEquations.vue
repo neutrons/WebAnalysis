@@ -87,6 +87,7 @@ export default {
       fitList: [],
       selectIndex: null,
       pickIndex: null,
+      count: 0,
     };
   },
   created() {
@@ -98,6 +99,9 @@ export default {
     this.setFitEquation(temp.equation);
 
     eventBus.$on('update-initial-value-pick-TAS', this.updateInitialValueWithPick);
+  },
+  destroyed() {
+    eventBus.$off('update-initial-value-pick-TAS');
   },
   computed: {
     ...mapState('TAS/Fit', {
@@ -247,6 +251,7 @@ export default {
       this.inputInitialValues();
     },
     resetIndices() {
+      this.count += 1;
       this.selectIndex = null;
       this.pickIndex = null;
     },

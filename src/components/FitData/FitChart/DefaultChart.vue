@@ -246,9 +246,9 @@ export default {
   },
   methods: {
     selectPickerPoints(value) {
-      eventBus.$emit(`update-initial-value-pick-${this.$route.meta.group}`, value);
       this.showPicker = false;
       this.togglePickArea(false);
+      eventBus.$emit(`update-initial-value-pick-${this.$route.meta.group}`, value);
     },
     togglePickArea(value) {
       this.svg.select('.pick-area')
@@ -269,6 +269,9 @@ export default {
     this.getContainerWidth(`#fit-chart-wrapper-${this.ID}`);
     this.drawChart();
     this.setResponsive(`fit-chart-width-change-${this.ID}`, `#fit-chart-wrapper-${this.ID}`, `.fit-chart-${this.ID}`);
+  },
+  destroyed() {
+    eventBus.$off(`toggle-pick-area-${this.$route.meta.group}`);
   },
   watch: {
     chartConfigurations: {
