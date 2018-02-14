@@ -36,17 +36,28 @@ export default {
     note: '',
   },
   Lorentzian: {
-    /*
-      Initial Guess for  A, center, fwhm from the y_noise!
-      A = np.max(y_noise) - np.min(y_noise)
-      center = np.sum(x*y_noise)/np.sum(y_noise)
-      sigma = np.sqrt(np.abs(
-          np.sum((x-center)**2 * y_noise)/np.sum(y_noise)
-      ))
-      fwhm = 2 * sigma
-    */
     title: 'Lorentzian',
     equation: '(A * ((fwhm/2) / ((x-center)^2 + (fwhm/2)^2)))',
+    initialValues: [
+      { coefficient: 'A', value: 'max(y) - min(y)', constant: false },
+      { coefficient: 'fwhm',
+        value: '2 * sqrt(abs(sum(dotMultiply(dotPow((x - sum(dotMultiply(x, y)) / sum(y)), 2), y)) / sum(y)))',
+        constant: false,
+      },
+      { coefficient: 'center', value: 'sum(dotMultiply(x, y)) / sum(y)', constant: false },
+    ],
+    transformations: {
+      x: 'x',
+      y: 'y',
+      error: 'error',
+    },
+    yLabel: 'y',
+    xLabel: 'x',
+    note: '',
+  },
+  'Lorentzian^2': {
+    title: 'Lorentzian^2',
+    equation: 'A * ((fwhm / 2) / ((x - center)^2 + (fwhm / 2)^2))^2',
     initialValues: [
       { coefficient: 'A', value: 'max(y) - min(y)', constant: false },
       { coefficient: 'fwhm',
