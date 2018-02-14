@@ -17,26 +17,49 @@
                 <span class='mr-2'>Y: {{yPoint.toExponential(2)}}</span>
                 <span class='mr-2'>Error: {{errorPoint.toExponential(2)}}</span>
               </v-subheader>
+              <v-spacer></v-spacer>
+              <v-btn icon @click='show = !show' v-if='Object.keys(browseData).length'>
+                <v-icon>{{ show ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
+              </v-btn>
             </v-layout>
           </v-container>
         </v-toolbar>
       </v-flex>
 
-      <v-flex xs12 v-if='isMetadata && metadataLength'>
-        <v-card>
-          <v-toolbar flat>
-            <v-toolbar-title>Metadata</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon @click='show = !show'>
-              <v-icon>{{ show ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
-            </v-btn>
-          </v-toolbar>
-          <v-slide-y-transition>
-            <v-card-text v-if='show'>
-              <v-metadata-table :metadata='plotMetadata'></v-metadata-table>
-            </v-card-text>
-          </v-slide-y-transition>
-        </v-card>
+      <!-- data and metadata tabs  -->
+      <v-flex xs12 v-if='Object.keys(browseData).length'>
+        <v-slide-y-transition>
+            <v-tabs v-if='show'>
+              <!-- Tabs Bar -->
+              <v-tabs-bar>
+                <v-tabs-item href='#data' ripple>
+                  Data
+                </v-tabs-item>
+                <v-tabs-item href='#metadata' ripple v-if='typeof browseData.metadata !== "undefined"'>
+                  Metadata
+                </v-tabs-item>
+                <v-tabs-slider color='accent'></v-tabs-slider>
+              </v-tabs-bar>
+
+              <v-tabs-items>
+                <!-- Plotted Data Table -->
+                <v-tabs-content id='data'>
+                  <v-card flat>
+                    <v-card-text class='tab-card-text'>
+                      <v-plotted-data-table :plotted-data='browseData.data || []' :files='[browseData.filename]' />
+                    </v-card-text>
+                  </v-card>
+                </v-tabs-content>
+
+                <v-tabs-content id='metadata'>
+                  <v-card-text class='tab-card-text' v-if='typeof browseData.metadata !== "undefined"'>
+                    <v-metadata-table :metadata='browseData.metadata || {}'></v-metadata-table>
+                  </v-card-text>
+                </v-tabs-content>
+
+              </v-tabs-items>
+            </v-tabs>
+        </v-slide-y-transition>
       </v-flex>
     </v-layout>
 </template>
@@ -55,6 +78,7 @@ export default {
   components: {
     'v-reset-chart-button': () => import('../ResetChartButton'),
     'v-metadata-table': () => import('../MetadataTable'),
+    'v-plotted-data-table': () => import('../PlottedDataTable'),
   },
   data() {
     return {
@@ -142,7 +166,7 @@ export default {
         return 0;
       }
 
-      return this.plotMetadata.length;
+      return Object.keys(this.plotMetadata).length;
     },
   },
   mounted() {
@@ -259,5 +283,10 @@ foreignObject {
     text-anchor: end;
     letter-spacing: 1px;
   }
+}
+
+.tab-card-text {
+  max-height: 350px;
+  overflow-y: auto;
 }
 </style>

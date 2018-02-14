@@ -1,11 +1,14 @@
 <template>
-<v-container>
-  <v-layout row wrap>
-    <v-flex xs12 v-for='(item, index) in metadata' :key='index'>
-      {{item}}
-    </v-flex>
-  </v-layout>
-</v-container>
+<v-list dense>
+  <template v-for="(item, key) in metadata">
+    <v-list-tile :key="item.title">
+      <v-list-tile-content>
+        <div>{{ key }}: {{ item }}</div>
+      </v-list-tile-content>
+    </v-list-tile>
+    <v-divider :key='key'></v-divider>
+  </template>
+</v-list>
 </template>
 
 <script>
@@ -13,7 +16,7 @@ export default {
   name: 'MetadataTable',
   props: {
     metadata: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },

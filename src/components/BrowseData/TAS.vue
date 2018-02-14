@@ -25,7 +25,7 @@ export default {
       return swapFields(this.browseData.data, this.extractDefaults(this.browseData.metadata));
     },
     plotMetadata() {
-      if (!Object.keys(this.browseData).length) return [];
+      if (!Object.keys(this.browseData).length) return {};
 
       return this.browseData.metadata;
     },
@@ -33,17 +33,8 @@ export default {
   methods: {
     extractDefaults(md) {
       const obj = { x: 'x', y: 'y' };
-
-      md.forEach((el) => {
-        const xMatch = /^def_x/.exec(el);
-        const yMatch = /^def_y/.exec(el);
-
-        if (xMatch !== null) {
-          obj.x = el.trim().split(' = ')[1];
-        } else if (yMatch !== null) {
-          obj.y = el.trim().split(' = ')[1];
-        }
-      });
+      obj.x = md.def_x;
+      obj.y = md.def_y;
 
       this.label = { ...obj };
       return obj;

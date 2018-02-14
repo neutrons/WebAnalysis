@@ -5,23 +5,27 @@
     
     <v-card>
       <v-card-text>
-      <v-select
-        prepend-icon='keyboard_arrow_left'
-        :prepend-icon-cb='() => move("left")'
-        append-icon='keyboard_arrow_right'
-        :append-icon-cb='() => move("right")'
-        :items='fileList'
-        v-model='selectedFile'
-        single-line
-        chips
-        deletable-chips
-        bottom
-        hide-details
-        max-height='150'
-        autocomplete
-      ></v-select>
+        <v-tooltip bottom :close-delay='1'>
+          <v-select
+            slot='activator'
+            prepend-icon='keyboard_arrow_left'
+            :prepend-icon-cb='() => move("left")'
+            append-icon='keyboard_arrow_right'
+            :append-icon-cb='() => move("right")'
+            :items='fileList'
+            v-model='selectedFile'
+            single-line
+            chips
+            deletable-chips
+            bottom
+            hide-details
+            max-height='150'
+            autocomplete
+          ></v-select>
+          <span>Use arrow keys <code><i class='fa fa-caret-left'></i> | <i class='fa fa-caret-right'></i></code> to browse data.</span>
+        </v-tooltip>
       </v-card-text>
-      </v-card>
+    </v-card>
   </v-expansion-panel-content>
 
   <v-expansion-panel-content :value='true'>
