@@ -44,6 +44,9 @@ export default {
       isFileFit: 'isFileFit',
       preparedData: 'getPreparedData',
     }),
+    plottedData() {
+      return this.preparedData.map(d => d.values).reduce((a, b) => a.concat(b), []);
+    },
   },
   methods: {
     ...mapMutations('SANS/Fit', [
