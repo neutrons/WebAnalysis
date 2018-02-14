@@ -24,10 +24,14 @@ export default {
       type: String,
       required: true,
     },
+    selection: {
+      type: String,
+      required: true,
+    },
   },
   methods: {
     getSVG() {
-      return d3.select(`.chart-${this.ID}`);
+      return d3.select(this.selection);
     },
     save(dataBlob) {
       const date = new Date();

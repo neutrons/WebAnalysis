@@ -29,7 +29,7 @@
                 <v-container class='pa-0' fluid>
                   <v-layout row wrap class='pa-0'>
                     <v-reset-chart-button @reset-chart='resetChart' :disable='filesSelected === null'></v-reset-chart-button>
-                    <v-export-chart-button :ID='ID' :disable='filesSelected === null'></v-export-chart-button>
+                    <v-export-chart-button :ID='ID' :selection='`.chart-${ID}`' :disable='filesSelected === null'></v-export-chart-button>
 
                     <v-spacer></v-spacer>
                     <!-- scatter point hover values -->

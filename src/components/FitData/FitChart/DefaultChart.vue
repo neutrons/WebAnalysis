@@ -29,7 +29,7 @@
                   <v-container class='pa-0' fluid>
                     <v-layout row wrap class='pa-0'>
                       <v-reset-chart-button @reset-chart='resetChart' :disable='filesSelected.length === 0'></v-reset-chart-button>
-                      <v-export-chart-button :ID='ID' :disable='filesSelected.length === 0'></v-export-chart-button>
+                      <v-export-chart-button :ID='ID' :selection='`.fit-chart-${ID}`' :disable='filesSelected.length === 0'></v-export-chart-button>
                       <v-legend-button @toggle-legend='drawerRight = !drawerRight' @close-legend='drawerRight = false' :disable='filesSelected.length === 0'></v-legend-button>
 
                       <v-spacer></v-spacer>
