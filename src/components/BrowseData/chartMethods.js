@@ -93,7 +93,7 @@ export default {
           .attr('pointer-events', 'all');
       }
 
-      const trans = d3.transition().duration(750);
+      const trans = d3.transition().duration(0);
       // Then rescale to zoom's scale
       const [newXScale, newYScale] = this.rescaleToZoom();
       const newLine = d3.line()
