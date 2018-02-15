@@ -41,7 +41,7 @@ export default {
     initialValues: [
       { coefficient: 'A', value: 'max(y) - min(y)', constant: false },
       { coefficient: 'fwhm',
-        value: '2 * sqrt(abs(sum(dotMultiply(dotPow((x - sum(dotMultiply(x, y)) / sum(y)), 2), y)) / sum(y)))',
+        value: 'sqrt(abs(sum(dotMultiply(dotPow((x - sum(dotMultiply(x, y)) / sum(y)), 2), y)) / sum(y)))',
         constant: false,
       },
       { coefficient: 'center', value: 'sum(dotMultiply(x, y)) / sum(y)', constant: false },
@@ -61,7 +61,7 @@ export default {
     initialValues: [
       { coefficient: 'A', value: 'max(y) - min(y)', constant: false },
       { coefficient: 'fwhm',
-        value: '2 * sqrt(abs(sum(dotMultiply(dotPow((x - sum(dotMultiply(x, y)) / sum(y)), 2), y)) / sum(y)))',
+        value: 'sqrt(abs(sum(dotMultiply(dotPow((x - sum(dotMultiply(x, y)) / sum(y)), 2), y)) / sum(y)))',
         constant: false,
       },
       { coefficient: 'center', value: 'sum(dotMultiply(x, y)) / sum(y)', constant: false },

@@ -3,7 +3,7 @@
   <template v-for="(item, key) in metadata">
     <v-list-tile :key="item.title">
       <v-list-tile-content>
-        <div>{{ key }}: {{ item }}</div>
+        <div><strong>{{ key }}</strong> = {{ item }}</div>
       </v-list-tile-content>
     </v-list-tile>
     <v-divider :key='key'></v-divider>

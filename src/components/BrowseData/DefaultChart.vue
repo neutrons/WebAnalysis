@@ -32,11 +32,11 @@
             <v-tabs v-if='show'>
               <!-- Tabs Bar -->
               <v-tabs-bar>
-                <v-tabs-item href='#data' ripple>
-                  Data
-                </v-tabs-item>
                 <v-tabs-item href='#metadata' ripple v-if='typeof browseData.metadata !== "undefined"'>
                   Metadata
+                </v-tabs-item>
+                <v-tabs-item href='#data' ripple>
+                  Data
                 </v-tabs-item>
                 <v-tabs-slider color='accent'></v-tabs-slider>
               </v-tabs-bar>
