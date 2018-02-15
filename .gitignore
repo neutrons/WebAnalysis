@@ -91,3 +91,5 @@ selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
+
+./src/store/Scales
