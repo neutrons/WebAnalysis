@@ -109,7 +109,7 @@ export default {
       if (this.fileToFit === null) {
         this.resetFitConfiguration();
         this.resetBrushSelection();
-        if (this.ID === 'SANS1D') this.transformData();
+        this.transformData();
       }
     },
   },

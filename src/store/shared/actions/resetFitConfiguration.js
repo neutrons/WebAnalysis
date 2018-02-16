@@ -10,5 +10,9 @@ export default ({ commit, state }) => {
     y: 'y',
     error: 'error',
   };
+  state.label = {
+    x: 'q = x',
+    y: 'I(q) = y',
+  };
   /* eslint-enable */
 };
