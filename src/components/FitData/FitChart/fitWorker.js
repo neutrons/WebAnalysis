@@ -2,6 +2,7 @@ import _ from 'lodash';
 import math from 'mathjs';
 import LM from 'ml-levenberg-marquardt';
 import linearspace from './linearspace';
+import scores from './scores';
 
 function fittedPoints(fittedY, tempX) {
   const FP = [];
@@ -70,6 +71,7 @@ function fittingFunction(data, initialValues, fitSettings, equation) {
       fittedData: fittedPoints(constantFitted, xFit),
       fitError: null,
       iv: _.cloneDeep(initialValues),
+      scores: null,
     };
   }
 
@@ -120,10 +122,14 @@ function fittingFunction(data, initialValues, fitSettings, equation) {
     initValues[i].value = +initValues[i].value.toFixed(4);
   }
 
+  // print out coefficient scores
+  // console.log('scores:', scores(tempData.x, tempData.y, fitFunctionFitted));
+
   return {
     fittedData: fittedPoints(yFitted, xFit),
     fitError: fittedParams.parameterError,
     iv: _.cloneDeep(initValues),
+    scores: scores(tempData.x, tempData.y, fitFunctionFitted),
   };
 }
 

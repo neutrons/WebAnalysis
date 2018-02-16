@@ -33,4 +33,5 @@ export default {
   fitNote: '',
   brushSelection: [],
   isFitting: false,
+  fitScores: null,
 };
