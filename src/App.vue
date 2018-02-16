@@ -3,7 +3,7 @@
   <!-- Side Bar Component -->
   <v-sidebar :drawer='drawer' v-show='$route.meta.title !== "Home"'></v-sidebar>
 
-  <v-toolbar fixed app class='elevation-1' :clipped-left='true' :clipped-right='true' color='secondary' :dark='!$vuetify.dark' v-show='$route.meta.title !== "Home"'>
+  <v-toolbar fixed app dense class='elevation-1' :clipped-left='true' :clipped-right='true' color='secondary' :dark='!$vuetify.dark' v-show='$route.meta.title !== "Home"'>
 
     <v-toolbar-side-icon @click.stop='drawer = !drawer' class='ml-3 mr-3'></v-toolbar-side-icon>
 

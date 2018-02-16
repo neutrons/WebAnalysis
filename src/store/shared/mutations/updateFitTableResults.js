@@ -5,4 +5,6 @@ export default (state, payload) => {
   state.fitError = payload.fitError;
   // eslint-disable-next-line
   state.fitInitialValues = payload.iv;
+  // eslint-disable-next-line
+  state.fitScores = payload.scores;
 };
