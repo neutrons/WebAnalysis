@@ -1,0 +1,3 @@
+scantitle "hhh (.5,.5,.5) field dependence:  base Temp, H = 0 T going down from 3 T"
+scan h .47 .53 .0025 k .47 .53 .0025  l .47 .53 .0025  preset mcu 5
+

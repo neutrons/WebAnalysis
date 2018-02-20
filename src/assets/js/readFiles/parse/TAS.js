@@ -2,10 +2,30 @@
 import pp from 'papaparse';
 import config from '../configs/TAS';
 
+function cleanDataTable(table) {
+  let temp = table.split(/\r\n|\r|\n/);
+
+  temp = temp.filter((el, index) => {
+    if (/^#/.exec(el)) {
+      if (index === 0) return true;
+    } else {
+      return true;
+    }
+
+    return false;
+  });
+
+  // console.log('Returning temp:', temp.join('\r\n'));
+  return temp.join('\r\n');
+}
+
 function extractMetadata(data) {
   const m1 = data.match('# col_headers = ');
   const m2 = data.match('# Sum of Counts');
-  const dataTable = data.slice(m1.index + 18, m2.index);
+
+  let dataTable = data.slice(m1.index + 18, m2.index);
+  dataTable = cleanDataTable(dataTable);
+
   let metadata = data.slice(0, m1.index).concat(data.slice(m2.index));
 
   // Remove pounds '#'
@@ -13,8 +33,19 @@ function extractMetadata(data) {
   metadata = metadata.split(/\r\n|\r|\n/);
   metadata = metadata.filter(d => d !== '');
 
+  const temp = {};
+  metadata.forEach((d) => {
+    const match = /scan completed./.exec(d);
+    if (match === null) {
+      const key = d.split(' = ');
+      temp[key[0]] = key[1].trim();
+    } else {
+      temp.completed = d.substr(0, match.index).trim();
+    }
+  });
+
   return {
-    metadata,
+    metadata: temp,
     data: dataTable,
   };
 }

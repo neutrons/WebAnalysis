@@ -15,13 +15,16 @@ export default {
     xLabel: 'x',
     note: '',
   },
-  Guassian: {
-    title: 'Guassian',
+  Gaussian: {
+    title: 'Gaussian',
     equation: `(A*exp(${(-4 * Math.log(2)).toFixed(3)}*(x-center)^2/fwhm^2))`,
     initialValues: [
-      { coefficient: 'A', value: 1, constant: false },
-      { coefficient: 'center', value: 1, constant: false },
-      { coefficient: 'fwhm', value: 1, constant: false },
+      { coefficient: 'A', value: 'max(y) - min(y)', constant: false },
+      { coefficient: 'center', value: 'sum(dotMultiply(x, y)) / sum(y)', constant: false },
+      { coefficient: 'fwhm',
+        value: `sqrt(abs(sum(dotMultiply(dotPow(x - (sum(dotMultiply(x, y)) / sum(y)), 2), y))/ sum(y))) * ${Math.sqrt(8 * Math.log(2))}`,
+        constant: false,
+      },
     ],
     transformations: {
       x: 'x',
@@ -36,9 +39,32 @@ export default {
     title: 'Lorentzian',
     equation: '(A * ((fwhm/2) / ((x-center)^2 + (fwhm/2)^2)))',
     initialValues: [
-      { coefficient: 'A', value: 1, constant: false },
-      { coefficient: 'fwhm', value: 1, constant: false },
-      { coefficient: 'center', value: 1, constant: false },
+      { coefficient: 'A', value: 'max(y) - min(y)', constant: false },
+      { coefficient: 'fwhm',
+        value: 'sqrt(abs(sum(dotMultiply(dotPow((x - sum(dotMultiply(x, y)) / sum(y)), 2), y)) / sum(y)))',
+        constant: false,
+      },
+      { coefficient: 'center', value: 'sum(dotMultiply(x, y)) / sum(y)', constant: false },
+    ],
+    transformations: {
+      x: 'x',
+      y: 'y',
+      error: 'error',
+    },
+    yLabel: 'y',
+    xLabel: 'x',
+    note: '',
+  },
+  'Lorentzian^2': {
+    title: 'Lorentzian^2',
+    equation: 'A * ((fwhm / 2) / ((x - center)^2 + (fwhm / 2)^2))^2',
+    initialValues: [
+      { coefficient: 'A', value: 'max(y) - min(y)', constant: false },
+      { coefficient: 'fwhm',
+        value: 'sqrt(abs(sum(dotMultiply(dotPow((x - sum(dotMultiply(x, y)) / sum(y)), 2), y)) / sum(y)))',
+        constant: false,
+      },
+      { coefficient: 'center', value: 'sum(dotMultiply(x, y)) / sum(y)', constant: false },
     ],
     transformations: {
       x: 'x',

@@ -9,34 +9,27 @@
         hide-overlay
         width='450'
         mobile-break-point='600'
-        class='grey lighten-4'
+        :dark='$vuetify.theme.name !== "white"'
     >
-    <div v-if='title !== "404"'>
-        <component :is='`Sidebar${title}`'></component>
-    </div>  
+
+    <keep-alive>
+      <component :is='$route.meta.sidebar'></component>
+    </keep-alive>
     </v-navigation-drawer>
 </template>
 
 <script>
-import SidebarSANS1D from './SANS1D/SidebarSANS1D';
-import SidebarSANS2D from './SANS2D/SidebarSANS2D';
-import SidebarStitch from './Stitch/SidebarStitch';
-import SidebarTAS from './TAS/SidebarTAS';
-
-/* Import Mixins */
-import getTitle from '../../assets/js/getTitle';
-
 export default {
   name: 'Sidebar',
   components: {
-    SidebarSANS1D,
-    SidebarSANS2D,
-    SidebarStitch,
-    SidebarTAS,
+    SidebarSANS1DBrowse: () => import('./SANS/Browse/SidebarSANS1DBrowse'),
+    SidebarSANS1DFit: () => import('./SANS/Fit/SidebarSANS1DFit'),
+    SidebarSANS1DStitch: () => import('./SANS/Stitch/SidebarSANS1DStitch'),
+    SidebarSANS2D: () => import('./SANS/SANS2D/SidebarSANS2D'),
+    SidebarTASFit: () => import('./TAS/Fit/SidebarTASFit'),
+    SidebarTASBrowse: () => import('./TAS/Browse/SidebarTASBrowse'),
+    Sidebar404: () => import('./Sidebar404'),
   },
-  mixins: [
-    getTitle,
-  ],
   props: {
     drawer: {
       type: Boolean,
@@ -54,6 +47,8 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
-
+<style lang='scss'>
+.chip__close {
+  color: black !important;
+}
 </style>

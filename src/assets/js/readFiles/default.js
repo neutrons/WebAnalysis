@@ -4,7 +4,7 @@ import { eventBus } from '../eventBus';
 
 export default {
   methods: {
-    read1DData(fileURLs, tempData) {
+    read1DData(fileURLs, tempData, plotType = 'default') {
       /*
        When a user selects data to be plotted,
       it first must be fetched, either from
@@ -19,14 +19,19 @@ export default {
       const promises = fileURLs.map((url) => {
         if (url.type === 'fetched') {
           return axios.get(url.url).then((response) => {
-            const data = vm.parseData(response.data, url.filename);
+            let data;
+            try {
+              data = vm.parseData(response.data, url.filename);
+              vm.storeData({
+                filename: url.filename,
+                data,
+              });
 
-            vm.$store.commit(`${vm.title}/storeData`, {
-              filename: url.filename,
-              data,
-            });
-
-            return data;
+              return data;
+            } catch (reason) {
+              eventBus.$emit('add-notification', `File cannot be read. ${url.filename}`, 'error');
+              return [];
+            }
           });
         }
           // Turn file reader into a promise in order to
@@ -36,18 +41,22 @@ export default {
 
           // eslint-disable-next-line
           reader.onload = function (e) {
-            // Get file content
-            const content = e.target.result;
+            try {
+              // Get file content
+              const content = e.target.result;
+              // Code to read Upload 2D file
+              const data = vm.parseData(content, url.filename);
 
-            // Code to read Upload 2D file
-            const data = vm.parseData(content, url.filename);
+              vm.storeData({
+                filename: url.filename,
+                data,
+              });
 
-            vm.$store.commit(`${vm.title}/storeData`, {
-              filename: url.filename,
-              data,
-            });
-
-            resolve(data);
+              resolve(data);
+            } catch (reason) {
+              eventBus.$emit('add-notification', `File cannot be read. ${url.filename}`, 'error');
+              resolve([]);
+            }
           };
 
           reader.readAsText(url.url, 'UTF-8');
@@ -57,8 +66,13 @@ export default {
       if (promises.length > 0) {
         Promise.all(promises).then((results) => {
           const plotData = _.concat(tempData, results);
-
-          vm.$store.commit(`${vm.title}/setCurrentData`, plotData);
+          if (plotData.length) {
+            if (plotType === 'default') {
+              vm.setCurrentData(plotData);
+            } else {
+              vm.setBrowseData(plotData[0]);
+            }
+          }
         }).catch((reason) => {
           const errorMsg = `Error! ${reason}`;
 

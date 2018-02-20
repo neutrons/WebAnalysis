@@ -13,9 +13,9 @@ export default {
   },
   maxIterations: {
     value: 100,
-    min: 100,
-    max: 10000,
-    increment: 100,
+    min: 10,
+    max: 1000,
+    increment: 10,
   },
   errorTolerance: {
     value: 0.1,

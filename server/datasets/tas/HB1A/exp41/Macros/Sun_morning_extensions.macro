@@ -1,0 +1,6 @@
+scantitle "h,h,h+1 scan extension add to #36"
+scan h 1.4 1.55 .005 k 1.4 1.55 .005 l 2.4 2.55 .005 preset mcu 6
+
+scantitle "h,h,h-1 scan extension add to #37"
+scan h 2.4 2.535 .005 k 2.4 2.535 .005 l 1.4 1.535 .005 preset mcu 6
+
