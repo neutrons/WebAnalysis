@@ -33,19 +33,19 @@ function extractMetadata(data) {
   metadata = metadata.split(/\r\n|\r|\n/);
   metadata = metadata.filter(d => d !== '');
 
-  const temp = {};
-  metadata.forEach((d) => {
-    const match = /scan completed./.exec(d);
-    if (match === null) {
-      const key = d.split(' = ');
-      temp[key[0]] = key[1].trim();
-    } else {
-      temp.completed = d.substr(0, match.index).trim();
-    }
-  });
+  // const temp = {};
+  // metadata.forEach((d) => {
+  //   const match = /scan completed./.exec(d);
+  //   if (match === null) {
+  //     const key = d.split(' = ');
+  //     temp[key[0]] = key[1].trim();
+  //   } else {
+  //     temp.completed = d.substr(0, match.index).trim();
+  //   }
+  // });
 
   return {
-    metadata: temp,
+    metadata,
     data: dataTable,
   };
 }

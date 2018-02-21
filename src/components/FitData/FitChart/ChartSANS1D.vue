@@ -9,7 +9,7 @@ export default {
   data() {
     return {
       isMathJax: false,
-      activeParentTab: 'tab-fit',
+      activeParentTab: null,
     };
   },
   created() {
@@ -55,6 +55,15 @@ export default {
       'updateFitTableResults',
       'toggleIsFitting',
     ]),
+  },
+  watch: {
+    fileToFit() {
+      if (this.filesSelected.length) {
+        this.activeParentTab = this.fileToFit === null ? null : 'tab-fit';
+      } else {
+        this.activeParentTab = null;
+      }
+    },
   },
 };
 
