@@ -41,7 +41,7 @@ mutations.setCurrentData = (st, chosenData) => {
   for (let i = 0, len = tempData.length; i < len; i += 1) {
     const data = _.cloneDeep(tempData[i].data);
     const filename = tempData[i].filename;
-    const metadata = { ...tempData[i].metadata };
+    const metadata = [...tempData[i].metadata];
     const dataTransformed = swapFields(data, st.field);
 
     tempSelect.push({
@@ -101,7 +101,7 @@ getters.getMetadata = (st) => {
   const obj = {};
   st.selectedData.forEach((d) => {
     // eslint-disable-next-line
-    obj[d.filename] = {...d.metadata};
+    obj[d.filename] = [...d.metadata];
   });
 
   return obj;
