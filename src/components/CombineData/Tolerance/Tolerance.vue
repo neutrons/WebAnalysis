@@ -8,7 +8,7 @@
     :min='defaultSettings.tolerance.value'
   ></v-text-field>
 
-  <v-btn outline block flat color='success' @click='initCombineData' :disabled='combData.length > 0'>Combine Data</v-btn>
+  <v-btn outline block flat color='success' @click='initCombineData'>Combine Data</v-btn>
   <v-btn outline block flat color='error' @click='removeCombineData' :disabled='!combData.length'>Remove Combine Data</v-btn>
 </div>
 </template>

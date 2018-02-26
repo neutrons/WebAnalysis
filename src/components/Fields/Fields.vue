@@ -29,26 +29,6 @@ export default {
       default: true,
     },
   },
-  computed: {
-    selectX: {
-      get() {
-        return this.field.x;
-      },
-      set(value) {
-        this.setXField(value);
-        this.changeFields();
-      },
-    },
-    selectY: {
-      get() {
-        return this.field.y;
-      },
-      set(value) {
-        this.setYField(value);
-        this.changeFields();
-      },
-    },
-  },
 };
 </script>
 

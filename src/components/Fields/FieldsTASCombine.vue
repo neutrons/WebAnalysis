@@ -11,13 +11,35 @@ export default {
     ]),
     ...mapState('TAS/Combine', {
       field: state => state.field,
+      isNormalized: state => state.isNormalized,
     }),
+    selectX: {
+      get() {
+        return this.field.x;
+      },
+      set(value) {
+        if (this.isNormalized) this.resetNormalizeData();
+        this.setXField(value);
+        this.changeFields();
+      },
+    },
+    selectY: {
+      get() {
+        return this.field.y;
+      },
+      set(value) {
+        if (this.isNormalized) this.resetNormalizeData();
+        this.setYField(value);
+        this.changeFields();
+      },
+    },
   },
   methods: {
     ...mapMutations('TAS/Combine', [
       'setXField',
       'setYField',
       'changeFields',
+      'resetNormalizeData',
     ]),
   },
 };

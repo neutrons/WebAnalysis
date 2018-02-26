@@ -12,6 +12,24 @@ export default {
     ...mapState('TAS/Fit', {
       field: state => state.field,
     }),
+    selectX: {
+      get() {
+        return this.field.x;
+      },
+      set(value) {
+        this.setXField(value);
+        this.changeFields();
+      },
+    },
+    selectY: {
+      get() {
+        return this.field.y;
+      },
+      set(value) {
+        this.setYField(value);
+        this.changeFields();
+      },
+    },
   },
   methods: {
     ...mapMutations('TAS/Fit', [
