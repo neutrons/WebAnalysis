@@ -12,7 +12,7 @@
     <v-data-table :headers='headers' :items='plottedData' class='text-xs-center' :rows-per-page-items='[25, 50, 100, { text: "All", value: -1 }]'>
       <template slot='headers' slot-scope='props'>
         <tr>
-          <td class='text-xs-left'>#</td>
+          <td class='text-xs-left' v-if='plottedData.length'>#</td>
           <td v-for='(header, index) in props.headers' :key='index' class='text-xs-left'>
             {{ header.text }}
           </td>
