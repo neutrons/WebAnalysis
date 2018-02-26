@@ -9,6 +9,7 @@ const SANS1DStitch = () => import('@/components/StitchData/SANS');
 const SANS2DGraph = () => import('@/components/Chart2D/SANS2D');
 const TASFit = () => import('@/components/FitData/TAS');
 const TASBrowse = () => import('@/components/BrowseData/TAS');
+const TASCombine = () => import('@/components/CombineData/TAS');
 
 Vue.use(Router);
 
@@ -141,6 +142,22 @@ export default new Router({
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'TAS', href: '/TAS', disabled: false },
           { text: 'Browse', href: '/', disabled: true },
+        ],
+      },
+    },
+    {
+      path: '/TAS/Combine',
+      name: 'TAS-Combine',
+      component: TASCombine,
+      meta: {
+        title: 'TAS-Combine',
+        group: 'TAS',
+        sidebar: 'SidebarTASCombine',
+        feature: 'Combine',
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage', disabled: false },
+          { text: 'TAS', href: '/TAS', disabled: false },
+          { text: 'Combine', href: '/', disabled: true },
         ],
       },
     },

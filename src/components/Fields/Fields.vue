@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex';
-
 export default {
   name: 'Fields',
   props: {
@@ -32,12 +30,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters('TAS/Fit', [
-      'getFields',
-    ]),
-    ...mapState('TAS/Fit', {
-      field: state => state.field,
-    }),
     selectX: {
       get() {
         return this.field.x;
@@ -56,13 +48,6 @@ export default {
         this.changeFields();
       },
     },
-  },
-  methods: {
-    ...mapMutations('TAS/Fit', [
-      'setXField',
-      'setYField',
-      'changeFields',
-    ]),
   },
 };
 </script>

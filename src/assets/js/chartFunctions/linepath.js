@@ -13,7 +13,8 @@ export default {
 
       // UPDATE
       selection.transition(t)
-        .attr('d', line);
+        .attr('d', line)
+        .style('stroke', typeof key === 'undefined' ? 'brown' : this.colorScale(key));
     },
   },
 };

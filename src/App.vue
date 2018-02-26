@@ -64,6 +64,10 @@
           <v-list-tile to='/TAS/Fit' exact :active-class='activeClass'>
             <v-list-tile-title>Fit Data</v-list-tile-title>
           </v-list-tile>
+
+          <v-list-tile to='/TAS/Combine' exact :active-class='activeClass'>
+            <v-list-tile-title>Combine Data</v-list-tile-title>
+          </v-list-tile>
         </v-list>
       </v-menu>
     </v-toolbar-items>
@@ -118,6 +122,10 @@
                   <v-list-tile-title>Fit Data</v-list-tile-title>
                 </v-list-tile>
               </v-list>
+
+              <v-list-tile to='/TAS/Combine' exact :active-class='activeClass'>
+                <v-list-tile-title>Combine Data</v-list-tile-title>
+              </v-list-tile>
             </v-menu>
           </v-list-tile>
         </v-list>

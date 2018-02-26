@@ -26,7 +26,11 @@ export default {
 
       // UPDATE
       selection.transition(t)
-        .attr('transform', d => `translate( ${x(d.x)}, ${y(d.y)})`);
+        .attr('transform', d => `translate( ${x(d.x)}, ${y(d.y)})`)
+        // eslint-disable-next-line
+        .style('fill', (d) => {
+          return typeof d.name === 'undefined' ? 'brown' : this.colorScale(d.name);
+        });
 
       selection.enter().append('path')
         .attr('class', 'point')

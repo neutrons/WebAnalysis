@@ -64,49 +64,7 @@ mutations.setFitType = (st, type = state.fitType) => {
   /* eslint-enable */
 };
 
-mutations.changeFields = (st) => {
-  const tempSelect = [];
-
-  st.selectedData.forEach((d) => {
-    const data = _.cloneDeep(d.data);
-    const metadata = [...d.metadata];
-    const filename = d.filename;
-    const dataTransformed = swapFields(data, st.field);
-
-    tempSelect.push({
-      data,
-      dataTransformed,
-      filename,
-      metadata,
-    });
-  });
-
-  // eslint-disable-next-line
-  st.selectedData = tempSelect;
-};
-
-getters.getFields = (st) => {
-  if (st.selectedData.length !== 0) {
-    return Object.keys(st.selectedData[0].data[0]);
-  }
-
-  return [];
-};
-
 getters.fitNames = st => Object.keys(st.fit);
-
-getters.getMetadata = (st) => {
-  if (!st.filesSelected.length) return null;
-
-  const obj = {};
-  st.selectedData.forEach((d) => {
-    // eslint-disable-next-line
-    obj[d.filename] = [...d.metadata];
-  });
-
-  return obj;
-};
-
 
 state.label = {
   x: 'q = x',
