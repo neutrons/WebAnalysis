@@ -17,7 +17,7 @@ import filterForLog from '../../../assets/js/chartFunctions/filterForLog';
 import isBreakpointSmall from '../../../assets/js/isBreakpointSmall';
 import addClipPath from '../../../assets/js/chartFunctions/addClipPath';
 import addZoomGroup from '../../../assets/js/chartFunctions/addZoomGroup';
-import legend from '../../../assets/js/chartFunctions/legend';
+// import legend from '../../../assets/js/chartFunctions/legend';
 
 export default {
   mixins: [
@@ -39,7 +39,7 @@ export default {
     filterForLog,
     addClipPath,
     addZoomGroup,
-    legend,
+    // legend,
   ],
   methods: {
     drawChart() {

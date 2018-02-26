@@ -14,7 +14,7 @@ export default {
       this.updateAxes(newXScale, newYScale, trans);
       this.updateGrids(newXScale, newYScale, trans);
       this.updateLabels();
-      this.legend();
+      // this.legend();
 
       // Add and update data
       this.plotData.forEach((data) => {

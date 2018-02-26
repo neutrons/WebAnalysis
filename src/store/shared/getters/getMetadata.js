@@ -7,6 +7,5 @@ export default (state) => {
     obj[d.filename] = [...d.metadata];
   });
 
-  console.log('get metadata', obj);
   return obj;
 };
