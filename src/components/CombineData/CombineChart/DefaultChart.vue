@@ -49,7 +49,7 @@
             </v-flex>
 
             <slot name='tabs-slot' v-if='ID === "TAS-Combine"' :show-tabs='showTabs' :x-scale='xScale'
-              :active-parent-tab='activeParentTab' :metadata='metadata' :metadata-length='metadataLength'></slot>
+              :active-parent-tab='activeParentTab' :metadata='metadata' :metadata-length='metadataLength' :original-combined-data='originalCombinedData' :merged-files='mergedFiles'></slot>
           </v-layout>
         </v-tabs-content>
 
@@ -189,7 +189,6 @@ export default {
     chartConfigurations: {
       deep: true,
       handler() {
-        console.log('color scale', this.colorScale.domain());
         this.$nextTick(() => {
           if (this.chartConfigurations.data.length === 0) {
             this.showTabs = true;
@@ -273,5 +272,9 @@ iframe.width-changed {
 foreignObject {
   height: 100px;
   width: 200px;
+}
+
+.group-combine .scatter-line {
+  stroke-dasharray: 4,4;
 }
 </style>

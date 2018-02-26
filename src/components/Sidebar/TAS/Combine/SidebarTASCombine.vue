@@ -17,27 +17,31 @@
     </v-container>
   </v-expansion-panel-content>
 
-  <v-expansion-panel-content :value='true' v-if='selectedData.length'>
-    <div slot='header' class='title'>Settings</div>
-    <v-container>
-      <v-layout row wrap>
+  <v-fields v-if='selectedData.length' />
 
+  <v-scales v-if='selectedData.length' />
+
+  <v-expansion-panel-content :value='true' v-if='selectedData.length'>
+    <div slot='header' class='title'>Normalize</div>
+    <v-container>
+      <v-layout row>
         <v-flex xs12>
           <v-combine-normalize />
         </v-flex>
-        
+      </v-layout>
+    </v-container>
+  </v-expansion-panel-content>
+
+  <v-expansion-panel-content :value='true' v-if='selectedData.length && isNormalized'>
+    <div slot='header' class='title'>Combine</div>
+    <v-container>
+      <v-layout row>        
         <v-flex xs12>
           <v-combine-tolerance />
         </v-flex>
       </v-layout>
     </v-container>
   </v-expansion-panel-content>
-
-  <v-fields v-if='selectedData.length' />
-
-  <v-scales v-if='selectedData.length' />
-
-  <v-btn flat block outline color='success'>Combine Data</v-btn>
 </v-expansion-panel>
 </template>
 
@@ -66,6 +70,7 @@ export default {
   computed: {
     ...mapState('TAS/Combine', {
       selectedData: state => state.selectedData,
+      isNormalized: state => state.isNormalized,
     }),
     allFiles() {
       return Object.assign({}, this.fetched, this.uploaded);

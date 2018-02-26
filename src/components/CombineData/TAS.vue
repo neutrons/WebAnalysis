@@ -9,6 +9,7 @@
 
                     <v-tabs-bar>
                       <v-tabs-item href='#tab-metadata' ripple v-if='props.metadataLength > 0'>Metadata</v-tabs-item>
+                      <v-tabs-item href='#tab-combined' ripple v-if='props.originalCombinedData.length'>Combined Data</v-tabs-item>
                       <v-tabs-slider color='accent'></v-tabs-slider>
                     </v-tabs-bar>
 
@@ -40,6 +41,15 @@
                           </v-tabs-items>
                           </v-tabs>
                       </v-tabs-content>
+
+                      <!-- combined data tab content -->
+                      <v-tabs-content id='tab-combined' ripple v-if='props.metadataLength > 0'>
+                        <v-card>
+                          <v-card-text class='tab-card-text'>
+                            <v-plotted-data-table :plotted-data='props.originalCombinedData' :files='props.mergedFiles'></v-plotted-data-table>
+                          </v-card-text>
+                        </v-card>
+                      </v-tabs-content>
                     </v-tabs-items>
                     <!-- end of nested tab items -->
                 </v-tabs>
@@ -52,7 +62,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import read1DData from '../../assets/js/readFiles/default';
 import parseData from '../../assets/js//readFiles/parse/TAS';
 
@@ -65,14 +75,18 @@ export default {
   components: {
     'v-chart': () => import('./CombineChart/ChartTAS'),
     'v-metadata-table': () => import('../MetadataTable'),
+    'v-plotted-data-table': () => import('../PlottedDataTable'),
   },
   computed: {
     ...mapGetters('TAS', [
       'getURLs',
       'getSavedFile',
     ]),
+    ...mapState('TAS/Combine', {
+      isNormalized: state => state.isNormalized,
+      isCombined: state => state.combinedData.length > 0,
+    }),
     ...mapGetters('TAS/Combine', [
-      'combineData',
       'mergedFiles',
     ]),
   },
@@ -83,6 +97,7 @@ export default {
     ...mapMutations('TAS/Combine', [
       'setCurrentData',
       'resetAll',
+      'resetNormalizeData',
     ]),
   },
   watch: {
@@ -92,6 +107,10 @@ export default {
         if (!this.mergedFiles.length) {
           this.resetAll();
         } else {
+          if (this.isNormalized || this.isCombined) {
+            this.resetNormalizeData();
+          }
+
           const vm = this;
           const filesToFetch = [];
 

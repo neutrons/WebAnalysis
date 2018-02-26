@@ -1,11 +1,14 @@
 import _ from 'lodash';
 
-export default (state, getters) => {
-  if (!getters.normalizeData.length) return [];
+export const combineData = (state, value) => {
+  if (!value.length) {
+    state.combinedData = []; // eslint-disable-line
+    return;
+  }
 
   const result = [];
   let temp = [];
-  getters.normalizeData.forEach((item) => {
+  state.selectedData.forEach((item) => {
     let t;
     if (item.type === 'subtract') {
       t = _.cloneDeep(item).dataTransformed.map((d) => {
@@ -33,10 +36,16 @@ export default (state, getters) => {
     result.push({
       x: d.x,
       y: subset.reduce((a, b) => a + b.y, 0),
-      error: 0,
+      error: subset.reduce((a, b) => a + b.error, 0),
       name: 'combine',
     });
   }
 
-  return result.sort((a, b) => a.x - b.x);
+  state.combinedData = result.sort((a, b) => a.x - b.x); // eslint-disable-line
 };
+
+export const removeCombineData = (state) => {
+  state.combinedData = []; // eslint-disable-line
+  state.tolerance = state.defaultSettings.tolerance.value; // eslint-disable-line
+};
+

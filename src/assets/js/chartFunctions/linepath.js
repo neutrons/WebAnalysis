@@ -9,12 +9,11 @@ export default {
         .append('path')
         .attr('d', line)
         .style('fill', 'none')
-        .style('stroke', typeof key === 'undefined' ? 'brown' : this.colorScale(key));
+        .style('stroke', typeof key === 'undefined' || key === 'combine' ? 'brown' : this.colorScale(key));
 
       // UPDATE
       selection.transition(t)
-        .attr('d', line)
-        .style('stroke', typeof key === 'undefined' ? 'brown' : this.colorScale(key));
+        .attr('d', line);
     },
   },
 };

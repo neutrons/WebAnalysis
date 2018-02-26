@@ -1,5 +1,5 @@
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapMutations, mapState, mapGetters } from 'vuex';
 import Tolerance from './Tolerance';
 
 export default {
@@ -9,7 +9,11 @@ export default {
     ...mapState('TAS/Combine', {
       defaultSettings: state => state.defaultSettings,
       tolerance: state => state.tolerance,
+      combData: state => state.combinedData,
     }),
+    ...mapGetters('TAS/Combine', [
+      'getPreparedData',
+    ]),
     editTolerance: {
       get() {
         return this.tolerance;
@@ -22,7 +26,12 @@ export default {
   methods: {
     ...mapMutations('TAS/Combine', [
       'setTolerance',
+      'combineData',
+      'removeCombineData',
     ]),
+    initCombineData() {
+      this.combineData(this.getPreparedData);
+    },
   },
 };
 

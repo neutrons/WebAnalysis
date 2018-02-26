@@ -19,7 +19,9 @@ export default {
         .attr('x', this.width - 30)
         .attr('height', 15)
         .attr('width', 15)
-        .style('fill', d => this.colorScale(d.key));
+        .style('fill', (d) => { // eslint-disable-line
+          return d.key === 'combine' || typeof d.key === 'undefined' ? 'brown' : this.colorScale(d.key);
+        });
 
       this.g.selectAll('.label').append('text')
         .attr('x', this.width - 40)

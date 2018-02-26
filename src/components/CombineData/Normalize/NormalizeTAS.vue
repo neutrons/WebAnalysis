@@ -11,6 +11,7 @@ export default {
       normalizeValue: state => state.normalizeValue,
       normalizeOptions: state => state.normalizeOptions,
       normalizeField: state => state.normalizeField,
+      isNormalized: state => state.isNormalized,
     }),
     editNormalizeField: {
       get() {
@@ -33,6 +34,8 @@ export default {
     ...mapMutations('TAS/Combine', [
       'setNormalizeValue',
       'setNormalizeField',
+      'normalizeData',
+      'resetNormalizeData',
     ]),
   },
 };

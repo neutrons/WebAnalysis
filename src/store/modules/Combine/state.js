@@ -35,4 +35,5 @@ export default {
     x: { label: 'x', value: d3.scaleLinear() },
     y: { label: 'y', value: d3.scaleLinear() },
   },
+  isNormalized: false,
 };

@@ -26,18 +26,14 @@ export default {
 
       // UPDATE
       selection.transition(t)
-        .attr('transform', d => `translate( ${x(d.x)}, ${y(d.y)})`)
-        // eslint-disable-next-line
-        .style('fill', (d) => {
-          return typeof d.name === 'undefined' ? 'brown' : this.colorScale(d.name);
-        });
+        .attr('transform', d => `translate( ${x(d.x)}, ${y(d.y)})`);
 
       selection.enter().append('path')
         .attr('class', 'point')
         .attr('d', this.symbols[shape])
         // eslint-disable-next-line
         .style('fill', (d) => {
-          return typeof d.name === 'undefined' ? 'brown' : this.colorScale(d.name);
+          return typeof d.name === 'undefined' || d.name === 'combine' ? 'brown' : this.colorScale(d.name);
         })
         .style('stroke', 'whitesmoke')
         .attr('transform', d => `translate( ${x(d.x)}, ${y(d.y)})`)

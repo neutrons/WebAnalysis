@@ -1,9 +1,7 @@
-import * as d3 from 'd3';
 import _ from 'lodash';
+import * as d3 from 'd3';
 
 import getFields from '../../shared/getters/getFields';
-import combineData from '../../shared/getters/combineData';
-import normalizeData from '../../shared/getters/normalizeData';
 import getExtent from '../../shared/getters/getExtent';
 import getPreparedData from '../../shared/getters/getPreparedData';
 import getPlotData from '../../shared/getters/getPlotData';
@@ -11,8 +9,6 @@ import isFilesPlotted from '../../shared/getters/isFilesPlotted';
 
 export default {
   getFields,
-  combineData,
-  normalizeData,
   getExtent,
   getPreparedData,
   getPlotData,
@@ -35,9 +31,9 @@ export default {
   getChartConfigurations(state, getters) {
     const tempCombined = d3.nest()
       .key(d => d.name)
-      .entries(getters.combineData);
+      .entries(state.combinedData);
 
-    const data = _.cloneDeep(getters.getPreparedData.concat(tempCombined));
+    const data = _.cloneDeep(tempCombined.concat(getters.getPreparedData));
     const scales = state.plotScale;
 
     return {

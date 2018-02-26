@@ -4,6 +4,8 @@ import setXScale from '../../shared/mutations/setXScale';
 import setYScale from '../../shared/mutations/setYScale';
 import resetScales from '../../shared/mutations/resetScales';
 import updateFilters from '../../shared/mutations/updateFilters';
+import { normalizeData, resetNormalizeData } from '../../shared/mutations/normalizeData';
+import { combineData, removeCombineData } from '../../shared/mutations/combineData';
 import swapFields from '../../../assets/js/swapFields';
 import { setXField, setYField, changeFields } from '../../shared/mutations/fields';
 
@@ -15,6 +17,10 @@ export default {
   changeFields,
   setXField,
   setYField,
+  normalizeData,
+  resetNormalizeData,
+  combineData,
+  removeCombineData,
   updateFilesToAdd(state, selected) {
     const keys = [];
 
@@ -51,8 +57,9 @@ export default {
     /* eslint-disable */
     state.filesToSubtract = [];
     state.filesToAdd = [];
-    state.combineData = [];
+    state.combinedData = [];
     state.selectedData = [];
+    state.isNormalized = false;
     state.normalizeValue = state.defaultSettings.normalize.value;
     state.tolerance = state.defaultSettings.tolerance.value;
     state.field = {
