@@ -9,10 +9,6 @@ export default {
   data() {
     return {
       isMathJax: false,
-      label: {
-        x: 'x',
-        y: 'y',
-      },
       ID: 'TAS-Browse',
     };
   },
@@ -20,32 +16,26 @@ export default {
     ...mapState('TAS/Browse', {
       browseData: state => state.browseData,
     }),
+    defaultFields() {
+      if (typeof this.browseData.defaultFields === 'undefined') {
+        return { x: 'x', y: 'y' };
+      }
+      return this.browseData.defaultFields;
+    },
+    label() {
+      return {
+        x: this.defaultFields.x,
+        y: this.defaultFields.y,
+      };
+    },
     plotData() {
       if (!Object.keys(this.browseData).length) return [];
-      return swapFields(this.browseData.data, this.extractDefaults(this.browseData.metadata));
+      return swapFields(this.browseData.data, this.defaultFields);
     },
     plotMetadata() {
       if (!Object.keys(this.browseData).length) return [];
 
       return this.browseData.metadata;
-    },
-  },
-  methods: {
-    extractDefaults(md) {
-      const obj = { x: 'x', y: 'y' };
-      md.forEach((el) => {
-        const xMatch = /^def_x/.exec(el);
-        const yMatch = /^def_y/.exec(el);
-
-        if (xMatch !== null) {
-          obj.x = el.trim().split(' = ')[1];
-        } else if (yMatch !== null) {
-          obj.y = el.trim().split(' = ')[1];
-        }
-      });
-
-      this.label = { ...obj };
-      return obj;
     },
   },
 };

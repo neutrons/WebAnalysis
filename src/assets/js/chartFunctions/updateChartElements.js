@@ -14,11 +14,13 @@ export default {
       this.updateAxes(newXScale, newYScale, trans);
       this.updateGrids(newXScale, newYScale, trans);
       this.updateLabels();
+      // this.legend();
 
       // Add and update data
       this.plotData.forEach((data) => {
         // filter data for negative values when scale is log
         const tempData = data.values.filter(this.filterForLog);
+        const shape = data.key === 'combine' || data.key === 'fit' ? 'cross' : 'circle';
 
         if (this.g.select(`.group-${data.key}`).empty()) {
           const group = this.g.append('g')
@@ -54,7 +56,7 @@ export default {
           group.append('g').attr('class', 'scatter')
             .selectAll('.point')
             .data(tempData)
-            .call(this.updateScatter, newXScale, newYScale, trans);
+            .call(this.updateScatter, newXScale, newYScale, trans, shape);
         } else {
           const group = this.g.select(`.group-${data.key}`);
 
@@ -86,7 +88,7 @@ export default {
           group.select('.scatter')
             .selectAll('.point')
             .data(tempData)
-            .call(this.updateScatter, newXScale, newYScale, trans);
+            .call(this.updateScatter, newXScale, newYScale, trans, shape);
         }
       });
     },

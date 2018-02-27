@@ -28,6 +28,7 @@ export default {
     SidebarSANS2D: () => import('./SANS/SANS2D/SidebarSANS2D'),
     SidebarTASFit: () => import('./TAS/Fit/SidebarTASFit'),
     SidebarTASBrowse: () => import('./TAS/Browse/SidebarTASBrowse'),
+    SidebarTASCombine: () => import('./TAS/Combine/SidebarTASCombine'),
     Sidebar404: () => import('./Sidebar404'),
   },
   props: {

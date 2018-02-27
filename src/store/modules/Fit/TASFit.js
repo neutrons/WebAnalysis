@@ -2,6 +2,7 @@ import _ from 'lodash';
 import * as d3 from 'd3';
 import swapFields from '../../../assets/js/swapFields';
 import fits from '../../fits/TAS';
+import isDefaultFieldsDifferent from '../../shared/getters/isDefaultFieldsDifferent';
 
 import state from './state';
 import getters from './getters';
@@ -20,21 +21,25 @@ mutations.resetAll = (st) => {
     y: 'y',
   };
   st.field = {
-    x: 'pt',
-    y: 'detector',
+    x: 'x',
+    y: 'y',
   };
   st.label = {
-    x: 'q = x',
-    y: 'I(q) = y',
+    x: 'x',
+    y: 'y',
   };
   st.deleteKeys = [];
   st.fittedData = [];
   st.filteredData = [];
   st.brushSelection = [];
+  st.isDifferentFields = false;
   /* eslint-enable */
 };
 
 mutations.setCurrentData = (st, chosenData) => {
+  // set default fields to base curve
+  if (chosenData.length) st.field = chosenData[0].defaultFields; // eslint-disable-line
+
   const tempData = _.cloneDeep(chosenData);
   const tempSelect = [];
 
@@ -43,12 +48,14 @@ mutations.setCurrentData = (st, chosenData) => {
     const filename = tempData[i].filename;
     const metadata = [...tempData[i].metadata];
     const dataTransformed = swapFields(data, st.field);
+    const defaultFields = { ...tempData[i].defaultFields };
 
     tempSelect.push({
       data,
       dataTransformed,
       filename,
       metadata,
+      defaultFields,
     });
   }
 
@@ -64,49 +71,8 @@ mutations.setFitType = (st, type = state.fitType) => {
   /* eslint-enable */
 };
 
-mutations.changeFields = (st) => {
-  const tempSelect = [];
-
-  st.selectedData.forEach((d) => {
-    const data = _.cloneDeep(d.data);
-    const metadata = [...d.metadata];
-    const filename = d.filename;
-    const dataTransformed = swapFields(data, st.field);
-
-    tempSelect.push({
-      data,
-      dataTransformed,
-      filename,
-      metadata,
-    });
-  });
-
-  // eslint-disable-next-line
-  st.selectedData = tempSelect;
-};
-
-getters.getFields = (st) => {
-  if (st.selectedData.length !== 0) {
-    return Object.keys(st.selectedData[0].data[0]);
-  }
-
-  return [];
-};
-
 getters.fitNames = st => Object.keys(st.fit);
-
-getters.getMetadata = (st) => {
-  if (!st.filesSelected.length) return null;
-
-  const obj = {};
-  st.selectedData.forEach((d) => {
-    // eslint-disable-next-line
-    obj[d.filename] = [...d.metadata];
-  });
-
-  return obj;
-};
-
+getters.isDefaultFieldsDifferent = isDefaultFieldsDifferent;
 
 state.label = {
   x: 'q = x',
@@ -114,8 +80,8 @@ state.label = {
 };
 state.fit = { ...fits };
 state.field = {
-  x: 'pt',
-  y: 'detector',
+  x: 'x',
+  y: 'y',
 };
 state.fits = { ...fits };
 
