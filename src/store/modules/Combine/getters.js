@@ -6,6 +6,7 @@ import getExtent from '../../shared/getters/getExtent';
 import getPreparedData from '../../shared/getters/getPreparedData';
 import getPlotData from '../../shared/getters/getPlotData';
 import isFilesPlotted from '../../shared/getters/isFilesPlotted';
+import isDefaultFieldsDifferent from '../../shared/getters/isDefaultFieldsDifferent';
 
 export default {
   getFields,
@@ -13,6 +14,7 @@ export default {
   getPreparedData,
   getPlotData,
   isFilesPlotted,
+  isDefaultFieldsDifferent,
   getMetadata(state, getters) {
     if (!getters.mergedFiles.length) return null;
 

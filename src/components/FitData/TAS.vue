@@ -114,7 +114,6 @@ export default {
     ...mapState('TAS/Fit', {
       filesToPlot: state => state.filesSelected,
       fileToFit: state => state.fileToFit,
-      selectedData: state => state.selectedData,
     }),
     ...mapGetters('TAS/Fit', [
       'isDefaultFieldsDifferent',

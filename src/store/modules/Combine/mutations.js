@@ -63,8 +63,8 @@ export default {
     state.normalizeValue = state.defaultSettings.normalize.value;
     state.tolerance = state.defaultSettings.tolerance.value;
     state.field = {
-      x: 'pt',
-      y: 'detector',
+      x: 'x',
+      y: 'y',
     };
     state.normalizeField = 'time';
     state.plotScale = {
@@ -86,6 +86,9 @@ export default {
     state.tolerance = value;
   },
   setCurrentData(state, chosenData) {
+    // set default fields to base curve
+    if (chosenData.length) state.field = chosenData[0].defaultFields; // eslint-disable-line
+
     const tempData = _.cloneDeep(chosenData);
     const tempSelect = [];
 
@@ -95,6 +98,7 @@ export default {
       const metadata = [...tempData[i].metadata];
       const dataTransformed = swapFields(data, state.field);
       const type = state.filesToAdd.indexOf(filename) === -1 ? 'subtract' : 'add';
+      const defaultFields = { ...tempData[i].defaultFields };
 
       tempSelect.push({
         data,
@@ -102,6 +106,7 @@ export default {
         filename,
         metadata,
         type,
+        defaultFields,
       });
     }
 
