@@ -35,7 +35,7 @@ export default {
       .key(d => d.name)
       .entries(state.combinedData);
 
-    const data = _.cloneDeep(tempCombined.concat(getters.getPreparedData));
+    const data = _.cloneDeep(getters.getPreparedData.concat(tempCombined));
     const scales = state.plotScale;
 
     return {
