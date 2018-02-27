@@ -31,7 +31,11 @@ export const combineData = (state, value) => {
     const d = temp[i];
     const min = d.x - state.tolerance;
     const max = d.x + state.tolerance;
-    const subset = temp.filter(point => min <= point.x && point.x <= max);
+    const name = d.name;
+    const subset = temp.filter(point => min <= point.x &&
+        point.x <= max &&
+        point.name !== name);
+    subset.push(d);
 
     result.push({
       x: d.x,

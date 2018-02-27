@@ -19,16 +19,17 @@ export const normalizeData = (state) => {
 
   temp.forEach((d) => {
     d.dataTransformed.forEach((point) => {
+      const C = point[normField];
+      const errorC = Math.sqrt(C);
       const oldY = point.y;
-      // eslint-disable-next-line
-      point.y = point.y / (state.normalizeValue * point[normField]);
-
-      // Normalize the error value if normalized y is a valid number
-      if (isFinite(point.y) && point.y !== null) {
-        // eslint-disable-next-line
-        point.error = Math.abs(point.y) * Math.sqrt(((point.error / oldY) ** 2) +
-          ((Math.sqrt(point[normField]) / point[normField]) ** 2));
+      const normY = point.y / (state.normalizeValue * C);
+      const error = point.error;
+      let normError;
+      if (isFinite(normY) && normY !== null) {
+        normError = Math.abs(normY) * Math.sqrt(Math.pow(error / oldY, 2) + Math.pow(errorC / C, 2)); // eslint-disable-line
+        point.error = normError; // eslint-disable-line
       }
+      point.y = normY; // eslint-disable-line
     });
 
     // eslint-disable-next-line
