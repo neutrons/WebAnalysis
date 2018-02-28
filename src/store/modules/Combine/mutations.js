@@ -5,9 +5,9 @@ import setYScale from '../../shared/mutations/setYScale';
 import resetScales from '../../shared/mutations/resetScales';
 import updateFilters from '../../shared/mutations/updateFilters';
 import { normalizeData, resetNormalizeData } from '../../shared/mutations/normalizeData';
-import { combineData, removeCombineData } from '../../shared/mutations/combineData';
+import { combineData, removeCombineData, addCombinedData } from '../../shared/mutations/combineData';
 import swapFields from '../../../assets/js/swapFields';
-import { setXField, setYField, changeFields } from '../../shared/mutations/fields';
+import { changeFields } from '../../shared/mutations/fields';
 
 export default {
   setXScale,
@@ -15,12 +15,11 @@ export default {
   resetScales,
   updateFilters,
   changeFields,
-  setXField,
-  setYField,
   normalizeData,
   resetNormalizeData,
   combineData,
   removeCombineData,
+  addCombinedData,
   updateFilesToAdd(state, selected) {
     const keys = [];
 
@@ -71,6 +70,7 @@ export default {
       x: { label: 'x', value: d3.scaleLinear() },
       y: { label: 'y', value: d3.scaleLinear() },
     };
+    state.isFieldChange = false;
     /* eslint-enable */
   },
   setNormalizeValue(state, value) {
@@ -87,7 +87,7 @@ export default {
   },
   setCurrentData(state, chosenData) {
     // set default fields to base curve
-    if (chosenData.length) state.field = chosenData[0].defaultFields; // eslint-disable-line
+    if (chosenData.length === 1 || !state.isFieldChange) state.field = { ...chosenData[0].defaultFields }; // eslint-disable-line
 
     const tempData = _.cloneDeep(chosenData);
     const tempSelect = [];

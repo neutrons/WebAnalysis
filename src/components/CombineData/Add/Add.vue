@@ -25,9 +25,6 @@ export default {
     },
   },
   computed: {
-    allFiles() {
-      return Object.assign({}, this.fetched, this.uploaded);
-    },
     fileKeys() {
       return Object.keys(this.allFiles);
     },

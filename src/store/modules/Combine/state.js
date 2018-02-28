@@ -36,4 +36,6 @@ export default {
     y: { label: 'y', value: d3.scaleLinear() },
   },
   isNormalized: false,
+  isFieldChange: false,
+  storedCombined: {},
 };

@@ -3,6 +3,8 @@ import * as d3 from 'd3';
 import swapFields from '../../../assets/js/swapFields';
 import fits from '../../fits/TAS';
 import isDefaultFieldsDifferent from '../../shared/getters/isDefaultFieldsDifferent';
+import getMetadata from '../../shared/getters/getMetadata';
+import getFields from '../../shared/getters/getFields';
 
 import state from './state';
 import getters from './getters';
@@ -33,12 +35,13 @@ mutations.resetAll = (st) => {
   st.filteredData = [];
   st.brushSelection = [];
   st.isDifferentFields = false;
+  st.isFieldChange = false;
   /* eslint-enable */
 };
 
 mutations.setCurrentData = (st, chosenData) => {
   // set default fields to base curve
-  if (chosenData.length) st.field = chosenData[0].defaultFields; // eslint-disable-line
+  if (chosenData.length === 1 || !st.isFieldChange) st.field = { ...chosenData[0].defaultFields }; // eslint-disable-line
 
   const tempData = _.cloneDeep(chosenData);
   const tempSelect = [];
@@ -73,6 +76,8 @@ mutations.setFitType = (st, type = state.fitType) => {
 
 getters.fitNames = st => Object.keys(st.fit);
 getters.isDefaultFieldsDifferent = isDefaultFieldsDifferent;
+getters.getMetadata = getMetadata;
+getters.getFields = getFields;
 
 state.label = {
   x: 'q = x',
@@ -84,6 +89,7 @@ state.field = {
   y: 'y',
 };
 state.fits = { ...fits };
+state.isFieldChange = false;
 
 export default {
   namespaced: true,

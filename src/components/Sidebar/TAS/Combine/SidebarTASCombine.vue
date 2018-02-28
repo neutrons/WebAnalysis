@@ -4,6 +4,14 @@
     <div slot='header' class='title'>Files to Combine</div>
     <v-container>
       <v-layout row wrap>
+        <v-alert 
+          outline
+          type='warning'
+          :value='typeof isDefaultFieldsDifferent === "string"'
+          transition='fade-transition'
+          icon='fa-exclamation-triangle'
+          class='pa-2'
+        >{{ isDefaultFieldsDifferent }}</v-alert>
         <v-flex xs12>
           <v-filter-list />
         </v-flex>
@@ -46,7 +54,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import _ from 'lodash';
 import CombineAdd from '../../../CombineData/Add/AddTAS';
 import CombineSubtract from '../../../CombineData/Subtract/SubtractTAS';
@@ -72,6 +80,9 @@ export default {
       selectedData: state => state.selectedData,
       isNormalized: state => state.isNormalized,
     }),
+    ...mapGetters('TAS/Combine', [
+      'isDefaultFieldsDifferent',
+    ]),
     allFiles() {
       return Object.assign({}, this.fetched, this.uploaded);
     },

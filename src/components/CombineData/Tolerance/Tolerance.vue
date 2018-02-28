@@ -12,6 +12,20 @@
 
   <v-btn outline block flat color='success' @click='initCombineData' :disabled='!valid'>Combine Data</v-btn>
   <v-btn outline block flat color='error' @click='removeCombineData' :disabled='!combData.length || !valid'>Remove Combine Data</v-btn>
+
+  <v-fade-transition>
+    <div v-if='combData.length'>
+      <v-text-field
+        type='text'
+        label='Combine Name'
+        v-model='editCombineName'
+        required
+        :rules='[checkName]'
+      ></v-text-field>
+
+      <v-btn outline block flat color='success' @click='storeCombine' :disabled='!validName'>Store Combine</v-btn>
+    </div>
+  </v-fade-transition>
 </div>
 </template>
 
@@ -21,6 +35,8 @@ export default {
   data() {
     return {
       valid: true,
+      validName: true,
+      editCombineName: 'combined_data',
     };
   },
   methods: {
@@ -34,6 +50,26 @@ export default {
       }
 
       this.valid = true;
+      return true;
+    },
+    checkName(value) {
+      const str = value.trim();
+
+      if (typeof str !== 'string') {
+        this.validName = false;
+        return 'Must be a string';
+      } else if (str.length < 1) {
+        this.validName = false;
+        return 'Invalid name. Name must be 1+ characters long.';
+      } else if (this.filenameList.indexOf(str) !== -1) {
+        this.validName = false;
+        return 'Duplice name. Name already exists.';
+      } else if (str === 'combine') {
+        this.validName = false;
+        return 'Cannot name \'combine\'. Reserved word.';
+      }
+
+      this.validName = true;
       return true;
     },
   },

@@ -65,7 +65,6 @@
 import { mapState, mapGetters, mapMutations } from 'vuex';
 import read1DData from '../../assets/js/readFiles/default';
 import parseData from '../../assets/js/readFiles/parse/TAS';
-import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'TAS',
@@ -89,7 +88,6 @@ export default {
     }),
     ...mapGetters('TAS/Combine', [
       'mergedFiles',
-      'isDefaultFieldsDifferent',
     ]),
   },
   methods: {
@@ -137,11 +135,6 @@ export default {
           }
         }
       },
-    },
-    isDefaultFieldsDifferent() {
-      if (typeof this.isDefaultFieldsDifferent === 'string') {
-        eventBus.$emit('add-notification', this.isDefaultFieldsDifferent, 'warning');
-      }
     },
   },
 };

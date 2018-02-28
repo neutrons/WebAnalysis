@@ -1,17 +1,19 @@
 // function to check if default axes for TAS curves are different
 
 export default (state) => {
-  if (state.selectedData.length > 1) {
-    const defX1 = state.selectedData[0].defaultFields.x;
-    const defY1 = state.selectedData[0].defaultFields.y;
-    const end = state.selectedData.length - 1;
-    const defX2 = state.selectedData[end].defaultFields.x;
-    const defY2 = state.selectedData[end].defaultFields.y;
+  if (state.selectedData.length > 0) {
+    const compareX = state.field.x;
+    const compareY = state.field.y;
+    const length = state.selectedData.length;
 
-    if (defX1 !== defX2 || defY1 !== defY2) {
-      const msg = `Warning! The default axes are different from first curve.
-       Default axis are 'def_x = ${defX2}' and 'def_y = ${defY2}'`;
-      return msg;
+    for (let i = 0; i < length; i += 1) {
+      const d = state.selectedData[i];
+      const defX = d.defaultFields.x;
+      const defY = d.defaultFields.y;
+
+      if (compareX !== defX || compareY !== defY) {
+        return 'Atleast one curves\' default axes are different from the current axes selected.';
+      }
     }
   }
 

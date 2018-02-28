@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import _ from 'lodash';
 import * as d3 from 'd3';
 
@@ -57,7 +58,20 @@ export const combineData = (state, value) => {
       newY = subset.reduce((a, b) => a + b.y, 0);
       newError = subset.reduce((a, b) => a + b.error, 0);
 
-      result.push({ x: newX, y: newY, error: newError, name: 'combine' });
+      /* eslint-disable */
+      const obj = { ...subset[0] };
+      obj.x = newX;
+      obj.y = newY;
+      obj.error = newError;
+
+      for (let key in obj) {
+        if (['x', 'y', 'error'].indexOf(key) === -1) {
+          obj[key] = null;
+        }
+      }
+      obj.name = 'combine';
+      /* eslint-enable */
+      result.push(obj);
     }
   });
 
@@ -67,5 +81,18 @@ export const combineData = (state, value) => {
 export const removeCombineData = (state) => {
   state.combinedData = []; // eslint-disable-line
   state.tolerance = state.defaultSettings.tolerance.value; // eslint-disable-line
+};
+
+export const addCombinedData = (state, payload) => {
+  const loadtype = 'combine';
+  const filename = payload.filename;
+  const tags = [...payload.tags];
+  const data = {
+    filename,
+    loadtype,
+    tags,
+  };
+
+  Vue.set(state.storedCombined, filename, data);
 };
 

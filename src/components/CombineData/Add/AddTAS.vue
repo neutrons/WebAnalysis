@@ -14,6 +14,7 @@ export default {
       filesToAdd: state => state.filesToAdd,
       filesToSubtract: state => state.filesToSubtract,
       filters: state => state.filters,
+      storedCombined: state => state.storedCombined,
     }),
     selected: {
       get() {
@@ -22,6 +23,9 @@ export default {
       set(value) {
         this.updateFilesToAdd(value);
       },
+    },
+    allFiles() {
+      return Object.assign({}, this.fetched, this.uploaded, this.storedCombined);
     },
   },
   methods: {

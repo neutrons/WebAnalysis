@@ -20,8 +20,9 @@ export default {
 
     const obj = {};
     state.selectedData.forEach((d) => {
-      // eslint-disable-next-line
-      obj[d.filename] = [...d.metadata];
+      if (typeof d.metadata !== 'undefined' && d.metadata.length > 0) {
+        obj[d.filename] = [...d.metadata];
+      }
     });
 
     return obj;
