@@ -7,11 +7,18 @@
     :step='defaultSettings.tolerance.increment'
     :min='defaultSettings.tolerance.value'
     required
+    hint='Type value for bin tolerance range'
     :rules='[checkValue]'
   ></v-text-field>
 
-  <v-btn outline block flat color='success' @click='initCombineData' :disabled='!valid'>Combine Data</v-btn>
-  <v-btn outline block flat color='error' @click='removeCombineData' :disabled='!combData.length || !valid'>Remove Combine Data</v-btn>
+  <v-tooltip top :close-delay='1' :disabled='!valid'>
+    <v-btn slot='activator' outline block flat color='success' @click='initCombineData' :disabled='!valid'>Combine Data</v-btn>
+    <span>Click to combine data</span>
+  </v-tooltip>
+  <v-tooltip top :close-delay='1' :disabled='!combData.length || !valid'>
+    <v-btn slot='activator' outline block flat color='error' @click='removeCombineData' :disabled='!combData.length || !valid'>Remove Combine Data</v-btn>
+    <span>Click to remove combined data</span>
+  </v-tooltip>
 
   <v-fade-transition>
     <div v-if='combData.length'>
@@ -20,10 +27,14 @@
         label='Combine Name'
         v-model='editCombineName'
         required
+        hint='Type name of combined data curve'
         :rules='[checkName]'
       ></v-text-field>
 
-      <v-btn outline block flat color='success' @click='storeCombine' :disabled='!validName'>Store Combine</v-btn>
+      <v-tooltip top :close-delay='1' :disabled='!validName'>
+        <v-btn slot='activator' outline block flat color='success' @click='storeCombine' :disabled='!validName'>Store Combine</v-btn>
+        <span>Click to store combined data curve</span>
+      </v-tooltip>
     </div>
   </v-fade-transition>
 </div>

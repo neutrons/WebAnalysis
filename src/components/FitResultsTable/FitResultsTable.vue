@@ -2,10 +2,13 @@
 <v-container pt-0>
   <v-layout row wrap>
     <v-flex xs12 v-if='allowExport'>
-      <v-btn outline flat @click='downloadFitEquation' color='success'>
-        <v-icon :left='!isBreakpointSmall'>file_download</v-icon>
-        <span class='hidden-md-and-down'>Results</span>
-      </v-btn>
+      <v-tooltip top :close-delay='1'>
+        <v-btn slot='activator' outline flat @click='downloadFitEquation' color='success'>
+          <v-icon :left='!isBreakpointSmall'>file_download</v-icon>
+          <span class='hidden-md-and-down'>Results</span>
+        </v-btn>
+        <span>Click to export fit results to .csv file</span>
+      </v-tooltip>
     </v-flex>
     <v-flex md12 lg3 pa-1><b>Fit File:</b> {{fileToFit}}</v-flex>
     <v-flex md12 lg2 pa-1><b>Fit Type:</b> {{fitType}}</v-flex>

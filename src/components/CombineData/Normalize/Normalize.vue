@@ -1,24 +1,38 @@
 <template>
 <div>
-  <v-select
-    label='Normalize Variable'
-    hide-selected
-    chips
-    v-model='editNormalizeField'
-    :items='normalizeOptions'
-  ></v-select>
+  <v-tooltip top :close-delay='1'>
+    <v-select
+      slot='activator'
+      label='Normalize Variable'
+      hide-selected
+      chips
+      v-model='editNormalizeField'
+      :items='normalizeOptions'
+    ></v-select>
+    <span>Select variable to normalize y axis</span>
+  </v-tooltip>
 
-  <v-text-field 
-    label='Normalize To'
-    type='number'
-    v-model.number='editNormalizeValue'
-    :step='defaultSettings.normalize.increment'
-    required
-    :rules='[checkValue]'
-  ></v-text-field>
+  <v-tooltip top :close-delay='1'>
+    <v-text-field
+      slot='activator'
+      label='Normalize To'
+      type='number'
+      v-model.number='editNormalizeValue'
+      :step='defaultSettings.normalize.increment'
+      required
+      :rules='[checkValue]'
+    ></v-text-field>
+    <span>Type a value to normalize y axis to</span>
+  </v-tooltip>
 
-  <v-btn outline block flat color='success' @click='normalizeData' :disabled='isNormalized || !valid'>Normalize Data</v-btn>
-  <v-btn outline block flat color='warning' @click='resetNormalizeData' :disabled='!isNormalized || !valid'>Reset Data</v-btn>
+  <v-tooltip top :close-delay='1' :disabled='isNormalized || !valid'>
+    <v-btn slot='activator' outline block flat color='success' @click='normalizeData' :disabled='isNormalized || !valid'>Normalize Data</v-btn>
+    <span>Click to normalize data</span>
+  </v-tooltip>
+  <v-tooltip top :close-delay='1' :disabled='!isNormalized || !valid'>
+    <v-btn slot='activator' outline block flat color='warning' @click='resetNormalizeData' :disabled='!isNormalized || !valid'>Reset Data</v-btn>
+    <span>Click to reset normalized data</span>
+  </v-tooltip>
 </div>
 </template>
 
