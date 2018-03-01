@@ -7,7 +7,7 @@
         fixed
         app
         hide-overlay
-        width='450'
+        width='350'
         mobile-break-point='600'
         :dark='$vuetify.theme.name !== "white"'
     >

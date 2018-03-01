@@ -10,6 +10,7 @@
     deletable-chips
     hide-selected
     hint='Pick a file to plot'
+    :placeholder='filteredFiles.length ? "Select signal to add" : "Fetch or Upload files"'
     :disabled='filteredFiles.length === 0'
     @change='$refs.addSignal.isActive = $event.length > 1'>
   </v-select>

@@ -1,6 +1,6 @@
 <template>
   <v-btn flat small @click='$emit("reset-chart")' :disabled='disable' :icon='isBreakpointSmall'>
-    <span class='hidden-md-and-down'>Reset Chart</span>
+    <span class='hidden-md-and-down'>Reset Plot</span>
     <v-icon :right='!isBreakpointSmall' small>fa-undo</v-icon>
   </v-btn>
 </template>
