@@ -64,7 +64,7 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex';
 import read1DData from '../../assets/js/readFiles/default';
-import parseData from '../../assets/js//readFiles/parse/TAS';
+import parseData from '../../assets/js/readFiles/parse/TAS';
 
 export default {
   name: 'TAS',

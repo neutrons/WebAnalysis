@@ -28,7 +28,6 @@ export default {
       metadata: 'getMetadata',
       preparedData: 'getPreparedData',
       mergedFiles: 'mergedFiles',
-      getOriginalCombined: 'getOriginalCombined',
     }),
     plottedData() {
       const temp = this.preparedData.map(d => d.values)

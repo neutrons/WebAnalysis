@@ -11,23 +11,26 @@ export const setYField = (state, value) => {
   state.field.y = value;
 };
 
-export const changeFields = (state) => {
-  const tempSelect = [];
+export const changeFields = (state, newFields) => {
+  state.field = { ...newFields }; // eslint-disable-line
 
+  const tempSelect = [];
   state.selectedData.forEach((d) => {
     const data = _.cloneDeep(d.data);
     const metadata = [...d.metadata];
     const filename = d.filename;
     const dataTransformed = swapFields(data, state.field);
+    const defaultFields = { ...d.defaultFields };
 
     tempSelect.push({
       data,
       dataTransformed,
       filename,
       metadata,
+      defaultFields,
     });
   });
 
-  // eslint-disable-next-line
-  state.selectedData = tempSelect;
+  state.isFieldChange = true; // eslint-disable-line
+  state.selectedData = tempSelect; // eslint-disable-line
 };

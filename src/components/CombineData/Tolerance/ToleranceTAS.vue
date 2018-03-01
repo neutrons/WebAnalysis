@@ -1,15 +1,20 @@
 <script>
-import { mapMutations, mapState, mapGetters } from 'vuex';
+import { mapMutations, mapState, mapGetters, mapActions } from 'vuex';
 import Tolerance from './Tolerance';
 
 export default {
   name: 'ToleranceTAS',
   extends: Tolerance,
   computed: {
+    ...mapState('TAS', {
+      fetched: state => state.fetched,
+      uploaded: state => state.uploaded,
+    }),
     ...mapState('TAS/Combine', {
       defaultSettings: state => state.defaultSettings,
       tolerance: state => state.tolerance,
       combData: state => state.combinedData,
+      storedCombined: state => state.storedCombined,
     }),
     ...mapGetters('TAS/Combine', [
       'getPreparedData',
@@ -22,6 +27,12 @@ export default {
         this.setTolerance(value);
       },
     },
+    filenameList() {
+      const k1 = Object.keys(this.fetched);
+      const k2 = Object.keys(this.uploaded);
+      const k3 = Object.keys(this.storedCombined);
+      return [].concat.apply([], [k1, k2, k3]);
+    },
   },
   methods: {
     ...mapMutations('TAS/Combine', [
@@ -29,8 +40,14 @@ export default {
       'combineData',
       'removeCombineData',
     ]),
+    ...mapActions('TAS/Combine', [
+      'storeCombinedData',
+    ]),
     initCombineData() {
       this.combineData(this.getPreparedData);
+    },
+    storeCombine() {
+      this.storeCombinedData(this.editCombineName);
     },
   },
 };

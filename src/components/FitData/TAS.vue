@@ -91,7 +91,6 @@ import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 import filesToPlotWatcher from '../../assets/js/filesToPlotWatcher';
 import read1DData from '../../assets/js/readFiles/default';
 import parseData from '../../assets/js/readFiles/parse/TAS';
-import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'TAS',
@@ -114,7 +113,6 @@ export default {
     ...mapState('TAS/Fit', {
       filesToPlot: state => state.filesSelected,
       fileToFit: state => state.fileToFit,
-      selectedData: state => state.selectedData,
     }),
     ...mapGetters('TAS/Fit', [
       'isDefaultFieldsDifferent',
@@ -139,11 +137,6 @@ export default {
       if (this.fileToFit === null) {
         this.resetBrushSelection();
         this.resetFitConfiguration();
-      }
-    },
-    isDefaultFieldsDifferent() {
-      if (typeof this.isDefaultFieldsDifferent === 'string') {
-        eventBus.$emit('add-notification', this.isDefaultFieldsDifferent, 'warning');
       }
     },
   },

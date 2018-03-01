@@ -17,8 +17,8 @@ export default {
         return this.field.x;
       },
       set(value) {
-        this.setXField(value);
-        this.changeFields();
+        const obj = { x: value, y: this.selectY };
+        this.changeFields(obj);
       },
     },
     selectY: {
@@ -26,15 +26,13 @@ export default {
         return this.field.y;
       },
       set(value) {
-        this.setYField(value);
-        this.changeFields();
+        const obj = { x: value, y: this.selectY };
+        this.changeFields(obj);
       },
     },
   },
   methods: {
     ...mapMutations('TAS/Fit', [
-      'setXField',
-      'setYField',
       'changeFields',
     ]),
   },

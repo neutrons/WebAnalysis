@@ -19,9 +19,6 @@
 export default {
   name: 'FilterList',
   computed: {
-    allFiles() {
-      return Object.assign({}, this.fetched, this.uploaded);
-    },
     filenames() {
       return Object.keys(this.allFiles);
     },

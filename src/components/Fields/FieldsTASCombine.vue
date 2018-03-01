@@ -19,8 +19,8 @@ export default {
       },
       set(value) {
         if (this.isNormalized) this.resetNormalizeData();
-        this.setXField(value);
-        this.changeFields();
+        const obj = { x: value, y: this.selectY };
+        this.changeFields(obj);
       },
     },
     selectY: {
@@ -29,15 +29,13 @@ export default {
       },
       set(value) {
         if (this.isNormalized) this.resetNormalizeData();
-        this.setYField(value);
-        this.changeFields();
+        const obj = { x: value, y: this.selectY };
+        this.changeFields(obj);
       },
     },
   },
   methods: {
     ...mapMutations('TAS/Combine', [
-      'setXField',
-      'setYField',
       'changeFields',
       'resetNormalizeData',
     ]),

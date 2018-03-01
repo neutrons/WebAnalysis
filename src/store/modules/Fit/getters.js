@@ -7,8 +7,6 @@ import dataToFit from '../../shared/getters/dataToFit';
 import isFilesPlotted from '../../shared/getters/isFilesPlotted';
 import isFileFit from '../../shared/getters/isFileFit';
 import fitKeys from '../../shared/getters/fitKeys';
-import getMetadata from '../../shared/getters/getMetadata';
-import getFields from '../../shared/getters/getFields';
 
 export default {
   getCurrentConfiguration,
@@ -20,6 +18,4 @@ export default {
   getExtent,
   getPlotData,
   dataToFit,
-  getMetadata,
-  getFields,
 };
