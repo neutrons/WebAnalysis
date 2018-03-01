@@ -10,10 +10,13 @@
     </v-flex>
 
     <v-flex xs12>
-      <v-btn outline flat block @click='refit' color='success' :disabled='isFitting'>
-        {{ isFitting ? 'Fitting...' : 'Fit' }}
-        <v-icon right>fa-line-chart</v-icon>
-      </v-btn>
+      <v-tooltip top :close-delay='1'>
+        <v-btn slot='activator' outline flat block @click='refit' color='success' :disabled='isFitting'>
+          {{ isFitting ? 'Fitting...' : 'Fit' }}
+          <v-icon right>fa-line-chart</v-icon>
+        </v-btn>
+        <span>Click to fit</span>
+      </v-tooltip>
     </v-flex>
 
     <v-flex xs12>

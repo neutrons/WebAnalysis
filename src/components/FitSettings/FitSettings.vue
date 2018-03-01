@@ -39,11 +39,13 @@
         ticks
         thumb-label
         ></v-slider>
-
-      <v-btn block outline @click='resetEditFitSettings' color='warning'>
-        <v-icon left>fa-undo</v-icon>
-        <span>Reset Levenberg</span>
-      </v-btn>
+      <v-tooltip top :close-delay='1'>
+        <v-btn slot='activator' block outline @click='resetEditFitSettings' color='warning'>
+          <v-icon left>fa-undo</v-icon>
+          <span>Reset Levenberg</span>
+        </v-btn>
+        <span>Click to reset levenberg settings</span>
+      </v-tooltip>
     </div>
 </template>
 

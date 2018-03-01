@@ -1,10 +1,13 @@
 <template>
     <div>
-      <v-btn block outline @click='setInitialValues' color='success' :disabled='isFitting'>
-        <v-icon left>fa-line-chart</v-icon>
-        <span>{{ isFitting ? 'Fitting...' : 'Fit' }}</span>
-      </v-btn>
-      
+      <v-tooltip top :close-delay='1'>
+        <v-btn slot='activator' block outline @click='setInitialValues' color='success' :disabled='isFitting'>
+          <v-icon left>fa-line-chart</v-icon>
+          <span>{{ isFitting ? 'Fitting...' : 'Fit' }}</span>
+        </v-btn>
+        <span>Click to fit</span>
+      </v-tooltip>
+
       <v-subheader class='pl-0'>Fit Equation:</v-subheader>
       <v-text-field
         id='fitEquationInput'
