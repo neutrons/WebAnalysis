@@ -12,7 +12,7 @@
     <v-data-table :headers='headers' :items='plottedData' class='text-xs-center' :rows-per-page-items='[25, 50, 100, { text: "All", value: -1 }]'>
       <template slot='headers' slot-scope='props'>
         <tr>
-          <td class='text-xs-left'>#</td>
+          <td class='text-xs-left' v-if='plottedData.length'>#</td>
           <td v-for='(header, index) in props.headers' :key='index' class='text-xs-left'>
             {{ header.text }}
           </td>
@@ -79,15 +79,6 @@ import isBreakpointSmall from '../assets/js/isBreakpointSmall';
 
 export default {
   name: 'PlottedDataTable',
-  data() {
-    return {
-      sheet: false,
-      excludeHeaders: [
-        'name',
-        'pt',
-      ],
-    };
-  },
   props: {
     plottedData: {
       type: Array,
@@ -108,8 +99,7 @@ export default {
   computed: {
     fieldnames() {
       if (this.plottedData.length === 0) return [];
-      return Object.keys(this.plottedData[0])
-        .filter(d => d !== 'pt');
+      return Object.keys(this.plottedData[0]);
     },
     headers() {
       // eslint-disable-next-line
@@ -120,15 +110,6 @@ export default {
           value: key,
         }),
       );
-    },
-    filename() {
-      if (Array.isArray(this.files)) {
-        return `${this.files.join('_')}_plotted_data.csv`;
-      } else if (typeof this.files === 'string') {
-        return `${this.files}_plotted_data.csv`;
-      }
-
-      return 'plotted_data.csv';
     },
   },
   filters: {
@@ -155,7 +136,7 @@ export default {
 
       const arr = this.plottedData.map(d => Object.values(d));
 
-      this.downloadCSV(arr, headers, this.filename);
+      this.downloadCSV(arr, headers, 'data.csv');
     },
   },
 };

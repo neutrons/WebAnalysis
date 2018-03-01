@@ -90,7 +90,7 @@
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 import filesToPlotWatcher from '../../assets/js/filesToPlotWatcher';
 import read1DData from '../../assets/js/readFiles/default';
-import parseData from '../../assets/js//readFiles/parse/TAS';
+import parseData from '../../assets/js/readFiles/parse/TAS';
 
 export default {
   name: 'TAS',
@@ -114,6 +114,9 @@ export default {
       filesToPlot: state => state.filesSelected,
       fileToFit: state => state.fileToFit,
     }),
+    ...mapGetters('TAS/Fit', [
+      'isDefaultFieldsDifferent',
+    ]),
   },
   methods: {
     ...mapMutations('TAS', [

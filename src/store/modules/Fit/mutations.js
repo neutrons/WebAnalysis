@@ -16,7 +16,7 @@ import { removeFitInitialValue, addFitInitialValue, setFitInitialValues, reviseF
 import { resetBrushSelection, setBrushLimits, setBrushSelection } from '../../shared/mutations/selections';
 import setFitList from '../../shared/mutations/setFitList';
 import updateFitTableResults from '../../shared/mutations/updateFitTableResults';
-import { setXField, setYField } from '../../shared/mutations/fields';
+import { changeFields } from '../../shared/mutations/fields';
 import setFilteredData from '../../shared/mutations/setFilteredData';
 import toggleIsFitting from '../../shared/mutations/toggleIsFitting';
 
@@ -49,8 +49,7 @@ export default {
   setBrushLimits,
   setBrushSelection,
   updateFitTableResults,
-  setXField,
-  setYField,
+  changeFields,
   setFilteredData,
   toggleIsFitting,
 };

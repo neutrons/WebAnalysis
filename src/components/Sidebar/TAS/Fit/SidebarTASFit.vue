@@ -19,7 +19,7 @@ import { mapState } from 'vuex';
 
 import FileExplorer from '../../../FileExplorer/FileExplorerTAS';
 import Scales from '../../../Scales/ScalesTAS';
-import Fields from './Fields';
+import Fields from '../../../Fields/FieldsTASFit';
 import FitConfiguration from './FitConfiguration';
 
 export default {
