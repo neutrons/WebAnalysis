@@ -1,7 +1,11 @@
 <template>
     <div>
+      <v-btn block outline @click='setInitialValues' color='success' :disabled='isFitting'>
+        <v-icon left>fa-line-chart</v-icon>
+        <span>{{ isFitting ? 'Fitting...' : 'Fit' }}</span>
+      </v-btn>
+      
       <v-subheader class='pl-0'>Fit Equation:</v-subheader>
-
       <v-text-field
         id='fitEquationInput'
         v-model='equation'
@@ -9,7 +13,7 @@
         :rules='[validateEquation]'
         required
         @keydown.enter.native='enterEquation($event.target.value)'
-        class='ml-2'
+        class='ml-2 pr-2 pt-0'
      />
 
      <v-subheader class='pl-0'>Initial Values:</v-subheader>
@@ -27,13 +31,8 @@
         :prepend-icon='pickIndex === index ? "cancel" : "fa-crosshairs"'
         :prepend-icon-cb='() => pickIndex === index ? togglePick(false, index) : togglePick(true, index)'
         type='number'
-        class='ml-2'
+        class='ml-2 pr-2'
       ></v-text-field>
-
-      <v-btn block outline @click='setInitialValues' color='success' :disabled='isFitting'>
-        <v-icon left>fa-line-chart</v-icon>
-        <span>{{ isFitting ? 'Fitting...' : 'Fit' }}</span>
-      </v-btn>
     </div>
 </template>
 

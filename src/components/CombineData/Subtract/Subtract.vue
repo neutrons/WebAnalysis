@@ -9,6 +9,7 @@
     chips
     deletable-chips
     hide-selected
+    :placeholder='filteredFiles.length ? "Select background to subtract" : "Fetch or Upload files"'
     hint='Pick a file to plot'
     :disabled='filteredFiles.length === 0'
     @change='$refs.addBackground.isActive = $event.length > 1'>

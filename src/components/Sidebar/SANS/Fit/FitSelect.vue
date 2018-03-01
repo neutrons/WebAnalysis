@@ -1,8 +1,9 @@
 <template>
     <v-select
-        :items='fitKeys'
-        v-model='select'
-        hint='Select Fit'
+      :items='fitKeys'
+      v-model='select'
+      placeholder='Select fit type'
+      class='pt-0'
     ></v-select>
 </template>
 

@@ -19,6 +19,7 @@
             deletable-chips
             bottom
             hide-details
+            :placeholder='fileList.length > 0 ? "Select a file to browse" : "Fetch or upload files"'
             max-height='150'
             autocomplete
           ></v-select>

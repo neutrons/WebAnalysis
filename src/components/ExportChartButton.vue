@@ -1,6 +1,6 @@
 <template>
   <v-btn flat small @click='savePlot' :disabled='disable' :icon='isBreakpointSmall'>
-    <span class='hidden-md-and-down'>Export Chart</span>
+    <span class='hidden-md-and-down'>Export Plot</span>
     <v-icon :right='!isBreakpointSmall'>fa-floppy-o</v-icon>
   </v-btn>
 </template>

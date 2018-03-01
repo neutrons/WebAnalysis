@@ -1,7 +1,27 @@
 <template>
 <div>
-  <v-layout row wrap v-for='(s, index) in selected' :key='index'>
+  <v-layout row wrap>
+    <v-flex xs12>
+      <v-subheader class='pl-0'>Final Fit Equation:</v-subheader>
+    </v-flex>
 
+    <v-flex xs12 pl-2>
+      <p>{{finalEquation}}</p>
+    </v-flex>
+
+    <v-flex xs12>
+      <v-btn outline flat block @click='refit' color='success' :disabled='isFitting'>
+        {{ isFitting ? 'Fitting...' : 'Fit' }}
+        <v-icon right>fa-line-chart</v-icon>
+      </v-btn>
+    </v-flex>
+
+    <v-flex xs12>
+      <v-subheader class='pl-0'>Fit Equations:</v-subheader>
+    </v-flex>
+  </v-layout>
+
+  <v-layout row wrap v-for='(s, index) in selected' :key='index'>
     <v-flex xs2>
       <v-btn flat outline icon v-if='index === 0' @click='addNewEquation' color='success'>
         <v-icon>fa-plus</v-icon>
@@ -46,23 +66,6 @@
         :prepend-icon='pickIndex === ivIndex && selectIndex === selectedIndex ? "cancel" : "fa-crosshairs"'
         :prepend-icon-cb='() => pickIndex === ivIndex && selectIndex === selectedIndex ? togglePick(false, selectedIndex, ivIndex) : togglePick(true, selectedIndex, ivIndex)'
       ></v-text-field>
-    </v-flex>
-  </v-layout>
-
-  <v-layout row wrap>
-    <v-flex xs12>
-     <v-subheader class='pl-0'>Final Fit Equation:</v-subheader>
-    </v-flex>
-
-    <v-flex xs12 pl-2>
-      <p>{{finalEquation}}</p>
-    </v-flex>
-
-    <v-flex xs12>
-      <v-btn outline flat block @click='refit' color='success' :disabled='isFitting'>
-        {{ isFitting ? 'Fitting...' : 'Fit' }}
-        <v-icon right>fa-line-chart</v-icon>
-      </v-btn>
     </v-flex>
   </v-layout>
 </div>
