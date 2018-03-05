@@ -38,7 +38,7 @@
           </v-list-tile>
 
           <v-list-tile to='/SANS/Fit' exact :active-class='activeClass'>
-            <v-list-tile-title>Fit Data</v-list-tile-title>
+            <v-list-tile-title>Graph Data</v-list-tile-title>
           </v-list-tile>
 
           <v-list-tile to='/SANS/Stitch' exact :active-class='activeClass'>
@@ -62,7 +62,7 @@
           </v-list-tile>
 
           <v-list-tile to='/TAS/Fit' exact :active-class='activeClass'>
-            <v-list-tile-title>Fit Data</v-list-tile-title>
+            <v-list-tile-title>Graph Data</v-list-tile-title>
           </v-list-tile>
 
           <v-list-tile to='/TAS/Combine' exact :active-class='activeClass'>
@@ -92,7 +92,7 @@
                 </v-list-tile>
 
                 <v-list-tile to='/SANS/Fit' exact :active-class='activeClass'>
-                  <v-list-tile-title>Fit Data</v-list-tile-title>
+                  <v-list-tile-title>Graph Data</v-list-tile-title>
                 </v-list-tile>
 
                 <v-list-tile to='/SANS/Stitch' exact :active-class='activeClass'>
@@ -119,7 +119,7 @@
                 </v-list-tile>
 
                 <v-list-tile to='/TAS/Fit' exact :active-class='activeClass'>
-                  <v-list-tile-title>Fit Data</v-list-tile-title>
+                  <v-list-tile-title>Graph Data</v-list-tile-title>
                 </v-list-tile>
               </v-list>
 
