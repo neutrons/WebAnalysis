@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 import Chart from './DefaultChart';
 import { eventBus } from '../../../assets/js/eventBus';
 
@@ -45,6 +45,8 @@ export default {
       isFileFit: 'isFileFit',
       metadata: 'getMetadata',
       preparedData: 'getPreparedData',
+      fitInitialValues: 'fitInitialValues',
+      fitEquation: 'finalEquation',
     }),
     plottedData() {
       const temp = this.preparedData.map(d => d.values)
@@ -68,8 +70,10 @@ export default {
     ...mapMutations('TAS/Fit', [
       'resetBrushSelection',
       'setPreviousFit',
-      'updateFitTableResults',
       'toggleIsFitting',
+    ]),
+    ...mapActions('TAS/Fit', [
+      'updateFitTableResults',
     ]),
   },
   watch: {

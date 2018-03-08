@@ -79,7 +79,7 @@
 
           <v-card-title class='pt-0'>
             <div>
-              <h3 class='headline'>Fit Data</h3>
+              <h3 class='headline'>Graph Data</h3>
               <div>Plot multiple files and perform fits: Linear, Guinier, Porod, etc.</div>
             </div>
           </v-card-title>
@@ -159,7 +159,7 @@
 
           <v-card-title class='pt-0'>
             <div>
-              <h3 class='headline'>Fit Data</h3>
+              <h3 class='headline'>Graph Data</h3>
               <div>Plot multiple files and perform fits: Linear, Gaussian, and Lorentzian.</div>
             </div>
           </v-card-title>
