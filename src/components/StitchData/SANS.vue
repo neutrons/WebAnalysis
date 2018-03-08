@@ -13,8 +13,13 @@
               <v-draw-brushes-btn @draw-saved-brushes='props.drawSavedBrushes' :disable='!isBrushesStored' />
             </div>
 
-            <v-menu bottom v-if='$vuetify.breakpoint.mdAndDown'>
-              <v-btn :icon='$vuetify.breakpoint.mdAndDown' slot='activator' flat small :disabled='props.filesSelected.length < 2'>
+            <v-menu
+              bottom
+              v-if='$vuetify.breakpoint.mdAndDown'
+              :disabled='props.filesSelected.length < 2'
+              :style='`opacity: ${props.filesSelected.length < 2 ? 0.5 : 1}`'>
+
+              <v-btn :icon='$vuetify.breakpoint.mdAndDown' slot='activator' flat small>
                 <span class='hidden-md-and-down'>Stitch options</span>
                 <v-icon :right='!$vuetify.breakpoint.mdAndDown'>more_vert</v-icon>
               </v-btn>
