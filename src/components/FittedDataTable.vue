@@ -1,6 +1,6 @@
 <template>
 <v-card flat>
-  <v-card-title class='pb-0' v-if='allowExport'>
+  <v-card-title class='pb-0 pt-0' v-if='allowExport'>
     <v-tooltip top :close-delay='1'>
       <v-btn slot='activator' outline flat small color='success' @click='downloadFittedData'>
         <v-icon :left='!isBreakpointSmall'>file_download</v-icon>

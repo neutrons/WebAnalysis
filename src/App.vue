@@ -3,9 +3,19 @@
   <!-- Side Bar Component -->
   <v-sidebar :drawer='drawer' v-show='$route.meta.title !== "Home"'></v-sidebar>
 
-  <v-toolbar fixed app dense class='elevation-1' :clipped-left='true' :clipped-right='true' color='secondary' :dark='!$vuetify.dark' v-show='$route.meta.title !== "Home"'>
+  <v-toolbar
+    fixed
+    app
+    dense
+    class='elevation-1'
+    :clipped-left='true' :clipped-right='true'
+    color='secondary'
+    :dark='!$vuetify.dark'
+    v-show='$route.meta.title !== "Home"'>
 
-    <v-toolbar-side-icon @click.stop='drawer = !drawer' class='ml-3 mr-3'></v-toolbar-side-icon>
+    <v-toolbar-side-icon @click.stop='drawer = !drawer' class='ml-3 mr-3'>
+      <v-icon>fa-sliders</v-icon>
+    </v-toolbar-side-icon>
 
     <!-- bread crumb component -->
     <v-breadcrumbs>
@@ -21,8 +31,8 @@
 
     <v-spacer></v-spacer>
     <v-toolbar-items>
-    <v-fetch-data></v-fetch-data>
-    <v-upload-data></v-upload-data>
+      <v-fetch-data></v-fetch-data>
+      <v-upload-data></v-upload-data>
     </v-toolbar-items>
 
     <v-toolbar-items class='hidden-sm-and-down'>
@@ -130,9 +140,9 @@
           </v-list-tile>
         </v-list>
       </v-menu>
-
   </v-toolbar>
 
+  <!-- Main Plot Content Here -->
   <v-content>
     <transition name='fade' appear>
       <keep-alive>
@@ -143,9 +153,19 @@
 
   <v-footer fixed app dark>
     <v-spacer></v-spacer>
-    <v-btn flat icon color='white' small @click='toggleTheme("white")'><v-icon>fa-circle</v-icon></v-btn>
-    <v-btn flat icon color='blue' small @click='toggleTheme("blue")'><v-icon>fa-circle</v-icon></v-btn>
-    <v-btn flat icon color='green' small @click='toggleTheme("green")'><v-icon>fa-circle</v-icon></v-btn>
+
+    <v-btn flat icon color='white' small @click='toggleTheme("white")'>
+      <v-icon>fa-circle</v-icon>
+    </v-btn>
+
+    <v-btn flat icon color='blue' small @click='toggleTheme("blue")'>
+      <v-icon>fa-circle</v-icon>
+    </v-btn>
+
+    <v-btn flat icon color='green' small @click='toggleTheme("green")'>
+      <v-icon>fa-circle</v-icon>
+    </v-btn>
+
     <div class='grey--text'>&copy; {{ new Date().getFullYear()}}</div>
   </v-footer>
   <!-- Error Message Component -->

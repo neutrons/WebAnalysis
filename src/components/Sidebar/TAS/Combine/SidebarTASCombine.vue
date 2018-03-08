@@ -25,9 +25,9 @@
     </v-container>
   </v-expansion-panel-content>
 
-  <v-fields v-if='selectedData.length' />
-
   <v-scales v-if='selectedData.length' />
+
+  <v-fields v-if='selectedData.length' />
 
   <v-expansion-panel-content :value='true' v-if='selectedData.length > 1'>
     <div slot='header' class='title'>Normalize</div>

@@ -9,7 +9,7 @@ import mutations from './mutations';
 import Stitch from '../Stitch';
 import SANS2D from './SANS2D';
 import Browse from '../Browse';
-import Fit from '../Fit/SANSFit';
+import Fit from '../Fit/SANS';
 
 export default {
   namespaced: true,

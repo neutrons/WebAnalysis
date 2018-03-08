@@ -7,7 +7,7 @@ import mutations from './mutations';
 
 // Import Modules
 import Browse from '../Browse';
-import Fit from '../Fit/TASFit';
+import Fit from '../Fit/TAS';
 import Combine from '../Combine';
 
 export default {
