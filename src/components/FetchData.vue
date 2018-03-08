@@ -83,7 +83,7 @@ export default {
         };
       });
 
-      this.$store.commit('TAS/addFetchFiles', temp);
+      this.$store.dispatch('TAS/addFetchFiles', temp);
     },
     fetchSANS(data) {
       const temp = {};
@@ -110,7 +110,7 @@ export default {
       });
 
       const namespace = this.$route.name !== 'SANS2D' ? 'SANS' : 'SANS/SANS2D';
-      this.$store.commit(`${namespace}/addFetchFiles`, temp);
+      this.$store.dispatch(`${namespace}/addFetchFiles`, temp);
     },
   },
   watch: {
