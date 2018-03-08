@@ -1,8 +1,6 @@
 import * as d3 from 'd3';
 import _ from 'lodash';
-import setXScale from '../../shared/mutations/setXScale';
-import setYScale from '../../shared/mutations/setYScale';
-import resetScales from '../../shared/mutations/resetScales';
+import { setXScale, setYScale, resetScales } from '../../shared/mutations/scales';
 import updateFilters from '../../shared/mutations/updateFilters';
 import { normalizeData, resetNormalizeData } from '../../shared/mutations/normalizeData';
 import { combineData, removeCombineData, addCombinedData } from '../../shared/mutations/combineData';

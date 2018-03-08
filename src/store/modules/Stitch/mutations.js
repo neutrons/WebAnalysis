@@ -3,9 +3,7 @@ import * as d3 from 'd3';
 
 import updateFilesSelected from '../../shared/mutations/updateFilesSelected';
 import updateFilters from '../../shared/mutations/updateFilters';
-import setXScale from '../../shared/mutations/setXScale';
-import setYScale from '../../shared/mutations/setYScale';
-import resetScales from '../../shared/mutations/resetScales';
+import { setXScale, setYScale, resetScales } from '../../shared/mutations/scales';
 
 export default {
   updateFilesSelected,
