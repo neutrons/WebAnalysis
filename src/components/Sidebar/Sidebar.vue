@@ -32,7 +32,7 @@ export default {
     Sidebar404: () => import('./Sidebar404'),
   },
   props: {
-    drawer: {
+    show: {
       type: Boolean,
       required: true,
     },
@@ -40,7 +40,7 @@ export default {
   computed: {
     toggle: {
       get() {
-        return this.drawer;
+        return this.show;
       },
       set() {},
     },
