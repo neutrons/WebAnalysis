@@ -21,7 +21,7 @@
 
             <!-- Chart container -->
             <v-flex xs12 :id='`combine-chart-wrapper-${ID}`' text-xs-center mb-3>
-              <svg :class='`combine-chart combine-chart-${ID}`' />
+              <svg :class='`chart combine-chart combine-chart-${ID}`' />
             </v-flex>
 
             <v-flex xs12>
@@ -40,7 +40,7 @@
                       <span class='mr-2'>Error: {{errorPoint.toExponential(2)}}</span>
                     </v-subheader>
                     <v-spacer></v-spacer>
-                    <v-btn :icon='!isBreakpointSmall' flat @click='showTabs = !showTabs' v-if='metadataLength > 0'>
+                    <v-btn icon flat @click='showTabs = !showTabs' v-if='metadataLength > 0'>
                       <v-icon small>{{ showTabs ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
                     </v-btn>
                   </v-layout>
@@ -183,7 +183,6 @@ export default {
   mounted() {
     this.getContainerWidth(`#combine-chart-wrapper-${this.ID}`);
     this.drawChart();
-    this.setResponsive(`combine-chart-width-change-${this.ID}`, `#combine-chart-wrapper-${this.ID}`, `.combine-chart-${this.ID}`);
   },
   watch: {
     chartConfigurations: {
@@ -195,16 +194,11 @@ export default {
             this.removeChart();
             this.getContainerWidth(`#combine-chart-wrapper-${this.ID}`);
             this.drawChart();
-            this.setResponsive(`combine-chart-width-change-${this.ID}`, `#combine-chart-wrapper-${this.ID}`, `.combine-chart-${this.ID}`);
           } else {
             this.drawChart();
           }
         });
       },
-    },
-    title() {
-      // maintain responsive charts when switching between plot components
-      this.setResponsive(`combine-chart-width-change-${this.ID}`, `#combine-chart-wrapper-${this.ID}`, `.combine-chart-${this.ID}`);
     },
   },
 };
@@ -254,8 +248,8 @@ iframe.width-changed {
     max-width: 1000px;
   } // Large screen (desktop)
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    max-height: 1500px / 1.77px;
-    max-width: 1500px;
+    max-height: 1200px / 1.77px;
+    max-width: 1200px;
   } // Extra large screen (ultrawide)
   @media screen and (min-width: 1904px) {
     max-height: 1800px / 1.77px;

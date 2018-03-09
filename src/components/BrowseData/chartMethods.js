@@ -1,7 +1,6 @@
 import * as d3 from 'd3';
 
 // Import Mixins
-import setResponsive from '../../assets/js/chartFunctions/setResponsive';
 import getContainerWidth from '../../assets/js/chartFunctions/getContainerWidth';
 import errorBars from '../../assets/js/chartFunctions/errorBars';
 import scatter from '../../assets/js/chartFunctions/scatter';
@@ -18,7 +17,6 @@ import addZoomGroup from '../../assets/js/chartFunctions/addZoomGroup';
 
 export default {
   mixins: [
-    setResponsive,
     errorBars,
     scatter,
     linepath,
@@ -39,8 +37,7 @@ export default {
         this.svg = d3.select(`.quickplot-${this.ID}`)
           .attr('viewBox', this.viewBox)
           .attr('perserveAspectRatio', 'xMidYMid meet')
-          .attr('height', this.height + this.margin.top + this.margin.bottom)
-          .attr('width', this.width + this.margin.left + this.margin.right);
+          .attr('width', '100%');
 
         this.addLabels();
         this.addClipPath();

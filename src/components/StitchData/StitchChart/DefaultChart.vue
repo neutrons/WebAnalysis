@@ -21,7 +21,7 @@
 
               <!-- Chart container -->
               <v-flex xs12 :id='`stitch-chart-wrapper-${ID}`' text-xs-center mb-3>
-                <svg :class='`stitch-chart stitch-chart-${ID}`' />
+                <svg :class='`chart stitch-chart stitch-chart-${ID}`' />
               </v-flex>
 
               <v-flex xs12>
@@ -49,7 +49,7 @@
                         <span class='mr-2'>Error: {{errorPoint.toExponential(2)}}</span>
                       </v-subheader>
                       <v-spacer></v-spacer>
-                      <v-btn :icon='!isBreakpointSmall' flat @click='showTabs = !showTabs' v-if='stitchedData.length > 0'>
+                      <v-btn icon flat @click='showTabs = !showTabs' v-if='stitchedData.length > 0'>
                         <v-icon small>{{ showTabs ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
                       </v-btn>
                     </v-layout>
@@ -203,7 +203,6 @@ export default {
   mounted() {
     this.getContainerWidth(`#stitch-chart-wrapper-${this.ID}`);
     this.drawChart();
-    this.setResponsive(`stitch-chart-width-change-${this.ID}`, `#stitch-chart-wrapper-${this.ID}`, `.stitch-chart-${this.ID}`);
   },
   watch: {
     chartConfigurations: {
@@ -215,16 +214,11 @@ export default {
             this.getContainerWidth(`#stitch-chart-wrapper-${this.ID}`);
             this.removeChart();
             this.drawChart();
-            this.setResponsive(`stitch-chart-width-change-${this.ID}`, `#stitch-chart-wrapper-${this.ID}`, `.stitch-chart-${this.ID}`);
           } else {
             this.drawChart();
           }
         });
       },
-    },
-    title() {
-      // maintain responsive charts when switching between plot components
-      this.setResponsive(`stitch-chart-width-change-${this.ID}`, `#stitch-chart-wrapper-${this.ID}`, `.stitch-chart-${this.ID}`);
     },
   },
 };
@@ -274,8 +268,8 @@ iframe.width-changed {
     max-width: 1000px;
   } // Large screen (desktop)
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    max-height: 1500px / 1.77px;
-    max-width: 1500px;
+    max-height: 1100px / 1.77px;
+    max-width: 1100px;
   } // Extra large screen (ultrawide)
   @media screen and (min-width: 1904px) {
     max-height: 1800px / 1.77px;

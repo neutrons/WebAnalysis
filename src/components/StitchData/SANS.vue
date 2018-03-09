@@ -69,8 +69,7 @@
 
           <template slot-scope='props' slot='tabs-slot'>
             <v-slide-y-transition>
-                <v-flex xs12 v-if='props.stitchedData.length'>
-                  <div v-show='props.showTabs'>
+                <v-flex xs12 v-if='props.stitchedData.length' v-show='props.showTabs'>
                     <v-tabs v-model='props.activeParentTab'>
 
                         <v-tabs-bar v-if='props.stitchedData'>
@@ -133,7 +132,6 @@
                         </v-tabs-items>
                     <!-- end of nested tab items -->
                     </v-tabs>
-                  </div>
                 </v-flex>
               </v-slide-y-transition>
           </template>

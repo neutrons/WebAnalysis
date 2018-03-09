@@ -1,7 +1,6 @@
 // Import Mixins
 import initChartElements from '../../../assets/js/chartFunctions/initChartElements';
 import updateChartElements from '../../../assets/js/chartFunctions/updateChartElements';
-import setResponsive from '../../../assets/js/chartFunctions/setResponsive';
 import getContainerWidth from '../../../assets/js/chartFunctions/getContainerWidth';
 import errorBars from '../../../assets/js/chartFunctions/errorBars';
 import scatter from '../../../assets/js/chartFunctions/scatter';
@@ -14,7 +13,6 @@ import grids from '../../../assets/js/chartFunctions/grids';
 import resetChart from '../../../assets/js/chartFunctions/resetChart';
 import zoom from '../../../assets/js/chartFunctions/zoom';
 import filterForLog from '../../../assets/js/chartFunctions/filterForLog';
-import isBreakpointSmall from '../../../assets/js/isBreakpointSmall';
 import addClipPath from '../../../assets/js/chartFunctions/addClipPath';
 import addZoomGroup from '../../../assets/js/chartFunctions/addZoomGroup';
 // import legend from '../../../assets/js/chartFunctions/legend';
@@ -23,7 +21,6 @@ export default {
   mixins: [
     initChartElements,
     updateChartElements,
-    setResponsive,
     errorBars,
     scatter,
     linepath,
@@ -35,7 +32,6 @@ export default {
     zoom,
     resetChart,
     getContainerWidth,
-    isBreakpointSmall,
     filterForLog,
     addClipPath,
     addZoomGroup,
