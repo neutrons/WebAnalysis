@@ -30,7 +30,6 @@
                     <v-layout row wrap class='pa-0'>
                       <v-reset-chart-button @reset-chart='resetChart' :disable='filesSelected.length === 0'></v-reset-chart-button>
                       <v-export-chart-button :ID='ID' :selection='`.fit-chart-${ID}`' :disable='filesSelected.length === 0'></v-export-chart-button>
-                      <v-legend-button @toggle-legend='drawerRight = !drawerRight' @close-legend='drawerRight = false' :disable='filesSelected.length === 0'></v-legend-button>
 
                       <v-spacer></v-spacer>
                       <!-- scatter point hover values -->
@@ -79,12 +78,6 @@
         </v-tabs-items>
       </v-tabs>
   </v-flex>
-
-  <v-legend
-    :drawer-right='drawerRight'
-    :color-scale='colorScale'
-    :files-selected='filesSelected'
-    :file-to-fit='fileToFit'></v-legend>
 
   <!-- Modal Picker for Fit Initial Values -->
   <v-slide-y-transition>
@@ -137,8 +130,6 @@ export default {
     chartMethods,
   ],
   components: {
-    'v-legend-button': () => import('../../Legend/LegendButton'),
-    'v-legend': () => import('../../Legend/Legend'),
     'v-export-chart-button': () => import('../../ExportChartButton'),
     'v-reset-chart-button': () => import('../../ResetChartButton'),
     'v-plotted-data-table': () => import('../../PlottedDataTable'),

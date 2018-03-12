@@ -30,7 +30,6 @@
                     <v-layout row wrap class='pa-0'>
                       <v-reset-chart-button @reset-chart='resetChart' :disable='filesSelected.length === 0'></v-reset-chart-button>
                       <v-export-chart-button :ID='ID' :selection='`stitch-chart-${ID}`' :disable='filesSelected.length === 0'></v-export-chart-button>
-                      <v-legend-button @toggle-legend='showLegend = !showLegend' @close-legend='showLegend = false' :disable='filesSelected.length === 0'></v-legend-button>
 
                       <slot name='toolbar-slot'
                         :toggle-edit='toggleEdit'
@@ -78,13 +77,6 @@
         </v-tabs-items>
       </v-tabs>
   </v-flex>
-
-  <v-legend
-    :drawer-right='showLegend'
-    :color-scale='colorScale'
-    :files-selected='filesSelected'
-    :is-stitch='stitchedData.length > 0'>
-  </v-legend>
 </v-container>
 </template>
 
@@ -106,8 +98,6 @@ export default {
     chartMethods,
   ],
   components: {
-    'v-legend-button': () => import('../../Legend/LegendButton'),
-    'v-legend': () => import('../../Legend/Legend'),
     'v-export-chart-button': () => import('../../ExportChartButton'),
     'v-reset-chart-button': () => import('../../ResetChartButton'),
     'v-plotted-data-table': () => import('../../PlottedDataTable'),
@@ -116,7 +106,6 @@ export default {
     return {
       svg: undefined,
       g: undefined,
-      showLegend: false,
       showTabs: true,
       width: 960,
       height: 600,
