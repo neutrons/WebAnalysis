@@ -21,13 +21,9 @@ export default {
     eventBus.$off('revise-fit-line-TAS');
   },
   computed: {
-    ...mapState('TAS', {
-      colorDomain: state => state.colorDomain,
-    }),
     ...mapState('TAS/Fit', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
-      deleteKeys: state => state.deleteKeys,
       label: state => state.field,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,

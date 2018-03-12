@@ -23,7 +23,6 @@ mutations.resetAll = (state) => {
     x: 'x',
     y: 'y',
   };
-  state.deleteKeys = [];
   state.fittedData = [];
   state.filteredData = [];
   state.brushSelection = [];

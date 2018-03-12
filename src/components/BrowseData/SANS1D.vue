@@ -1,5 +1,6 @@
 <script>
 import { mapState } from 'vuex';
+import * as d3 from 'd3';
 import DefaultChart from './DefaultChart';
 
 export default {
@@ -21,7 +22,11 @@ export default {
     }),
     plotData() {
       if (!Object.keys(this.browseData).length) return [];
-      return this.browseData.data;
+      const nest = d3.nest()
+        .key(d => d.name)
+        .entries(this.browseData.data);
+
+      return nest;
     },
   },
 };
