@@ -24,7 +24,6 @@ export default {
     ...mapState('SANS/Fit', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
-      deleteKeys: state => state.deleteKeys,
       label: state => state.label,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,

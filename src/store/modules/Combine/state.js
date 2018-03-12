@@ -10,7 +10,6 @@ export default {
     subtract: [],
   },
   selectedData: [],
-  deleteKeys: [],
   combinedData: [],
   filters: [],
   defaultSettings: JSON.parse(JSON.stringify(defaultSettings)),

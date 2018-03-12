@@ -14,7 +14,6 @@ export default {
   computed: {
     ...mapState('TAS/Combine', {
       plotScale: state => state.plotScale,
-      deleteKeys: state => state.deleteKeys,
       label: state => state.field,
       fittedData: state => state.fittedData,
       fitEquation: state => state.fitEquation,

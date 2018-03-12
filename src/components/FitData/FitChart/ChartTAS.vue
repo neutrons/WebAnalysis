@@ -24,7 +24,6 @@ export default {
     ...mapState('TAS/Fit', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
-      deleteKeys: state => state.deleteKeys,
       label: state => state.field,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,

@@ -41,7 +41,6 @@ export default {
       x: 'q = x',
       y: 'I(q) = y',
     };
-    state.deleteKeys = [];
     state.isZoomBrush = true;
     state.brushes = [];
     state.brushSelections = {};

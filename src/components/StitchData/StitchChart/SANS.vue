@@ -14,7 +14,6 @@ export default {
     ...mapState('SANS/Stitch', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
-      deleteKeys: state => state.deleteKeys,
       label: state => state.label,
       brushes: state => state.brushes,
       brushScale: state => state.brushScale,

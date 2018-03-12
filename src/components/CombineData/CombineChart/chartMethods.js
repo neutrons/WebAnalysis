@@ -3,7 +3,6 @@ import initChartElements from '../../../assets/js/chartFunctions/initChartElemen
 import updateChartElements from '../../../assets/js/chartFunctions/updateChartElements';
 import getContainerWidth from '../../../assets/js/chartFunctions/getContainerWidth';
 import labels from '../../../assets/js/chartFunctions/labels';
-import removeGroups from '../../../assets/js/chartFunctions/removeGroups';
 import removeChart from '../../../assets/js/chartFunctions/removeChart';
 import axes from '../../../assets/js/chartFunctions/axes';
 import grids from '../../../assets/js/chartFunctions/grids';
@@ -19,7 +18,6 @@ export default {
     initChartElements,
     updateChartElements,
     labels,
-    removeGroups,
     removeChart,
     axes,
     grids,
@@ -44,7 +42,6 @@ export default {
       }
 
       this.updateChartElements();
-      this.removeGroups();
     },
   },
 };

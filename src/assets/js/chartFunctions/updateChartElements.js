@@ -57,16 +57,12 @@ export default {
         .append('path')
         .attr('class', 'scatter-line')
         .style('fill', 'none')
-        .style('stroke', (d) => { // eslint-disable-line
-          return typeof d.key === 'undefined' || d.key === 'combine' || d.key === 'stitch' ? 'brown' : this.colorScale(d.key);
-        })
+        .style('stroke', d => this.getColor(d.key))
         .attr('d', d => newLine(d.values));
 
       scatterLine.transition(trans)
         .attr('d', d => newLine(d.values))
-        .style('stroke', (d) => { // eslint-disable-line
-          return typeof d.key === 'undefined' || d.key === 'combine' || d.key === 'stitch' ? 'brown' : this.colorScale(d.key);
-        });
+        .style('stroke', d => this.getColor(d.key));
 
       // ENTER / EXIT / UPDATE Error Bars
       let errors = group.selectAll('.error-line')
@@ -81,14 +77,10 @@ export default {
         .attr('y1', d => newYScale(d.y + d.error))
         .attr('x2', d => newXScale(d.x))
         .attr('y2', d => this.errorBottomY(d, newYScale))
-        .style('stroke', (d) => { // eslint-disable-line
-          return typeof d.name === 'undefined' || d.name === 'combine' || d.name === 'stitch' ? 'brown' : this.colorScale(d.name);
-        });
+        .style('stroke', d => this.getColor(d.name));
 
       errors
-        .style('stroke', (d) => { // eslint-disable-line
-          return typeof d.name === 'undefined' || d.name === 'combine' || d.name === 'stitch' ? 'brown' : this.colorScale(d.name);
-        })
+        .style('stroke', d => this.getColor(d.name))
         .transition(trans)
         .attr('x1', d => newXScale(d.x))
         .attr('y1', d => newYScale(d.y + d.error))
@@ -107,14 +99,10 @@ export default {
         .attr('y1', d => newYScale(d.y + d.error))
         .attr('x2', d => newXScale(d.x) - 4)
         .attr('y2', d => newYScale(d.y + d.error))
-        .style('stroke', (d) => { // eslint-disable-line
-          return typeof d.name === 'undefined' || d.name === 'combine' || d.name === 'stitch' ? 'brown' : this.colorScale(d.name);
-        });
+        .style('stroke', d => this.getColor(d.name));
 
       errors
-        .style('stroke', (d) => { // eslint-disable-line
-          return typeof d.name === 'undefined' || d.name === 'combine' || d.name === 'stitch' ? 'brown' : this.colorScale(d.name);
-        })
+        .style('stroke', d => this.getColor(d.name))
         .transition(trans)
         .attr('x1', d => newXScale(d.x) + 4)
         .attr('y1', d => newYScale(d.y + d.error))
@@ -133,14 +121,10 @@ export default {
         .attr('y1', d => this.errorBottomY(d, newYScale))
         .attr('x2', d => newXScale(d.x) - 4)
         .attr('y2', d => this.errorBottomY(d, newYScale))
-        .style('stroke', (d) => { // eslint-disable-line
-          return typeof d.name === 'undefined' || d.name === 'combine' || d.name === 'stitch' ? 'brown' : this.colorScale(d.name);
-        });
+        .style('stroke', d => this.getColor(d.name));
 
       errors
-        .style('stroke', (d) => { // eslint-disable-line
-          return typeof d.name === 'undefined' || d.name === 'combine' || d.name === 'stitch' ? 'brown' : this.colorScale(d.name);
-        })
+        .style('stroke', d => this.getColor(d.name))
         .transition(trans)
         .attr('x1', d => newXScale(d.x) + 4)
         .attr('y1', d => this.errorBottomY(d, newYScale))
@@ -156,17 +140,15 @@ export default {
       scatter.enter()
         .append('path')
         .attr('class', 'point')
-        .style('fill', (d) => { // eslint-disable-line
-          return typeof d.name === 'undefined' || d.name === 'combine' || d.name === 'stitch' ? 'brown' : this.colorScale(d.name);
-        })
+        .style('fill', d => this.getColor(d.name))
         .style('stroke', 'whitesmoke')
         .attr('d', (d) => {
-          const shape = d.name === 'combine' || d.name === 'fit' || d.name === 'stitch' ? 'cross' : 'circle';
+          const shape = vm.getShape(d.name);
           return vm.symbols[shape](d);
         })
         .attr('transform', d => `translate( ${newXScale(d.x)}, ${newYScale(d.y)})`)
         .on('mouseover', function hover(d) {
-          const shape = d.name === 'combine' || d.name === 'fit' || d.name === 'stitch' ? 'cross' : 'circle';
+          const shape = vm.getShape(d.name);
 
           d3.select(this).transition()
             .attr('d', vm.symbols[shape].size(125));
@@ -174,7 +156,7 @@ export default {
           [vm.xPoint, vm.yPoint, vm.errorPoint] = [d.x, d.y, d.error];
         })
         .on('mouseout', function out(d) {
-          const shape = d.name === 'combine' || d.name === 'fit' || d.name === 'stitch' ? 'cross' : 'circle';
+          const shape = vm.getShape(d.name);
 
           d3.select(this).transition()
             .attr('d', vm.symbols[shape].size(45));
@@ -182,12 +164,10 @@ export default {
 
       scatter.transition(trans)
         .attr('d', (d) => {
-          const shape = d.name === 'combine' || d.name === 'fit' || d.name === 'stitch' ? 'cross' : 'circle';
+          const shape = vm.getShape(d.name);
           return vm.symbols[shape](d);
         })
-        .style('fill', (d) => { // eslint-disable-line
-          return typeof d.name === 'undefined' || d.name === 'combine' || d.name === 'stitch' ? 'brown' : this.colorScale(d.name);
-        })
+        .style('fill', d => this.getColor(d.name))
         .style('stroke', 'whitesmoke')
         .attr('transform', d => `translate( ${newXScale(d.x)}, ${newYScale(d.y)})`);
     },
@@ -195,6 +175,12 @@ export default {
       if (d.y - d.error < 0 && this.yType === 'log(y)') return y(d.y);
 
       return y(d.y - d.error);
+    },
+    getColor(name) {
+      return typeof name === 'undefined' || name === 'combine' || name === 'stitch' ? 'brown' : this.colorScale(name);
+    },
+    getShape(name) {
+      return name === 'combine' || name === 'fit' || name === 'stitch' ? 'cross' : 'circle';
     },
   },
 };
