@@ -11,9 +11,6 @@ export default {
     };
   },
   computed: {
-    ...mapState('SANS', {
-      colorDomain: state => state.colorDomain,
-    }),
     ...mapState('SANS/Stitch', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,

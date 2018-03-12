@@ -57,12 +57,16 @@ export default {
         .append('path')
         .attr('class', 'scatter-line')
         .style('fill', 'none')
-        .style('stroke', d => this.colorScale(d.key))
+        .style('stroke', (d) => { // eslint-disable-line
+          return typeof d.key === 'undefined' || d.key === 'combine' ? 'brown' : this.colorScale(d.key);
+        })
         .attr('d', d => newLine(d.values));
 
       scatterLine.transition(trans)
         .attr('d', d => newLine(d.values))
-        .style('stroke', d => this.colorScale(d.key));
+        .style('stroke', (d) => { // eslint-disable-line
+          return typeof d.key === 'undefined' || d.key === 'combine' ? 'brown' : this.colorScale(d.key);
+        });
 
       // ENTER / EXIT / UPDATE Error Bars
       let errors = group.selectAll('.error-line')

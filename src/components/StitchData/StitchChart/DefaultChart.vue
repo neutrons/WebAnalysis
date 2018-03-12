@@ -155,7 +155,8 @@ export default {
       return this.plotScale.x.label;
     },
     colorScale() {
-      return d3.scaleOrdinal(d3.schemeCategory20).domain(this.colorDomain);
+      return d3.scaleOrdinal(d3.schemeCategory20)
+        .domain(this.plotData.map(d => d.key));
     },
     xAxis() {
       return d3.axisBottom(this.xScale);
