@@ -19,6 +19,7 @@ import zoom from '../../../assets/js/chartFunctions/zoom';
 import filterForLog from '../../../assets/js/chartFunctions/filterForLog';
 import addClipPath from '../../../assets/js/chartFunctions/addClipPath';
 import addZoomGroup from '../../../assets/js/chartFunctions/addZoomGroup';
+import legend from '../../../assets/js/chartFunctions/legend';
 
 export default {
   mixins: [
@@ -40,6 +41,7 @@ export default {
     stitchLine,
     addClipPath,
     addZoomGroup,
+    legend,
   ],
   methods: {
     drawChart() {

@@ -2,9 +2,6 @@
 import initChartElements from '../../../assets/js/chartFunctions/initChartElements';
 import updateChartElements from '../../../assets/js/chartFunctions/updateChartElements';
 import getContainerWidth from '../../../assets/js/chartFunctions/getContainerWidth';
-import errorBars from '../../../assets/js/chartFunctions/errorBars';
-import scatter from '../../../assets/js/chartFunctions/scatter';
-import linepath from '../../../assets/js/chartFunctions/linepath';
 import labels from '../../../assets/js/chartFunctions/labels';
 import removeGroups from '../../../assets/js/chartFunctions/removeGroups';
 import removeChart from '../../../assets/js/chartFunctions/removeChart';
@@ -15,15 +12,12 @@ import zoom from '../../../assets/js/chartFunctions/zoom';
 import filterForLog from '../../../assets/js/chartFunctions/filterForLog';
 import addClipPath from '../../../assets/js/chartFunctions/addClipPath';
 import addZoomGroup from '../../../assets/js/chartFunctions/addZoomGroup';
-// import legend from '../../../assets/js/chartFunctions/legend';
+import legend from '../../../assets/js/chartFunctions/legend';
 
 export default {
   mixins: [
     initChartElements,
     updateChartElements,
-    errorBars,
-    scatter,
-    linepath,
     labels,
     removeGroups,
     removeChart,
@@ -35,7 +29,7 @@ export default {
     filterForLog,
     addClipPath,
     addZoomGroup,
-    // legend,
+    legend,
   ],
   methods: {
     drawChart() {

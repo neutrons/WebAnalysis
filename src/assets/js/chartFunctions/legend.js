@@ -1,6 +1,6 @@
 export default {
   methods: {
-    legend() {
+    legend(data) {
       this.g.select('.legend').remove();
 
       this.g.append('g')
@@ -9,7 +9,7 @@ export default {
         .attr('font-size', 10)
         .attr('text-anchor', 'end')
         .selectAll('.label')
-        .data(this.plotData)
+        .data(data)
         .enter()
         .append('g')
         .attr('class', 'label')
