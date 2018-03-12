@@ -16,9 +16,9 @@ export default {
     errorPoint: 0,
   }),
   methods: {
-    updateChartElements() {
+    updateChartElements(duration = 750) {
       const vm = this;
-      const trans = d3.transition().duration(750);
+      const trans = d3.transition().duration(duration);
       // Then rescale to zoom's scale
       const [newXScale, newYScale] = this.rescaleToZoom();
       const newLine = d3.line()

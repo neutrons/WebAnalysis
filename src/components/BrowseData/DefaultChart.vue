@@ -114,7 +114,7 @@ export default {
         return [0, 0];
       }
 
-      return d3.extent(this.plotData, d => d.x);
+      return d3.extent(this.plotData[0].values, d => d.x);
     },
     yScale() {
       return d3.scaleLinear()
@@ -127,10 +127,11 @@ export default {
         return [0, 0];
       }
 
-      return d3.extent(this.plotData, d => d.y);
+      return d3.extent(this.plotData[0].values, d => d.y);
     },
     colorScale() {
-      return d3.scaleOrdinal(d3.schemeCategory20).domain([0]);
+      return d3.scaleOrdinal(d3.schemeCategory20)
+        .domain(this.plotData.map(d => d.key));
     },
     xAxis() {
       return d3.axisBottom(this.xScale);
@@ -175,15 +176,12 @@ export default {
   },
   watch: {
     plotData() {
-      this.$nextTick(() => {
-        if (!this.plotData.length) {
-          this.getContainerWidth(`#quickplot-wrapper-${this.ID}`);
-          this.removeChart();
-          this.drawChart();
-        } else {
-          this.drawChart();
-        }
-      });
+      if (!this.plotData.length) {
+        this.getContainerWidth(`#quickplot-wrapper-${this.ID}`);
+        this.removeChart();
+      }
+
+      this.drawChart();
     },
   },
 };
