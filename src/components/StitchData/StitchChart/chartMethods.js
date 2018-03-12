@@ -6,11 +6,7 @@ import updateChartElements from '../../../assets/js/chartFunctions/updateChartEl
 import brush from '../../../assets/js/chartFunctions/stitchBrush';
 import stitchLine from '../../../assets/js/chartFunctions/stitchLine';
 import getContainerWidth from '../../../assets/js/chartFunctions/getContainerWidth';
-import errorBars from '../../../assets/js/chartFunctions/errorBars';
-import scatter from '../../../assets/js/chartFunctions/scatter';
-import linepath from '../../../assets/js/chartFunctions/linepath';
 import labels from '../../../assets/js/chartFunctions/labels';
-import removeGroups from '../../../assets/js/chartFunctions/removeGroups';
 import removeChart from '../../../assets/js/chartFunctions/removeChart';
 import axes from '../../../assets/js/chartFunctions/axes';
 import grids from '../../../assets/js/chartFunctions/grids';
@@ -25,11 +21,7 @@ export default {
   mixins: [
     initChartElements,
     updateChartElements,
-    errorBars,
-    scatter,
-    linepath,
     labels,
-    removeGroups,
     removeChart,
     axes,
     grids,
@@ -66,13 +58,8 @@ export default {
       }
 
       this.updateChartElements();
-      this.removeStitchLine();
-      this.resetStitchedData();
-      this.removeBrushes();
-      this.updateStitchLine();
       this.updateBrushScale();
       this.reconvertBrushSelections();
-      this.removeGroups();
     },
   },
 };

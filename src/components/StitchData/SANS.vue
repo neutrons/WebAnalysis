@@ -10,7 +10,7 @@
               <v-remove-brushes-btn @remove-brushes='props.removeBrushes' :disable='!isBrushes' />
               <v-remove-stitch-btn @remove-stitch='props.removeStitchLine' :disable='!stitchedData.length' />
               <v-save-stitch-btn />
-              <v-draw-brushes-btn @draw-saved-brushes='props.drawSavedBrushes' :disable='!isBrushesStored' />
+              <v-draw-brushes-btn @draw-saved-brushes='props.drawSavedBrushes' :disable='!isBrushesStored || filesToPlot.length < 2' />
             </div>
 
             <v-menu

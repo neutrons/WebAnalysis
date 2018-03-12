@@ -12,7 +12,7 @@
       </v-card-title>
 
       <v-card-text>
-        <v-form v-model='valid' ref='form' lazy-validation>
+        <v-form @submit.prevent='submit' v-model='valid' ref='form' lazy-validation>
           <v-text-field label='File Name' placeholder='e.g. file_name' v-model='name' :rules='nameRules' required suffix='_IQ.txt' class='mb-3'></v-text-field>
 
           <v-layout>
@@ -80,6 +80,8 @@ export default {
         return 'Invalid file name.';
       } else if (!rg4.test(value)) {
         return 'Start file names with a character.';
+      } else if (value === 'stitch') {
+        return 'Stitch is a reserved word. Give file another name.';
       }
 
       return true;

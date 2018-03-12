@@ -1,3 +1,6 @@
+import * as d3 from 'd3';
+import _ from 'lodash';
+
 import getPreparedData from '../../shared/getters/getPreparedData';
 import getExtent from '../../shared/getters/getExtent';
 import getPlotData from '../../shared/getters/getPlotData';
@@ -8,16 +11,26 @@ export default {
   isFilesPlotted,
   getExtent,
   getPlotData,
-  getChartConfigurations: (state, getters) => {
-    const data = getters.getPreparedData;
-    const scales = state.plotScale;
-    const labels = state.label;
+  // getChartConfigurations: (state, getters) => {
+  //   const data = getters.getPreparedData;
+  //   const scales = state.plotScale;
 
+  //   return {
+  //     data,
+  //     scales,
+  //   };
+  // },
+  getChartConfigurations(state, getters) {
+    const tempStitched = d3.nest()
+      .key(d => d.name)
+      .entries(state.stitchedData);
+    console.log('tempStitched', tempStitched);
+    const data = _.cloneDeep(getters.getPreparedData.concat(tempStitched));
+    const scales = state.plotScale;
+    console.log('data', data);
     return {
       data,
       scales,
-      labels,
     };
   },
 };
-
