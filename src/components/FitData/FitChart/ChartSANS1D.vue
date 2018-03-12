@@ -21,13 +21,9 @@ export default {
     eventBus.$off('revise-fit-line-SANS1D');
   },
   computed: {
-    ...mapState('SANS', {
-      colorDomain: state => state.colorDomain,
-    }),
     ...mapState('SANS/Fit', {
       filesSelected: state => state.filesSelected,
       plotScale: state => state.plotScale,
-      deleteKeys: state => state.deleteKeys,
       label: state => state.label,
       fileToFit: state => state.fileToFit,
       previousFit: state => state.previousFit,

@@ -114,7 +114,7 @@ export default {
         return [0, 0];
       }
 
-      return d3.extent(this.plotData, d => d.x);
+      return d3.extent(this.plotData[0].values, d => d.x);
     },
     yScale() {
       return d3.scaleLinear()
@@ -127,10 +127,11 @@ export default {
         return [0, 0];
       }
 
-      return d3.extent(this.plotData, d => d.y);
+      return d3.extent(this.plotData[0].values, d => d.y);
     },
     colorScale() {
-      return d3.scaleOrdinal(d3.schemeCategory20).domain([0]);
+      return d3.scaleOrdinal(d3.schemeCategory20)
+        .domain(this.plotData.map(d => d.key));
     },
     xAxis() {
       return d3.axisBottom(this.xScale);
@@ -172,24 +173,15 @@ export default {
   mounted() {
     this.getContainerWidth(`#quickplot-wrapper-${this.ID}`);
     this.drawChart();
-    this.setResponsive(`quickplot-width-change-${this.ID}`, `#quickplot-wrapper-${this.ID}`, `.quickplot-${this.ID}`);
   },
   watch: {
     plotData() {
-      this.$nextTick(() => {
-        if (!this.plotData.length) {
-          this.getContainerWidth(`#quickplot-wrapper-${this.ID}`);
-          this.removeChart();
-          this.drawChart();
-          this.setResponsive(`chart-width-change-${this.ID}`, `#quickplot-wrapper-${this.ID}`, `.chart-${this.ID}`);
-        } else {
-          this.drawChart();
-        }
-      });
-    },
-    title() {
-      // maintain responsive charts when switching between plot components
-      this.setResponsive(`quickplot-width-change-${this.ID}`, `#quickplot-wrapper-${this.ID}`, `.quickplot-${this.ID}`);
+      if (!this.plotData.length) {
+        this.getContainerWidth(`#quickplot-wrapper-${this.ID}`);
+        this.removeChart();
+      }
+
+      this.drawChart();
     },
   },
 };
@@ -237,8 +229,8 @@ iframe.width-changed {
     max-width: 1000px;
   } // Large screen (desktop)
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    max-height: 1500px / 1.77px;
-    max-width: 1500px;
+    max-height: 1000px / 1.77px;
+    max-width: 1000px;
   } // Extra large screen (ultrawide)
   @media screen and (min-width: 1904px) {
     max-height: 1800px / 1.77px;

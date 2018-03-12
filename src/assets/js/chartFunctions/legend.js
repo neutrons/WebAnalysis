@@ -1,6 +1,6 @@
 export default {
   methods: {
-    legend() {
+    legend(data) {
       this.g.select('.legend').remove();
 
       this.g.append('g')
@@ -9,7 +9,7 @@ export default {
         .attr('font-size', 10)
         .attr('text-anchor', 'end')
         .selectAll('.label')
-        .data(this.plotData)
+        .data(data)
         .enter()
         .append('g')
         .attr('class', 'label')
@@ -20,7 +20,7 @@ export default {
         .attr('height', 15)
         .attr('width', 15)
         .style('fill', (d) => { // eslint-disable-line
-          return d.key === 'combine' || typeof d.key === 'undefined' ? 'brown' : this.colorScale(d.key);
+          return d.key === 'combine' || d.key === 'stitch' || d.key === 'fit' || typeof d.key === 'undefined' ? 'brown' : this.colorScale(d.key);
         });
 
       this.g.selectAll('.label').append('text')

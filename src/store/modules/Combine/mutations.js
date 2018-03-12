@@ -26,8 +26,6 @@ export default {
         keys.push(key);
       }
     });
-    // eslint-disable-next-line
-    state.deleteKeys = keys;
 
     // eslint-disable-next-line
     state.filesToAdd = selected;
@@ -42,8 +40,6 @@ export default {
         keys.push(key);
       }
     });
-    // eslint-disable-next-line
-    state.deleteKeys = keys;
 
     // eslint-disable-next-line
     state.filesToSubtract = selected;

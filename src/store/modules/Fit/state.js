@@ -3,7 +3,6 @@ import settings from '../../fits/settings';
 import scales from '../../scales/scales';
 
 export default {
-  deleteKeys: [],
   filters: [],
   selectedData: [],
   filteredData: [],
