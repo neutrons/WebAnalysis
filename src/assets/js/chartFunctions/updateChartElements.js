@@ -29,7 +29,14 @@ export default {
       this.updateAxes(newXScale, newYScale, trans);
       this.updateGrids(newXScale, newYScale, trans);
       this.updateLabels();
-      this.legend(this.plotData);
+
+      if (typeof this.fileToFit !== 'undefined' && this.fileToFit !== null) {
+        const item = [{ key: 'fit', values: [] }];
+        const temp = this.plotData.concat(item);
+        this.legend(temp);
+      } else {
+        this.legend(this.plotData);
+      }
 
       // filter data for negative values when scale is log
       const tempData = _.cloneDeep(this.plotData);
