@@ -159,9 +159,6 @@ export default {
     },
     selectedFile() {
       if (this.selectedFile === null) {
-        this.xPoint = null;
-        this.yPoint = null;
-        this.errorPoint = null;
         this.tempSelectedTags = [];
         this.selectedTags = [];
         this.setBrowseData([]);

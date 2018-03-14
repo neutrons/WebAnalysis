@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import Chart from './DefaultChart';
 
 export default {
@@ -63,6 +63,11 @@ export default {
 
       return temp;
     },
+  },
+  methods: {
+    ...mapActions('TAS/Combine', [
+      'deletePoint',
+    ]),
   },
   watch: {
     combinedData: {

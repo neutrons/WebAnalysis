@@ -14,7 +14,7 @@ export default {
       y: getters.defaultFields.y,
     };
   },
-  plotData(state, getters) {
+  getPreparedData(state, getters) {
     if (!Object.keys(state.browseData).length) return [];
     const temp = swapFields(state.browseData.data, getters.defaultFields);
     const nest = d3.nest()

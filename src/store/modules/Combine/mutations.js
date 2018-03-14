@@ -1,11 +1,14 @@
 import * as d3 from 'd3';
 import _ from 'lodash';
+
 import { setXScale, setYScale, resetScales } from '../../shared/mutations/scales';
 import updateFilters from '../../shared/mutations/updateFilters';
 import { normalizeData, resetNormalizeData } from '../../shared/mutations/normalizeData';
 import { combineData, removeCombineData, addCombinedData } from '../../shared/mutations/combineData';
-import swapFields from '../../../assets/js/swapFields';
 import { changeFields } from '../../shared/mutations/fields';
+import removePoint from '../../shared/mutations/removePoint';
+
+import swapFields from '../../../assets/js/swapFields';
 
 export default {
   setXScale,
@@ -18,6 +21,7 @@ export default {
   combineData,
   removeCombineData,
   addCombinedData,
+  removePoint,
   updateFilesToAdd(state, selected) {
     const keys = [];
 

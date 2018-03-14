@@ -55,6 +55,7 @@ export default {
     ]),
     ...mapActions('SANS/Fit', [
       'updateFitTableResults',
+      'deletePoint',
     ]),
   },
   watch: {

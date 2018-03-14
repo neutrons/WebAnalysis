@@ -39,14 +39,6 @@
                         :draw-saved-brushes='drawSavedBrushes'
                         :files-selected='filesSelected'
                       ></slot>
-
-                      <v-spacer></v-spacer>
-                      <!-- scatter point hover values -->
-                      <v-subheader class='hidden-sm-and-down' v-if='filesSelected.length > 0 && xPoint'>
-                        <span class='mr-2'>X: {{xPoint.toExponential(2)}}</span>
-                        <span class='mr-2'>Y: {{yPoint.toExponential(2)}}</span>
-                        <span class='mr-2'>Error: {{errorPoint.toExponential(2)}}</span>
-                      </v-subheader>
                       <v-spacer></v-spacer>
                       <v-btn icon flat @click='showTabs = !showTabs' v-if='stitchedData.length > 0'>
                         <v-icon small>{{ showTabs ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
@@ -77,6 +69,14 @@
         </v-tabs-items>
       </v-tabs>
   </v-flex>
+
+  <v-slide-y-transition>
+    <v-delete-point-modal
+      :show='showDeleteModal'
+      @cancel='resetDeletePoint'
+      @delete='confirmDeletePoint'
+    ></v-delete-point-modal>
+  </v-slide-y-transition>
 </v-container>
 </template>
 
@@ -85,6 +85,7 @@
 import * as d3 from 'd3';
 
 import chartMethods from './chartMethods';
+import deletePoint from '../../DeletePoint/DeletePointMixins';
 
 export default {
   name: 'ChartStitch',
@@ -96,10 +97,12 @@ export default {
   },
   mixins: [
     chartMethods,
+    deletePoint,
   ],
   components: {
     'v-reset-chart-button': () => import('../../ResetChartButton'),
     'v-plotted-data-table': () => import('../../PlottedDataTable'),
+    'v-delete-point-modal': () => import('../../DeletePoint/DeletePointModal'),
   },
   data() {
     return {
