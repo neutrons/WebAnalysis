@@ -29,7 +29,7 @@
                 <v-container class='pa-0' fluid>
                   <v-layout row wrap class='pa-0'>
                     <v-reset-chart-button @reset-chart='resetChart' :disable='filesSelected === null'></v-reset-chart-button>
-                    <v-export-chart-button :ID='ID' :selection='`.chart-${ID}`' :disable='filesSelected === null'></v-export-chart-button>
+                    <v-edit-chart-button :disable='filesSelected === null' ></v-edit-chart-button>
                   </v-layout>
                 </v-container>
               </v-toolbar>
@@ -74,7 +74,6 @@ export default {
   components: {
     'v-reset-chart-button': () => import('../ResetChartButton'),
     'v-plotted-data-table': () => import('../PlottedDataTable'),
-    'v-export-chart-button': () => import('../ExportChartButton'),
   },
   data() {
     return {

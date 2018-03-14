@@ -25,6 +25,7 @@ export default {
         data: this.packageData(),
         labels: this.label,
         axis: this.axis,
+        type: '1D',
       });
     },
   },

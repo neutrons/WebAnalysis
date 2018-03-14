@@ -16,53 +16,100 @@
 <script>
 import Plotly from 'plotly.js';
 
+const d3 = Plotly.d3;
+
 export default {
   name: 'EditChart',
+  data: () => ({
+    WIDTH_IN_PERCENT_OF_PARENT: 100,
+    HEIGHT_IN_PERCENT_OF_PARENT: 50,
+    axis: null,
+    labels: null,
+  }),
   mounted() {
     let editData = this.$route.query.editChartData;
     editData = JSON.parse(editData);
 
-    // SET UP PLOTLY
-    const d3 = Plotly.d3;
-    const WIDTH_IN_PERCENT_OF_PARENT = 100;
-    const HEIGHT_IN_PERCENT_OF_PARENT = 50;
-    // This makes the plot responsive
-    const gd3 = d3.select('#plotly-chart')
-      .style({
-        width: `${WIDTH_IN_PERCENT_OF_PARENT}%`,
-        'margin-left': `${(100 - WIDTH_IN_PERCENT_OF_PARENT) / 2} %`,
+    this.labels = editData.labels;
+    this.axis = editData.axis;
 
-        height: `${HEIGHT_IN_PERCENT_OF_PARENT}vh`,
-        'margin-top': 0,
-      });
-
-    const gd = gd3.node();
-
-    // CREATE PLOT DATA
-    const data = this.packData(editData.data);
-
-    const layout = {
-      title: 'Click Here<br>to Edit Chart Title',
-      xaxis: {
-        title: editData.labels.x,
-        type: editData.axis.x,
-      },
-      yaxis: {
-        title: editData.labels.y,
-        type: editData.axis.y,
-      },
-    };
-
-    Plotly.plot(gd, data, layout, { editable: true, showLink: true, linkText: 'Edit chart in Plotly' });
-
-    window.onresize = () => {
-      Plotly.Plots.resize(gd);
-    };
+    if (editData.type === '2D') {
+      this.create2D(editData);
+    } else {
+      this.create1D(editData);
+    }
   },
-  beforeDestroy() {
-    window.onresize = null;
+  computed: {
+    style() {
+      return {
+        width: `${this.WIDTH_IN_PERCENT_OF_PARENT}%`,
+        'margin-left': `${(100 - this.WIDTH_IN_PERCENT_OF_PARENT) / 2} %`,
+
+        height: `${this.HEIGHT_IN_PERCENT_OF_PARENT}vh`,
+        'margin-top': 0,
+      };
+    },
+    layout() {
+      return {
+        title: 'Click Here<br>to Edit Chart Title',
+        xaxis: {
+          title: this.labels.x,
+          type: this.axis.x,
+        },
+        yaxis: {
+          title: this.labels.y,
+          type: this.axis.y,
+        },
+      };
+    },
   },
   methods: {
+    create1D(editData) {
+      // SET UP PLOTLY
+      // This makes the plot responsive
+      const gd3 = d3.select('#plotly-chart')
+        .style(this.style);
+
+      const gd = gd3.node();
+
+      // CREATE PLOT DATA
+      const data = this.packData(editData.data);
+
+      Plotly.plot(gd, data, this.layout, { editable: true, showLink: true, linkText: 'Edit chart in Plotly' });
+
+      window.onresize = () => {
+        Plotly.Plots.resize(gd);
+      };
+    },
+    create2D(editData) {
+      // SET UP PLOTLY
+      // This makes the plot responsive
+      const gd3 = d3.select('#plotly-chart')
+        .style(this.style);
+
+      const gd = gd3.node();
+
+      // CREATE PLOT DATA
+      const data = [{
+        x: editData.x,
+        y: editData.y,
+        type: 'scatter',
+        mode: 'markers',
+        marker: {
+          symbol: 'square',
+          size: 15,
+          color: editData.z,
+          colorscale: 'Viridis',
+          opacity: 0.8,
+        },
+      }];
+
+      Plotly.plot(gd, data, this.layout, { editable: true, showLink: true, linkText: 'Edit chart in Plotly' });
+
+      window.onresize = () => {
+        Plotly.Plots.resize(gd);
+      };
+    },
     packData(data) {
       const temp = [];
 
@@ -76,6 +123,9 @@ export default {
 
       return temp;
     },
+  },
+  beforeDestroy() {
+    window.onresize = null;
   },
 };
 </script>
