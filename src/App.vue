@@ -1,9 +1,9 @@
 <template>
 <v-app id='app-container' :dark='$vuetify.dark'>
   <!-- Side Bar Component -->
-  <v-sidebar :show='showSidebar' v-show='$route.meta.title !== "Home"'></v-sidebar>
+  <v-sidebar :show='showSidebar' v-show='hide'></v-sidebar>
 
-  <v-navbar @toggle-sidebar='showSidebar = !showSidebar' />
+  <v-navbar @toggle-sidebar='showSidebar = !showSidebar' v-show='hide' />
 
   <!-- Main Plot Content Here -->
   <v-content>
@@ -14,7 +14,7 @@
     </transition>
   </v-content>
 
-  <v-footer />
+  <v-footer v-show='hide' />
 
   <!-- Error Message Component -->
   <v-error></v-error>
@@ -44,6 +44,9 @@ export default {
   computed: {
     links() {
       return this.$router.options.routes.slice(2, this.$router.options.routes.length);
+    },
+    hide() {
+      return this.$route.meta.title !== 'Home' && this.$route.meta.title !== 'Edit Chart';
     },
   },
   methods: {

@@ -6,8 +6,7 @@
     class='elevation-1'
     :clipped-left='true' :clipped-right='true'
     color='secondary'
-    :dark='!$vuetify.dark'
-    v-show='$route.meta.title !== "Home"'>
+    :dark='!$vuetify.dark'>
 
     <v-toolbar-side-icon @click.stop='$emit("toggle-sidebar")' class='ml-3 mr-3'>
       <v-icon>fa-sliders</v-icon>
