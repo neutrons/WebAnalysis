@@ -73,6 +73,7 @@ export default {
     ]),
     ...mapActions('TAS/Fit', [
       'updateFitTableResults',
+      'deletePoint',
     ]),
   },
   watch: {

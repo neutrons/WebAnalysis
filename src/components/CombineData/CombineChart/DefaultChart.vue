@@ -30,14 +30,6 @@
                   <v-layout row wrap class='pa-0'>
                     <v-reset-chart-button @reset-chart='resetChart' :disable='mergedFiles.length === 0'></v-reset-chart-button>
                     <v-edit-chart-button :disable='mergedFiles.length === 0' ></v-edit-chart-button>
-
-                    <v-spacer></v-spacer>
-                    <!-- scatter point hover values -->
-                    <v-subheader class='hidden-sm-and-down' v-if='mergedFiles.length > 0 && xPoint'>
-                      <span class='mr-2'>X: {{xPoint.toExponential(2)}}</span>
-                      <span class='mr-2'>Y: {{yPoint.toExponential(2)}}</span>
-                      <span class='mr-2'>Error: {{errorPoint.toExponential(2)}}</span>
-                    </v-subheader>
                     <v-spacer></v-spacer>
                     <v-btn icon flat @click='showTabs = !showTabs' v-if='metadataLength > 0'>
                       <v-icon small>{{ showTabs ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
@@ -65,14 +57,21 @@
     </v-tabs>
   </v-flex>
 
+  <v-slide-y-transition>
+    <v-delete-point-modal
+      :show='showDeleteModal'
+      @cancel='resetDeletePoint'
+      @delete='confirmDeletePoint'
+    ></v-delete-point-modal>
+  </v-slide-y-transition>
 </v-container>
-
 </template>
 
 <script>
 // Import Packages
 import * as d3 from 'd3';
 import chartMethods from './chartMethods';
+import deletePoint from '../../DeletePoint/DeletePointMixins';
 
 export default {
   name: 'CombineChart',
@@ -84,10 +83,12 @@ export default {
   },
   mixins: [
     chartMethods,
+    deletePoint,
   ],
   components: {
     'v-reset-chart-button': () => import('../../ResetChartButton'),
     'v-plotted-data-table': () => import('../../PlottedDataTable'),
+    'v-delete-point-modal': () => import('../../DeletePoint/DeletePointModal'),
   },
   data() {
     return {

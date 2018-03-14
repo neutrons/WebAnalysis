@@ -47,7 +47,8 @@ export default {
       this.combineData(this.getPreparedData);
     },
     storeCombine() {
-      this.storeCombinedData(this.editCombineName);
+      const group = this.$route.meta.group;
+      this.storeCombinedData({ group, name: this.editCombineName });
     },
   },
 };

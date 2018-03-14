@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 import updateFilesSelected from '../../shared/mutations/updateFilesSelected';
 import updateFilters from '../../shared/mutations/updateFilters';
 import { setXScale, setYScale, resetScales } from '../../shared/mutations/scales';
+import removePoint from '../../shared/mutations/removePoint';
 
 export default {
   updateFilesSelected,
@@ -11,6 +12,7 @@ export default {
   setXScale,
   setYScale,
   resetScales,
+  removePoint,
   setCurrentData(state, chosenData) {
     const tempData = _.cloneDeep(chosenData);
     const tempSelect = [];

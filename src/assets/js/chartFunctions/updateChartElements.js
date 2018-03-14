@@ -11,9 +11,6 @@ export default {
       square: d3.symbol().type(d3.symbolSquare).size(45),
       wye: d3.symbol().type(d3.symbolWye).size(45),
     },
-    xPoint: 0,
-    yPoint: 0,
-    errorPoint: 0,
   }),
   methods: {
     updateChartElements(duration = 750) {
@@ -156,17 +153,37 @@ export default {
         .attr('transform', d => `translate( ${newXScale(d.x)}, ${newYScale(d.y)})`)
         .on('mouseover', function hover(d) {
           const shape = vm.getShape(d.name);
-
+          d3.select(this).style('cursor', 'pointer');
           d3.select(this).transition()
             .attr('d', vm.symbols[shape].size(125));
 
-          [vm.xPoint, vm.yPoint, vm.errorPoint] = [d.x, d.y, d.error];
+          let middleX = newXScale.domain().map(item => Math.abs(item));
+          middleX = (middleX[1] - middleX[0]) / 2;
+          const moveX = Math.abs(d.x) > middleX ? d3.event.pageX - 200 : d3.event.pageX + 25;
+
+          const html = `
+            <p>(Click to delete)</p>
+            <p>X: ${d.x.toExponential(2)}</p>
+            <p>Y: ${d.y.toExponential(2)}</p>
+            <p>Error: \u00B1 ${d.error.toExponential(2)}</p>`;
+
+          d3.select('.my-tooltip')
+            .style('display', 'inline')
+            .style('left', `${moveX}px`)
+            .style('top', `${d3.event.pageY - 50}px`)
+            .html(html);
         })
         .on('mouseout', function out(d) {
           const shape = vm.getShape(d.name);
 
           d3.select(this).transition()
             .attr('d', vm.symbols[shape].size(45));
+
+          d3.select('.my-tooltip')
+            .style('display', 'none');
+        })
+        .on('click', (d) => {
+          this.triggerDelete(d);
         });
 
       scatter.transition(trans)

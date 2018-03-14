@@ -16,6 +16,7 @@ import { addToSelect, updateSelectAtIndex, removeSelectAtIndex,
 import setFitScores from '../../shared/mutations/setFitScores';
 import setFittedData from '../../shared/mutations/setFittedData';
 import setFittedError from '../../shared/mutations/setFittedError';
+import removePoint from '../../shared/mutations/removePoint';
 
 export default {
   updateFilesSelected,
@@ -52,4 +53,5 @@ export default {
   setFitScores,
   setFittedData,
   setFittedError,
+  removePoint,
 };

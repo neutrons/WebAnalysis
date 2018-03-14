@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import DefaultChart from './DefaultChart';
 
 export default {
@@ -19,8 +19,13 @@ export default {
       browseData: state => state.browseData,
       label: state => state.label,
     }),
-    ...mapGetters('SANS/Browse', [
-      'plotData',
+    ...mapGetters('SANS/Browse', {
+      plotData: 'getPreparedData',
+    }),
+  },
+  methods: {
+    ...mapActions('SANS/Browse', [
+      'deletePoint',
     ]),
   },
 };
