@@ -4,6 +4,9 @@ import Chart from './DefaultChart';
 
 export default {
   name: 'SANSStitch',
+  components: {
+    'v-edit-chart-button': () => import('../../EditChart/EditChartButton/SANSStitchEditChartButton'),
+  },
   extends: Chart,
   data() {
     return {

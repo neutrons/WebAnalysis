@@ -5,6 +5,9 @@ import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'ChartTAS',
+  components: {
+    'v-edit-chart-button': () => import('../../EditChart/EditChartButton/TASFitEditChartButton'),
+  },
   extends: Chart,
   data() {
     return {

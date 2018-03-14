@@ -1,12 +1,14 @@
 <script>
-import { mapState } from 'vuex';
-import * as d3 from 'd3';
+import { mapState, mapGetters } from 'vuex';
+
 import DefaultChart from './DefaultChart';
-import swapFields from '../../assets/js/swapFields';
 
 export default {
   name: 'TASBrowse',
   extends: DefaultChart,
+  components: {
+    'v-edit-chart-button': () => import('../EditChart/EditChartButton/TASBrowseEditChartButton'),
+  },
   data() {
     return {
       isMathJax: false,
@@ -17,32 +19,12 @@ export default {
     ...mapState('TAS/Browse', {
       browseData: state => state.browseData,
     }),
-    defaultFields() {
-      if (typeof this.browseData.defaultFields === 'undefined') {
-        return { x: 'x', y: 'y' };
-      }
-      return this.browseData.defaultFields;
-    },
-    label() {
-      return {
-        x: this.defaultFields.x,
-        y: this.defaultFields.y,
-      };
-    },
-    plotData() {
-      if (!Object.keys(this.browseData).length) return [];
-      const temp = swapFields(this.browseData.data, this.defaultFields);
-      const nest = d3.nest()
-        .key(d => d.name)
-        .entries(temp);
-
-      return nest;
-    },
-    plotMetadata() {
-      if (!Object.keys(this.browseData).length) return [];
-
-      return this.browseData.metadata;
-    },
+    ...mapGetters('TAS/Browse', [
+      'defaultFields',
+      'label',
+      'plotData',
+      'plotMetadata',
+    ]),
   },
 };
 </script>

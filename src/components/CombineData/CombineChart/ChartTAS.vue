@@ -4,6 +4,9 @@ import Chart from './DefaultChart';
 
 export default {
   name: 'CombineChartTAS',
+  components: {
+    'v-edit-chart-button': () => import('../../EditChart/EditChartButton/TASCombineEditChartButton'),
+  },
   extends: Chart,
   data() {
     return {

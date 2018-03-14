@@ -5,6 +5,9 @@ import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'ChartSANS1D',
+  components: {
+    'v-edit-chart-button': () => import('../../EditChart/EditChartButton/SANSFitEditChartButton'),
+  },
   extends: Chart,
   data() {
     return {

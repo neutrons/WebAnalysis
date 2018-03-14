@@ -9,7 +9,8 @@
         <v-toolbar flat height='auto'>
           <v-container class='pa-0' fluid>
             <v-layout row wrap class='pa-0'>
-              <v-reset-chart-button @reset-chart='resetChart'></v-reset-chart-button>
+              <v-reset-chart-button :disable='plotData.length === 0' @reset-chart='resetChart'></v-reset-chart-button>
+              <v-edit-chart-button :disable='plotData.length === 0' ></v-edit-chart-button>
               <v-spacer></v-spacer>
               <!-- scatter point hover values -->
               <v-subheader class='hidden-sm-and-down' v-if='xPoint'>
