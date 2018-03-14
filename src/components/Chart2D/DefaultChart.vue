@@ -30,14 +30,6 @@
                   <v-layout row wrap class='pa-0'>
                     <v-reset-chart-button @reset-chart='resetChart' :disable='filesSelected === null'></v-reset-chart-button>
                     <v-export-chart-button :ID='ID' :selection='`.chart-${ID}`' :disable='filesSelected === null'></v-export-chart-button>
-
-                    <v-spacer></v-spacer>
-                    <!-- scatter point hover values -->
-                    <v-subheader class='hidden-sm-and-down' v-if='filesSelected !== null && xPoint !== null'>
-                      <span class='mr-2'>Qx: {{xPoint.toExponential(2)}}</span>
-                      <span class='mr-2'>Qy: {{yPoint.toExponential(2)}}</span>
-                      <span class='mr-2'>Intensity: {{intensityPoint.toExponential(2)}}</span>
-                    </v-subheader>
                   </v-layout>
                 </v-container>
               </v-toolbar>
@@ -98,9 +90,6 @@ export default {
         bottom: 50,
         left: 75,
       },
-      xPoint: null,
-      yPoint: null,
-      intensityPoint: null,
     };
   },
   computed: {
@@ -152,9 +141,6 @@ export default {
       handler() {
         this.$nextTick(() => {
           if (this.filesSelected === null) {
-            this.xPoint = null;
-            this.yPoint = null;
-            this.intensityPoint = null;
             this.getContainerWidth(`#chart-wrapper-${this.ID}`);
             this.removeChart();
             this.drawChart();

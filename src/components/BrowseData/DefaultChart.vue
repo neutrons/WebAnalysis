@@ -12,13 +12,6 @@
               <v-reset-chart-button :disable='plotData.length === 0' @reset-chart='resetChart'></v-reset-chart-button>
               <v-edit-chart-button :disable='plotData.length === 0' ></v-edit-chart-button>
               <v-spacer></v-spacer>
-              <!-- scatter point hover values -->
-              <v-subheader class='hidden-sm-and-down' v-if='xPoint'>
-                <span class='mr-2'>X: {{xPoint.toExponential(2)}}</span>
-                <span class='mr-2'>Y: {{yPoint.toExponential(2)}}</span>
-                <span class='mr-2'>Error: {{errorPoint.toExponential(2)}}</span>
-              </v-subheader>
-              <v-spacer></v-spacer>
               <v-btn icon @click='show = !show' v-if='Object.keys(browseData).length'>
                 <v-icon>{{ show ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
               </v-btn>
@@ -62,6 +55,14 @@
             </v-tabs>
         </v-slide-y-transition>
       </v-flex>
+
+      <v-slide-y-transition>
+        <v-delete-point-modal
+          :show='showDeleteModal'
+          @cancel='resetDeletePoint'
+          @delete='confirmDeletePoint'
+        ></v-delete-point-modal>
+      </v-slide-y-transition>
     </v-layout>
 </template>
 
@@ -70,22 +71,22 @@
 import * as d3 from 'd3';
 
 import chartMethods from './chartMethods';
+import deletePoint from '../DeletePoint/DeletePointMixins';
 
 export default {
   name: 'DefaultBrowseChart',
   mixins: [
     chartMethods,
+    deletePoint,
   ],
   components: {
     'v-reset-chart-button': () => import('../ResetChartButton'),
     'v-metadata-table': () => import('../MetadataTable'),
     'v-plotted-data-table': () => import('../PlottedDataTable'),
+    'v-delete-point-modal': () => import('../DeletePoint/DeletePointModal'),
   },
   data() {
     return {
-      xPoint: null,
-      yPoint: null,
-      errorPoint: null,
       xType: 'x',
       yType: 'y',
       width: 960,

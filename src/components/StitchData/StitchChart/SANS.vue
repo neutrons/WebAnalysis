@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 import Chart from './DefaultChart';
 
 export default {
@@ -38,6 +38,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions('SANS/Stitch', [
+      'deletePoint',
+    ]),
     ...mapMutations('SANS/Stitch', [
       'addNewBrush',
       'setBrushes',
