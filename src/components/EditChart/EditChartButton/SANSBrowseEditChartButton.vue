@@ -18,19 +18,19 @@ export default {
   }),
   computed: {
     ...mapGetters('SANS/Browse', [
-      'plotData',
+      'getPreparedData',
     ]),
     name() {
-      return this.plotData[0].key;
+      return this.getPreparedData[0].key;
     },
     xData() {
-      return this.plotData[0].values.map(d => d.x);
+      return this.getPreparedData[0].values.map(d => d.x);
     },
     yData() {
-      return this.plotData[0].values.map(d => d.y);
+      return this.getPreparedData[0].values.map(d => d.y);
     },
     errorData() {
-      const temp = this.plotData[0].values.map(d => d.error);
+      const temp = this.getPreparedData[0].values.map(d => d.error);
       return {
         type: 'data',
         array: temp,
@@ -50,6 +50,7 @@ export default {
         data: this.data,
         labels: this.labels,
         axis: this.axis,
+        type: '1D',
       });
     },
   },

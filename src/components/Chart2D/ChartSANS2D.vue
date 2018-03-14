@@ -4,6 +4,9 @@ import Chart from './DefaultChart';
 
 export default {
   name: 'ChartSANS2D',
+  components: {
+    'v-edit-chart-button': () => import('../EditChart/EditChartButton/SANS2DEditChartButton'),
+  },
   extends: Chart,
   data() {
     return {
