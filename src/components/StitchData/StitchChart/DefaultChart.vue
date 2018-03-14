@@ -29,7 +29,7 @@
                   <v-container class='pa-0' fluid>
                     <v-layout row wrap class='pa-0'>
                       <v-reset-chart-button @reset-chart='resetChart' :disable='filesSelected.length === 0'></v-reset-chart-button>
-                      <v-export-chart-button :ID='ID' :selection='`stitch-chart-${ID}`' :disable='filesSelected.length === 0'></v-export-chart-button>
+                      <v-edit-chart-button :disable='filesSelected.length === 0' ></v-edit-chart-button>
 
                       <slot name='toolbar-slot'
                         :toggle-edit='toggleEdit'
@@ -98,7 +98,6 @@ export default {
     chartMethods,
   ],
   components: {
-    'v-export-chart-button': () => import('../../ExportChartButton'),
     'v-reset-chart-button': () => import('../../ResetChartButton'),
     'v-plotted-data-table': () => import('../../PlottedDataTable'),
   },

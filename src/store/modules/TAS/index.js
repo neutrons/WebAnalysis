@@ -6,7 +6,7 @@ import actions from './actions';
 import mutations from './mutations';
 
 // Import Modules
-import Browse from '../Browse';
+import Browse from '../Browse/TAS';
 import Fit from '../Fit/TAS';
 import Combine from '../Combine';
 

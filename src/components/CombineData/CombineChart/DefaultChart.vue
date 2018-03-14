@@ -29,7 +29,7 @@
                 <v-container class='pa-0' fluid>
                   <v-layout row wrap class='pa-0'>
                     <v-reset-chart-button @reset-chart='resetChart' :disable='mergedFiles.length === 0'></v-reset-chart-button>
-                    <v-export-chart-button :ID='ID' :selection='`.combine-chart-${ID}`' :disable='mergedFiles.length === 0'></v-export-chart-button>
+                    <v-edit-chart-button :disable='mergedFiles.length === 0' ></v-edit-chart-button>
 
                     <v-spacer></v-spacer>
                     <!-- scatter point hover values -->
@@ -86,7 +86,6 @@ export default {
     chartMethods,
   ],
   components: {
-    'v-export-chart-button': () => import('../../ExportChartButton'),
     'v-reset-chart-button': () => import('../../ResetChartButton'),
     'v-plotted-data-table': () => import('../../PlottedDataTable'),
   },

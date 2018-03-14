@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import editGuard from './editGuard';
 
 const HomePage = () => import('@/components/HomePage');
-const ORNL404 = () => import('@/components/ORNL404');
+// const ORNL404 = () => import('@/components/ORNL404');
 const SANS1DFit = () => import('@/components/FitData/SANS1D');
 const SANS1DBrowse = () => import('@/components/BrowseData/SANS1D');
 const SANS1DStitch = () => import('@/components/StitchData/SANS');
@@ -10,20 +11,39 @@ const SANS2DGraph = () => import('@/components/Chart2D/SANS2D');
 const TASFit = () => import('@/components/FitData/TAS');
 const TASBrowse = () => import('@/components/BrowseData/TAS');
 const TASCombine = () => import('@/components/CombineData/TAS');
+const EditChart = () => import('@/components/EditChart/EditChart');
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
+    // {
+    //   path: '*',
+    //   name: 'ORNL404',
+    //   component: ORNL404,
+    //   meta: { title: '404' },
+    // },
     {
       path: '*',
-      name: 'ORNL404',
-      component: ORNL404,
-      meta: { title: '404' },
+      redirect: '/HomePage',
     },
     {
       path: '/',
       redirect: '/HomePage',
+    },
+    {
+      path: '/EditChart',
+      name: 'EditChart',
+      component: EditChart,
+      meta: {
+        title: 'Edit Chart',
+        sidebar: 'Sidebar404',
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage', disabled: false },
+          { text: 'Edit', href: '/', disabled: true },
+        ],
+      },
+      beforeEnter: editGuard,
     },
     {
       path: '/HomePage',
