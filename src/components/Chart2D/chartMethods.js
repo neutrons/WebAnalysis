@@ -158,7 +158,7 @@ export default {
           .on('mouseover', (d) => {
             let middleX = newXScale.domain().map(item => Math.abs(item));
             middleX = (middleX[1] - middleX[0]) / 2;
-            const moveX = Math.abs(newXScale.invert(d.x)) > middleX ?
+            const moveX = newXScale.invert(d.x) > middleX ?
               d3.event.pageX - 200 : d3.event.pageX + 25;
 
             const html = `<p>Qx: ${newXScale.invert(d.x).toExponential(2)}</p>
