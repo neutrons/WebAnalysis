@@ -8,14 +8,14 @@ export default {
   extends: EditChartButton,
   computed: {
     ...mapState('TAS/Combine', {
-      field: state => state.field,
+      fields: state => state.field,
       plotScale: state => state.plotScale,
     }),
     ...mapGetters('TAS/Combine', [
       'getChartConfigurations',
     ]),
     label() {
-      return this.field;
+      return this.fields;
     },
     axis() {
       return {
@@ -38,8 +38,8 @@ export default {
       this.getChartConfigurations.data.forEach((curve) => {
         temp.push({
           name: curve.key,
-          x: curve.values.map(d => d.x),
-          y: curve.values.map(d => d.y),
+          x: curve.values.map(d => d[this.fields.x]),
+          y: curve.values.map(d => d[this.fields.y]),
           error_y: curve.values.map(d => d.error)
             .map(d => ({
               type: 'data',

@@ -15,6 +15,7 @@ export default {
       xBrushSelection: state => state.brushSelection[1],
       fitScores: state => state.fitScores,
       equationEditSelect: state => state.equationEditSelect,
+      fields: state => state.field,
     }),
     ...mapGetters('TAS/Fit', {
       fitInitialValues: 'fitInitialValues',

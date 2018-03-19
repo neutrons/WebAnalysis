@@ -36,7 +36,7 @@ export default {
       fitInitialValues: state => state.fitInitialValues,
       fitSettings: state => state.fitSettings,
       isFitting: state => state.isFitting,
-      field: state => state.field,
+      fields: state => state.field,
     }),
     ...mapGetters('TAS/Fit', {
       chartConfigurations: 'getChartConfigurations',
@@ -47,23 +47,6 @@ export default {
       fitInitialValues: 'fitInitialValues',
       fitEquation: 'finalEquation',
     }),
-    plottedData() {
-      const temp = this.preparedData.map(d => d.values)
-        .reduce((a, b) => a.concat(b), [])
-        .map((d) => {
-          const obj = Object.assign({}, d);
-
-          obj[this.field.x] = obj.x;
-          obj[this.field.y] = obj.y;
-
-          delete obj.x;
-          delete obj.y;
-
-          return obj;
-        });
-
-      return temp;
-    },
   },
   methods: {
     ...mapMutations('TAS/Fit', [

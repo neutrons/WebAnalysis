@@ -15,6 +15,7 @@ export default {
       fitNote: state => state.fitNote,
       xBrushSelection: state => state.brushSelection[1],
       fitScores: state => state.fitScores,
+      fields: state => state.field,
     }),
     ...mapGetters('SANS/Fit', {
       fitInitialValues: 'fitInitialValues',

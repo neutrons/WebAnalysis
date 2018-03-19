@@ -5,6 +5,7 @@ import updateFilesSelected from '../../shared/mutations/updateFilesSelected';
 import updateFilters from '../../shared/mutations/updateFilters';
 import { setXScale, setYScale, resetScales } from '../../shared/mutations/scales';
 import removePoint from '../../shared/mutations/removePoint';
+import setCurrentData from '../../shared/mutations/setCurrentDataSANS1D';
 
 export default {
   updateFilesSelected,
@@ -13,25 +14,7 @@ export default {
   setYScale,
   resetScales,
   removePoint,
-  setCurrentData(state, chosenData) {
-    const tempData = _.cloneDeep(chosenData);
-    const tempSelect = [];
-
-    for (let i = 0, len = tempData.length; i < len; i += 1) {
-      const temp = tempData[i].data;
-      const name = tempData[i].filename;
-      const dataTransformed = _.cloneDeep(temp);
-
-      tempSelect.push({
-        filename: name,
-        data: temp,
-        dataTransformed,
-      });
-    }
-
-    // eslint-disable-next-line
-    state.selectedData = tempSelect;
-  },
+  setCurrentData,
   resetAll(state) {
     /* eslint-disable */
     state.selectedData = [];
@@ -42,6 +25,10 @@ export default {
     state.label = {
       x: 'q = x',
       y: 'I(q) = y',
+    };
+    state.transformations = {
+      x: 'x',
+      y: 'y',
     };
     state.isZoomBrush = true;
     state.brushes = [];

@@ -10,6 +10,7 @@ export default {
     ...mapState('SANS/Stitch', {
       label: state => state.label,
       plotScale: state => state.plotScale,
+      fields: state => state.field,
     }),
     ...mapGetters('SANS/Stitch', [
       'getChartConfigurations',
@@ -35,8 +36,8 @@ export default {
       this.getChartConfigurations.data.forEach((curve) => {
         temp.push({
           name: curve.key,
-          x: curve.values.map(d => d.x),
-          y: curve.values.map(d => d.y),
+          x: curve.values.map(d => d[this.fields.x]),
+          y: curve.values.map(d => d[this.fields.y]),
           error_y: curve.values.map(d => d.error)
             .map(d => ({
               type: 'data',

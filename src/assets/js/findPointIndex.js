@@ -1,7 +1,9 @@
-export default (point, data) => {
+export default (point, data, fields) => {
+  const xField = fields.x;
+  const yField = fields.y;
   const name = point.name;
-  const x = point.x;
-  const y = point.y;
+  const x = point[xField];
+  const y = point[yField];
 
   let testData = [];
   for (let i = 0, length = data.length; i < length; i += 1) {
@@ -9,7 +11,7 @@ export default (point, data) => {
       testData = data[i].values;
 
       for (let j = 0, L = testData.length; j < L; j += 1) {
-        if (testData[j].x === x && testData[j].y === y) return j;
+        if (testData[j][xField] === x && testData[j][yField] === y) return j;
       }
     }
   }

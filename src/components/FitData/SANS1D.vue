@@ -77,7 +77,7 @@ export default {
   components: {
     'v-chart': () => import('./FitChart/ChartSANS1D'),
     'v-fit-results-table': () => import('../FitResultsTable/FitResultsTableSANS1D'),
-    'v-fitted-data-table': () => import('../FittedDataTable'),
+    'v-fitted-data-table': () => import('../FittedDataTable/FittedDataTableSANS1D'),
   },
   computed: {
     ...mapState('SANS/Fit', {

@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import downloadCSV from '../assets/js/downloadCSV';
 import isBreakpointSmall from '../assets/js/isBreakpointSmall';
 
@@ -57,6 +59,9 @@ export default {
     },
   },
   computed: {
+    ...mapState('SANS/Stitch', {
+      fields: state => state.field,
+    }),
     filename() {
       return this.filesStitched.join('_');
     },
@@ -66,7 +71,11 @@ export default {
       const headers = 'x,y, error\n';
       // eslint-disable-next-line
       const arr = this.stitchedData.map((d) => {
-        return [d.x, d.y, d.error];
+        return [
+          d[this.fields.x],
+          d[this.fields.y],
+          d.error,
+        ];
       });
       const filename = `${this.filename}_stitched.csv` || 'stitched.csv';
 

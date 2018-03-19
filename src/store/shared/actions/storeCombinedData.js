@@ -1,8 +1,8 @@
-import swapFields from '../../../assets/js/swapFields';
+import _ from 'lodash';
 
 export default ({ state, commit }, payload) => {
   const filename = payload.name;
-  const data = swapFields(state.combinedData, state.field, true);
+  const data = _.cloneDeep(state.combinedData);
   const tags = ['combine'];
   const defaultFields = { ...state.field };
   const metadata = [];

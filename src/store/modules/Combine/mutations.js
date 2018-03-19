@@ -1,27 +1,27 @@
 import * as d3 from 'd3';
-import _ from 'lodash';
 
 import { setXScale, setYScale, resetScales } from '../../shared/mutations/scales';
 import updateFilters from '../../shared/mutations/updateFilters';
 import { normalizeData, resetNormalizeData } from '../../shared/mutations/normalizeData';
 import { combineData, removeCombineData, addCombinedData } from '../../shared/mutations/combineData';
-import { changeFields } from '../../shared/mutations/fields';
+import { setXField, setYField } from '../../shared/mutations/fields';
 import removePoint from '../../shared/mutations/removePoint';
-
-import swapFields from '../../../assets/js/swapFields';
+import setCurrentData from '../../shared/mutations/setCurrentDataTAS';
 
 export default {
   setXScale,
   setYScale,
   resetScales,
   updateFilters,
-  changeFields,
+  setXField,
+  setYField,
   normalizeData,
   resetNormalizeData,
   combineData,
   removeCombineData,
   addCombinedData,
   removePoint,
+  setCurrentData,
   updateFilesToAdd(state, selected) {
     const keys = [];
 
@@ -82,33 +82,5 @@ export default {
   setTolerance(state, value) {
     // eslint-disable-next-line
     state.tolerance = value;
-  },
-  setCurrentData(state, chosenData) {
-    // set default fields to base curve
-    if (chosenData.length === 1 || !state.isFieldChange) state.field = { ...chosenData[0].defaultFields }; // eslint-disable-line
-
-    const tempData = _.cloneDeep(chosenData);
-    const tempSelect = [];
-
-    for (let i = 0, len = tempData.length; i < len; i += 1) {
-      const data = _.cloneDeep(tempData[i].data);
-      const filename = tempData[i].filename;
-      const metadata = [...tempData[i].metadata];
-      const dataTransformed = swapFields(data, state.field);
-      const type = state.filesToAdd.indexOf(filename) === -1 ? 'subtract' : 'add';
-      const defaultFields = { ...tempData[i].defaultFields };
-
-      tempSelect.push({
-        data,
-        dataTransformed,
-        filename,
-        metadata,
-        type,
-        defaultFields,
-      });
-    }
-
-    // eslint-disable-next-line
-    state.selectedData = tempSelect;
   },
 };

@@ -8,27 +8,29 @@ export const combineData = (state, value) => {
     return;
   }
 
-  let temp = [];
+  let tempData = [];
+  const xField = state.field.x;
+  const yField = state.field.y;
 
   state.selectedData.forEach((item) => {
     let t;
     if (item.type === 'subtract') {
       t = _.cloneDeep(item).dataTransformed.map((d) => {
         // eslint-disable-next-line
-        d.y *= -1;
+        d[yField] *= -1;
         return d;
       });
     } else {
       t = _.cloneDeep(item.dataTransformed);
     }
 
-    temp.push(t);
+    tempData.push(t);
   });
 
   // flatten temp to 1D array
-  temp = temp.reduce((a, b) => a.concat(b), []);
+  tempData = tempData.reduce((a, b) => a.concat(b), []);
 
-  const extent = d3.extent(temp, d => d.x);
+  const extent = d3.extent(tempData, d => d[xField]);
   const binCount = Math.ceil((extent[1] - extent[0]) / state.tolerance);
   const thresholds = d3.range(extent[0], extent[1], (extent[1] - extent[0]) / binCount);
 
@@ -36,7 +38,7 @@ export const combineData = (state, value) => {
     .domain(extent)
     .thresholds(thresholds);
 
-  const bins = histogram(temp);
+  const bins = histogram(tempData);
   const end = bins.length - 1;
   const result = [];
 
@@ -49,33 +51,33 @@ export const combineData = (state, value) => {
     let subset;
 
     if (index !== end) {
-      subset = temp.filter(point => min <= point.x && point.x < max);
+      subset = tempData.filter(d => min <= d[xField] && d[xField] < max);
     } else {
-      subset = temp.filter(point => min <= point.x && point.x <= max);
+      subset = tempData.filter(d => min <= d[xField] && d[xField] <= max);
     }
 
     if (subset.length) {
-      newY = subset.reduce((a, b) => a + b.y, 0);
+      newY = subset.reduce((a, b) => a + b[yField], 0);
       newError = subset.reduce((a, b) => a + b.error, 0);
 
       /* eslint-disable */
-      const obj = { ...subset[0] };
-      obj.x = newX;
-      obj.y = newY;
-      obj.error = newError;
+      const newPoint = { ...subset[0] };
+      newPoint[xField] = newX;
+      newPoint[yField] = newY;
+      newPoint.error = newError;
 
-      for (let key in obj) {
-        if (['x', 'y', 'error'].indexOf(key) === -1) {
-          obj[key] = null;
+      for (let key in newPoint) {
+        if ([xField, yField, 'error'].indexOf(key) === -1) {
+          newPoint[key] = null;
         }
       }
-      obj.name = 'combine';
+      newPoint.name = 'combine';
       /* eslint-enable */
-      result.push(obj);
+      result.push(newPoint);
     }
   });
 
-  state.combinedData = result.sort((a, b) => a.x - b.x); // eslint-disable-line
+  state.combinedData = result.sort((a, b) => a[xField] - b[xField]); // eslint-disable-line
 };
 
 export const removeCombineData = (state) => {
