@@ -31,11 +31,11 @@ export default {
   ],
   methods: {
     drawChart() {
-      if (this.chartConfigurations.data.length === 0) {
+      if (this.plotData.length === 0) {
         this.initChartElements(`.combine-chart-${this.ID}`);
       }
 
-      if (this.chartConfigurations.data.length !== 0) {
+      if (this.plotData.length !== 0) {
         // toggle zoom on
         this.g.select('.zoom')
           .attr('pointer-events', 'all');

@@ -17,9 +17,10 @@ export default {
   computed: {
     ...mapState('SANS/Browse', {
       browseData: state => state.browseData,
-      label: state => state.label,
+      fields: state => state.field,
     }),
     ...mapGetters('SANS/Browse', {
+      label: 'label',
       plotData: 'getPreparedData',
     }),
   },

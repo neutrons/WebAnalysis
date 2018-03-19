@@ -4,20 +4,20 @@ import LM from 'ml-levenberg-marquardt';
 import linearspace from './linearspace';
 import scores from './scores';
 
-function fittedPoints(fittedY, tempX) {
+function fittedPoints(fittedY, tempX, fields) {
   const FP = [];
 
   for (let i = 0; i < fittedY.length; i += 1) {
     FP.push({
-      x: tempX[i],
-      y: fittedY[i],
+      [fields.x]: tempX[i],
+      [fields.y]: fittedY[i],
     });
   }
 
   return FP;
 }
 
-function fittingFunction(data, initialValues, fitSettings, equation) {
+function fittingFunction(data, initialValues, fitSettings, equation, fields) {
   let tempEquation = equation;
   const temp = _.cloneDeep(data);
   const tempData = {
@@ -26,8 +26,8 @@ function fittingFunction(data, initialValues, fitSettings, equation) {
   };
 
   temp.forEach((d) => {
-    tempData.x.push(d.x);
-    tempData.y.push(d.y);
+    tempData.x.push(d[fields.x]);
+    tempData.y.push(d[fields.y]);
   });
 
   // Generate a linear space for yFitted
@@ -68,7 +68,7 @@ function fittingFunction(data, initialValues, fitSettings, equation) {
     // return and don't proceed with rest of function
     // Update fit results table values
     return {
-      fittedData: fittedPoints(constantFitted, xFit),
+      fittedData: fittedPoints(constantFitted, xFit, fields),
       fitError: null,
       iv: _.cloneDeep(initialValues),
       scores: null,
@@ -126,7 +126,7 @@ function fittingFunction(data, initialValues, fitSettings, equation) {
   // console.log('scores:', scores(tempData.x, tempData.y, fitFunctionFitted));
 
   return {
-    fittedData: fittedPoints(yFitted, xFit),
+    fittedData: fittedPoints(yFitted, xFit, fields),
     fitError: fittedParams.parameterError,
     iv: _.cloneDeep(initValues),
     scores: scores(tempData.x, tempData.y, fitFunctionFitted),
@@ -140,8 +140,8 @@ onmessage = function (args) {
     postMessage('MSG received');
   } else {
     try {
-      const { data, initialValues, fitSettings, equation } = JSON.parse(args.data);
-      const result = fittingFunction(data, initialValues, fitSettings, equation);
+      const { data, initialValues, fitSettings, equation, fields } = JSON.parse(args.data);
+      const result = fittingFunction(data, initialValues, fitSettings, equation, fields);
       postMessage(JSON.stringify(result));
     } catch (reason) {
       postMessage(reason);

@@ -21,7 +21,7 @@ export default {
       fittedData: state => state.fittedData,
       fitEquation: state => state.fitEquation,
       filteredData: state => state.filteredData,
-      field: state => state.field,
+      fields: state => state.field,
       combinedData: state => state.combinedData,
     }),
     ...mapGetters('TAS/Combine', {
@@ -32,36 +32,7 @@ export default {
       mergedFiles: 'mergedFiles',
     }),
     plottedData() {
-      const temp = this.preparedData.map(d => d.values)
-        .reduce((a, b) => a.concat(b), [])
-        .map((d) => {
-          const obj = Object.assign({}, d);
-
-          obj[this.field.x] = obj.x;
-          obj[this.field.y] = obj.y;
-
-          delete obj.x;
-          delete obj.y;
-
-          return obj;
-        });
-
-      return temp;
-    },
-    originalCombinedData() {
-      const temp = this.combinedData.map((d) => {
-        const obj = Object.assign({}, d);
-
-        obj[this.field.x] = obj.x;
-        obj[this.field.y] = obj.y;
-
-        delete obj.x;
-        delete obj.y;
-
-        return obj;
-      });
-
-      return temp;
+      return this.preparedData.map(d => d.values).reduce((a, b) => a.concat(b), []);
     },
   },
   methods: {

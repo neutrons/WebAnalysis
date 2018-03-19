@@ -3,7 +3,6 @@ import Router from 'vue-router';
 import editGuard from './editGuard';
 
 const HomePage = () => import('@/components/HomePage');
-// const ORNL404 = () => import('@/components/ORNL404');
 const SANS1DFit = () => import('@/components/FitData/SANS1D');
 const SANS1DBrowse = () => import('@/components/BrowseData/SANS1D');
 const SANS1DStitch = () => import('@/components/StitchData/SANS');
@@ -17,12 +16,6 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
-    // {
-    //   path: '*',
-    //   name: 'ORNL404',
-    //   component: ORNL404,
-    //   meta: { title: '404' },
-    // },
     {
       path: '*',
       redirect: '/HomePage',

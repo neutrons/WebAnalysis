@@ -2,11 +2,13 @@
 import _ from 'lodash';
 
 export const splitFitData = (state) => {
+  const xField = state.field.x;
+  const yField = state.field.y;
   const obj = { x: [], y: [] };
 
   state.filteredData.forEach((point) => {
-    obj.x.push(point.x);
-    obj.y.push(point.y);
+    obj.x.push(point[xField]);
+    obj.y.push(point[yField]);
   });
 
   return obj;

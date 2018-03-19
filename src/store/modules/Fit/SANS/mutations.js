@@ -1,6 +1,5 @@
-import _ from 'lodash';
 import * as d3 from 'd3';
-import transformDataFunc from '../../../../assets/js/transformData';
+import setCurrentData from '../../../shared/mutations/setCurrentDataSANS1D';
 import { setXTransformation, setYTransformation, setTransformations, resetTransformations, transformData } from '../../../shared/mutations/transformations';
 
 import mutations from '../mutations';
@@ -10,6 +9,7 @@ mutations.setYTransformation = setYTransformation;
 mutations.setTransformations = setTransformations;
 mutations.resetTransformations = resetTransformations;
 mutations.transformData = transformData;
+mutations.setCurrentData = setCurrentData;
 
 mutations.resetAll = (state) => {
   /* eslint-disable */
@@ -32,37 +32,6 @@ mutations.resetAll = (state) => {
   state.brushSelection = [];
   state.equationEditSelect = [];
   /* eslint-enable */
-};
-
-mutations.setCurrentData = (state, chosenData) => {
-  const tempData = _.cloneDeep(chosenData);
-  const tempSelect = [];
-
-  for (let i = 0, len = tempData.length; i < len; i += 1) {
-    const data = tempData[i].data;
-    const filename = tempData[i].filename;
-
-    if (state.transformations.x !== 'x' || state.transformations.y !== 'y') {
-      const dataTransformed = transformDataFunc(data, state.transformations);
-
-      tempSelect.push({
-        filename,
-        data,
-        dataTransformed,
-      });
-    } else {
-      const dataTransformed = _.cloneDeep(data);
-
-      tempSelect.push({
-        filename,
-        data,
-        dataTransformed,
-      });
-    }
-  }
-
-  // eslint-disable-next-line
-  state.selectedData = tempSelect;
 };
 
 mutations.setFitType = (state, type = 'Linear') => {

@@ -34,6 +34,7 @@ export default {
       filteredData: state => state.filteredData,
       fitSettings: state => state.fitSettings,
       isFitting: state => state.isFitting,
+      fields: state => state.field,
     }),
     ...mapGetters('SANS/Fit', {
       chartConfigurations: 'getChartConfigurations',
@@ -43,9 +44,6 @@ export default {
       fitInitialValues: 'fitInitialValues',
       fitEquation: 'finalEquation',
     }),
-    plottedData() {
-      return this.preparedData.map(d => d.values).reduce((a, b) => a.concat(b), []);
-    },
   },
   methods: {
     ...mapMutations('SANS/Fit', [

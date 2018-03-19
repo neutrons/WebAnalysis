@@ -14,13 +14,14 @@ export default {
         // Now interpolate data
         const line = interpolate.linear(selectedData);
 
-        // First repackage data to an array of objects per points for d3 to work with
+        // Repackage stitched data an array of objects
+        // and return original axis names for x and y
         const tempData = [];
 
         for (let i = 0, len = line.x.length; i < len; i += 1) {
           tempData.push({
-            x: line.x[i],
-            y: line.y[i],
+            [this.fields.x]: line.x[i],
+            [this.fields.y]: line.y[i],
             error: line.error[i],
             name: 'stitch',
           });
@@ -91,6 +92,9 @@ export default {
       return matches;
     },
     formatData(data) {
+      // Function sorts data left to right by x axis
+      // It also swaps x and y axis names for non-specific
+      // axis names for the interpolate line function
       const formatted = [];
 
       for (let i = 0, len = data.length; i < len; i += 1) {
@@ -102,8 +106,8 @@ export default {
 
         // eslint-disable-next-line
         tempData.forEach((el) => { 
-          x.push(el.x);
-          y.push(el.y);
+          x.push(el[this.fields.x]);
+          y.push(el[this.fields.y]);
           error.push(el.error);
         });
 

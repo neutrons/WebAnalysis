@@ -20,8 +20,8 @@ export default {
       const [newXScale, newYScale] = this.rescaleToZoom();
       const newLine = d3.line()
         .defined(this.filterForLog)
-        .x(d => newXScale(d.x))
-        .y(d => newYScale(d.y));
+        .x(d => newXScale(d[vm.fields.x]))
+        .y(d => newYScale(d[vm.fields.y]));
 
       this.updateAxes(newXScale, newYScale, trans);
       this.updateGrids(newXScale, newYScale, trans);
@@ -77,18 +77,18 @@ export default {
       errors.enter()
         .append('line')
         .attr('class', 'error-line')
-        .attr('x1', d => newXScale(d.x))
-        .attr('y1', d => newYScale(d.y + d.error))
-        .attr('x2', d => newXScale(d.x))
+        .attr('x1', d => newXScale(d[vm.fields.x]))
+        .attr('y1', d => newYScale(d[vm.fields.y] + d.error))
+        .attr('x2', d => newXScale(d[vm.fields.x]))
         .attr('y2', d => this.errorBottomY(d, newYScale))
         .style('stroke', d => this.getColor(d.name));
 
       errors
         .style('stroke', d => this.getColor(d.name))
         .transition(trans)
-        .attr('x1', d => newXScale(d.x))
-        .attr('y1', d => newYScale(d.y + d.error))
-        .attr('x2', d => newXScale(d.x))
+        .attr('x1', d => newXScale(d[vm.fields.x]))
+        .attr('y1', d => newYScale(d[vm.fields.y] + d.error))
+        .attr('x2', d => newXScale(d[vm.fields.x]))
         .attr('y2', d => this.errorBottomY(d, newYScale));
 
       errors = group.selectAll('.error-cap-top')
@@ -99,19 +99,19 @@ export default {
       errors.enter()
         .append('line')
         .attr('class', 'error-cap-top')
-        .attr('x1', d => newXScale(d.x) + 4)
-        .attr('y1', d => newYScale(d.y + d.error))
-        .attr('x2', d => newXScale(d.x) - 4)
-        .attr('y2', d => newYScale(d.y + d.error))
+        .attr('x1', d => newXScale(d[vm.fields.x]) + 4)
+        .attr('y1', d => newYScale(d[vm.fields.y] + d.error))
+        .attr('x2', d => newXScale(d[vm.fields.x]) - 4)
+        .attr('y2', d => newYScale(d[vm.fields.y] + d.error))
         .style('stroke', d => this.getColor(d.name));
 
       errors
         .style('stroke', d => this.getColor(d.name))
         .transition(trans)
-        .attr('x1', d => newXScale(d.x) + 4)
-        .attr('y1', d => newYScale(d.y + d.error))
-        .attr('x2', d => newXScale(d.x) - 4)
-        .attr('y2', d => newYScale(d.y + d.error));
+        .attr('x1', d => newXScale(d[vm.fields.x]) + 4)
+        .attr('y1', d => newYScale(d[vm.fields.y] + d.error))
+        .attr('x2', d => newXScale(d[vm.fields.x]) - 4)
+        .attr('y2', d => newYScale(d[vm.fields.y] + d.error));
 
       errors = group.selectAll('.error-cap-bottom')
         .data(d => d.values);
@@ -121,18 +121,18 @@ export default {
       errors.enter()
         .append('line')
         .attr('class', 'error-cap-bottom')
-        .attr('x1', d => newXScale(d.x) + 4)
+        .attr('x1', d => newXScale(d[vm.fields.x]) + 4)
         .attr('y1', d => this.errorBottomY(d, newYScale))
-        .attr('x2', d => newXScale(d.x) - 4)
+        .attr('x2', d => newXScale(d[vm.fields.x]) - 4)
         .attr('y2', d => this.errorBottomY(d, newYScale))
         .style('stroke', d => this.getColor(d.name));
 
       errors
         .style('stroke', d => this.getColor(d.name))
         .transition(trans)
-        .attr('x1', d => newXScale(d.x) + 4)
+        .attr('x1', d => newXScale(d[vm.fields.x]) + 4)
         .attr('y1', d => this.errorBottomY(d, newYScale))
-        .attr('x2', d => newXScale(d.x) - 4)
+        .attr('x2', d => newXScale(d[vm.fields.x]) - 4)
         .attr('y2', d => this.errorBottomY(d, newYScale));
 
       // ENTER / EXIT / UPDATE Scatter
@@ -150,7 +150,7 @@ export default {
           const shape = vm.getShape(d.name);
           return vm.symbols[shape](d);
         })
-        .attr('transform', d => `translate( ${newXScale(d.x)}, ${newYScale(d.y)})`)
+        .attr('transform', d => `translate( ${newXScale(d[vm.fields.x])}, ${newYScale(d[vm.fields.y])})`)
         .on('mouseover', function hover(d) {
           const shape = vm.getShape(d.name);
           d3.select(this).style('cursor', 'pointer');
@@ -159,13 +159,14 @@ export default {
 
           let middleX = newXScale.domain().map(item => Math.abs(item));
           middleX = (middleX[1] - middleX[0]) / 2;
-          const moveX = Math.abs(d.x) > middleX ? d3.event.pageX - 200 : d3.event.pageX + 25;
+          const moveX = Math.abs(d[vm.fields.x]) > middleX ?
+            d3.event.pageX - 200 : d3.event.pageX + 25;
 
           const html = `
             <p>(Click to delete)</p>
-            <p>X: ${d.x.toExponential(2)}</p>
-            <p>Y: ${d.y.toExponential(2)}</p>
-            <p>Error: \u00B1 ${d.error.toExponential(2)}</p>`;
+            <p>${vm.fields.x}: ${d[vm.fields.x].toExponential(2)}</p>
+            <p>${vm.fields.y}: ${d[vm.fields.y].toExponential(2)}</p>
+            <p>error: \u00B1 ${d.error.toExponential(2)}</p>`;
 
           d3.select('.my-tooltip')
             .style('display', 'inline')
@@ -193,12 +194,13 @@ export default {
         })
         .style('fill', d => this.getColor(d.name))
         .style('stroke', 'whitesmoke')
-        .attr('transform', d => `translate( ${newXScale(d.x)}, ${newYScale(d.y)})`);
+        .attr('transform', d => `translate( ${newXScale(d[vm.fields.x])}, ${newYScale(d[vm.fields.y])})`);
     },
     errorBottomY(d, y) {
-      if (d.y - d.error < 0 && this.yType === 'log(y)') return y(d.y);
+      const vm = this;
+      if (d[vm.fields.y] - d.error < 0 && this.yType === 'log(y)') return y(d[vm.fields.y]);
 
-      return y(d.y - d.error);
+      return y(d[vm.fields.y] - d.error);
     },
     getColor(name) {
       return typeof name === 'undefined' || name === 'combine' || name === 'stitch' ? 'brown' : this.colorScale(name);
