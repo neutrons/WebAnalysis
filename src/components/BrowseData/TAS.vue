@@ -18,9 +18,9 @@ export default {
   computed: {
     ...mapState('TAS/Browse', {
       browseData: state => state.browseData,
+      fields: state => state.field,
     }),
     ...mapGetters('TAS/Browse', {
-      defaultFields: 'defaultFields',
       label: 'label',
       plotData: 'getPreparedData',
       plotMetadata: 'plotMetadata',

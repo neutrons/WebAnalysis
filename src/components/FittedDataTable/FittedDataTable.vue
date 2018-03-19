@@ -12,8 +12,8 @@
   <v-card-text class='pt-1'>
     <v-data-table :headers='fittedHeaders' :items='fittedData' class='text-xs-center' :rows-per-page-items='[25, 50, 100, { text: "All", value: -1 }]'>
       <template slot='items' slot-scope='props'>
-        <td class='text-xs-left'>{{props.item.x}}</td>
-        <td class='text-xs-left'>{{props.item.y}}</td>
+        <td class='text-xs-left'>{{ props.item[fields.x].toExponential(3) }}</td>
+        <td class='text-xs-left'>{{ props.item[fields.y].toExponential(3) }}</td>
       </template>
       <template slot='no-data'>
         <v-alert :value='true' color='error' icon='warning'>
@@ -27,20 +27,11 @@
 </template>
 
 <script>
-import downloadCSV from '../assets/js/downloadCSV';
-import isBreakpointSmall from '../assets/js/isBreakpointSmall';
+import downloadCSV from '../../assets/js/downloadCSV';
+import isBreakpointSmall from '../../assets/js/isBreakpointSmall';
 
 export default {
   name: 'FittedDataTable',
-  data() {
-    return {
-      sheet: false,
-      fittedHeaders: [
-        { align: 'left', text: 'x', value: 'x' },
-        { align: 'left', text: 'y', value: 'y' },
-      ],
-    };
-  },
   mixins: [
     downloadCSV,
     isBreakpointSmall,
@@ -59,12 +50,23 @@ export default {
       default: true,
     },
   },
+  computed: {
+    fittedHeaders() {
+      return [
+        { align: 'left', text: this.fields.x, value: this.fields.x },
+        { align: 'left', text: this.fields.y, value: this.fields.y },
+      ];
+    },
+  },
   methods: {
     downloadFittedData() {
       const headers = 'x,y\n';
       // eslint-disable-next-line
       const arr = this.fittedData.map((d) => {
-        return [d.x, d.y];
+        return [
+          d[this.fields.x],
+          d[this.fields.y],
+        ];
       });
       const filename = `${this.fileToFit}_fitted_data.csv` || 'fitted_data.csv';
 

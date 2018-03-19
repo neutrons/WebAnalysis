@@ -168,16 +168,16 @@ export default {
         .tickFormat('');
     },
     xExtent() {
-      return this.getExtent('x');
+      return this.getExtent(this.fields.x);
     },
     yExtent() {
-      return this.getExtent('y');
+      return this.getExtent(this.fields.y);
     },
     line() {
       return d3.line()
         .defined(this.filterForLog)
-        .x(d => this.xScale(d.x))
-        .y(d => this.yScale(d.y));
+        .x(d => this.xScale(d[this.fields.x]))
+        .y(d => this.yScale(d[this.fields.y]));
     },
     isMetadata() {
       return !(typeof this.metadata === 'undefined');

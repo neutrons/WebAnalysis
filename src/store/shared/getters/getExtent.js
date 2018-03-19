@@ -8,15 +8,18 @@ export default (state, getters) => (field) => {
 
   const yType = state.plotScale.y.label;
   const xType = state.plotScale.x.label;
+  const xField = state.field.x;
+  const yField = state.field.y;
+
   tempData = tempData.map(el => el.values)
     .reduce((a, b) => a.concat(b))
     .filter((d) => {
       if (yType === 'log(y)' && xType === 'log(x)') {
-        return d.y > 0 && d.x > 0;
+        return d[yField] > 0 && d[xField] > 0;
       } else if (xType === 'log(x)') {
-        return d.x > 0;
+        return d[xField] > 0;
       } else if (yType === 'log(y)') {
-        return d.y > 0;
+        return d[yField] > 0;
       }
 
       return d;

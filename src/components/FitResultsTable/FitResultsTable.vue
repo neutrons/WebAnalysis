@@ -84,7 +84,7 @@ export default {
     },
     fitRange() {
       if (this.fitCount === 0) return [0, 0];
-      return d3.extent(this.fittedData, d => d.x).map(d => d.toExponential(2));
+      return d3.extent(this.fittedData, d => d[this.fields.x]).map(d => d.toExponential(2));
     },
     formattedFitError() {
       return this.fitError ? 'Not Available' : this.fitError.toExponential(2);

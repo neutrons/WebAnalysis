@@ -25,6 +25,7 @@ export default {
       savedBrushSelections: state => state.savedBrushSelections,
       isZoomBrush: state => state.isZoomBrush,
       stitchedData: state => state.stitchedData,
+      fields: state => state.field,
     }),
     ...mapGetters('SANS/Stitch', {
       chartConfigurations: 'getChartConfigurations',

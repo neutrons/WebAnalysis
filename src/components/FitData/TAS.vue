@@ -102,7 +102,7 @@ export default {
   components: {
     'v-chart': () => import('./FitChart/ChartTAS'),
     'v-fit-results-table': () => import('../FitResultsTable/FitResultsTableTAS'),
-    'v-fitted-data-table': () => import('../FittedDataTable'),
+    'v-fitted-data-table': () => import('../FittedDataTable/FittedDataTableTAS'),
     'v-metadata-table': () => import('../MetadataTable'),
   },
   computed: {

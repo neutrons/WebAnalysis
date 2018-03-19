@@ -116,7 +116,7 @@ export default {
         return [0, 0];
       }
 
-      return d3.extent(this.plotData[0].values, d => d.x);
+      return d3.extent(this.plotData[0].values, d => d[this.fields.x]);
     },
     yScale() {
       return d3.scaleLinear()
@@ -129,7 +129,7 @@ export default {
         return [0, 0];
       }
 
-      return d3.extent(this.plotData[0].values, d => d.y);
+      return d3.extent(this.plotData[0].values, d => d[this.fields.y]);
     },
     colorScale() {
       return d3.scaleOrdinal(d3.schemeCategory20)
@@ -156,8 +156,8 @@ export default {
     line() {
       return d3.line()
         .defined(this.filterForLog)
-        .x(d => this.xScale(d.x))
-        .y(d => this.yScale(d.y));
+        .x(d => this.xScale(d[this.fields.x]))
+        .y(d => this.yScale(d[this.fields.y]));
     },
     isMetadata() {
       return !(typeof this.plotMetadata === 'undefined');

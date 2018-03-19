@@ -90,17 +90,17 @@ export default {
       // UPDATE slider lines
       slider.transition()
         .duration(750)
-        .attr('x1', d => newXScale2(d.x))
+        .attr('x1', d => newXScale2(d[this.fields.x]))
         .attr('y1', this.sliderHeight)
-        .attr('x2', d => newXScale2(d.x))
+        .attr('x2', d => newXScale2(d[this.fields.x]))
         .attr('y2', 0);
 
       // ENTER new brush lines
       slider.enter()
         .append('line')
-        .attr('x1', d => newXScale2(d.x))
+        .attr('x1', d => newXScale2(d[this.fields.x]))
         .attr('y1', this.sliderHeight)
-        .attr('x2', d => newXScale2(d.x))
+        .attr('x2', d => newXScale2(d[this.fields.x]))
         .attr('y2', 0)
         .style('stroke', 'slategray');
 
@@ -108,7 +108,7 @@ export default {
       this.brush.on('end', this.brushed);
 
       // set initial brushSelection
-      const xExtent = d3.extent(tempData, d => d.x);
+      const xExtent = d3.extent(tempData, d => d[this.fields.x]);
 
       if (this.brushSelection.length === 0 ||
         !_.isEqual(xExtent, this.prevExtent) ||
@@ -137,12 +137,13 @@ export default {
       this.$store.commit(`${this.$route.meta.group}/Fit/setBrushSelection`, d3.event.selection);
       const tempData = this.dataToFit.filter(this.filterForLog);
       const e = d3.event.selection.map(this.sliderScale.invert, this.sliderScale);
-      const filteredData = tempData.filter(d => e[0] <= d.x && d.x <= e[1]);
+      const filteredData = tempData
+        .filter(d => e[0] <= d[this.fields.x] && d[this.fields.x] <= e[1]);
       this.$store.commit(`${this.$route.meta.group}/Fit/setFilteredData`, _.cloneDeep(filteredData));
 
       // Update brush selections to the current selected data
       // This will be used to dynamically adjust brush location when new data is added
-      const xExtent = d3.extent(filteredData, d => d.x);
+      const xExtent = d3.extent(filteredData, d => d[this.fields.x]);
       this.selLimits = [...xExtent];
       const newXScale2 = this.sliderScale.copy();
       this.$store.commit(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
@@ -151,7 +152,7 @@ export default {
         this.svg.select('.slider-lines')
           .selectAll('line')
           .style('stroke', (d) => {
-            if (e[0] <= d.x && d.x <= e[1]) {
+            if (e[0] <= d[this.fields.x] && d[this.fields.x] <= e[1]) {
               return this.colorScale(d.name);
             }
 
@@ -171,6 +172,7 @@ export default {
         equation: this.fitEquation,
         initialValues: this.fitInitialValues,
         fitSettings: this.fitSettings,
+        fields: this.fields,
       };
 
       this.toggleIsFitting(true);

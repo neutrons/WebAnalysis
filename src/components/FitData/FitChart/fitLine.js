@@ -18,8 +18,8 @@ export default {
       const [newXScale, newYScale] = this.rescaleToZoom();
       const newLine = d3.line()
         .defined(this.filterForLog)
-        .x(d => newXScale(d.x))
-        .y(d => newYScale(d.y));
+        .x(d => newXScale(d[this.fields.x]))
+        .y(d => newYScale(d[this.fields.y]));
 
       // Re-draw plot lines with new data
       const tempData = this.fittedData.filter(this.filterForLog);
@@ -38,7 +38,7 @@ export default {
         scope[d.coefficient] = d.value;
       });
 
-      const x = this.filteredData.map(d => d.x);
+      const x = this.filteredData.map(d => d[this.fields.x]);
 
       // Generate a linear space for yFitted
       const xMin = Math.min(...x);
@@ -53,14 +53,18 @@ export default {
 
       const newDataPoints = [];
       xFit.forEach((d, index) => {
-        newDataPoints.push({ x: d, y: fitY[index] });
+        newDataPoints.push({
+          [this.fields.x]: d,
+          [this.fields.y]: fitY[index],
+        });
       });
+
       // Rescale to zoom's scale
       const [newXScale, newYScale] = this.rescaleToZoom();
       const newLine = d3.line()
         .defined(this.filterForLog)
-        .x(d => newXScale(d.x))
-        .y(d => newYScale(d.y));
+        .x(d => newXScale(d[this.fields.x]))
+        .y(d => newYScale(d[this.fields.y]));
 
       this.g.select('.fit-line')
         .select('path')

@@ -9,7 +9,7 @@
 
                     <v-tabs-bar>
                       <v-tabs-item href='#tab-metadata' ripple v-if='props.metadataLength > 0'>Metadata</v-tabs-item>
-                      <v-tabs-item href='#tab-combined' ripple v-if='props.originalCombinedData.length'>Combined Data</v-tabs-item>
+                      <v-tabs-item href='#tab-combined' ripple v-if='props.combinedData.length'>Combined Data</v-tabs-item>
                       <v-tabs-slider color='accent'></v-tabs-slider>
                     </v-tabs-bar>
 
@@ -46,7 +46,7 @@
                       <v-tabs-content id='tab-combined' ripple v-if='props.metadataLength > 0'>
                         <v-card>
                           <v-card-text class='tab-card-text'>
-                            <v-plotted-data-table :plotted-data='props.originalCombinedData' :files='props.mergedFiles'></v-plotted-data-table>
+                            <v-plotted-data-table :plotted-data='props.combinedData' :files='props.mergedFiles'></v-plotted-data-table>
                           </v-card-text>
                         </v-card>
                       </v-tabs-content>

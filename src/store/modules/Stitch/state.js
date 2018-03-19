@@ -28,4 +28,8 @@ export default {
     x: 'x',
     y: 'y',
   },
+  transformations: {
+    x: 'x',
+    y: 'y',
+  },
 };

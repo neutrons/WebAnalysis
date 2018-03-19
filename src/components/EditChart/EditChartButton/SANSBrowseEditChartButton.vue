@@ -17,20 +17,21 @@ export default {
     },
   }),
   computed: {
-    ...mapGetters('SANS/Browse', [
-      'getPreparedData',
-    ]),
+    ...mapGetters('SANS/Browse', {
+      preparedData: 'getPreparedData',
+      fields: 'defaultFields',
+    }),
     name() {
-      return this.getPreparedData[0].key;
+      return this.preparedData[0].key;
     },
     xData() {
-      return this.getPreparedData[0].values.map(d => d.x);
+      return this.preparedData[0].values.map(d => d[this.fields.x]);
     },
     yData() {
-      return this.getPreparedData[0].values.map(d => d.y);
+      return this.preparedData[0].values.map(d => d[this.fields.y]);
     },
     errorData() {
-      const temp = this.getPreparedData[0].values.map(d => d.error);
+      const temp = this.preparedData[0].values.map(d => d.error);
       return {
         type: 'data',
         array: temp,

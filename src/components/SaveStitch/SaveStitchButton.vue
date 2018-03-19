@@ -105,24 +105,6 @@ export default {
         // If posting stitch line works, store brush selections
         vm.saveBrushSelections();
         vm.saveBrushes();
-
-        // console.log('Saved brushes:', savedBrushes);
-        // console.log('-----------------------------')
-
-        // console.log('Here are your saved brush selections:')
-        // for(let key in savedSelections) {
-        //     console.log('Key: ' + key);
-        //     console.log(savedSelections[key]);
-        //     console.log('---------------------------');
-        // }
-
-        // Then reset plot for next iteration of stitching
-        // vm.brushObj.brushSelections = {};
-        // vm.brushObj.brushes = [];
-        // eventBus.$emit('reset-stitch');
-
-        // Then fetch data to include the saved stitch file
-        // eventBus.$emit('fetch-files');
       })
       .catch((error) => {
         const errorMSG = error;

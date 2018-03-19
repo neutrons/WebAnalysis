@@ -12,8 +12,8 @@ export default {
       const [newXScale, newYScale] = this.rescaleToZoom();
       const newLine = d3.line()
         .defined(this.filterForLog)
-        .x(d => newXScale(d.x))
-        .y(d => newYScale(d.y));
+        .x(d => newXScale(d[this.fields.x]))
+        .y(d => newYScale(d[this.fields.y]));
       const trans = d3.transition().duration(0);
 
       this.updateAxes(newXScale, newYScale, trans);
@@ -22,30 +22,30 @@ export default {
       // re-draw error line;
       this.g.selectAll('.error-line')
         // .selectAll('line')
-        .attr('x1', d => newXScale(d.x))
-        .attr('y1', d => newYScale(d.y + d.error))
-        .attr('x2', d => newXScale(d.x))
-        .attr('y2', d => newYScale(d.y - d.error));
+        .attr('x1', d => newXScale(d[this.fields.x]))
+        .attr('y1', d => newYScale(d[this.fields.y] + d.error))
+        .attr('x2', d => newXScale(d[this.fields.x]))
+        .attr('y2', d => newYScale(d[this.fields.y] - d.error));
 
       // re-draw error cap top;
       this.g.selectAll('.error-cap-top')
         // .selectAll('line')
-        .attr('x1', d => newXScale(d.x) + 4)
-        .attr('y1', d => newYScale(d.y + d.error))
-        .attr('x2', d => newXScale(d.x) - 4)
-        .attr('y2', d => newYScale(d.y + d.error));
+        .attr('x1', d => newXScale(d[this.fields.x]) + 4)
+        .attr('y1', d => newYScale(d[this.fields.y] + d.error))
+        .attr('x2', d => newXScale(d[this.fields.x]) - 4)
+        .attr('y2', d => newYScale(d[this.fields.y] + d.error));
 
       // re-draw error cap top;
       this.g.selectAll('.error-cap-bottom')
         // .selectAll('line')
-        .attr('x1', d => newXScale(d.x) + 4)
-        .attr('y1', d => newYScale(d.y - d.error))
-        .attr('x2', d => newXScale(d.x) - 4)
-        .attr('y2', d => newYScale(d.y - d.error));
+        .attr('x1', d => newXScale(d[this.fields.x]) + 4)
+        .attr('y1', d => newYScale(d[this.fields.y] - d.error))
+        .attr('x2', d => newXScale(d[this.fields.x]) - 4)
+        .attr('y2', d => newYScale(d[this.fields.y] - d.error));
 
       // re-draw scatter plot;
       this.g.selectAll('.point')
-        .attr('transform', d => `translate( ${newXScale(d.x)}, ${newYScale(d.y)})`);
+        .attr('transform', d => `translate( ${newXScale(d[this.fields.x])}, ${newYScale(d[this.fields.y])})`);
 
       // re-draw line paths
       this.g.selectAll('.scatter-line')
