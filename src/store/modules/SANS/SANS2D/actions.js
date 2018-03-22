@@ -1,4 +1,5 @@
 import addFetchFiles from '../../../shared/actions/addFetchFiles';
+import addUploadFiles from '../../../shared/actions/addUploadFiles';
 import updateFilesSelected from '../../../shared/actions/updateFilesSelectedSANS2D';
 import fetchData from '../../../shared/actions/fetchData';
 import readData from '../../../shared/actions/readData';
@@ -12,6 +13,7 @@ export default {
   readData,
   resetAll,
   parseData,
+  addUploadFiles,
   setScale({ commit }, value) {
     commit('setScale', value);
   },
