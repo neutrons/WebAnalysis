@@ -4,16 +4,13 @@ import _ from 'lodash';
 import storeData from '../../../shared/mutations/storeData';
 import updateFilters from '../../../shared/mutations/updateFilters';
 import removeSavedFile from '../../../shared/mutations/removeSavedFile';
+import addToFetchList from '../../../shared/mutations/addToFetchList';
 
 export default {
   storeData,
   updateFilters,
   removeSavedFile,
-  addToFetchList(state, payload) {
-    const key = payload.key;
-    const file = payload.file;
-    Vue.set(state.fetched, key, file);
-  },
+  addToFetchList,
   addUploadFiles(state, files) {
     const keys = Object.keys(files);
     keys.forEach((key) => {
