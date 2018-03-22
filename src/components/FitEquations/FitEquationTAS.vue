@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import FitEquation from './FitEquation';
 import { eventBus } from '../../assets/js/eventBus';
 
@@ -38,7 +38,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('TAS/Fit', [
+    ...mapActions('TAS/Fit', [
       'addToSelect',
       'updateSelectAtIndex',
       'removeSelectAtIndex',
@@ -54,14 +54,18 @@ export default {
     ]),
     fitData() {
       // first set fit type
-      eventBus.$emit('refit-data-TAS');
+      eventBus.$emit('redraw-chart-tas-fit');
     },
     coefficientInput(payload) {
       // update initial values
-      this.updateInitialValue(payload);
-
-      // update fit line with new initial values
-      eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+      // then revise fit line
+      this.updateInitialValue(payload)
+        .then(() => {
+          eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
     togglePick(value, index, ivIndex) {
       if (value) {
@@ -74,14 +78,20 @@ export default {
       }
     },
     updateInitialValueWithPick(value) {
+      // trigger update initial values
+      // then resetPick index and revise fit line
       this.updateInitialValue({
         index: this.pickIndex,
         ivIndex: this.pickIvIndex,
         value: +value.toFixed(4),
+      })
+      .then(() => {
+        this.resetPickIndex();
+        eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+      })
+      .catch((error) => {
+        eventBus.$emit('add-notification', error.message, 'error');
       });
-
-      this.resetPickIndex();
-      eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
     },
   },
 };

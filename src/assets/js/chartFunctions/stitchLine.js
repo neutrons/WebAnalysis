@@ -27,11 +27,17 @@ export default {
           });
         }
 
-        this.setStitchedData(tempData);
+        this.setStitchedData(tempData)
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-stitch');
+          });
       }
     },
     removeStitchLine() {
-      this.resetStitchedData();
+      this.resetStitchedData()
+        .then(() => {
+          eventBus.$emit('redraw-chart-sans-stitch');
+        });
     },
     selectData() {
       // If there are no brush selections, don't bother matching the data

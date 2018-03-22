@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 export default (state, chosenData) => {
   // set default fields to base curve
-  if (chosenData.length === 1 || !state.isFieldChange) state.field = { ...chosenData[0].defaultFields }; // eslint-disable-line
+  if (chosenData.length === 1) state.field = { ...chosenData[0].defaultFields }; // eslint-disable-line
 
   const tempData = _.cloneDeep(chosenData);
   const tempSelect = [];

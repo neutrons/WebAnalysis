@@ -1,6 +1,7 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import FilesList from './FilesList';
+import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'FilesListSANS1D',
@@ -20,8 +21,24 @@ export default {
         return this.filesSelected;
       },
       set(value) {
-        if (value.indexOf(this.fileToFit) === -1) this.updateFileToFit(null);
-        this.updateFilesSelected(value);
+        // Remove file to fit if file no longer is in file list
+        const currentListLength = this.filesSelected.length;
+        const inNewList = value.indexOf(this.fileToFit);
+
+        if (currentListLength !== 0 && inNewList === -1) {
+          this.updateFileToFit(null);
+        }
+
+        // Call action to add file
+        // return a promise and then emmit
+        // event to plot data
+        this.updateFilesSelected(value)
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-fit');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
     allFiles() {
@@ -29,9 +46,9 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS/Fit', [
-      'updateFilesSelected',
+    ...mapActions('SANS/Fit', [
       'updateFileToFit',
+      'updateFilesSelected',
     ]),
   },
 };

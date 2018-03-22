@@ -9,7 +9,7 @@ export default {
     ...mapState('SANS/Fit', {
       fileToFit: state => state.fileToFit,
       fitType: state => state.fitType,
-      fittedData: state => state.fittedData,
+      filteredData: state => state.filteredData,
       fitError: state => state.fitError,
       fitSettings: state => state.fitSettings,
       fitNote: state => state.fitNote,

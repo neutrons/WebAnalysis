@@ -4,4 +4,5 @@ export default {
     x: 'x',
     y: 'y',
   },
+  filesSelected: [],
 };

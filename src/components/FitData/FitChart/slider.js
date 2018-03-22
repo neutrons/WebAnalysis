@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { eventBus } from '../../../assets/js/eventBus';
 import fitLine from './fitLine';
 
+// Use worker to handle fitting data since it can take awhile to complete
 const Worker = require('worker-loader!./fitWorker'); // eslint-disable-line
 const myWorker = new Worker();
 myWorker.postMessage('Starting');
@@ -114,19 +115,19 @@ export default {
         !_.isEqual(xExtent, this.prevExtent) ||
         (this.fileToFit !== this.previousFit) ||
         (this.brushTransformation !== this.transformations.x)) {
-        this.$store.commit(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
-
+        // trigger action to store brush limits for later use
+        this.$store.dispatch(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
         this.prevExtent = xExtent;
         this.brushFit = this.fitType;
         this.brushTransformation = this.transformations.x;
       } else if (!(this.brushFit === this.fitType)) {
         // if same file to fit, but new fit transformation, change brush selections
-        this.$store.commit(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
+        this.$store.dispatch(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
         this.brushFit = this.fitType;
       } else {
         // if same file to fit after update and same fit transformation,
         // simply update brush selection to current selection
-        this.$store.commit(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: this.selLimits, scale: newXScale2 });
+        this.$store.dispatch(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: this.selLimits, scale: newXScale2 });
       }
 
       this.svg.select('.brush')
@@ -134,25 +135,31 @@ export default {
         .call(this.brush.move, this.brushSelection);
     },
     brushed() {
-      this.$store.commit(`${this.$route.meta.group}/Fit/setBrushSelection`, d3.event.selection);
+      this.$store.dispatch(`${this.$route.meta.group}/Fit/setBrushSelection`, d3.event.selection);
       const tempData = this.dataToFit.filter(this.filterForLog);
-      const e = d3.event.selection.map(this.sliderScale.invert, this.sliderScale);
+      const brushBoundaries = d3.event.selection.map(this.sliderScale.invert, this.sliderScale);
+
+      // Select data that is only within the brush boundaries. This is the data to be fit.
       const filteredData = tempData
-        .filter(d => e[0] <= d[this.fields.x] && d[this.fields.x] <= e[1]);
-      this.$store.commit(`${this.$route.meta.group}/Fit/setFilteredData`, _.cloneDeep(filteredData));
+        .filter(d => brushBoundaries[0] <= d[this.fields.x]
+          && d[this.fields.x] <= brushBoundaries[1]);
+
+      // Trigger action to store filtered data for later use
+      this.$store.dispatch(`${this.$route.meta.group}/Fit/setFilteredData`, _.cloneDeep(filteredData));
 
       // Update brush selections to the current selected data
       // This will be used to dynamically adjust brush location when new data is added
       const xExtent = d3.extent(filteredData, d => d[this.fields.x]);
-      this.selLimits = [...xExtent];
       const newXScale2 = this.sliderScale.copy();
-      this.$store.commit(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
+
+      this.selLimits = [...xExtent];
+      this.$store.dispatch(`${this.$route.meta.group}/Fit/setBrushLimits`, { limits: xExtent, scale: newXScale2 });
 
       if (this.brushSelection !== null && filteredData.length > 1) {
         this.svg.select('.slider-lines')
           .selectAll('line')
           .style('stroke', (d) => {
-            if (e[0] <= d[this.fields.x] && d[this.fields.x] <= e[1]) {
+            if (brushBoundaries[0] <= d[this.fields.x] && d[this.fields.x] <= brushBoundaries[1]) {
               return this.colorScale(d.name);
             }
 
@@ -175,30 +182,46 @@ export default {
         fields: this.fields,
       };
 
+      // trigger mutation to indicate fit is in process
       this.toggleIsFitting(true);
+
+      // activate worker
       this.addLoader();
+
+      // send data to worker for line fitting
       myWorker.postMessage(JSON.stringify(args));
+
+      // receive worker data after line fitting
       myWorker.onmessage = function wmsg(result) {
-        // Update fit results table values
-        vm.updateFitTableResults(JSON.parse(result.data));
+        // Update fit results table values by triggering action
+        vm.updateFitDataResults(JSON.parse(result.data))
+          .then(() => {
+            if (vm.fittedData.length <= 0) {
+              const errorMsg = 'Error! Fitted y-values < 0, thus no fit-line to display.';
+              eventBus.$emit('add-notification', errorMsg, 'error');
+            } else {
+              // update line plot
+              vm.updateFitLine();
+            }
 
-        if (vm.fittedData.length <= 0) {
-          const errorMsg = 'Error! Fitted y-values < 0, thus no fit-line to display.';
-          eventBus.$emit('add-notification', errorMsg, 'error');
-        } else {
-          // update line plot
-          vm.updateFitLine();
-        }
-
-        vm.toggleIsFitting(false);
+            // trigger mutation to indicate fit is done processing
+            vm.toggleIsFitting(false);
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       };
+
+      // receive any errors produced during fitting data in worker
       myWorker.onerror = function emsg(result) {
         eventBus.$emit('add-notification', result.data, 'danger');
       };
     },
     addLoader() {
+      // function adds a loading screen to plot while fit worker is running
       const vm = this;
       const loading = this.g.append('g').attr('class', 'loader');
+
       loading.append('rect')
         .attr('class', 'loading-bg')
         .attr('height', this.height)

@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 import EditChartButton from './EditChartButton';
 
@@ -19,20 +19,22 @@ export default {
   computed: {
     ...mapState('SANS/SANS2D', {
       hexBinSize: state => state.hexBinSize,
-      selectedData: state => state.selectedData,
       filesSelected: state => state.filesSelected,
+    }),
+    ...mapGetters('SANS/SANS2D', {
+      plotData: 'getPreparedData',
     }),
     name() {
       return this.filesSelected;
     },
     xData() {
-      return this.selectedData.map(d => d.qx);
+      return this.plotData.map(d => d.qx);
     },
     yData() {
-      return this.selectedData.map(d => d.qy);
+      return this.plotData.map(d => d.qy);
     },
     intensityData() {
-      return this.selectedData.map(d => d.intensity);
+      return this.plotData.map(d => d.intensity);
     },
     editChartData() {
       return JSON.stringify({

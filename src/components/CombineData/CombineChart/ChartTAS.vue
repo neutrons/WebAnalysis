@@ -1,6 +1,7 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex';
 import Chart from './DefaultChart';
+import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'CombineChartTAS',
@@ -13,6 +14,12 @@ export default {
       isMathJax: false,
       activeParentTab: null,
     };
+  },
+  created() {
+    eventBus.$on('redraw-chart-tas-combine', this.redrawChart);
+  },
+  destroyed() {
+    eventBus.$off('redraw-chart-tas-combine');
   },
   computed: {
     ...mapState('TAS/Combine', {
@@ -41,12 +48,6 @@ export default {
     ]),
   },
   watch: {
-    combinedData: {
-      deep: true,
-      handler(val) {
-        if (!val.length) this.g.select('.group-combine').remove();
-      },
-    },
     mergedFiles() {
       if (this.mergedFiles.length) {
         this.activeParentTab = this.combinedData.length ? 'tab-combined' : 'tab-metadata';

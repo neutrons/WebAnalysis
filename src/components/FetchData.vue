@@ -1,5 +1,5 @@
 <template>
-    <v-btn small flat @click='fetchFiles' class='fetch-btn'>
+    <v-btn small flat @click='onFetchFiles' class='fetch-btn'>
       <span class='hidden-md-and-down'>Fetch Data</span>
       <v-icon small :right='!isBreakpointSmall' color='white'>fa-cloud-download</v-icon>
     </v-btn>
@@ -40,7 +40,7 @@ export default {
     },
   },
   methods: {
-    fetchFiles() {
+    onFetchFiles() {
       const vm = this;
       if (typeof this.fetchURL === 'undefined') {
         eventBus.$emit('add-notification', 'Unable to fetch.', 'error');
@@ -58,9 +58,6 @@ export default {
           default:
             vm.fetchSANS(data);
         }
-
-        // Notify that fetch was a success
-        eventBus.$emit('add-notification', 'Data fetched!', 'success');
       }).catch((err) => {
         eventBus.$emit('add-notification', err.message, 'error');
       });
@@ -83,7 +80,11 @@ export default {
         };
       });
 
-      this.$store.dispatch('TAS/addFetchFiles', temp);
+      this.$store.dispatch('TAS/addFetchFiles', temp)
+        .then(() => {
+          // Notify that fetch was a success
+          eventBus.$emit('add-notification', 'Data fetched!', 'success');
+        });
     },
     fetchSANS(data) {
       const temp = {};
@@ -110,7 +111,11 @@ export default {
       });
 
       const namespace = this.$route.name !== 'SANS2D' ? 'SANS' : 'SANS/SANS2D';
-      this.$store.dispatch(`${namespace}/addFetchFiles`, temp);
+      this.$store.dispatch(`${namespace}/addFetchFiles`, temp)
+        .then(() => {
+          // Notify that fetch was a success
+          eventBus.$emit('add-notification', 'Data fetched!', 'success');
+        });
     },
   },
   watch: {

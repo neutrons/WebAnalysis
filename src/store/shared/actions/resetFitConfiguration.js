@@ -1,18 +1,5 @@
-export default ({ commit, state }) => {
-  /* eslint-disable */
+export default ({ commit }) => {
   commit('resetFitSettings');
-
-  state.fitType = 'Linear';
-  state.fitEquation = undefined;
-  state.fitInitialValues = [];
-  state.transformations = {
-    x: 'x',
-    y: 'y',
-    error: 'error',
-  };
-  state.label = {
-    x: 'q = x',
-    y: 'I(q) = y',
-  };
-  /* eslint-enable */
+  commit('resetFitConfiguration');
+  return Promise.resolve(true);
 };

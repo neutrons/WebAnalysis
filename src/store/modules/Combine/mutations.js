@@ -2,8 +2,8 @@ import * as d3 from 'd3';
 
 import { setXScale, setYScale, resetScales } from '../../shared/mutations/scales';
 import updateFilters from '../../shared/mutations/updateFilters';
-import { normalizeData, resetNormalizeData } from '../../shared/mutations/normalizeData';
-import { combineData, removeCombineData, addCombinedData } from '../../shared/mutations/combineData';
+import { normalizeData, resetNormalizedData } from '../../shared/mutations/normalizeData';
+import { combineData, removeCombinedData, addCombinedData, resetCombinedData } from '../../shared/mutations/combineData';
 import { setXField, setYField } from '../../shared/mutations/fields';
 import removePoint from '../../shared/mutations/removePoint';
 import setCurrentData from '../../shared/mutations/setCurrentDataTAS';
@@ -16,10 +16,11 @@ export default {
   setXField,
   setYField,
   normalizeData,
-  resetNormalizeData,
+  resetNormalizedData,
   combineData,
-  removeCombineData,
+  removeCombinedData,
   addCombinedData,
+  resetCombinedData,
   removePoint,
   setCurrentData,
   updateFilesToAdd(state, selected) {

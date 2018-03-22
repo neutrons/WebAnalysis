@@ -142,18 +142,10 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex';
-import filesToPlotWatcher from '../../assets/js/filesToPlotWatcher';
-import read1DData from '../../assets/js/readFiles/default';
-import parseData from '../../assets/js//readFiles/parse/SANS1D';
+import { mapState } from 'vuex';
 
 export default {
   name: 'SANS1DStitch',
-  mixins: [
-    filesToPlotWatcher,
-    read1DData,
-    parseData,
-  ],
   components: {
     'v-chart': () => import('./StitchChart/SANS'),
     'v-toggle-zoom-brush': () => import('../ToggleZoomBrush'),
@@ -171,19 +163,6 @@ export default {
       stitchedData: state => state.stitchedData,
       isBrushes: state => Object.keys(state.brushSelections).length,
     }),
-    ...mapGetters('SANS', [
-      'getURLs',
-      'getSavedFile',
-    ]),
-  },
-  methods: {
-    ...mapMutations('SANS', [
-      'storeData',
-    ]),
-    ...mapMutations('SANS/Stitch', [
-      'setCurrentData',
-      'resetAll',
-    ]),
   },
 };
 </script>

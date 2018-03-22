@@ -1,14 +1,24 @@
-export default ({ state, commit }, files) => {
-  const savedKeys = Object.keys(state.saved);
+export default ({ state, commit }, files) => { // eslint-disable-line
+  return new Promise((resolve, reject) => {
+    try {
+      const savedKeys = Object.keys(state.saved);
+      // Go through files and if fetched file is in saved list
+      // remove it so that updated data can be pulled in
+      const keys = Object.keys(files);
+      const fetchList = {};
 
-  // Go through files and if fetched file is in saved list
-  // remove it so that updated data can be pulled in
-  const keys = Object.keys(files);
-  keys.forEach((key) => {
-    if (savedKeys.indexOf(key) !== -1) {
-      commit('removeSavedFile', key);
+      keys.forEach((key) => {
+        if (savedKeys.indexOf(key) !== -1) {
+          commit('removeSavedFile', key);
+        }
+
+        fetchList[key] = files[key];
+      });
+
+      commit('addToFetchList', fetchList);
+      resolve(true);
+    } catch (error) {
+      reject(error);
     }
-
-    commit('addToFetchList', { key, file: files[key] });
   });
 };

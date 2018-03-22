@@ -36,7 +36,6 @@ export default {
   methods: {
     drawChart() {
       const vm = this;
-
       if (this.filesSelected.length === 0 || this.fileToFit !== this.previousFit) {
         this.setPreviousFit(this.fileToFit);
         this.initChartElements(`.fit-chart-${this.ID}`);

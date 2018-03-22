@@ -33,7 +33,8 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
+import { eventBus } from '../../../../assets/js/eventBus';
 
 export default {
   name: 'HexBins',
@@ -49,16 +50,32 @@ export default {
     };
   },
   methods: {
-    ...mapMutations('SANS/SANS2D', [
+    ...mapActions('SANS/SANS2D', [
       'setBinSize',
       'resetBinSize',
     ]),
     setBS() {
-      this.setBinSize(this.editBinSize);
+      // trigger action to set binsize
+      // then update chart
+      this.setBinSize(this.editBinSize)
+        .then(() => {
+          eventBus.$emit('redraw-chart-sans-2d');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
     resetBS() {
       this.editBinSize = 15;
-      this.resetBinSize();
+      // trigger action to reset binsize
+      // then update chart
+      this.resetBinSize()
+        .then(() => {
+          eventBus.$emit('redraw-chart-sans-2d');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
   },
 };

@@ -192,26 +192,21 @@ export default {
       return Object.keys(this.metadata).length;
     },
   },
+  methods: {
+    redrawChart() {
+      if (this.filesSelected.length === 0) {
+        this.showTabs = true;
+        this.getContainerWidth(`#stitch-chart-wrapper-${this.ID}`);
+        this.removeChart();
+        this.drawChart();
+      } else {
+        this.drawChart();
+      }
+    },
+  },
   mounted() {
     this.getContainerWidth(`#stitch-chart-wrapper-${this.ID}`);
     this.drawChart();
-  },
-  watch: {
-    chartConfigurations: {
-      deep: true,
-      handler() {
-        this.$nextTick(() => {
-          if (this.filesSelected.length === 0) {
-            this.showTabs = true;
-            this.getContainerWidth(`#stitch-chart-wrapper-${this.ID}`);
-            this.removeChart();
-            this.drawChart();
-          } else {
-            this.drawChart();
-          }
-        });
-      },
-    },
   },
 };
 

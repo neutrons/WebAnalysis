@@ -10,21 +10,21 @@
         <span>Click to export fit results to .csv file</span>
       </v-tooltip>
     </v-flex>
-    <v-flex md12 lg3 pa-1><b>Fit File:</b> {{fileToFit}}</v-flex>
-    <v-flex md12 lg2 pa-1><b>Fit Type:</b> {{fitType}}</v-flex>
-    <v-flex md12 lg2 pa-1><b>No. Points:</b> {{fitCount}}</v-flex>
-    <v-flex md12 lg3 pa-1><b>Fit Range:</b> ({{fitRange[0]}}, {{fitRange[1]}})</v-flex>
-    <v-flex md12 lg2 pa-1><b>Fit Error:</b> {{fitError !== null ? fitError.toFixed(2) : fitError}}</v-flex>
+    <v-flex md12 lg3 pa-1><b>Fit File:</b> {{ fileToFit }}</v-flex>
+    <v-flex md12 lg2 pa-1><b>Fit Type:</b> {{ fitType }}</v-flex>
+    <v-flex md12 lg2 pa-1><b>No. Points:</b> {{ fitCount }}</v-flex>
+    <v-flex md12 lg3 pa-1><b>Fit Range:</b> ({{ fitRange[0] }}, {{ fitRange[1] }})</v-flex>
+    <v-flex md12 lg2 pa-1><b>Fit Error:</b> {{ fitError | formatValue }}</v-flex>
     <v-flex xs12 mb-1>
       <v-divider></v-divider>
     </v-flex>
 
     <v-layout row wrap v-if='fitScores'>
       <v-flex md12 lg1 pa-1><b>Fit Scores:</b> </v-flex>
-      <v-flex md12 lg2 pa-1><b>R:</b> {{fitScores.r !== null ? fitScores.r.toFixed(3) : fitScores.r}}</v-flex>
-      <v-flex md12 lg3 pa-1><b>R^2:</b> {{fitScores.r2 !== null ? fitScores.r2.toFixed(3) : fitScores.r2}}</v-flex>
-      <v-flex md12 lg3 pa-1><b>RMSD:</b> {{fitScores.rmsd !== null ? fitScores.rmsd.toFixed(3) : fitScores.rmsd}}</v-flex>
-      <v-flex md12 lg3 pa-1><b>Chi^2:</b> {{fitScores.chi2 !== null ? fitScores.chi2.toFixed(3) : fitscores.chi2}}</v-flex>
+      <v-flex md12 lg2 pa-1><b>R:</b> {{ fitScores.r | formatValue }}</v-flex>
+      <v-flex md12 lg3 pa-1><b>R^2:</b> {{ fitScores.r2 | formatValue }}</v-flex>
+      <v-flex md12 lg3 pa-1><b>RMSD:</b> {{ fitScores.rmsd | formatValue }}</v-flex>
+      <v-flex md12 lg3 pa-1><b>Chi^2:</b> {{ fitScores.chi2 | formatValue }}</v-flex>
       </v-layout>
 
       <v-flex xs12 mb-1>
@@ -39,10 +39,10 @@
         <v-divider></v-divider>
       </v-flex>
       <v-flex sm12 md4 pa-1><b>Fit Configuration:</b>
-        <p class='pl-3 mb-1'>Damping: {{damping}}</p>
-        <p class='pl-3 mb-1'>No. Iterations: {{maxIterations}}</p>
-        <p class='pl-3 mb-1'>Error Tolerance: {{errorTolerance}}</p>
-        <p class='pl-3 mb-1'>Gradient Difference: {{gradientDifference}}</p>
+        <p class='pl-3 mb-1'>Damping: {{ damping }}</p>
+        <p class='pl-3 mb-1'>No. Iterations: {{ maxIterations }}</p>
+        <p class='pl-3 mb-1'>Error Tolerance: {{ errorTolerance }}</p>
+        <p class='pl-3 mb-1'>Gradient Difference: {{ gradientDifference }}</p>
       </v-flex>
       <v-flex sm12 md4 pa-1><b>Coefficients:</b>
         <p v-for='(item, index) in fitInitialValues' :key='index' class='pl-3 mb-1'>
@@ -78,13 +78,18 @@ export default {
       default: true,
     },
   },
+  filters: {
+    formatValue(value) {
+      return value !== null ? value.toFixed(3) : value;
+    },
+  },
   computed: {
     fitCount() {
-      return this.fittedData.length;
+      return this.filteredData.length;
     },
     fitRange() {
       if (this.fitCount === 0) return [0, 0];
-      return d3.extent(this.fittedData, d => d[this.fields.x]).map(d => d.toExponential(2));
+      return d3.extent(this.filteredData, d => d[this.fields.x]).map(d => d.toExponential(2));
     },
     formattedFitError() {
       return this.fitError ? 'Not Available' : this.fitError.toExponential(2);
@@ -112,7 +117,7 @@ export default {
       return `${item.coefficient}: ${item.value}`;
     },
     downloadFitEquation() {
-      const headers = `fit type,no. points,range start,range end,fit error,R,R2,RMSD,CHI2,equation,${this.initialValues.map(d => d.coefficient)}\n`;
+      const headers = `fit type,no. points,range start,range end,fit error,R,R2,RMSD,CHI2,equation,${this.fitInitialValues.map(d => d.coefficient)}\n`;
       const arr = [[
         this.fitType,
         this.fitCount,
@@ -123,7 +128,7 @@ export default {
         this.fitScores.rmsd,
         this.fitScores.chi2,
         this.fitEquation,
-        ...this.initialValues.map(d => d.value),
+        ...this.fitInitialValues.map(d => d.value),
       ]];
 
       const filename = `${this.fileToFit}_fit_results.csv` || 'fit_results.csv';

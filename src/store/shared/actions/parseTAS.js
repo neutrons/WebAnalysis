@@ -1,7 +1,6 @@
-/* Function to Parse 1D Data Files */
 import pp from 'papaparse';
-import config from '../configs/TAS';
-import extractDefaultFields from '../../extractDefaultFields';
+import config from '../../../assets/js/readFiles/configs/TAS';
+import extractDefaultFields from '../../../assets/js/extractDefaultFields';
 
 function cleanDataTable(table) {
   let temp = table.split(/\r\n|\r|\n/);
@@ -43,20 +42,29 @@ function extractMetadata(data) {
   };
 }
 
-export default {
-  methods: {
-    parseData(data, filename) {
-      // First - extract metadata from data table
-      const extractedData = extractMetadata(data);
+export default async ({ state }, payload) => { // eslint-disable-line
+  return new Promise((resolve, reject) => {
+    try {
+      const result = payload.map((item) => {
+        const data = item.data;
+        const filename = item.filename;
 
-      // Second - parse data
-      extractedData.data = pp.parse(extractedData.data, config).data;
+        // First - extract metadata from data table
+        const extractedData = extractMetadata(data);
 
-      // eslint-disable-next-line
-      extractedData.data.forEach(row => row.name = filename);
-      extractedData.filename = filename;
+        // Second - parse data
+        extractedData.data = pp.parse(extractedData.data, config).data;
 
-      return extractedData;
-    },
-  },
+        // eslint-disable-next-line
+        extractedData.data.forEach(row => row.name = filename);
+        extractedData.filename = filename;
+
+        return extractedData;
+      });
+
+      resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
 };

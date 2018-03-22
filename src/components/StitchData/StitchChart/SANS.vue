@@ -1,6 +1,7 @@
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 import Chart from './DefaultChart';
+import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'SANSStitch',
@@ -12,6 +13,12 @@ export default {
     return {
       isMathJax: false,
     };
+  },
+  created() {
+    eventBus.$on('redraw-chart-sans-stitch', this.redrawChart);
+  },
+  destroyed() {
+    eventBus.$off('redraw-chart-sans-stitch');
   },
   computed: {
     ...mapState('SANS/Stitch', {
@@ -41,6 +48,8 @@ export default {
   methods: {
     ...mapActions('SANS/Stitch', [
       'deletePoint',
+      'setStitchedData',
+      'resetStitchedData',
     ]),
     ...mapMutations('SANS/Stitch', [
       'addNewBrush',
@@ -52,8 +61,6 @@ export default {
       'reconvertBrushSelections',
       'setBrushScale',
       'toggleZoomBrush',
-      'setStitchedData',
-      'resetStitchedData',
       'saveBrushes',
       'saveBrushSelections',
     ]),

@@ -26,11 +26,11 @@
   </v-tooltip>
 
   <v-tooltip top :close-delay='1' :disabled='isNormalized || !valid'>
-    <v-btn slot='activator' outline block flat color='success' @click='normalizeData' :disabled='isNormalized || !valid'>Normalize Data</v-btn>
+    <v-btn slot='activator' outline block flat color='success' @click='onNormalizeData' :disabled='isNormalized || !valid'>Normalize Data</v-btn>
     <span>Click to normalize data</span>
   </v-tooltip>
   <v-tooltip top :close-delay='1' :disabled='!isNormalized || !valid'>
-    <v-btn slot='activator' outline block flat color='warning' @click='resetNormalizeData' :disabled='!isNormalized || !valid'>Reset Data</v-btn>
+    <v-btn slot='activator' outline block flat color='warning' @click='onResetNormalizedData' :disabled='!isNormalized || !valid'>Reset Data</v-btn>
     <span>Click to reset normalized data</span>
   </v-tooltip>
 </div>
