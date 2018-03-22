@@ -6,7 +6,6 @@ import { setXScale, setYScale, resetScales } from '../../shared/mutations/scales
 import { setFitDamping, setFitGradient, setFitIterations, setFitError, resetFitSettings } from '../../shared/mutations/setFitSettings';
 import { resetBrushSelection, setBrushLimits, setBrushSelection } from '../../shared/mutations/selections';
 import setFitList from '../../shared/mutations/setFitList';
-import { setYField, setXField } from '../../shared/mutations/fields';
 import setFilteredData from '../../shared/mutations/setFilteredData';
 import toggleIsFitting from '../../shared/mutations/toggleIsFitting';
 import { addToSelect, updateSelectAtIndex, removeSelectAtIndex,
@@ -35,8 +34,6 @@ export default {
   resetBrushSelection,
   setBrushLimits,
   setBrushSelection,
-  setXField,
-  setYField,
   setFilteredData,
   toggleIsFitting,
   addToSelect,

@@ -1,6 +1,7 @@
 <script>
-import { mapMutations, mapState } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 import Normalize from './Normalize';
+import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'NormalizeTAS',
@@ -34,9 +35,29 @@ export default {
     ...mapMutations('TAS/Combine', [
       'setNormalizeValue',
       'setNormalizeField',
-      'normalizeData',
-      'resetNormalizeData',
     ]),
+    ...mapActions('TAS/Combine', [
+      'normalizeData',
+      'resetNormalizedData',
+    ]),
+    onNormalizeData() {
+      this.normalizeData()
+        .then(() => {
+          eventBus.$emit('redraw-chart-tas-combine');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
+    },
+    onResetNormalizedData() {
+      this.resetNormalizedData()
+        .then(() => {
+          eventBus.$emit('redraw-chart-tas-combine');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
+    },
   },
 };
 

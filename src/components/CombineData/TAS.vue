@@ -62,80 +62,12 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex';
-import read1DData from '../../assets/js/readFiles/default';
-import parseData from '../../assets/js/readFiles/parse/TAS';
-
 export default {
   name: 'TAS',
-  mixins: [
-    read1DData,
-    parseData,
-  ],
   components: {
     'v-chart': () => import('./CombineChart/ChartTAS'),
     'v-metadata-table': () => import('../MetadataTable'),
     'v-plotted-data-table': () => import('../PlottedDataTable'),
-  },
-  computed: {
-    ...mapGetters('TAS', [
-      'getURLs',
-      'getSavedFile',
-    ]),
-    ...mapState('TAS/Combine', {
-      isNormalized: state => state.isNormalized,
-      isCombined: state => state.combinedData.length > 0,
-    }),
-    ...mapGetters('TAS/Combine', [
-      'mergedFiles',
-    ]),
-  },
-  methods: {
-    ...mapMutations('TAS', [
-      'storeData',
-    ]),
-    ...mapMutations('TAS/Combine', [
-      'setCurrentData',
-      'resetAll',
-      'resetNormalizeData',
-    ]),
-  },
-  watch: {
-    mergedFiles: {
-      deep: true,
-      handler() {
-        if (!this.mergedFiles.length) {
-          this.resetAll();
-        } else {
-          if (this.isNormalized || this.isCombined) {
-            this.resetNormalizeData();
-          }
-
-          const vm = this;
-          const filesToFetch = [];
-
-          // First check if files to plot are in stored data
-          const tempData = this.mergedFiles.map((filename) => {
-            const temp = vm.getSavedFile(filename);
-
-            if (temp === '999') {
-              filesToFetch.push(filename);
-            }
-
-            return temp;
-          }).filter(item => item !== undefined && item !== '999');
-
-          // Next fetch the file URLs
-          const fileURLs = this.getURLs(filesToFetch);
-
-          if (fileURLs.length > 0) {
-            this.read1DData(fileURLs, tempData);
-          } else {
-            this.setCurrentData(tempData);
-          }
-        }
-      },
-    },
   },
 };
 </script>

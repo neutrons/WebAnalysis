@@ -133,10 +133,16 @@ export default {
     this.addEquation(this.fitKeys[0]);
 
     // trigger perform fit for first time for SANS
-    if (this.$options.name === 'FitEquationSANS') {
-      this.setFitType(this.selected[0].name);
-      this.fitData();
-    }
+    // if (this.$options.name === 'FitEquationSANS') {
+    //   // trigger action then fit data
+    //   this.setFitType(this.selected[0].name)
+    //     .then(() => {
+    //       this.fitData();
+    //     })
+    //     .catch((error) => {
+    //       eventBus.$emit('add-notification', error.message, 'error');
+    //     });
+    // }
   },
 
   computed: {
@@ -208,13 +214,18 @@ export default {
       const temp = this.evaluateInitialGuess(_.cloneDeep(this.items[name]));
 
       // commit mutation to update selected
-      this.updateSelectAtIndex({ index, temp });
-      this.setFitType(name);
-      // if SANS automatically fit since one selection only
-      if (this.$options.name === 'FitEquationSANS') this.fitData();
+      this.updateSelectAtIndex({ index, temp })
+        .then(() => this.setFitType(name))
+        .then(() => {
+          // if SANS automatically fit since one selection only
+          if (this.$options.name === 'FitEquationSANS') this.fitData();
 
-      // if tas revise line with changes to equation
-      if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+          // if TAS revise line with changes to equation
+          if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
     addEquation(name) {
       const temp = this.evaluateInitialGuess(_.cloneDeep(this.items[name]));
@@ -228,12 +239,16 @@ export default {
       this.showIV.push(true);
     },
     removeEquation(index) {
-      this.removeSelectAtIndex(index);
-
-      // if tas revise line with changes to equation
-      if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
-      this.showEquation.splice(index, 1);
-      this.showIV.splice(index, 1);
+      this.removeSelectAtIndex(index)
+        .then(() => {
+          // if tas revise line with changes to equation
+          if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+          this.showEquation.splice(index, 1);
+          this.showIV.splice(index, 1);
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
     getParameters(value) {
       // Parse the string

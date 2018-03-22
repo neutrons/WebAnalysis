@@ -17,6 +17,7 @@ export default {
   setCurrentData,
   resetAll(state) {
     /* eslint-disable */
+    state.filesSelected = [];
     state.selectedData = [];
     state.plotScale = {
       x: { label: 'x', value: d3.scaleLinear() },

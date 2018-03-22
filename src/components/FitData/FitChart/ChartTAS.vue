@@ -16,11 +16,11 @@ export default {
     };
   },
   created() {
-    eventBus.$on('refit-data-TAS', this.drawChart);
+    eventBus.$on('redraw-chart-tas-fit', this.redrawChart);
     eventBus.$on('revise-fit-line-TAS', this.reviseFitLine);
   },
   destroyed() {
-    eventBus.$off('refit-data-TAS');
+    eventBus.$off('redraw-chart-tas-fit');
     eventBus.$off('revise-fit-line-TAS');
   },
   computed: {
@@ -50,13 +50,13 @@ export default {
   },
   methods: {
     ...mapMutations('TAS/Fit', [
-      'resetBrushSelection',
-      'setPreviousFit',
       'toggleIsFitting',
     ]),
     ...mapActions('TAS/Fit', [
-      'updateFitTableResults',
+      'updateFitDataResults',
       'deletePoint',
+      'resetBrushSelection',
+      'setPreviousFit',
     ]),
   },
   watch: {

@@ -133,21 +133,14 @@ export default {
         .duration(750)
         .call(this.zoom.transform, d3.zoomIdentity);
     },
-  },
-  watch: {
-    chartConfigurations: {
-      deep: true,
-      handler() {
-        this.$nextTick(() => {
-          if (this.filesSelected === null) {
-            this.getContainerWidth(`#chart-wrapper-${this.ID}`);
-            this.removeChart();
-            this.drawChart();
-          } else {
-            this.drawChart();
-          }
-        });
-      },
+    redrawChart() {
+      if (this.filesSelected === null) {
+        this.getContainerWidth(`#chart-wrapper-${this.ID}`);
+        this.removeChart();
+        this.drawChart();
+      } else {
+        this.drawChart();
+      }
     },
   },
 };

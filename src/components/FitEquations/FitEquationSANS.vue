@@ -1,5 +1,5 @@
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import FitEquation from './FitEquation';
 import { eventBus } from '../../assets/js/eventBus';
 
@@ -38,7 +38,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS/Fit', [
+    ...mapActions('SANS/Fit', [
       'addToSelect',
       'updateSelectAtIndex',
       'removeSelectAtIndex',
@@ -53,15 +53,26 @@ export default {
       'transformData',
     ]),
     fitData() {
-      // first set fit type
-      this.transformData();
+      // trigger transform data
+      // then update plot
+      this.transformData()
+        .then(() => {
+          eventBus.$emit('redraw-chart-sans-fit');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
     coefficientInput(payload) {
       // update initial values
-      this.updateInitialValue(payload);
-
-      // update fit line with new initial values
-      eventBus.$emit('revise-fit-line-SANS1D', this.fitInitialValues);
+      // then revise fit line
+      this.updateInitialValue(payload)
+        .then(() => {
+          eventBus.$emit('revise-fit-line-SANS1D', this.fitInitialValues);
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
     togglePick(value, index, ivIndex) {
       if (value) {
@@ -74,14 +85,20 @@ export default {
       }
     },
     updateInitialValueWithPick(value) {
+      // trigger update initial values
+      // then resetPick index and revise fit line
       this.updateInitialValue({
         index: this.pickIndex,
         ivIndex: this.pickIvIndex,
         value: +value.toFixed(4),
+      })
+      .then(() => {
+        this.resetPickIndex();
+        eventBus.$emit('revise-fit-line-SANS1D', this.fitInitialValues);
+      })
+      .catch((error) => {
+        eventBus.$emit('add-notification', error.message, 'error');
       });
-
-      this.resetPickIndex();
-      eventBus.$emit('revise-fit-line-SANS1D', this.fitInitialValues);
     },
   },
 };

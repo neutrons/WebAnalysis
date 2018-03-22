@@ -71,24 +71,31 @@ export default {
         temp[fname] = el;
       });
 
-      if (this.$route.meta.group === 'SANS') {
-        if (this.$route.name === 'SANS2D') {
-          this.$store.commit('SANS/SANS2D/addUploadFiles', temp);
-          this.sendMessage(true);
-        }
-        this.$store.commit('SANS/addUploadFiles', temp);
-      } else if (this.$route.meta.group === 'TAS') {
-        this.$store.commit('TAS/addUploadFiles', temp);
-        this.sendMessage(true);
+      if (this.$route.name === 'SANS2D') {
+        this.$store.dispatch('SANS/SANS2D/addUploadFiles', temp)
+          .then(() => {
+            this.sendMessage(true);
+          })
+          .catch((error) => {
+            this.sendMessage(error);
+          });
       } else {
-        this.sendMessage(false);
+        const namespace = this.$route.meta.group;
+
+        this.$store.dispatch(`${namespace}/addUploadFiles`, temp)
+          .then(() => {
+            this.sendMessage(true);
+          })
+          .catch((error) => {
+            this.sendMessage(error);
+          });
       }
     },
     sendMessage(value) {
-      if (value) {
+      if (value === true) {
         eventBus.$emit('add-notification', 'Upload successful!', 'success');
       } else {
-        eventBus.$emit('add-notification', 'Unsuccessful upload...', 'error');
+        eventBus.$emit('add-notification', value, 'error');
       }
     },
   },

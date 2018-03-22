@@ -1,6 +1,8 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import FitList from './FitList';
+
+import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'FitListSANS1D',
@@ -15,12 +17,20 @@ export default {
         return this.fileToFit;
       },
       set(value) {
-        this.updateFileToFit(value);
+        // trigger action to update file to fit
+        // wait for response before updating chart
+        this.updateFileToFit(value)
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-fit');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
   },
   methods: {
-    ...mapMutations('SANS/Fit', [
+    ...mapActions('SANS/Fit', [
       'updateFileToFit',
     ]),
   },

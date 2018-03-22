@@ -1,7 +1,8 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex';
-
 import DefaultChart from './DefaultChart';
+
+import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'TASBrowse',
@@ -14,6 +15,12 @@ export default {
       isMathJax: false,
       ID: 'TAS-Browse',
     };
+  },
+  created() {
+    eventBus.$on('redraw-chart-tas-browse', this.redrawChart);
+  },
+  destroyed() {
+    eventBus.$off('redraw-chart-tas-browse');
   },
   computed: {
     ...mapState('TAS/Browse', {

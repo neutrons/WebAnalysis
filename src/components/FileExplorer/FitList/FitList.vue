@@ -17,13 +17,6 @@
 <script>
 export default {
   name: 'FitList',
-  watch: {
-    filesToFit() {
-      if (!this.filesToFit.length) {
-        this.selected = null;
-      }
-    },
-  },
 };
 </script>
 

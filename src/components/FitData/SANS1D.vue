@@ -62,55 +62,12 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-import filesToPlotWatcher from '../../assets/js/filesToPlotWatcher';
-import read1DData from '../../assets/js/readFiles/default';
-import parseData from '../../assets/js//readFiles/parse/SANS1D';
-
 export default {
   name: 'SANS1D',
-  mixins: [
-    filesToPlotWatcher,
-    read1DData,
-    parseData,
-  ],
   components: {
     'v-chart': () => import('./FitChart/ChartSANS1D'),
     'v-fit-results-table': () => import('../FitResultsTable/FitResultsTableSANS1D'),
     'v-fitted-data-table': () => import('../FittedDataTable/FittedDataTableSANS1D'),
-  },
-  computed: {
-    ...mapState('SANS/Fit', {
-      filesToPlot: state => state.filesSelected,
-      fileToFit: state => state.fileToFit,
-    }),
-    ...mapGetters('SANS', [
-      'getURLs',
-      'getSavedFile',
-    ]),
-  },
-  methods: {
-    ...mapMutations('SANS', [
-      'storeData',
-    ]),
-    ...mapMutations('SANS/Fit', [
-      'setCurrentData',
-      'resetAll',
-      'transformData',
-      'resetBrushSelection',
-    ]),
-    ...mapActions('SANS/Fit', [
-      'resetFitConfiguration',
-    ]),
-  },
-  watch: {
-    fileToFit() {
-      if (this.fileToFit === null) {
-        this.resetFitConfiguration();
-        this.resetBrushSelection();
-        this.transformData();
-      }
-    },
   },
 };
 </script>

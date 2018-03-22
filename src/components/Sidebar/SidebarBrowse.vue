@@ -64,8 +64,6 @@ export default {
   data() {
     return {
       edit: false,
-      selectedFile: null,
-      tempSelectedTags: [],
       selectedTags: [],
       tags: [],
       active: false,
@@ -112,6 +110,7 @@ export default {
       this.updateTags(payload);
     },
     move(direction) {
+      this.edit = false;
       if (!this.fileList.length) return;
       const index = this.fileList.indexOf(this.selectedFile);
       const end = this.fileList.length - 1;
@@ -123,7 +122,7 @@ export default {
       }
     },
     toggleEdit() {
-      if (!this.fileList.length || this.selectedFile === null) return;
+      if (!this.fileList.length || !this.selectedFile.length) return;
       this.edit = !this.edit;
 
       if (!this.edit) {
@@ -153,27 +152,8 @@ export default {
   watch: {
     fileList() {
       // automatically plot file when fetched
-      if (this.fileList.length && this.selectedFile === null && this.active) {
+      if (this.fileList.length && this.selectedFile !== null && this.active) {
         this.selectedFile = this.fileList[0];
-      }
-    },
-    selectedFile() {
-      if (this.selectedFile === null) {
-        this.tempSelectedTags = [];
-        this.selectedTags = [];
-        this.setBrowseData([]);
-      } else {
-        const vm = this;
-        // Update tags to current file selected
-        this.selectedTags = this.allFiles[this.selectedFile].tags;
-
-        const tempData = vm.getSavedFile(this.selectedFile);
-
-        if (tempData === '999') {
-          this.read1DData(this.getURLs([this.selectedFile]), [], 'QuickPlot');
-        } else {
-          this.setBrowseData(tempData);
-        }
       }
     },
   },

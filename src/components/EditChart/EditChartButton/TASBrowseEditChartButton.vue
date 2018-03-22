@@ -1,5 +1,5 @@
 <script>
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 import EditChartButton from './EditChartButton';
 
@@ -13,9 +13,11 @@ export default {
     },
   }),
   computed: {
+    ...mapState('TAS/Browse', {
+      fields: state => state.field,
+    }),
     ...mapGetters('TAS/Browse', {
       preparedData: 'getPreparedData',
-      fields: 'defaultFields',
       label: 'label',
     }),
     name() {

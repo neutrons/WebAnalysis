@@ -80,7 +80,7 @@ export const combineData = (state, value) => {
   state.combinedData = result.sort((a, b) => a[xField] - b[xField]); // eslint-disable-line
 };
 
-export const removeCombineData = (state) => {
+export const removeCombinedData = (state) => {
   state.combinedData = []; // eslint-disable-line
   state.tolerance = state.defaultSettings.tolerance.value; // eslint-disable-line
 };
@@ -96,5 +96,9 @@ export const addCombinedData = (state, payload) => {
   };
 
   Vue.set(state.storedCombined, filename, data);
+};
+
+export const resetCombinedData = (state) => {
+  state.combinedData = []; // eslint-disable-line
 };
 

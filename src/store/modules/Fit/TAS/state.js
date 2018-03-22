@@ -2,8 +2,8 @@ import state from '../state';
 import fits from '../../../fits/TAS';
 
 state.label = {
-  x: 'q = x',
-  y: 'I(q) = y',
+  x: 'x',
+  y: 'y',
 };
 
 state.fit = { ...fits };

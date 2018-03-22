@@ -8,7 +8,7 @@ export default {
   computed: {
     ...mapState('TAS/Fit', {
       fileToFit: state => state.fileToFit,
-      fittedData: state => state.fittedData,
+      filteredData: state => state.filteredData,
       fitError: state => state.fitError,
       fitSettings: state => state.fitSettings,
       fitNote: state => state.fitNote,

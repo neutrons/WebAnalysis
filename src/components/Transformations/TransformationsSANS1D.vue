@@ -1,6 +1,7 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import Transformations from './Transformations';
+import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'TransformationsSANS1D',
@@ -17,36 +18,69 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations('SANS/Fit', [
+    ...mapActions('SANS/Fit', [
       'resetTransformations',
       'transformData',
       'setXTransformation',
       'setYTransformation',
-      'setTransformations',
     ]),
     resetAllTransformations() {
-      this.resetTransformations();
-      this.transformData();
+      // trigger action to reset transformations
+      // then transform data back to original
+      // then update plot
+      this.resetTransformations()
+        .then(() => this.transformData())
+        .then(() => {
+          eventBus.$emit('redraw-chart-sans-fit');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
     enterX() {
       if (this.canEnter) {
-        this.setXTransformation(this.xTransformation);
-        this.transformData();
+        // trigger action to set x transformation
+        // then transform data
+        // then update plot
+        this.setXTransformation(this.xTransformation)
+          .then(() => this.transformData())
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-fit');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       }
     },
     enterY() {
       if (this.canEnter) {
-        this.setYTransformation(this.yTransformation);
-        this.transformData();
+        // trigger action to set y transformation
+        // then transform data
+        // then update plot
+        this.setYTransformation(this.yTransformation)
+          .then(() => this.transformData())
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-fit');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       }
     },
     setAllTransformations() {
       if (this.canEnter) {
-        this.setTransformations({
-          x: this.xTransformation,
-          y: this.yTransformation,
-        });
-        this.transformData();
+        // trigger action to set both transformations
+        // then transform data
+        // then update plot
+        this.setXTransformation(this.xTransformation)
+          .then(() => this.setYTransformation(this.yTransformation))
+          .then(() => this.transformData())
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-fit');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       }
     },
   },

@@ -172,12 +172,8 @@ export default {
       return Object.keys(this.plotMetadata).length;
     },
   },
-  mounted() {
-    this.getContainerWidth(`#quickplot-wrapper-${this.ID}`);
-    this.drawChart();
-  },
-  watch: {
-    plotData() {
+  methods: {
+    redrawChart() {
       if (!this.plotData.length) {
         this.getContainerWidth(`#quickplot-wrapper-${this.ID}`);
         this.removeChart();
@@ -185,6 +181,10 @@ export default {
 
       this.drawChart();
     },
+  },
+  mounted() {
+    this.getContainerWidth(`#quickplot-wrapper-${this.ID}`);
+    this.drawChart();
   },
 };
 </script>

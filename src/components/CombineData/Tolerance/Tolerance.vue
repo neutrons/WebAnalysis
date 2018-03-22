@@ -12,11 +12,11 @@
   ></v-text-field>
 
   <v-tooltip top :close-delay='1' :disabled='!valid'>
-    <v-btn slot='activator' outline block flat color='success' @click='initCombineData' :disabled='!valid'>Combine Data</v-btn>
+    <v-btn slot='activator' outline block flat color='success' @click='onCombineData' :disabled='!valid'>Combine Data</v-btn>
     <span>Click to combine data</span>
   </v-tooltip>
   <v-tooltip top :close-delay='1' :disabled='!combData.length || !valid'>
-    <v-btn slot='activator' outline block flat color='error' @click='removeCombineData' :disabled='!combData.length || !valid'>Remove Combine Data</v-btn>
+    <v-btn slot='activator' outline block flat color='error' @click='onRemoveCombinedData' :disabled='!combData.length || !valid'>Remove Combined Data</v-btn>
     <span>Click to remove combined data</span>
   </v-tooltip>
 

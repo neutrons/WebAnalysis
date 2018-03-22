@@ -23,7 +23,8 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
+import { eventBus } from '../../../../assets/js/eventBus';
 
 export default {
   name: 'HexScales',
@@ -43,17 +44,33 @@ export default {
         return this.hexScale;
       },
       set(value) {
-        this.setScale(value);
+        // trigger action to set scale
+        // then update chart
+        this.setScale(value)
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-2d');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
   },
   methods: {
-    ...mapMutations('SANS/SANS2D', [
+    ...mapActions('SANS/SANS2D', [
       'resetScale',
       'setScale',
     ]),
     resetS() {
-      this.resetScale();
+      // trigger action to reset scale
+      // then update chart
+      this.resetScale()
+        .then(() => {
+          eventBus.$emit('redraw-chart-sans-2d');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
   },
 };

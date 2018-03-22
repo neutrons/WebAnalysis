@@ -87,58 +87,13 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-import filesToPlotWatcher from '../../assets/js/filesToPlotWatcher';
-import read1DData from '../../assets/js/readFiles/default';
-import parseData from '../../assets/js/readFiles/parse/TAS';
-
 export default {
   name: 'TAS',
-  mixins: [
-    read1DData,
-    parseData,
-    filesToPlotWatcher,
-  ],
   components: {
     'v-chart': () => import('./FitChart/ChartTAS'),
     'v-fit-results-table': () => import('../FitResultsTable/FitResultsTableTAS'),
     'v-fitted-data-table': () => import('../FittedDataTable/FittedDataTableTAS'),
     'v-metadata-table': () => import('../MetadataTable'),
-  },
-  computed: {
-    ...mapGetters('TAS', [
-      'getURLs',
-      'getSavedFile',
-    ]),
-    ...mapState('TAS/Fit', {
-      filesToPlot: state => state.filesSelected,
-      fileToFit: state => state.fileToFit,
-    }),
-    ...mapGetters('TAS/Fit', [
-      'isDefaultFieldsDifferent',
-    ]),
-  },
-  methods: {
-    ...mapMutations('TAS', [
-      'storeData',
-    ]),
-    ...mapMutations('TAS/Fit', [
-      'setCurrentData',
-      'resetAll',
-      'transformData',
-      'resetBrushSelection',
-    ]),
-    ...mapActions('TAS/Fit', [
-      'resetFitConfiguration',
-    ]),
-  },
-  watch: {
-    fileToFit() {
-      if (this.fileToFit === null) {
-        this.resetBrushSelection();
-        this.resetFitConfiguration();
-      }
-    },
   },
 };
 </script>

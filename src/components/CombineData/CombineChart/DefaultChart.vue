@@ -176,26 +176,21 @@ export default {
       return Object.keys(this.metadata).length;
     },
   },
+  methods: {
+    redrawChart() {
+      if (this.plotData.length === 0) {
+        this.showTabs = true;
+        this.removeChart();
+        this.getContainerWidth(`#combine-chart-wrapper-${this.ID}`);
+        this.drawChart();
+      } else {
+        this.drawChart();
+      }
+    },
+  },
   mounted() {
     this.getContainerWidth(`#combine-chart-wrapper-${this.ID}`);
     this.drawChart();
-  },
-  watch: {
-    chartConfigurations: {
-      deep: true,
-      handler() {
-        this.$nextTick(() => {
-          if (this.plotData.length === 0) {
-            this.showTabs = true;
-            this.removeChart();
-            this.getContainerWidth(`#combine-chart-wrapper-${this.ID}`);
-            this.drawChart();
-          } else {
-            this.drawChart();
-          }
-        });
-      },
-    },
   },
 };
 

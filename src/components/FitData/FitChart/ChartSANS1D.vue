@@ -16,11 +16,11 @@ export default {
     };
   },
   created() {
-    eventBus.$on('refit-data-SANS1D', this.drawChart);
+    eventBus.$on('redraw-chart-sans-fit', this.redrawChart);
     eventBus.$on('revise-fit-line-SANS1D', this.reviseFitLine);
   },
   destroyed() {
-    eventBus.$off('refit-data-SANS1D');
+    eventBus.$off('redraw-chart-sans-fit');
     eventBus.$off('revise-fit-line-SANS1D');
   },
   computed: {
@@ -47,13 +47,13 @@ export default {
   },
   methods: {
     ...mapMutations('SANS/Fit', [
-      'resetBrushSelection',
-      'setPreviousFit',
       'toggleIsFitting',
     ]),
     ...mapActions('SANS/Fit', [
-      'updateFitTableResults',
+      'updateFitDataResults',
       'deletePoint',
+      'resetBrushSelection',
+      'setPreviousFit',
     ]),
   },
   watch: {

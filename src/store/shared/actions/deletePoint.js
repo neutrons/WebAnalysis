@@ -11,11 +11,15 @@ export default ({ state, commit, getters }, payload) => { // eslint-disable-line
 
     if (index !== null) {
       // match index to file
-      commit('removePoint', { name, index });
-      commit(`${group}/removeSavedPoint`, { name, index }, { root: true });
-      resolve(true);
+      try {
+        commit('removePoint', { name, index });
+        commit(`${group}/removeSavedPoint`, { name, index }, { root: true });
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
     } else {
-      reject(false);
+      reject('Cannot delete point.');
     }
   });
 };
