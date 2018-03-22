@@ -26,13 +26,14 @@ export default {
   },
   resetAll(state) {
     /* eslint-disable */
+    state.filesSelected = null;
     state.selectedData = [];
     state.hexBinSize = 15;
     state.hexScale = 'Log';
     /* eslint-enable */
   },
   setCurrentData(state, payload) {
-    const data = _.cloneDeep(payload.data);
+    const data = _.cloneDeep(payload);
 
     // eslint-disable-next-line
     state.selectedData = data;

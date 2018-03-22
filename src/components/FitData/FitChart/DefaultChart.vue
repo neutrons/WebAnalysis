@@ -259,6 +259,16 @@ export default {
 
       if (!value) this.pickerPoints = [0, 0];
     },
+    redrawChart() {
+      if (this.filesSelected.length === 0 || this.fileToFit !== this.previousFit) {
+        this.showTabs = true;
+        this.removeChart();
+        this.getContainerWidth(`#fit-chart-wrapper-${this.ID}`);
+        this.drawChart();
+      } else {
+        this.drawChart();
+      }
+    },
   },
   mounted() {
     eventBus.$on(`toggle-pick-area-${this.$route.meta.group}`, this.togglePickArea);
@@ -268,23 +278,6 @@ export default {
   },
   destroyed() {
     eventBus.$off(`toggle-pick-area-${this.$route.meta.group}`);
-  },
-  watch: {
-    chartConfigurations: {
-      deep: true,
-      handler() {
-        this.$nextTick(() => {
-          if (this.filesSelected.length === 0 || this.fileToFit !== this.previousFit) {
-            this.showTabs = true;
-            this.removeChart();
-            this.getContainerWidth(`#fit-chart-wrapper-${this.ID}`);
-            this.drawChart();
-          } else {
-            this.drawChart();
-          }
-        });
-      },
-    },
   },
 };
 

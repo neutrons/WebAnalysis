@@ -1,6 +1,7 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import Add from './Add';
+import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'FilesListTAS',
@@ -21,7 +22,14 @@ export default {
         return this.filesToAdd;
       },
       set(value) {
-        this.updateFilesToAdd(value);
+        const payload = { type: 'add', files: value };
+        this.updateFilesSelected(payload)
+          .then(() => {
+            eventBus.$emit('redraw-chart-tas-combine');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
     allFiles() {
@@ -29,8 +37,8 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('TAS/Combine', [
-      'updateFilesToAdd',
+    ...mapActions('TAS/Combine', [
+      'updateFilesSelected',
     ]),
   },
 };

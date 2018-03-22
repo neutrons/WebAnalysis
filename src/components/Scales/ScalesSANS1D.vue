@@ -1,6 +1,8 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import Scales from './Scales';
+
+import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'ScalesSANS1D',
@@ -19,7 +21,15 @@ export default {
         return this.xScaleLabel;
       },
       set(value) {
-        this.setXScale(value);
+        // trigger action and wait for a response
+        // once a response is returned update chart
+        this.setXScale(value)
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-fit');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
     yScales() {
@@ -30,19 +40,33 @@ export default {
         return this.yScaleLabel;
       },
       set(value) {
-        this.setYScale(value);
+        // trigger action and wait for a response
+        // once a response is returned update chart
+        this.setYScale(value)
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-fit');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
   },
   methods: {
-    ...mapMutations('SANS/Fit', [
+    ...mapActions('SANS/Fit', [
       'resetScales',
       'setYScale',
       'setXScale',
     ]),
     resetPlotScales() {
       if (this.xScaleLabel !== 'x' || this.yScaleLabel !== 'y') {
-        this.resetScales();
+        this.resetScales()
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-fit');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       }
     },
   },

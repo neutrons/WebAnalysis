@@ -12,8 +12,8 @@
   <v-card-text class='pt-1'>
     <v-data-table :headers='fittedHeaders' :items='fittedData' class='text-xs-center' :rows-per-page-items='[25, 50, 100, { text: "All", value: -1 }]'>
       <template slot='items' slot-scope='props'>
-        <td class='text-xs-left'>{{ props.item[fields.x].toExponential(3) }}</td>
-        <td class='text-xs-left'>{{ props.item[fields.y].toExponential(3) }}</td>
+        <td class='text-xs-left'>{{ props.item[fields.x] | formatValue }}</td>
+        <td class='text-xs-left'>{{ props.item[fields.y] | formatValue }}</td>
       </template>
       <template slot='no-data'>
         <v-alert :value='true' color='error' icon='warning'>
@@ -48,6 +48,11 @@ export default {
     allowExport: {
       type: Boolean,
       default: true,
+    },
+  },
+  filters: {
+    formatValue(value) {
+      return typeof value === 'undefined' ? 'NaN' : value.toExponential(3);
     },
   },
   computed: {

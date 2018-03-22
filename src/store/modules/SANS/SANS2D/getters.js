@@ -1,23 +1,15 @@
-import _ from 'lodash';
-
 import getURLs from '../../../shared/getters/getURLs';
+import getStoredData from '../../../shared/getters/getStoredData';
 
 export default {
-  getSavedFile: state => (file) => {
-    const temp = state.saved[file];
-
-    if (temp === undefined) {
-      return '999';
-    }
-
-    return { data: _.cloneDeep(temp), filename: file };
-  },
+  getStoredData,
   getURLs,
   isFilePlotted: state => state.filesSelected !== null,
   getPreparedData: (state) => {
     if (!state.selectedData.length) return [];
 
-    const temp = state.selectedData.filter(el =>
+    let temp = state.selectedData[0].data;
+    temp = temp.filter(el =>
       Number.isFinite(el.qx) &&
       Number.isFinite(el.qy) &&
       Number.isFinite(el.intensity) &&
@@ -31,8 +23,8 @@ export default {
 
     return temp;
   },
-  getChartConfigurations: (state, getters) => (
-    { data: getters.getPreparedData,
-      hexBinSize: state.hexBinSize }
-  ),
+  getChartConfigurations: (state, getters) => ({
+    data: getters.getPreparedData,
+    hexBinSize: state.hexBinSize,
+  }),
 };

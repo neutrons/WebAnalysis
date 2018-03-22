@@ -1,6 +1,8 @@
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import Fields from './Fields';
+
+import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'FieldsTASFit',
@@ -17,7 +19,13 @@ export default {
         return this.field.x;
       },
       set(value) {
-        this.setXField(value);
+        this.setXField(value)
+          .then(() => {
+            eventBus.$emit('redraw-chart-tas-fit');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
     selectY: {
@@ -25,12 +33,18 @@ export default {
         return this.field.y;
       },
       set(value) {
-        this.setYField(value);
+        this.setYField(value)
+          .then(() => {
+            eventBus.$emit('redraw-chart-tas-fit');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
   },
   methods: {
-    ...mapMutations('TAS/Fit', [
+    ...mapActions('TAS/Fit', [
       'setXField',
       'setYField',
     ]),

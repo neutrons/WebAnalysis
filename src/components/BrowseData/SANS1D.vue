@@ -2,6 +2,8 @@
 import { mapState, mapGetters, mapActions } from 'vuex';
 import DefaultChart from './DefaultChart';
 
+import { eventBus } from '../../assets/js/eventBus';
+
 export default {
   name: 'SANS1DBrowse',
   extends: DefaultChart,
@@ -13,6 +15,12 @@ export default {
       isMathJax: true,
       ID: 'SANS-Browse',
     };
+  },
+  created() {
+    eventBus.$on('redraw-chart-sans-browse', this.redrawChart);
+  },
+  destroyed() {
+    eventBus.$off('redraw-chart-sans-browse');
   },
   computed: {
     ...mapState('SANS/Browse', {

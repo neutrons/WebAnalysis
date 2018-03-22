@@ -1,6 +1,7 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import FilesList from './FilesList';
+import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'FilesListSANSStitch',
@@ -19,7 +20,16 @@ export default {
         return this.filesSelected;
       },
       set(value) {
-        this.updateFilesSelected(value);
+        // Call action to add file
+        // return a promise and then emmit
+        // event to plot data
+        this.updateFilesSelected(value)
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-stitch');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
     allFiles() {
@@ -27,7 +37,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS/Stitch', [
+    ...mapActions('SANS/Stitch', [
       'updateFilesSelected',
     ]),
   },

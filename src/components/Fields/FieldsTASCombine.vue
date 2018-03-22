@@ -1,6 +1,7 @@
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import Fields from './Fields';
+import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'FieldsTASCombine',
@@ -18,8 +19,18 @@ export default {
         return this.field.x;
       },
       set(value) {
-        if (this.isNormalized) this.resetNormalizeData();
-        this.setXField(value);
+        // check if data is normalized
+        // if so trigger reset
+        // then trigger change field
+        // then update chart
+        if (this.isNormalized) {
+          this.resetNormalizedData()
+            .then(() => {
+              this.changeXField(value);
+            });
+        } else {
+          this.changeXField(value);
+        }
       },
     },
     selectY: {
@@ -27,17 +38,45 @@ export default {
         return this.field.y;
       },
       set(value) {
-        if (this.isNormalized) this.resetNormalizeData();
-        this.setXField(value);
+        // check if data is normalized
+        // if so trigger reset
+        // then trigger change field
+        // then update chart
+        if (this.isNormalized) {
+          this.resetNormalizedData()
+            .then(() => {
+              this.changeYField(value);
+            });
+        } else {
+          this.changeYField(value);
+        }
       },
     },
   },
   methods: {
-    ...mapMutations('TAS/Combine', [
+    ...mapActions('TAS/Combine', [
       'setXField',
       'setYField',
-      'resetNormalizeData',
+      'resetNormalizedData',
     ]),
+    changeXField(value) {
+      this.setXField(value)
+        .then(() => {
+          eventBus.$emit('redraw-chart-tas-combine');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
+    },
+    changeYField(value) {
+      this.setYField(value)
+        .then(() => {
+          eventBus.$emit('redraw-chart-tas-combine');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
+    },
   },
 };
 </script>

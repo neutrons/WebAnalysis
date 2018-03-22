@@ -33,11 +33,17 @@ export const normalizeData = (state) => {
   state.combinedData = []; // eslint-disable-line
 };
 
-export const resetNormalizeData = (state) => {
+export const resetNormalizedData = (state) => {
   const tempData = state.selectedData;
+  const yField = state.field.y;
 
   tempData.forEach((d) => {
-    d.dataTransformed = _.cloneDeep(d.data); // eslint-disable-line
+    // eslint-disable-next-line
+    d.dataTransformed = _.cloneDeep(d.data)
+      .map(p => ({
+        ...p,
+        error: p[yField] < 0 ? 0 : Math.sqrt(p[yField]),
+      }));
   });
 
   /* eslint-disable */

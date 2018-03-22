@@ -1,6 +1,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import Chart from './DefaultChart';
+import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'ChartSANS2D',
@@ -12,6 +13,12 @@ export default {
     return {
       isMathJax: false,
     };
+  },
+  created() {
+    eventBus.$on('redraw-chart-sans-2d', this.redrawChart);
+  },
+  destroyed() {
+    eventBus.$off('redraw-chart-sans-2d');
   },
   computed: {
     ...mapState('SANS/SANS2D', {

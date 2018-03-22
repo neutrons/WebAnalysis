@@ -1,6 +1,7 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import FilesList from './FilesList';
+import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'FilesListSANS2D',
@@ -17,7 +18,17 @@ export default {
         return this.filesSelected;
       },
       set(value) {
-        this.updateFilesSelected(value);
+        const tempSelect = value === null ? [] : [value];
+        // Call action to add file
+        // return a promise and then emmit
+        // event to plot data
+        this.updateFilesSelected(tempSelect)
+          .then(() => {
+            eventBus.$emit('redraw-chart-sans-2d');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
     allFiles() {
@@ -25,7 +36,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('SANS/SANS2D', [
+    ...mapActions('SANS/SANS2D', [
       'updateFilesSelected',
     ]),
   },

@@ -1,6 +1,7 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import Subtract from './Subtract';
+import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'SubtractTAS',
@@ -21,7 +22,15 @@ export default {
         return this.filesToSubtract;
       },
       set(value) {
-        this.updateFilesToSubtract(value);
+        const payload = { type: 'substract', files: value };
+
+        this.updateFilesSelected(payload)
+          .then(() => {
+            eventBus.$emit('redraw-chart-tas-combine');
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
       },
     },
     allFiles() {
@@ -29,8 +38,8 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('TAS/Combine', [
-      'updateFilesToSubtract',
+    ...mapActions('TAS/Combine', [
+      'updateFilesSelected',
     ]),
   },
 };
