@@ -20,9 +20,7 @@ export default {
         return this.filesSelected;
       },
       set(value) {
-        // Call action to add file
-        // return a promise and then emmit
-        // event to plot data
+        // Call action to add file return a promise and then emmit event to plot data
         this.updateFilesSelected(value)
           .then(() => {
             eventBus.$emit('redraw-chart-sans-stitch');

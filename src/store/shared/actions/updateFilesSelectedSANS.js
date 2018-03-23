@@ -2,9 +2,7 @@ import _ from 'lodash';
 
 export default async ({ state, dispatch, commit, rootGetters }, payload) => {
   // if filelist is empty
-  if (payload.length === 0) {
-    return dispatch('resetAll');
-  }
+  if (payload.length === 0) return dispatch('resetAll');
 
   const filelist = [...payload];
 

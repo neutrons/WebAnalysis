@@ -1,12 +1,9 @@
 <template>
   <div>
-    <!-- File List -->
     <v-file-explorer :fits='false' :multiple='false' />
 
-    <!-- Hex Scales -->
     <v-hex-scales v-if='isFilePlotted' />
 
-    <!-- Hex Bin Slider -->
     <v-hex-bins v-if='isFilePlotted' />
   </div>
 </template>

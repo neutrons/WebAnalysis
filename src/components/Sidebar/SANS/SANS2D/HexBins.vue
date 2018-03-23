@@ -55,8 +55,7 @@ export default {
       'resetBinSize',
     ]),
     setBS() {
-      // trigger action to set binsize
-      // then update chart
+      // trigger action to set binsize then update chart
       this.setBinSize(this.editBinSize)
         .then(() => {
           eventBus.$emit('redraw-chart-sans-2d');
@@ -67,8 +66,7 @@ export default {
     },
     resetBS() {
       this.editBinSize = 15;
-      // trigger action to reset binsize
-      // then update chart
+      // trigger action to reset binsize then update chart
       this.resetBinSize()
         .then(() => {
           eventBus.$emit('redraw-chart-sans-2d');

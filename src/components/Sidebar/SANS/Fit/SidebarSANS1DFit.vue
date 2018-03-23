@@ -1,18 +1,13 @@
 <template>
   <div>
-    <!-- File List -->
     <v-file-explorer :collapse='false' />
 
-    <!-- Scales -->
     <v-scales v-if='isFilesPlotted' />
     
-    <!-- Transformations -->
     <v-transformations v-if='isFilesPlotted' />
 
-    <!-- Fit Equation Editor -->
     <v-fit-equation :collapse='false' v-if='isFileFit' />
 
-    <!-- Levenberg Settings -->
     <v-fit-settings v-if='isFileFit' />
   </div>
 </template>

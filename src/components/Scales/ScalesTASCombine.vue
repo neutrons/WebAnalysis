@@ -20,8 +20,7 @@ export default {
         return this.xScaleLabel;
       },
       set(value) {
-        // trigger action and wait for a response
-        // once a response is returned update chart
+        // trigger action and wait for a response once a response is returned update chart
         this.setXScale(value)
           .then(() => {
             eventBus.$emit('redraw-chart-tas-combine');
@@ -39,8 +38,7 @@ export default {
         return this.yScaleLabel;
       },
       set(value) {
-        // trigger action and wait for a response
-        // once a response is returned update chart
+        // trigger action and wait for a response once a response is returned update chart
         this.setYScale(value)
           .then(() => {
             eventBus.$emit('redraw-chart-tas-combine');

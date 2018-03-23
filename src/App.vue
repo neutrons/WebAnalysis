@@ -18,7 +18,6 @@
 
   <!-- Error Message Component -->
   <v-error></v-error>
-  <div class='my-tooltip'></div>
 </v-app>
 
 </template>
@@ -75,16 +74,5 @@ export default {
 
 .fade-enter, .fade-leave-active {
   opacity: 0
-}
-
-.my-tooltip {
-  position: absolute;
-  padding: 10px;
-  height: auto;
-  width: auto;
-  background: white;
-  border: 1px solid black;
-  z-index: 9999;
-  display: none;
 }
 </style>

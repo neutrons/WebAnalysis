@@ -131,18 +131,6 @@ export default {
 
   created() {
     this.addEquation(this.fitKeys[0]);
-
-    // trigger perform fit for first time for SANS
-    // if (this.$options.name === 'FitEquationSANS') {
-    //   // trigger action then fit data
-    //   this.setFitType(this.selected[0].name)
-    //     .then(() => {
-    //       this.fitData();
-    //     })
-    //     .catch((error) => {
-    //       eventBus.$emit('add-notification', error.message, 'error');
-    //     });
-    // }
   },
 
   computed: {

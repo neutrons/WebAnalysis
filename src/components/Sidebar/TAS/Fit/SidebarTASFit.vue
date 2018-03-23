@@ -1,18 +1,13 @@
 <template>
   <div>
-    <!-- File List -->
     <v-file-explorer />
 
-    <!-- Scales -->
     <v-scales v-if='filesSelected.length' />
 
-    <!-- Fields -->
     <v-fields v-if='filesSelected.length' />
 
-    <!-- Fit Equation Editor -->
     <v-fit-equation :collapse='false' :multiple-equations='true' v-if='fileToFit' />
 
-    <!-- Levenberg Settings -->
     <v-fit-settings v-if='fileToFit' />
   </div>
 </template>

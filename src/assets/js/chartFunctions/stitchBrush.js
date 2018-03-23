@@ -28,7 +28,6 @@ export default {
 
       function brushed() {
         // Add brush label
-        // console.log('Brush has been brushed...');
         const sel = d3.select(this).data()[0];
         const bTitle = d3.select(this).selectAll('text').data([sel.id]);
 
@@ -41,7 +40,6 @@ export default {
           .attr('dy', '0.75em')
           .attr('transform', 'rotate(-90)')
           .attr('y', d3.event.selection[0] + 5);
-        // End add brush label
 
         const rawSelection = d3.event.selection;
         const convertedSelection = d3.event.selection.map(i => vm.brushScale.invert(i));
@@ -59,7 +57,7 @@ export default {
       }
 
       function brushend() {
-        // Figure out if our latest brush has a selection
+        // Figure out if the latest brush has a selection
         const lastBrushID = vm.brushes[vm.brushes.length - 1].id;
         const lastBrush = document.getElementById(`selection-${lastBrushID}`);
         const selection = d3.brushSelection(lastBrush);
@@ -80,7 +78,6 @@ export default {
         vm.drawBrushes();
       }
 
-      // console.log('new brush');
       const brush = d3.brushX()
         .extent([
           [0, 0],
@@ -127,7 +124,6 @@ export default {
       /* eslint-enable */
     },
     removeBrushes() {
-      // vm.brushObj.brushGroup.selectAll('.brush').remove();
       this.g.select(`#zoom-group-${this.ID}`)
         .select('.brushes')
         .selectAll('.brush').remove();
@@ -195,13 +191,11 @@ export default {
       this.setBrushScale(newXScale.copy());
     },
     toggleEdit(choice) {
-      // console.log('Toggle edit...', choice);
       const vm = this;
       this.toggleZoomBrush(choice);
 
       if (choice || this.brushCount < 1) {
-        // Toggle off all brushes
-        // Disable brush pointer events
+        // Toggle off all brushes by disabling pointer events
         this.g.select('.brushes').selectAll('.selection').style('pointer-events', 'none');
         this.g.select('.brushes').selectAll('.overlay').style('pointer-events', 'none');
         this.g.select('.brushes').selectAll('.handle').style('pointer-events', 'none');

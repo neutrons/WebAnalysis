@@ -21,7 +21,6 @@ export default {
 
       // re-draw error line;
       this.g.selectAll('.error-line')
-        // .selectAll('line')
         .attr('x1', d => newXScale(d[this.fields.x]))
         .attr('y1', d => newYScale(d[this.fields.y] + d.error))
         .attr('x2', d => newXScale(d[this.fields.x]))
@@ -29,7 +28,6 @@ export default {
 
       // re-draw error cap top;
       this.g.selectAll('.error-cap-top')
-        // .selectAll('line')
         .attr('x1', d => newXScale(d[this.fields.x]) + 4)
         .attr('y1', d => newYScale(d[this.fields.y] + d.error))
         .attr('x2', d => newXScale(d[this.fields.x]) - 4)
@@ -37,7 +35,6 @@ export default {
 
       // re-draw error cap top;
       this.g.selectAll('.error-cap-bottom')
-        // .selectAll('line')
         .attr('x1', d => newXScale(d[this.fields.x]) + 4)
         .attr('y1', d => newYScale(d[this.fields.y] - d.error))
         .attr('x2', d => newXScale(d[this.fields.x]) - 4)
@@ -49,7 +46,6 @@ export default {
 
       // re-draw line paths
       this.g.selectAll('.scatter-line')
-        // .selectAll('path')
         .attr('d', d => newLine(d.values));
 
       if (this.fileToFit) this.g.select('.fitted-line').attr('d', newLine);

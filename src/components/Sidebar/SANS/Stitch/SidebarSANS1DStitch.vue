@@ -1,9 +1,7 @@
 <template>
   <div>
-    <!-- File List -->
     <v-file-explorer :fits='false'/>
 
-    <!-- Scales -->
     <v-scales v-if='isFilesPlotted' :collapse='false' />
   </div>
 </template>

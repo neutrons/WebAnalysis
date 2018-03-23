@@ -29,13 +29,9 @@ export default {
         const currentListLength = this.filesSelected.length;
         const inNewList = value.indexOf(this.fileToFit);
 
-        if (currentListLength !== 0 && inNewList === -1) {
-          this.updateFileToFit(null);
-        }
+        if (currentListLength !== 0 && inNewList === -1) this.updateFileToFit(null);
 
-        // Call action to add file
-        // return a promise and then emmit
-        // event to plot data
+        // Call action to add file return a promise and then emmit event to plot data
         this.updateFilesSelected(value)
           .then(() => {
             eventBus.$emit('redraw-chart-tas-fit');

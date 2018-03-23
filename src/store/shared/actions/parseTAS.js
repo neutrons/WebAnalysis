@@ -15,7 +15,6 @@ function cleanDataTable(table) {
     return false;
   });
 
-  // console.log('Returning temp:', temp.join('\r\n'));
   return temp.join('\r\n');
 }
 

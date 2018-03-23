@@ -9,14 +9,10 @@ export default async ({ state, dispatch, commit, getters, rootGetters }, payload
 
   const filelist = [...getters.mergedFiles];
 
-  // if there are no files selected
-  // reset all
-  if (filelist.length === 0) {
-    return dispatch('resetAll');
-  }
+  // if there are no files selected reset all
+  if (filelist.length === 0) return dispatch('resetAll');
 
-  // if selected files is fewer than 2
-  // remove combined data
+  // if selected files is fewer than 2 remove combined data
   if (state.isNormalized || state.combinedData.length > 0) commit('resetNormalizedData');
 
   // Next Get Stored Data

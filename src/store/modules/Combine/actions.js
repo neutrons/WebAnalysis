@@ -1,4 +1,3 @@
-// import storeCombinedData from '../../shared/actions/storeCombinedData';
 import deletePoint from '../../shared/actions/deletePoint';
 import updateFilesSelected from '../../shared/actions/updateFilesSelectedTASCombine';
 import fetchData from '../../shared/actions/fetchData';

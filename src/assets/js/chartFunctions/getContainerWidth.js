@@ -2,12 +2,10 @@ export default {
   methods: {
     getContainerWidth(label) {
       // Pull plot's parent container width, this will be used to scale the plot responsively
-      // var containerWidth = document.getElementById("plot-" + vm.ID).offsetWidth;
-      // let viewHeight = containerWidth / (vm.dimensions.aspectW/vm.dimensions.aspectH);
       let containerWidth = document.querySelector(label).offsetWidth;
 
       // set a default width if container is less than zero
-      // using window width - 450
+      // using window width - 350
       // 350 is because of the default width of left navigation drawer,
       // since by default it is open
       if (containerWidth < 1) containerWidth = window.innerWidth - 350;

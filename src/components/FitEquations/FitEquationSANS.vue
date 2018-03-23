@@ -53,8 +53,7 @@ export default {
       'transformData',
     ]),
     fitData() {
-      // trigger transform data
-      // then update plot
+      // trigger transform data then update plot
       this.transformData()
         .then(() => {
           eventBus.$emit('redraw-chart-sans-fit');
@@ -64,8 +63,7 @@ export default {
         });
     },
     coefficientInput(payload) {
-      // update initial values
-      // then revise fit line
+      // update initial values then revise fit line
       this.updateInitialValue(payload)
         .then(() => {
           eventBus.$emit('revise-fit-line-SANS1D', this.fitInitialValues);
@@ -85,8 +83,7 @@ export default {
       }
     },
     updateInitialValueWithPick(value) {
-      // trigger update initial values
-      // then resetPick index and revise fit line
+      // trigger update initial values then resetPick index and revise fit line
       this.updateInitialValue({
         index: this.pickIndex,
         ivIndex: this.pickIvIndex,

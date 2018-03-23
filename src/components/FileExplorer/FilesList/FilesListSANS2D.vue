@@ -19,9 +19,7 @@ export default {
       },
       set(value) {
         const tempSelect = value === null ? [] : [value];
-        // Call action to add file
-        // return a promise and then emmit
-        // event to plot data
+        // Call action to add file return a promise and then emmit event to plot data
         this.updateFilesSelected(tempSelect)
           .then(() => {
             eventBus.$emit('redraw-chart-sans-2d');
