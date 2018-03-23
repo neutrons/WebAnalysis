@@ -45,8 +45,7 @@ export default {
       'removeCombinedData',
     ]),
     onCombineData() {
-      // trigger action to combine data
-      // then update chart
+      // trigger action to combine data then update chart
       this.combineData(this.getPreparedData)
         .then(() => {
           eventBus.$emit('redraw-chart-tas-combine');

@@ -1,4 +1,6 @@
 export default (point, data, fields) => {
+  // A general function to identify index of a point for a curve
+  // It is being used for the point deletion feature.
   const xField = fields.x;
   const yField = fields.y;
   const name = point.name;

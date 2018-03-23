@@ -130,9 +130,7 @@ const interpolate = (() => {
 
       const fittedParams = LM(data, shift, options);
       const k = fittedParams.parameterValues[0];
-      // console.log('** Scaling value: K =', k)
       const yNonBaseScaled = nonBase.y.map(el => el + k);
-      // console.log('yNonBaseScaled =', yNonBaseScaled);
 
       // Final curve:
       // Concatenate and sort the arrays
@@ -167,14 +165,6 @@ const interpolate = (() => {
 
       stitchedLine = mergeSegs(seg1, seg2, seg3);
     }
-
-    /*
-      Final step: Check if the line is negative for Y
-      If so, find the minimum negative value of y and shifted all up by that value
-      If no negative values, proceed as normal
-    */
-    // stitchedLine = fixNegatives(stitchedLine);
-    // console.log('Stitched Line:', stitchedLine);
 
     return stitchedLine;
   };

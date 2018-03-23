@@ -44,8 +44,7 @@ export default {
         return this.hexScale;
       },
       set(value) {
-        // trigger action to set scale
-        // then update chart
+        // trigger action to set scale then update chart
         this.setScale(value)
           .then(() => {
             eventBus.$emit('redraw-chart-sans-2d');
@@ -62,8 +61,7 @@ export default {
       'setScale',
     ]),
     resetS() {
-      // trigger action to reset scale
-      // then update chart
+      // trigger action to reset scale then update chart
       this.resetScale()
         .then(() => {
           eventBus.$emit('redraw-chart-sans-2d');

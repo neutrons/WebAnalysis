@@ -7,7 +7,7 @@ export default ({ state, commit }, payload) => {
   const defaultFields = { ...state.field };
   const metadata = [];
   const group = payload.group;
-  // convert point name to new filename
+
   data.forEach((point) => {
     point.name = filename; // eslint-disable-line
   });
@@ -22,9 +22,7 @@ export default ({ state, commit }, payload) => {
     },
   };
 
-  // add combine name to list
   commit('addCombinedData', { filename, loadType: 'combine', tags });
   commit('removeCombineData');
-  // to commit mutation from another module do
   commit(`${group}/storeData`, obj, { root: true });
 };

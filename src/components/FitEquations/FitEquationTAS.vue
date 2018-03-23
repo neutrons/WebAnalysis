@@ -57,8 +57,7 @@ export default {
       eventBus.$emit('redraw-chart-tas-fit');
     },
     coefficientInput(payload) {
-      // update initial values
-      // then revise fit line
+      // update initial values then revise fit line
       this.updateInitialValue(payload)
         .then(() => {
           eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
@@ -78,8 +77,7 @@ export default {
       }
     },
     updateInitialValueWithPick(value) {
-      // trigger update initial values
-      // then resetPick index and revise fit line
+      // trigger update initial values then resetPick index and revise fit line
       this.updateInitialValue({
         index: this.pickIndex,
         ivIndex: this.pickIvIndex,

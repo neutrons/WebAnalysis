@@ -2,9 +2,7 @@ import _ from 'lodash';
 
 export default async ({ state, dispatch, commit, getters }, filelist) => {
   // if no files selected reset simply reset everything
-  if (filelist.length === 0) {
-    return dispatch('resetAll');
-  }
+  if (filelist.length === 0) return dispatch('resetAll');
 
   const file = filelist.length === 0 ? null : filelist[0];
 

@@ -157,18 +157,32 @@ export default {
           d3.select(this).transition()
             .attr('d', vm.symbols[shape].size(125));
 
+          // Calculate middle of chart. Anytime mouse exceeds middle
+          // switch tooltip of display on the left of cursor
+          // else default tip displays right of cursor.
           let middleX = newXScale.domain().map(item => Math.abs(item));
           middleX = (middleX[1] - middleX[0]) / 2;
-          const moveX = Math.abs(d[vm.fields.x]) > middleX ?
-            d3.event.pageX - 200 : d3.event.pageX + 25;
 
+          const moveX = Math.abs(d[vm.fields.x]) > middleX ?
+            d3.event.pageX - 175 : d3.event.pageX + 25;
+
+          // generate a tooltip div when point is hovered over
           const html = `
             <p>(Click to delete)</p>
             <p>${vm.fields.x}: ${d[vm.fields.x].toExponential(2)}</p>
             <p>${vm.fields.y}: ${d[vm.fields.y].toExponential(2)}</p>
             <p>error: \u00B1 ${d.error.toExponential(2)}</p>`;
 
-          d3.select('.my-tooltip')
+          d3.select('body')
+            .append('div')
+            .attr('class', 'plot-tooltip')
+            .style('position', 'absolute')
+            .style('padding', '10px')
+            .style('height', 'auto')
+            .style('width', 'auto')
+            .style('background', 'white')
+            .style('border', '1px solid black')
+            .style('z-index', '9999')
             .style('display', 'inline')
             .style('left', `${moveX}px`)
             .style('top', `${d3.event.pageY - 50}px`)
@@ -180,8 +194,7 @@ export default {
           d3.select(this).transition()
             .attr('d', vm.symbols[shape].size(45));
 
-          d3.select('.my-tooltip')
-            .style('display', 'none');
+          d3.select('.plot-tooltip').remove();
         })
         .on('click', (d) => {
           this.triggerDelete(d);

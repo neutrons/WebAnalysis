@@ -8,10 +8,8 @@ actions.updateFilesSelected = updateFilesSelectedSANS;
 actions.parseData = parseData;
 
 actions.updateFileToFit = async ({ state, commit, dispatch }, file) => { // eslint-disable-line
-  // Check if file to fit is null
-  // reset fitted and filtered data
-  // if it is reset configurations
-  // else set new file to fit
+  // Check if file to fit is null reset fitted and filtered data
+  // if it is reset configurations else set new file to fit
   return new Promise((resolve, reject) => {
     if (file === null) {
       dispatch('resetFitConfiguration')

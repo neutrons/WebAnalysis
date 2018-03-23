@@ -25,9 +25,8 @@ export default {
       'setYTransformation',
     ]),
     resetAllTransformations() {
-      // trigger action to reset transformations
-      // then transform data back to original
-      // then update plot
+      // trigger action to reset transformations then
+      // transform data back to original then update plot
       this.resetTransformations()
         .then(() => this.transformData())
         .then(() => {
@@ -39,9 +38,7 @@ export default {
     },
     enterX() {
       if (this.canEnter) {
-        // trigger action to set x transformation
-        // then transform data
-        // then update plot
+        // trigger action to set x transformation then transform data then update plot
         this.setXTransformation(this.xTransformation)
           .then(() => this.transformData())
           .then(() => {
@@ -54,9 +51,7 @@ export default {
     },
     enterY() {
       if (this.canEnter) {
-        // trigger action to set y transformation
-        // then transform data
-        // then update plot
+        // trigger action to set y transformation then transform data then update plot
         this.setYTransformation(this.yTransformation)
           .then(() => this.transformData())
           .then(() => {
@@ -69,9 +64,7 @@ export default {
     },
     setAllTransformations() {
       if (this.canEnter) {
-        // trigger action to set both transformations
-        // then transform data
-        // then update plot
+        // trigger action to set both transformations then transform data then update plot
         this.setXTransformation(this.xTransformation)
           .then(() => this.setYTransformation(this.yTransformation))
           .then(() => this.transformData())

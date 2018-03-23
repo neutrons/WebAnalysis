@@ -21,8 +21,8 @@ const d3 = Plotly.d3;
 export default {
   name: 'EditChart',
   data: () => ({
-    WIDTH_IN_PERCENT_OF_PARENT: 100,
-    HEIGHT_IN_PERCENT_OF_PARENT: 50,
+    widthInPercentOfParent: 100,
+    heightInPercentOfParent: 50,
     axis: null,
     labels: null,
   }),
@@ -42,10 +42,10 @@ export default {
   computed: {
     style() {
       return {
-        width: `${this.WIDTH_IN_PERCENT_OF_PARENT}%`,
-        'margin-left': `${(100 - this.WIDTH_IN_PERCENT_OF_PARENT) / 2} %`,
+        width: `${this.widthInPercentOfParent}%`,
+        'margin-left': `${(100 - this.widthInPercentOfParent) / 2} %`,
 
-        height: `${this.HEIGHT_IN_PERCENT_OF_PARENT}vh`,
+        height: `${this.heightInPercentOfParent}vh`,
         'margin-top': 0,
       };
     },
@@ -65,8 +65,7 @@ export default {
   },
   methods: {
     create1D(editData) {
-      // SET UP PLOTLY
-      // This makes the plot responsive
+      // Set up Plot and make the plot responsive
       const gd3 = d3.select('#plotly-chart')
         .style(this.style);
 
@@ -82,8 +81,7 @@ export default {
       };
     },
     create2D(editData) {
-      // SET UP PLOTLY
-      // This makes the plot responsive
+      // Set up plotly and make the plot responsive
       const gd3 = d3.select('#plotly-chart')
         .style(this.style);
 

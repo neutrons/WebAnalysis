@@ -69,8 +69,6 @@ export default {
     transformations: {
       x: 'x',
       y: 'x^2*log(y)',
-      // because there's no error for X I'm doing e(x) = 0.1
-      // e(x) = sqrt(x) is annoying for high x
       error: '(x^2/y * error)^2 + (2*x*log(y) * 0.1)^2',
     },
     yLabel: 'q^2 \times log(I)',
