@@ -123,7 +123,7 @@ export default {
       if (typeof this.$route.query.fetch !== 'undefined') {
         if (this.savedFetchURL !== this.$route.query.fetch) {
           this.savedFetchURL = this.$route.query.fetch;
-          this.fetchFiles();
+          this.onFetchFiles();
         }
       }
     },
