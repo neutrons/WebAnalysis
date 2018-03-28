@@ -46,8 +46,8 @@ export default {
         },
         green: {
           primary: '#00a547',
-          secondary: '#005725',
-          accent: '#005725',
+          secondary: '#007833',
+          accent: '#007833',
           error: '#FF5252',
           info: '#2196F3',
           success: '#00a547',

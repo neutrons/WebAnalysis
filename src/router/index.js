@@ -118,7 +118,7 @@ export default new Router({
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'SANS', href: '/SANS', disabled: false },
-          { text: 'Plot 2D', href: '/', disabled: true },
+          { text: '2D', href: '/', disabled: true },
         ],
       },
     },
