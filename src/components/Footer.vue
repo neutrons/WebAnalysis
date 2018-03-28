@@ -30,28 +30,28 @@ export default {
           accent: '#82B1FF',
           error: '#FF5252',
           info: '#2196F3',
-          success: '#4CAF50',
+          success: '#00a547',
           warning: '#FFC107',
           name: 'white',
         },
         blue: {
           primary: '#00b0ff',
-          secondary: '#1976D2', // green
-          accent: '#1976D2', // tab color
+          secondary: '#1976D2',
+          accent: '#1976D2',
           error: '#FF5252',
           info: '#2196F3',
-          success: '#43A047',
-          warning: 'orange',
+          success: '#00a547',
+          warning: '#FFC107',
           name: 'blue',
         },
         green: {
-          primary: '#00C853', // green
-          secondary: '#43A047',
-          accent: '#43A047', // tab color
+          primary: '#00a547',
+          secondary: '#005725',
+          accent: '#005725',
           error: '#FF5252',
           info: '#2196F3',
-          success: '#43A047',
-          warning: 'orange',
+          success: '#00a547',
+          warning: '#FFC107',
           name: 'green',
         },
       },
