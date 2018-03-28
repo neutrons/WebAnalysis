@@ -38,7 +38,16 @@ export const storeCombinedData = async ({ state, commit }, payload) => { // esli
       const data = _.cloneDeep(state.combinedData);
       const tags = ['combine'];
       const defaultFields = { ...state.field };
-      const metadata = [];
+
+      let date = new Date();
+      date = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+
+      const metadata = [
+        `date = ${date}`,
+        `def_x = ${defaultFields.x}`,
+        `def_y = ${defaultFields.y}`,
+      ];
+
       const group = payload.group;
       // convert point name to new filename
       data.forEach((point) => {
@@ -47,18 +56,15 @@ export const storeCombinedData = async ({ state, commit }, payload) => { // esli
 
       const obj = {
         filename,
-        data: {
-          filename,
-          defaultFields,
-          metadata,
-          data,
-        },
+        defaultFields,
+        metadata,
+        data,
       };
 
       // add combine name to list
       commit('addCombinedData', { filename, loadType: 'combine', tags });
       commit('removeCombinedData');
-      commit(`${group}/storeData`, obj, { root: true });
+      commit(`${group}/storeData`, [obj], { root: true });
 
       resolve(true);
     } catch (error) {
