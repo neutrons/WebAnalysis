@@ -155,9 +155,10 @@ export default {
           .attr('fill', d => colorScale(d.avgIntensity))
           .attr('stroke', d => colorScale(d.avgIntensity))
           .attr('class', 'hexagons')
-          .on('mouseover', (d) => {
+          .on('mouseover', function hover(d) { // eslint-disable-line
             let middleX = newXScale.domain().map(item => Math.abs(item));
             middleX = (middleX[1] - middleX[0]) / 2;
+
             const moveX = newXScale.invert(d.x) > middleX ?
               d3.event.pageX - 200 : d3.event.pageX + 25;
 
@@ -165,15 +166,23 @@ export default {
               <p>Qy: ${newYScale.invert(d.y).toExponential(2)}</p>
               <p>Intensity: ${d.avgIntensity.toExponential(2)}</p>`;
 
-            d3.select('.my-tooltip')
+            d3.select('body')
+              .append('div')
+              .attr('class', 'plot-tooltip')
+              .style('position', 'absolute')
+              .style('padding', '10px')
+              .style('height', 'auto')
+              .style('width', 'auto')
+              .style('background', 'white')
+              .style('border', '1px solid black')
+              .style('z-index', '9999')
               .style('display', 'inline')
               .style('left', `${moveX}px`)
               .style('top', `${d3.event.pageY - 50}px`)
               .html(html);
           })
           .on('mouseout', () => {
-            d3.select('.my-tooltip')
-              .style('display', 'none');
+            d3.select('.plot-tooltip').remove();
           });
       }
     },
