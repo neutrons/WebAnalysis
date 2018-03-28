@@ -22,7 +22,7 @@
 export default {
   data() {
     return {
-      activeTheme: 'blue',
+      activeTheme: 'green',
       themes: {
         white: {
           primary: '#1976D2',
@@ -58,7 +58,7 @@ export default {
     };
   },
   created() {
-    this.$vuetify.theme = this.themes.blue;
+    this.$vuetify.theme = this.themes.green;
   },
   methods: {
     toggleTheme(theme) {
