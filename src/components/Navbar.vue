@@ -31,111 +31,65 @@
       <v-upload-data></v-upload-data>
     </v-toolbar-items>
 
-    <v-toolbar-items class='hidden-sm-and-down'>
-      <v-btn flat exact to='/HomePage'>Home</v-btn>
-      <v-menu bottom left open-on-hover>
-        <v-btn flat slot='activator'>
-          SANS
-          <v-icon right>arrow_drop_down</v-icon>
-        </v-btn>
-        <v-list>
-          <v-list-tile to='/SANS/Browse' exact :active-class='activeClass'>
-            <v-list-tile-title>Browse Data</v-list-tile-title>
-          </v-list-tile>
-
-          <v-list-tile to='/SANS/Fit' exact :active-class='activeClass'>
-            <v-list-tile-title>Graph Data</v-list-tile-title>
-          </v-list-tile>
-
-          <v-list-tile to='/SANS/Stitch' exact :active-class='activeClass'>
-            <v-list-tile-title>Stitch Data</v-list-tile-title>
-          </v-list-tile>
-
-          <v-list-tile to='/SANS/SANS2D' exact :active-class='activeClass'>
-            <v-list-tile-title>SANS2D</v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
-
-      <v-menu bottom left open-on-hover>
-        <v-btn flat slot='activator'>
-          TAS
-          <v-icon right>arrow_drop_down</v-icon>
-        </v-btn>
-        <v-list>
-          <v-list-tile to='/TAS/Browse' exact :active-class='activeClass'>
-            <v-list-tile-title>Browse Data</v-list-tile-title>
-          </v-list-tile>
-
-          <v-list-tile to='/TAS/Fit' exact :active-class='activeClass'>
-            <v-list-tile-title>Graph Data</v-list-tile-title>
-          </v-list-tile>
-
-          <v-list-tile to='/TAS/Combine' exact :active-class='activeClass'>
-            <v-list-tile-title>Combine Data</v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
+    <!-- SANS Nav Menu -->
+    <v-toolbar-items class='hidden-sm-and-down' v-if='$route.meta.group === "SANS"'>
+      <v-btn flat to='/SANS/Browse' exact :active-class='activeClass'>Browse</v-btn>
+      <v-btn flat to='/SANS/Fit' exact :active-class='activeClass'>Graph</v-btn>
+      <v-btn flat to='/SANS/Stitch' exact :active-class='activeClass'>Stitch</v-btn>
+      <v-btn flat to='/SANS/SANS2D' exact :active-class='activeClass'>2D</v-btn>
     </v-toolbar-items>
 
-    <v-menu offset-y bottom class='hidden-md-and-up'>
-        <v-btn flat icon slot='activator'>
-          <v-icon>more_vert</v-icon>
-        </v-btn>
-        <v-list dense>
-          <v-list-tile exact to='/HomePage' :active-class='activeClass'>Home</v-list-tile>
-          <v-list-tile>
-            <v-menu offset-x open-on-hover>
-              <v-list-tile slot='activator'>
-                <v-list-tile-title>SANS</v-list-tile-title>
-                <v-list-tile-action class='justify-end'>
-                  <v-icon>play_arrow</v-icon>
-                </v-list-tile-action>
-              </v-list-tile>
-              <v-list dense>
-                <v-list-tile to='/SANS/Browse' exact :active-class='activeClass'>
-                  <v-list-tile-title>Browse Data</v-list-tile-title>
-                </v-list-tile>
+    <!-- SANS Drop Down Menu on Small Screens -->
+    <v-menu offset-y bottom class='hidden-md-and-up' v-if='$route.meta.group === "SANS"'>
+      <v-btn flat icon slot='activator'>
+        <v-icon>more_vert</v-icon>
+      </v-btn>
+      <v-list dense>
+        <v-list-tile to='/SANS/Browse' exact :active-class='activeClass'>
+          <v-list-tile-title>Browse</v-list-tile-title>
+        </v-list-tile>
 
-                <v-list-tile to='/SANS/Fit' exact :active-class='activeClass'>
-                  <v-list-tile-title>Graph Data</v-list-tile-title>
-                </v-list-tile>
+        <v-list-tile to='/SANS/Fit' exact :active-class='activeClass'>
+          <v-list-tile-title>Graph</v-list-tile-title>
+        </v-list-tile>
 
-                <v-list-tile to='/SANS/Stitch' exact :active-class='activeClass'>
-                  <v-list-tile-title>Stitch Data</v-list-tile-title>
-                </v-list-tile>
+        <v-list-tile to='/SANS/Stitch' exact :active-class='activeClass'>
+          <v-list-tile-title>Stitch</v-list-tile-title>
+        </v-list-tile>
 
-                <v-list-tile to='/SANS/SANS2D' exact :active-class='activeClass'>
-                  <v-list-tile-title>SANS2D</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
-            </v-menu>
-          </v-list-tile>
-          <v-list-tile>
-            <v-menu offset-x open-on-hover>
-              <v-list-tile slot='activator'>
-                <v-list-tile-title>TAS</v-list-tile-title>
-                <v-list-tile-action class='justify-end'>
-                  <v-icon>play_arrow</v-icon>
-                </v-list-tile-action>
-              </v-list-tile>
-              <v-list dense>
-                <v-list-tile to='/TAS/Browse' exact :active-class='activeClass'>
-                  <v-list-tile-title>Browse Data</v-list-tile-title>
-                </v-list-tile>
+        <v-list-tile to='/SANS/SANS2D' exact :active-class='activeClass'>
+          <v-list-tile-title>2D</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
 
-                <v-list-tile to='/TAS/Fit' exact :active-class='activeClass'>
-                  <v-list-tile-title>Graph Data</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
+    <!-- TAS Nav Menu -->
+    <v-toolbar-items class='hidden-sm-and-down' v-if='$route.meta.group === "TAS"'>
+      <v-btn flat to='/TAS/Browse' exact :active-class='activeClass'>Browse</v-btn>
+      <v-btn flat to='/TAS/Fit' exact :active-class='activeClass'>Graph</v-btn>
+      <v-btn flat to='/TAS/Combine' exact :active-class='activeClass'>Combine</v-btn>
+    </v-toolbar-items>
 
-              <v-list-tile to='/TAS/Combine' exact :active-class='activeClass'>
-                <v-list-tile-title>Combine Data</v-list-tile-title>
-              </v-list-tile>
-            </v-menu>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
+    <!-- TAS Drop Down Menu on Small Screens -->
+    <v-menu offset-y bottom class='hidden-md-and-up' v-if='$route.meta.group === "TAS"'>
+      <v-btn flat icon slot='activator'>
+        <v-icon>more_vert</v-icon>
+      </v-btn>
+      <v-list dense>
+        <v-list-tile to='/TAS/Browse' exact :active-class='activeClass'>
+          <v-list-tile-title>Browse</v-list-tile-title>
+        </v-list-tile>
+
+        <v-list-tile to='/TAS/Fit' exact :active-class='activeClass'>
+          <v-list-tile-title>Graph</v-list-tile-title>
+        </v-list-tile>
+
+        <v-list-tile to='/TAS/Combine' exact :active-class='activeClass'>
+          <v-list-tile-title>Combine</v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
+
   </v-toolbar>
 </template>
 
@@ -167,19 +121,16 @@ export default {
 <style lang='scss' scoped>
 .my-active-green {
   color: white;
-  font-weight: bold;
-  background: #00C853 !important;
+  background: #00a547 !important;
 }
 
 .my-active-white {
   color: white;
-  font-weight: bold;
   background: grey !important;
 }
 
 .my-active-blue {
   color: white;
-  font-weight: bold;
   background: #00b0ff !important;
 }
 </style>
