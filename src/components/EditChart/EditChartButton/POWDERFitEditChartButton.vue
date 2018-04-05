@@ -4,15 +4,15 @@ import { mapState, mapGetters } from 'vuex';
 import EditChartButton from './EditChartButton';
 
 export default {
-  name: 'TASCombineEditChartButton',
+  name: 'POWDERFitEditChartButton',
   extends: EditChartButton,
   computed: {
-    ...mapState('TAS/Combine', {
+    ...mapState('POWDER/Fit', {
       fields: state => state.field,
       plotScale: state => state.plotScale,
     }),
-    ...mapGetters('TAS/Combine', [
-      'getChartConfigurations',
+    ...mapGetters('POWDER/Fit', [
+      'getPreparedData',
     ]),
     label() {
       return this.fields;
@@ -35,7 +35,8 @@ export default {
   methods: {
     packageData() {
       const temp = [];
-      this.getChartConfigurations.data.forEach((curve) => {
+
+      this.getPreparedData.forEach((curve) => {
         const errors = curve.values.map(d => d.error);
 
         temp.push({
@@ -49,6 +50,7 @@ export default {
           },
         });
       });
+
       return temp;
     },
   },

@@ -2,7 +2,7 @@
 <v-toolbar-items>
   <!-- POWDER Nav Menu -->
   <v-btn flat to='/POWDER/Browse' exact :active-class='activeClass' class='hidden-sm-and-down'>Browse</v-btn>
-  <v-btn flat :active-class='activeClass' class='hidden-sm-and-down'>Graph</v-btn>
+  <v-btn flat to='/POWDER/Fit' exact :active-class='activeClass' class='hidden-sm-and-down'>Graph</v-btn>
   <v-btn flat :active-class='activeClass' class='hidden-sm-and-down'>Normalize</v-btn>
 
   <!-- POWDER Drop Down Menu on Small Screens -->
@@ -15,7 +15,7 @@
         <v-list-tile-title>Browse</v-list-tile-title>
       </v-list-tile>
 
-      <v-list-tile :active-class='activeClass'>
+      <v-list-tile to='/POWDER/Fit' exact :active-class='activeClass'>
         <v-list-tile-title>Graph</v-list-tile-title>
       </v-list-tile>
 

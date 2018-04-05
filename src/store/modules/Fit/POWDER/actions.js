@@ -1,5 +1,5 @@
 import parseData from '../../../shared/actions/parseTAS';
-import updateFilesSelectedPOWDER from '../../../shared/actions/updateFilesSelectedTAS';
+import updateFilesSelectedPOWDER from '../../../shared/actions/updateFilesSelectedPOWDER';
 import { setYField, setXField } from '../../../shared/actions/fields';
 
 import actions from '../actions';

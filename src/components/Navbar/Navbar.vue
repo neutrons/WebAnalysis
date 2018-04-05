@@ -37,7 +37,7 @@
     <!-- TAS Nav Menu -->
     <v-tas-nav-menu v-if='$route.meta.group === "TAS"' />
 
-    <!-- TAS Nav Menu -->
+    <!-- POWDER Nav Menu -->
     <v-powder-nav-menu v-if='$route.meta.group === "POWDER"' />
 
   </v-toolbar>
