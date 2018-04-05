@@ -1,0 +1,40 @@
+<template>
+<v-toolbar-items >
+  <!-- TAS Nav Menu -->
+  <v-btn flat to='/TAS/Browse' exact :active-class='activeClass' class='hidden-sm-and-down'>Browse</v-btn>
+  <v-btn flat to='/TAS/Fit' exact :active-class='activeClass' class='hidden-sm-and-down'>Graph</v-btn>
+  <v-btn flat to='/TAS/Combine' exact :active-class='activeClass' class='hidden-sm-and-down'>Combine</v-btn>
+
+  <!-- TAS Drop Down Menu on Small Screens -->
+  <v-menu offset-y bottom class='hidden-md-and-up'>
+    <v-btn flat icon slot='activator'>
+      <v-icon>more_vert</v-icon>
+    </v-btn>
+    <v-list dense>
+      <v-list-tile to='/TAS/Browse' exact :active-class='activeClass'>
+        <v-list-tile-title>Browse</v-list-tile-title>
+      </v-list-tile>
+
+      <v-list-tile to='/TAS/Fit' exact :active-class='activeClass'>
+        <v-list-tile-title>Graph</v-list-tile-title>
+      </v-list-tile>
+
+      <v-list-tile to='/TAS/Combine' exact :active-class='activeClass'>
+        <v-list-tile-title>Combine</v-list-tile-title>
+      </v-list-tile>
+    </v-list>
+  </v-menu>
+</v-toolbar-items>
+</template>
+
+<script>
+import activeClass from './activeClassMixin';
+
+export default {
+  name: 'TASNavMenu',
+  mixins: [
+    activeClass,
+  ],
+};
+
+</script>
