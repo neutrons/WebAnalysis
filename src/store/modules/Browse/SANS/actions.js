@@ -1,8 +1,8 @@
 import parseData from '../../../shared/actions/parseSANS1D';
-import updateFilesSelectedSANS from '../../../shared/actions/updateFilesSelectedSANS';
+import updateFilesSelected from '../../../shared/actions/updateFilesSelected';
 import actions from '../actions';
 
-actions.updateFilesSelected = updateFilesSelectedSANS;
+actions.updateFilesSelected = updateFilesSelected;
 actions.parseData = parseData;
 
 export default actions;

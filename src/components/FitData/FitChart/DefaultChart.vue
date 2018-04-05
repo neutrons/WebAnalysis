@@ -31,7 +31,7 @@
                       <v-reset-chart-button @reset-chart='resetChart' :disable='filesSelected.length === 0'></v-reset-chart-button>
                       <v-edit-chart-button :disable='filesSelected.length === 0' ></v-edit-chart-button>
                       <v-spacer></v-spacer>
-                      <v-btn icon flat @click='showTabs = !showTabs' v-if='fileToFit || metadataLength > 0'>
+                      <v-btn icon flat @click='showTabs = !showTabs' v-if='showToggleTabs'>
                         <v-icon small>{{ showTabs ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
                       </v-btn>
                     </v-layout>
@@ -46,10 +46,19 @@
                 :x-scale='xScale'
                 :active-parent-tab='activeParentTab'
               ></slot>
+
               <slot name='tabs-slot' v-if='ID === "TAS-Fit"'
                 :show-tabs='showTabs'
                 :file-to-fit='fileToFit'
                 :fitted-data='fittedData'
+                :x-scale='xScale'
+                :active-parent-tab='activeParentTab'
+                :metadata='metadata'
+                :metadata-length='metadataLength'
+              ></slot>
+
+              <slot name='tabs-slot' v-if='ID === "POWDER-Fit"'
+                :show-tabs='showTabs'
                 :x-scale='xScale'
                 :active-parent-tab='activeParentTab'
                 :metadata='metadata'
@@ -163,6 +172,15 @@ export default {
     };
   },
   computed: {
+    showToggleTabs() {
+      if (typeof this.fileToFit !== 'undefined' && this.fileToFit) {
+        return true;
+      } else if (this.metadataLength > 0) {
+        return true;
+      }
+
+      return false;
+    },
     plottedData() {
       return this.preparedData.map(d => d.values).reduce((a, b) => a.concat(b), []);
     },

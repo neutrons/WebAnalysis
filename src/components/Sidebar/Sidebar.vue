@@ -29,6 +29,8 @@ export default {
     SidebarTASFit: () => import('./TAS/Fit/SidebarTASFit'),
     SidebarTASBrowse: () => import('./TAS/Browse/SidebarTASBrowse'),
     SidebarTASCombine: () => import('./TAS/Combine/SidebarTASCombine'),
+    SidebarPOWDERBrowse: () => import('./POWDER/Browse/SidebarPOWDERBrowse'),
+    SidebarPOWDERFit: () => import('./POWDER/Fit/SidebarPOWDERFit'),
     Sidebar404: () => import('./Sidebar404'),
   },
   props: {

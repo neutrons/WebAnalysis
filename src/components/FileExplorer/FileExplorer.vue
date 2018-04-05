@@ -5,7 +5,7 @@
 
     <v-container>
       <v-layout row wrap>
-        <v-flex xs12 v-if='$options.name === "FileExplorerTAS"'>
+        <v-flex xs12 v-if='$options.name === "FileExplorerPOWDER"'>
           <v-alert 
             outline
             type='warning'

@@ -20,11 +20,19 @@ export default {
   },
   computed: {
     fileExtension() {
-      if (this.$route.meta.group === 'TAS' || this.$route.name === 'SANS2D') {
-        return '.dat';
-      }
+      switch (this.$route.meta.group) {
+        case 'TAS':
+        case 'POWDER':
+          return '.dat';
+        case 'SANS':
+          if (this.$route.name === 'SANS2D') {
+            return '.dat';
+          }
 
-      return '.txt';
+          return '.txt';
+        default:
+          return '.txt';
+      }
     },
   },
   methods: {
@@ -71,25 +79,15 @@ export default {
         temp[fname] = el;
       });
 
-      if (this.$route.name === 'SANS2D') {
-        this.$store.dispatch('SANS/SANS2D/addUploadFiles', temp)
-          .then(() => {
-            this.sendMessage(true);
-          })
-          .catch((error) => {
-            this.sendMessage(error);
-          });
-      } else {
-        const namespace = this.$route.meta.group;
+      const namespace = this.$route.name === 'SANS2D' ? 'SANS/SANS2D' : this.$route.meta.group;
 
-        this.$store.dispatch(`${namespace}/addUploadFiles`, temp)
-          .then(() => {
-            this.sendMessage(true);
-          })
-          .catch((error) => {
-            this.sendMessage(error);
-          });
-      }
+      this.$store.dispatch(`${namespace}/addUploadFiles`, temp)
+        .then(() => {
+          this.sendMessage(true);
+        })
+        .catch((error) => {
+          this.sendMessage(error);
+        });
     },
     sendMessage(value) {
       if (value === true) {
