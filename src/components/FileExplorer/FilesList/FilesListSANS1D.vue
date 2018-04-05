@@ -27,8 +27,10 @@ export default {
 
         if (currentListLength !== 0 && inNewList === -1) this.updateFileToFit(null);
 
-        // Call action to add file return a promise and then emmit event to plot data
-        this.updateFilesSelected(value)
+        // Call action to add file return a promise and then emit event to plot data
+        const payload = { filelist: value, group: 'SANS' };
+
+        this.updateFilesSelected(payload)
           .then(() => {
             eventBus.$emit('redraw-chart-sans-fit');
           })

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import editGuard from './editGuard';
 
-const HomePage = () => import('@/components/HomePage');
+const HomePage = () => import('@/components/HomePage/HomePage');
 const SANS1DFit = () => import('@/components/FitData/SANS1D');
 const SANS1DBrowse = () => import('@/components/BrowseData/SANS1D');
 const SANS1DStitch = () => import('@/components/StitchData/SANS');
@@ -10,6 +10,8 @@ const SANS2DGraph = () => import('@/components/Chart2D/SANS2D');
 const TASFit = () => import('@/components/FitData/TAS');
 const TASBrowse = () => import('@/components/BrowseData/TAS');
 const TASCombine = () => import('@/components/CombineData/TAS');
+const POWDERBrowse = () => import('@/components/BrowseData/POWDER');
+const POWDERFit = () => import('@/components/FitData/POWDER');
 const EditChart = () => import('@/components/EditChart/EditChart');
 
 Vue.use(Router);
@@ -50,6 +52,7 @@ export default new Router({
       path: '/Documentation',
       redirect: '/HomePage',
     },
+    // SANS Routes
     {
       path: '/SANS',
       redirect: '/HomePage',
@@ -67,7 +70,7 @@ export default new Router({
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'SANS', href: '/', disabled: false },
-          { text: 'Fit', href: '/', disabled: true },
+          { text: 'Graph', href: '/', disabled: true },
         ],
       },
     },
@@ -122,6 +125,7 @@ export default new Router({
         ],
       },
     },
+    // TAS ROUTES
     {
       path: '/TAS',
       redirect: '/HomePage',
@@ -138,7 +142,7 @@ export default new Router({
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'TAS', href: '/TAS', disabled: false },
-          { text: 'Fit', href: '/', disabled: true },
+          { text: 'Graph', href: '/', disabled: true },
         ],
       },
     },
@@ -171,6 +175,43 @@ export default new Router({
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'TAS', href: '/TAS', disabled: false },
           { text: 'Combine', href: '/', disabled: true },
+        ],
+      },
+    },
+    // POWDER ROUTES
+    {
+      path: '/POWDER',
+      redirect: '/HomePage',
+    },
+    {
+      path: '/POWDER/Fit',
+      name: 'POWDER-Fit',
+      component: POWDERFit,
+      meta: {
+        title: 'POWDER-Fit',
+        group: 'POWDER',
+        sidebar: 'SidebarPOWDERFit',
+        feature: 'Fit',
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage', disabled: false },
+          { text: 'POWDER', href: '/POWDER', disabled: false },
+          { text: 'Graph', href: '/', disabled: true },
+        ],
+      },
+    },
+    {
+      path: '/POWDER/Browse',
+      name: 'POWDER-Browse',
+      component: POWDERBrowse,
+      meta: {
+        title: 'POWDER-Browse',
+        group: 'POWDER',
+        sidebar: 'SidebarPOWDERBrowse',
+        feature: 'Browse',
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage', disabled: false },
+          { text: 'POWDER', href: '/POWDER', disabled: false },
+          { text: 'Browse', href: '/', disabled: true },
         ],
       },
     },

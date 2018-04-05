@@ -26,7 +26,7 @@
 import ErrorNotification from './components/Error';
 import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 
 export default {
   name: 'App',

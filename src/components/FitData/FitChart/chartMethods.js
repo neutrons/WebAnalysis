@@ -37,7 +37,7 @@ export default {
     drawChart() {
       const vm = this;
       if (this.filesSelected.length === 0 || this.fileToFit !== this.previousFit) {
-        this.setPreviousFit(this.fileToFit);
+        if (typeof this.fileToFit !== 'undefined') this.setPreviousFit(this.fileToFit);
         this.initChartElements(`.fit-chart-${this.ID}`);
 
         if (this.fileToFit) {

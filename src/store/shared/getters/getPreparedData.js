@@ -10,6 +10,17 @@ export default (state) => {
   temp = _.flatten(temp);
   temp = temp.filter(d => Number.isFinite(d[yField]) && Number.isFinite(d[xField]));
 
+  // Generate error points if non-existent
+  temp = temp.map((point) => {
+    if (typeof point.error === 'undefined') {
+      return {
+        ...point,
+        error: point[yField] < 0 ? 0 : Math.sqrt(point[yField]),
+      };
+    }
+    return { ...point };
+  });
+
   // Nest the entries by name
   temp = d3.nest()
     .key(d => d.name)

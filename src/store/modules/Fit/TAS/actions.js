@@ -1,10 +1,10 @@
 import parseData from '../../../shared/actions/parseTAS';
-import updateFilesSelectedTAS from '../../../shared/actions/updateFilesSelectedTAS';
+import updateFilesSelected from '../../../shared/actions/updateFilesSelected';
 import { setYField, setXField } from '../../../shared/actions/fields';
 
 import actions from '../actions';
 
-actions.updateFilesSelected = updateFilesSelectedTAS;
+actions.updateFilesSelected = updateFilesSelected;
 actions.setYField = setYField;
 actions.setXField = setXField;
 

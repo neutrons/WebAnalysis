@@ -6,4 +6,5 @@ module.exports = merge(prodEnv, {
   IS_OFFLINE: process.env.IS_OFFLINE,
   FETCH_SANS_URL: process.env.FETCH_SANS_URL,
   FETCH_TAS_URL: process.env.FETCH_TAS_URL,
+  FETCH_POWDER_URL: process.env.FETCH_POWDER_URL,
 })

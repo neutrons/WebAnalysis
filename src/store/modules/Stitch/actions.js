@@ -1,6 +1,6 @@
 import deletePoint from '../../shared/actions/deletePoint';
 import parseData from '../../shared/actions/parseSANS1D';
-import updateFilesSelectedSANS from '../../shared/actions/updateFilesSelectedSANS';
+import updateFilesSelected from '../../shared/actions/updateFilesSelected';
 import fetchData from '../../shared/actions/fetchData';
 import readData from '../../shared/actions/readData';
 import resetAll from '../../shared/actions/resetAll';
@@ -10,7 +10,7 @@ export default {
   fetchData,
   readData,
   deletePoint,
-  updateFilesSelected: updateFilesSelectedSANS,
+  updateFilesSelected,
   parseData,
   setXScale,
   setYScale,
