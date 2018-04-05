@@ -22,7 +22,9 @@ export default {
       },
       set(value) {
         // Call action to add file return a promise and then emmit event to plot data
-        this.updateFilesSelected(value)
+        const payload = { filelist: value, group: 'POWDER' };
+
+        this.updateFilesSelected(payload)
           .then(() => {
             eventBus.$emit('redraw-chart-powder-fit');
           })

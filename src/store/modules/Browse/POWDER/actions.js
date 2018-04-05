@@ -1,9 +1,9 @@
 import parseData from '../../../shared/actions/parseTAS';
-import updateFilesSelectedPOWDER from '../../../shared/actions/updateFilesSelectedPOWDER';
+import updateFilesSelected from '../../../shared/actions/updateFilesSelected';
 
 import actions from '../actions';
 
-actions.updateFilesSelected = updateFilesSelectedPOWDER;
+actions.updateFilesSelected = updateFilesSelected;
 actions.parseData = parseData;
 
 export default actions;

@@ -19,13 +19,15 @@ export default {
         return this.filesSelected;
       },
       set(value) {
-        const temp = value !== null ? [value] : [];
-        this.updateFilesSelected(temp)
+        const filelist = value !== null ? [value] : [];
+        const payload = { filelist, group: 'POWDER' };
+
+        this.updateFilesSelected(payload)
           .then(() => {
-            if (temp.length === 0) {
+            if (filelist.length === 0) {
               this.selectedTags = [];
             } else {
-              this.selectedTags = this.allFiles[temp[0]].tags;
+              this.selectedTags = this.allFiles[filelist[0]].tags;
             }
 
             eventBus.$emit('redraw-chart-powder-browse');
