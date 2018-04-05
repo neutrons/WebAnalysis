@@ -1,0 +1,34 @@
+# scan = 1
+# date = 8/15/2016
+# time = 2:13:13 PM
+# proposal = IPTS-16819
+# experiment = Investing the magnetic structure and moment of BaFe4O7 and K-doped
+# experiment_number = 500
+# command = scan 2theta 15 18 0.1 preset time 5
+# builtin_command = scan 2theta 15 18 0.1 preset time 5
+# users = Hans-Conrad Zur Loye
+# local_contact = Stuart Calder
+# scan_title = test
+# monochromator = 
+# analyzer = 
+# sense = -+-
+# collimation = 48-40-40-120
+# samplename = BaFe4O7 and K1.15Ba0.43Fe2O7
+# sampletype = powder
+# samplemosaic = 30.000000
+# latticeconstants = 5.000000,5.000000,5.000000,90.000000,90.000000,90.000000
+# ubmatrix = 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000
+# mode = 3
+# ubconf = UB15Aug2016_102130AM.ini
+# preset_type = normal 
+# preset_channel = time
+# preset_value = 5.000000
+# def_x = 2theta
+# def_y = monitor
+# col_headers = 
+#   Pt.     2theta       time    monitor   detector     anode1     anode2     anode3     anode4     anode5     anode6     anode7     anode8     anode9    anode10    anode11    anode12    anode13    anode14    anode15    anode16    anode17    anode18    anode19    anode20    anode21    anode22    anode23    anode24    anode25    anode26    anode27    anode28    anode29    anode30    anode31    anode32    anode33    anode34    anode35    anode36    anode37    anode38    anode39    anode40    anode41    anode42    anode43    anode44         m1       marc     mtrans   coltrans     colrot       coll   pgfilter  colltrans         s1        sgl        sgu    slit_bt    slit_lf    slit_rt    slit_tp        stl        stu furnace_setpoint furnace_ramp furnace_temp
+      1    20.0507      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000      0.000     0.0000     0.0000    -0.0310     0.0000    -0.8000     0.0000   -80.0000   -80.0000     0.0006     0.0403    -0.8000    15.0000     5.5000     5.5000    28.0000    -1.0015     1.5000    15.0000     5.0000    59.619
+# Sum of Counts = 0
+# Center of Mass = NaN+/-NaN
+# Full Width Half-Maximum = NaN+/-NaN
+# 2:14:36 PM  8/15/2016   scan stopped!!

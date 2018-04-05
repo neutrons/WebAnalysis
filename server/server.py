@@ -24,6 +24,7 @@ app = Flask(__name__, static_url_path='')
 
 data_sans = json.load(open('sans.json'))
 data_tas = json.load(open('tas.json'))
+data_powder = json.load(open('powder.json'))
 
 @app.route('/')
 def index():
@@ -82,6 +83,10 @@ def fetch_tas():
     print(request)
     return jsonify(data_tas)
 
+@app.route('/fetch/powder', methods=['GET'])
+def fetch_powder():
+    print(request)
+    return jsonify(data_powder)
 
 if __name__ == "__main__":
 

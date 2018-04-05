@@ -1,0 +1,35 @@
+# scan = 31
+# date = 8/17/2016
+# time = 5:03:09 PM
+# proposal = IPTS-16819
+# experiment = Investing the magnetic structure and moment of BaFe4O7 and K-doped
+# experiment_number = 500
+# command = scan 2theta 9 9.05 0.05 preset time 5
+# builtin_command = scan 2theta 9 9.05 0.05 preset time 5
+# users = Hans-Conrad Zur Loye
+# local_contact = Stuart Calder
+# scan_title = changed to K-doped
+# monochromator = 
+# analyzer = 
+# sense = -+-
+# collimation = 48-40-40-120
+# samplename = BaFe4O7 and K1.15Ba0.43Fe2O7
+# sampletype = powder
+# samplemosaic = 30.000000
+# latticeconstants = 5.000000,5.000000,5.000000,90.000000,90.000000,90.000000
+# ubmatrix = 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000
+# mode = 3
+# ubconf = UB15Aug2016_102130AM.ini
+# preset_type = normal 
+# preset_channel = time
+# preset_value = 5.000000
+# def_x = 2theta
+# def_y = monitor
+# col_headers = 
+#   Pt.     2theta       time    monitor   detector     anode1     anode2     anode3     anode4     anode5     anode6     anode7     anode8     anode9    anode10    anode11    anode12    anode13    anode14    anode15    anode16    anode17    anode18    anode19    anode20    anode21    anode22    anode23    anode24    anode25    anode26    anode27    anode28    anode29    anode30    anode31    anode32    anode33    anode34    anode35    anode36    anode37    anode38    anode39    anode40    anode41    anode42    anode43    anode44         m1       marc     mtrans   coltrans     colrot       coll   pgfilter  colltrans         s1        sgl        sgu    slit_bt    slit_lf    slit_rt    slit_tp        stl        stu furnace_setpoint furnace_ramp furnace_temp
+      1     9.0000      5.000   4452.000   6409.000     24.000     37.000     22.000     24.000     57.000     21.000     23.000     14.000     19.000     23.000     21.000     43.000     26.000     53.000     19.000     29.000     34.000     34.000     21.000     10.000     26.000     38.000     45.000     27.000     23.000     26.000     70.000     35.000     18.000     48.000     31.000     34.000     40.000     28.000     22.000     51.000     57.000     27.000     22.000     27.000     37.000     31.000     32.000   5060.000     0.0000     0.0000    -0.0310     0.0000    -0.8000     0.0000   -80.0000   -80.0000     0.0005     0.0403    -0.8000    12.0000     5.5000     5.5000    25.0000    -1.0055     1.5000    75.0000     1.0000    75.182
+      2     9.0500      5.000   4528.000   6032.000     22.000     29.000     18.000     23.000     54.000     17.000     15.000     23.000     21.000     28.000     22.000     41.000     13.000     40.000     18.000     24.000     23.000     17.000     26.000     32.000     13.000     27.000     34.000     24.000     20.000     20.000     51.000     27.000     25.000     33.000     25.000     31.000     37.000     32.000     25.000     33.000     55.000     39.000     21.000     24.000     33.000     24.000     32.000   4841.000     0.0000     0.0000    -0.0310     0.0000    -0.8000     0.0000   -80.0000   -80.0000     0.0005     0.0403    -0.8000    12.0000     5.5000     5.5000    25.0000    -1.0055     1.5000    75.0000     1.0000    75.156
+# Sum of Counts = 8980
+# Center of Mass = 9.025212+/-0.134690
+# Full Width Half-Maximum = 0.049998+/-0.190474
+# 5:03:32 PM  8/17/2016   scan completed.
