@@ -27,7 +27,7 @@
     <v-spacer></v-spacer>
 
     <v-toolbar-items>
-      <v-fetch-data></v-fetch-data>
+      <v-fetch-data v-if='!isOffline'></v-fetch-data>
       <v-upload-data></v-upload-data>
     </v-toolbar-items>
 
@@ -56,7 +56,11 @@ export default {
     'v-sans-nav-menu': () => import('./SANSNavMenu'),
     'v-powder-nav-menu': () => import('./POWDERNavMenu'),
   },
-
+  computed: {
+    isOffline() {
+      return process.env.IS_OFFLINE;
+    },
+  },
 };
 </script>
 

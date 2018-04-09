@@ -76,5 +76,6 @@ export default {
 <style lang='scss' scoped>
 .fetch-btn {
   border-left: 1px solid gainsboro !important;
+  border-right: 1px solid gainsboro !important;
 }
 </style>

@@ -111,6 +111,7 @@ export default {
 }
 
 .btn--flat {
+  border-left: 1px solid gainsboro !important;
   border-right: 1px solid gainsboro !important;
 }
 </style>
