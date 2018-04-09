@@ -31,15 +31,8 @@
       <v-upload-data></v-upload-data>
     </v-toolbar-items>
 
-    <!-- SANS Nav Menu -->
-    <v-sans-nav-menu v-if='$route.meta.group === "SANS"' />
-
-    <!-- TAS Nav Menu -->
-    <v-tas-nav-menu v-if='$route.meta.group === "TAS"' />
-
-    <!-- POWDER Nav Menu -->
-    <v-powder-nav-menu v-if='$route.meta.group === "POWDER"' />
-
+    <!-- Dynamically load menu based on group selected -->
+    <component :is='currentMenu' />
   </v-toolbar>
 </template>
 
@@ -59,6 +52,11 @@ export default {
   computed: {
     isOffline() {
       return process.env.IS_OFFLINE;
+    },
+    currentMenu() {
+      if (typeof this.$route.meta.group === 'undefined') return null;
+
+      return `v-${this.$route.meta.group.toLowerCase()}-nav-menu`;
     },
   },
 };

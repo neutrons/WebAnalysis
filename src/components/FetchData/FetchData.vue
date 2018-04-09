@@ -28,7 +28,10 @@ export default {
   },
   mounted() {
     // Event listener for when stitch lines are saved
-    eventBus.$on('fetch-files', this.fetchFiles);
+    eventBus.$on('fetch-files', this.onFetchFiles);
+  },
+  destroyed() {
+    eventBus.$off('fetch-files');
   },
   computed: {
     isFetchURL() {
@@ -45,7 +48,8 @@ export default {
     },
   },
   methods: {
-    onFetchFiles() {
+    onFetchFiles(silenceMessage) {
+      console.log('silence message', silenceMessage);
       const vm = this;
       if (typeof this.fetchURL === 'undefined') {
         eventBus.$emit('add-notification', 'Unable to fetch.', 'error');
@@ -54,7 +58,7 @@ export default {
 
       axios.get(this.fetchURL).then((response) => {
         const data = response.data;
-        vm[`fetch${vm.$route.meta.group}`](data);
+        vm[`fetch${vm.$route.meta.group}`](data, silenceMessage);
       }).catch((err) => {
         eventBus.$emit('add-notification', err.message, 'error');
       });
