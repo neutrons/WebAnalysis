@@ -2,7 +2,7 @@ import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   methods: {
-    fetchSANS(data) {
+    fetchSANS(data, silenceMessage = false) {
       const temp = {};
 
       data.forEach((el) => {
@@ -30,7 +30,7 @@ export default {
       this.$store.dispatch(`${namespace}/addFetchFiles`, temp)
         .then(() => {
           // Notify that fetch was a success
-          eventBus.$emit('add-notification', 'Data fetched!', 'success');
+          if (silenceMessage !== true) eventBus.$emit('add-notification', 'Data fetched!', 'success');
         });
     },
   },

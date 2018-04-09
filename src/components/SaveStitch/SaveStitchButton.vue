@@ -105,6 +105,7 @@ export default {
         // If posting stitch line works, store brush selections
         vm.saveBrushSelections();
         vm.saveBrushes();
+        eventBus.$emit('fetch-files', true);
       })
       .catch((error) => {
         const errorMSG = error;
