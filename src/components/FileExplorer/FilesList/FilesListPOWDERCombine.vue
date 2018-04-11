@@ -1,16 +1,19 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import FilesList from './FilesList';
+
 import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
-  name: 'FilesListSANS2D',
+  name: 'FilesListPOWDERCombine',
   extends: FilesList,
   computed: {
-    ...mapState('SANS/SANS2D', {
-      filesSelected: state => state.filesSelected,
+    ...mapState('POWDER', {
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
+    }),
+    ...mapState('POWDER/Combine', {
+      filesSelected: state => state.filesSelected,
       filters: state => state.filters,
     }),
     selected: {
@@ -18,11 +21,12 @@ export default {
         return this.filesSelected;
       },
       set(value) {
-        const tempSelect = value === null ? [] : [value];
         // Call action to add file return a promise and then emmit event to plot data
-        this.updateFilesSelected(tempSelect)
+        const payload = { filelist: value, group: 'POWDER' };
+
+        this.updateFilesSelected(payload)
           .then(() => {
-            eventBus.$emit('redraw-chart-sans-2d');
+            eventBus.$emit('redraw-chart-powder-combine');
           })
           .catch((error) => {
             eventBus.$emit('add-notification', error.message, 'error');
@@ -31,7 +35,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('SANS/SANS2D', [
+    ...mapActions('POWDER/Combine', [
       'updateFilesSelected',
     ]),
   },

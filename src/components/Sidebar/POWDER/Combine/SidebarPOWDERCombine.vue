@@ -9,7 +9,7 @@
         </v-flex>
         
         <v-flex xs12>
-          <!-- Will place file selection here -->
+          <v-file-list />
         </v-flex>
       </v-layout>
     </v-container>
@@ -42,9 +42,10 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 import FilterList from '../../../FileExplorer/FilterList/FilterListPOWDERCombine';
+import FilesListPOWDERCombine from '../../../FileExplorer/FilesList/FilesListPOWDERCombine';
 import CombineNormalize from '../../../CombineData/Normalize/NormalizePOWDER';
 import CombineTolerance from '../../../CombineData/Tolerance/TolerancePOWDER';
 import Scales from '../../../Scales/ScalesPOWDERCombine';
@@ -53,6 +54,7 @@ export default {
   name: 'SidebarPOWDERCombine',
   components: {
     'v-filter-list': FilterList,
+    'v-file-list': FilesListPOWDERCombine,
     'v-combine-normalize': CombineNormalize,
     'v-combine-tolerance': CombineTolerance,
     'v-scales': Scales,

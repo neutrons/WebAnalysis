@@ -17,11 +17,11 @@ export default {
   },
   created() {
     eventBus.$on('redraw-chart-sans-fit', this.redrawChart);
-    eventBus.$on('revise-fit-line-SANS1D', this.reviseFitLine);
+    eventBus.$on('revise-fit-line-sans', this.reviseFitLine);
   },
   destroyed() {
     eventBus.$off('redraw-chart-sans-fit');
-    eventBus.$off('revise-fit-line-SANS1D');
+    eventBus.$off('revise-fit-line-sans');
   },
   computed: {
     ...mapState('SANS/Fit', {

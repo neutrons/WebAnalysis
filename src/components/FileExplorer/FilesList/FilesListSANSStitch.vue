@@ -32,9 +32,6 @@ export default {
           });
       },
     },
-    allFiles() {
-      return Object.assign({}, this.fetched, this.uploaded);
-    },
   },
   methods: {
     ...mapActions('SANS/Stitch', [

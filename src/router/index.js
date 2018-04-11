@@ -12,6 +12,7 @@ const TASBrowse = () => import('@/components/BrowseData/TAS');
 const TASCombine = () => import('@/components/CombineData/TAS');
 const POWDERBrowse = () => import('@/components/BrowseData/POWDER');
 const POWDERFit = () => import('@/components/FitData/POWDER');
+const POWDERCombine = () => import('@/components/CombineData/POWDER');
 const EditChart = () => import('@/components/EditChart/EditChart');
 
 Vue.use(Router);
@@ -212,6 +213,22 @@ export default new Router({
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'POWDER', href: '/POWDER', disabled: false },
           { text: 'Browse', href: '/', disabled: true },
+        ],
+      },
+    },
+    {
+      path: '/POWDER/Combine',
+      name: 'POWDER-Combine',
+      component: POWDERCombine,
+      meta: {
+        title: 'POWDER-Combine',
+        group: 'POWDER',
+        sidebar: 'SidebarPOWDERCombine',
+        feature: 'Combine',
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage', disabled: false },
+          { text: 'POWDER', href: '/POWDER', disabled: false },
+          { text: 'Combine', href: '/', disabled: true },
         ],
       },
     },

@@ -50,6 +50,22 @@ export default {
       editCombineName: 'combined_data',
     };
   },
+  computed: {
+    editTolerance: {
+      get() {
+        return this.tolerance;
+      },
+      set(value) {
+        this.setTolerance(value);
+      },
+    },
+    filenameList() {
+      const k1 = Object.keys(this.fetched);
+      const k2 = Object.keys(this.uploaded);
+      const k3 = Object.keys(this.storedCombined);
+      return [].concat.apply([], [k1, k2, k3]);
+    },
+  },
   methods: {
     checkValue(value) {
       if (typeof value !== 'number') {

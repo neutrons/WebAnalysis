@@ -4,28 +4,28 @@ import Tolerance from './Tolerance';
 import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
-  name: 'ToleranceTAS',
+  name: 'TolerancePOWDER',
   extends: Tolerance,
   computed: {
-    ...mapState('TAS', {
+    ...mapState('POWDER', {
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
     }),
-    ...mapState('TAS/Combine', {
+    ...mapState('POWDER/Combine', {
       defaultSettings: state => state.defaultSettings,
       tolerance: state => state.tolerance,
       combData: state => state.combinedData,
       storedCombined: state => state.storedCombined,
     }),
-    ...mapGetters('TAS/Combine', [
+    ...mapGetters('POWDER/Combine', [
       'getPreparedData',
     ]),
   },
   methods: {
-    ...mapMutations('TAS/Combine', [
+    ...mapMutations('POWDER/Combine', [
       'setTolerance',
     ]),
-    ...mapActions('TAS/Combine', [
+    ...mapActions('POWDER/Combine', [
       'storeCombinedData',
       'combineData',
       'removeCombinedData',
@@ -34,7 +34,7 @@ export default {
       // trigger action to combine data then update chart
       this.combineData(this.getPreparedData)
         .then(() => {
-          eventBus.$emit('redraw-chart-tas-combine');
+          eventBus.$emit('redraw-chart-powder-combine');
         })
         .catch((error) => {
           eventBus.$emit('add-notification', error.message, 'error');
@@ -43,7 +43,7 @@ export default {
     onRemoveCombinedData() {
       this.removeCombinedData()
         .then(() => {
-          eventBus.$emit('redraw-chart-tas-combine');
+          eventBus.$emit('redraw-chart-powder-combine');
         })
         .catch((error) => {
           eventBus.$emit('add-notification', error, 'error');
@@ -53,7 +53,7 @@ export default {
       const group = this.$route.meta.group;
       this.storeCombinedData({ group, name: this.editCombineName })
         .then(() => {
-          eventBus.$emit('redraw-chart-tas-combine');
+          eventBus.$emit('redraw-chart-powder-combine');
         })
         .catch((error) => {
           eventBus.$emit('add-notification', error.message, 'error');

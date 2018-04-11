@@ -10,12 +10,12 @@ export default {
       fetched: state => state.fetched,
       uploaded: state => state.uploaded,
     }),
-    ...mapState('POWDER/Fit', {
+    ...mapState('POWDER/Combine', {
       selected: state => state.filters,
     }),
   },
   methods: {
-    ...mapMutations('POWDER/Fit', [
+    ...mapMutations('POWDER/Combine', [
       'updateFilters',
     ]),
   },

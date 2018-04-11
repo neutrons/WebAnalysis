@@ -17,11 +17,11 @@ export default {
   },
   created() {
     eventBus.$on('redraw-chart-tas-fit', this.redrawChart);
-    eventBus.$on('revise-fit-line-TAS', this.reviseFitLine);
+    eventBus.$on('revise-fit-line-tas', this.reviseFitLine);
   },
   destroyed() {
     eventBus.$off('redraw-chart-tas-fit');
-    eventBus.$off('revise-fit-line-TAS');
+    eventBus.$off('revise-fit-line-tas');
   },
   computed: {
     ...mapState('TAS/Fit', {
