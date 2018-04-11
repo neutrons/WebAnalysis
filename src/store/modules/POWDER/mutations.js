@@ -12,4 +12,7 @@ export default {
   updateTags,
   removeSavedFile,
   removeSavedPoint,
+  storeNormalizeFiles(state, files) {
+    state.normalizeFiles = files; // eslint-disable-line
+  },
 };

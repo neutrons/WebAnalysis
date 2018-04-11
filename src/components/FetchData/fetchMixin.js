@@ -1,3 +1,5 @@
+import pathParse from 'path-parse';
+
 import { eventBus } from '../../assets/js/eventBus';
 
 // Fetch Mixin used for TAS and POWDER
@@ -5,9 +7,7 @@ export default function (data, silenceMessage = false) {
   const temp = {};
 
   data.forEach((file) => {
-    const re = /exp(\d+)_scan(\d+)/;
-    const found = re.exec(file.url);
-    const filename = found[0];
+    const filename = pathParse(file.url).name;
 
     temp[filename] = {
       filename,
