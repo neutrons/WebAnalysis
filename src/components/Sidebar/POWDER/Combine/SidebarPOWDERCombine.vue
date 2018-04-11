@@ -4,30 +4,18 @@
     <div slot='header' class='title'>Files to Combine</div>
     <v-container>
       <v-layout row wrap>
-        <v-alert 
-          outline
-          type='warning'
-          :value='typeof isDefaultFieldsDifferent === "string"'
-          transition='fade-transition'
-          icon='fa-exclamation-triangle'
-          class='pa-2'
-        >{{ isDefaultFieldsDifferent }}</v-alert>
         <v-flex xs12>
           <v-filter-list />
         </v-flex>
+        
         <v-flex xs12>
-          <v-combine-add />
-        </v-flex>
-        <v-flex xs12>
-          <v-combine-subtract />
+          <!-- Will place file selection here -->
         </v-flex>
       </v-layout>
     </v-container>
   </v-expansion-panel-content>
 
   <v-scales v-if='selectedData.length' />
-
-  <v-fields v-if='selectedData.length' />
 
   <v-expansion-panel-content :value='true' v-if='selectedData.length > 1'>
     <div slot='header' class='title'>Normalize</div>
@@ -56,33 +44,24 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 
-import CombineAdd from '../../../CombineData/Add/AddTAS';
-import CombineSubtract from '../../../CombineData/Subtract/SubtractTAS';
-import FilterList from '../../../FileExplorer/FilterList/FilterListTASCombine';
-import CombineNormalize from '../../../CombineData/Normalize/NormalizeTAS';
-import CombineTolerance from '../../../CombineData/Tolerance/ToleranceTAS';
-import Fields from '../../../Fields/FieldsTASCombine';
-import Scales from '../../../Scales/ScalesTASCombine';
+import FilterList from '../../../FileExplorer/FilterList/FilterListPOWDERCombine';
+import CombineNormalize from '../../../CombineData/Normalize/NormalizePOWDER';
+import CombineTolerance from '../../../CombineData/Tolerance/TolerancePOWDER';
+import Scales from '../../../Scales/ScalesPOWDERCombine';
 
 export default {
-  name: 'SidebarTASCombine',
+  name: 'SidebarPOWDERCombine',
   components: {
-    'v-combine-add': CombineAdd,
-    'v-combine-subtract': CombineSubtract,
     'v-filter-list': FilterList,
     'v-combine-normalize': CombineNormalize,
     'v-combine-tolerance': CombineTolerance,
-    'v-fields': Fields,
     'v-scales': Scales,
   },
   computed: {
-    ...mapState('TAS/Combine', {
+    ...mapState('POWDER/Combine', {
       selectedData: state => state.selectedData,
       isNormalized: state => state.isNormalized,
     }),
-    ...mapGetters('TAS/Combine', [
-      'isDefaultFieldsDifferent',
-    ]),
   },
 };
 </script>
