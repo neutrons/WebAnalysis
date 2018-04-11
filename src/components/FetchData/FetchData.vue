@@ -49,7 +49,6 @@ export default {
   },
   methods: {
     onFetchFiles(silenceMessage) {
-      console.log('silence message', silenceMessage);
       const vm = this;
       if (typeof this.fetchURL === 'undefined') {
         eventBus.$emit('add-notification', 'Unable to fetch.', 'error');
