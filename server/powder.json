@@ -1,205 +1,287 @@
-[{
+[
+  {
+    "scan": "0",
+    "url": "/external/files/powder/HB2A_exp0500__exclude_detectors.txt",
+    "scan_title": "exclude_detectors"
+  },
+  {
+    "scan": "0",
+    "url": "/external/files/powder/HB2A_exp0500__gaps.txt",
+    "scan_title": "gaps"
+  },
+  {
+    "scan": "0",
+    "url": "/external/files/powder/HB2A_exp0500__Ge_113_IN_vcorr.txt",
+    "scan_title": "Ge_113_IN_vcorr"
+  },
+  {
+    "scan": "0",
+    "url": "/external/files/powder/HB2A_exp0500__Ge_113_OUT_vcorr.txt",
+    "scan_title": "Ge_113_OUT_vcorr"
+  },
+  {
+    "scan": "0",
+    "url": "/external/files/powder/HB2A_exp0500__Ge_115_IN_vcorr.txt",
+    "scan_title": "Ge_115_IN_vcorr"
+  },
+  {
+    "scan": "0",
+    "url": "/external/files/powder/HB2A_exp0500__Ge_115_OUT_vcorr.txt",
+    "scan_title": "Ge_115_OUT_vcorr"
+  },
+  {
     "scan": "1",
     "url": "/external/files/powder/HB2A_exp0500_scan0001.dat",
     "scan_title": "test"
-  }, {
+  },
+  {
     "scan": "2",
     "url": "/external/files/powder/HB2A_exp0500_scan0002.dat",
     "scan_title": "test"
-  }, {
+  },
+  {
     "scan": "3",
     "url": "/external/files/powder/HB2A_exp0500_scan0003.dat",
     "scan_title": "test"
-  }, {
+  },
+  {
     "scan": "4",
     "url": "/external/files/powder/HB2A_exp0500_scan0004.dat",
     "scan_title": "check slits"
-  }, {
+  },
+  {
     "scan": "5",
     "url": "/external/files/powder/HB2A_exp0500_scan0005.dat",
     "scan_title": "check slits"
-  }, {
+  },
+  {
     "scan": "6",
     "url": "/external/files/powder/HB2A_exp0500_scan0006.dat",
     "scan_title": "check slits"
-  }, {
+  },
+  {
     "scan": "7",
     "url": "/external/files/powder/HB2A_exp0500_scan0007.dat",
     "scan_title": "check slits"
-  }, {
+  },
+  {
     "scan": "8",
     "url": "/external/files/powder/HB2A_exp0500_scan0008.dat",
     "scan_title": "check slits"
-  }, {
+  },
+  {
     "scan": "9",
     "url": "/external/files/powder/HB2A_exp0500_scan0009.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C"
-  }, {
+  },
+  {
     "scan": "10",
     "url": "/external/files/powder/HB2A_exp0500_scan0010.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - Before heating"
-  }, {
+  },
+  {
     "scan": "11",
     "url": "/external/files/powder/HB2A_exp0500_scan0011.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - Before heating"
-  }, {
+  },
+  {
     "scan": "12",
     "url": "/external/files/powder/HB2A_exp0500_scan0012.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - Before heating"
-  }, {
+  },
+  {
     "scan": "13",
     "url": "/external/files/powder/HB2A_exp0500_scan0013.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - Before heating"
-  }, {
+  },
+  {
     "scan": "14",
     "url": "/external/files/powder/HB2A_exp0500_scan0014.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge115, op-21-12, T= 75 C - Before heating"
-  }, {
+  },
+  {
     "scan": "15",
     "url": "/external/files/powder/HB2A_exp0500_scan0015.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge115, op-21-12, T= 75 C - Before heating"
-  }, {
+  },
+  {
     "scan": "16",
     "url": "/external/files/powder/HB2A_exp0500_scan0016.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "17",
     "url": "/external/files/powder/HB2A_exp0500_scan0017.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "18",
     "url": "/external/files/powder/HB2A_exp0500_scan0018.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "19",
     "url": "/external/files/powder/HB2A_exp0500_scan0019.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "20",
     "url": "/external/files/powder/HB2A_exp0500_scan0020.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "21",
     "url": "/external/files/powder/HB2A_exp0500_scan0021.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge115, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "22",
     "url": "/external/files/powder/HB2A_exp0500_scan0022.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge115, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "23",
     "url": "/external/files/powder/HB2A_exp0500_scan0023.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "24",
     "url": "/external/files/powder/HB2A_exp0500_scan0024.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "25",
     "url": "/external/files/powder/HB2A_exp0500_scan0025.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "26",
     "url": "/external/files/powder/HB2A_exp0500_scan0026.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "27",
     "url": "/external/files/powder/HB2A_exp0500_scan0027.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge115, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "28",
     "url": "/external/files/powder/HB2A_exp0500_scan0028.dat",
     "scan_title": "BaFe4O7, Zur Loye, Ge115, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "29",
     "url": "/external/files/powder/HB2A_exp0500_scan0029.dat",
     "scan_title": "KBaFe4O7 Test scan"
-  }, {
+  },
+  {
     "scan": "30",
     "url": "/external/files/powder/HB2A_exp0500_scan0030.dat",
     "scan_title": "changed to K-doped"
-  }, {
+  },
+  {
     "scan": "31",
     "url": "/external/files/powder/HB2A_exp0500_scan0031.dat",
     "scan_title": "changed to K-doped"
-  }, {
+  },
+  {
     "scan": "32",
     "url": "/external/files/powder/HB2A_exp0500_scan0032.dat",
     "scan_title": "changed to K-doped"
-  }, {
+  },
+  {
     "scan": "33",
     "url": "/external/files/powder/HB2A_exp0500_scan0033.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C -Before heating"
-  }, {
+  },
+  {
     "scan": "34",
     "url": "/external/files/powder/HB2A_exp0500_scan0034.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C -Before heating"
-  }, {
+  },
+  {
     "scan": "35",
     "url": "/external/files/powder/HB2A_exp0500_scan0035.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C -Before heating"
-  }, {
+  },
+  {
     "scan": "36",
     "url": "/external/files/powder/HB2A_exp0500_scan0036.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C -Before heating"
-  }, {
+  },
+  {
     "scan": "37",
     "url": "/external/files/powder/HB2A_exp0500_scan0037.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge115, op-21-12, T= 75 C - Before heating"
-  }, {
+  },
+  {
     "scan": "38",
     "url": "/external/files/powder/HB2A_exp0500_scan0038.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge115, op-21-12, T= 75 C - Before heating"
-  }, {
+  },
+  {
     "scan": "39",
     "url": "/external/files/powder/HB2A_exp0500_scan0039.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "40",
     "url": "/external/files/powder/HB2A_exp0500_scan0040.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "41",
     "url": "/external/files/powder/HB2A_exp0500_scan0041.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "42",
     "url": "/external/files/powder/HB2A_exp0500_scan0042.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "43",
     "url": "/external/files/powder/HB2A_exp0500_scan0043.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge115, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "44",
     "url": "/external/files/powder/HB2A_exp0500_scan0044.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge115, op-21-12, T= 675 C"
-  }, {
+  },
+  {
     "scan": "45",
     "url": "/external/files/powder/HB2A_exp0500_scan0045.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "46",
     "url": "/external/files/powder/HB2A_exp0500_scan0046.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "47",
     "url": "/external/files/powder/HB2A_exp0500_scan0047.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge115, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "48",
     "url": "/external/files/powder/HB2A_exp0500_scan0048.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge115, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "49",
     "url": "/external/files/powder/HB2A_exp0500_scan0049.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "50",
     "url": "/external/files/powder/HB2A_exp0500_scan0050.dat",
     "scan_title": "KBaFe4O7, Zur Loye, Ge113, op-21-12, T= 75 C - After heating"
-  }, {
+  },
+  {
     "scan": "51",
     "url": "/external/files/powder/HB2A_exp0500_scan0051.dat",
     "scan_title": "test"
-  }]
+  }
+]
