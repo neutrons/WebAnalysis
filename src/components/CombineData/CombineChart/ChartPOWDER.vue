@@ -21,6 +21,13 @@ export default {
     };
   },
   created() {
+    // turning off legend, scatterpoints, and error bars
+    // because it slows down interactivity with zoom feature
+    // due to many svg elements being plotted for each curve
+    this.isLegend = false; // turn off legend
+    this.isScatterPoints = false; // turn off scatters point
+    this.isErrorBars = false; // turn off error bars
+
     eventBus.$on('redraw-chart-powder-combine', this.redrawChart);
   },
   destroyed() {

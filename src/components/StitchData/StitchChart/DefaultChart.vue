@@ -118,6 +118,10 @@ export default {
         bottom: 50,
         left: 100,
       },
+      isLegend: true,
+      isScatterLines: true,
+      isErrorBars: true,
+      isScatterPoints: true,
     };
   },
   computed: {
