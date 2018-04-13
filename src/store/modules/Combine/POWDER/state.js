@@ -1,28 +1,17 @@
+import _ from 'lodash';
+
 import state from '../state';
 
 import defaultSettings from '../combineSettings';
 
-state.filesToAdd = [];
-state.filesToSubtract = [];
-state.filesSelected = {
-  add: [],
-  subtract: [],
+const statePOWDER = _.cloneDeep(state);
+
+statePOWDER.filesSelected = [];
+statePOWDER.defaultSettings = JSON.parse(JSON.stringify(defaultSettings));
+statePOWDER.tolerance = defaultSettings.tolerance.value;
+statePOWDER.field = {
+  x: '2theta',
+  y: 'node',
 };
 
-state.field = {
-  x: 'pt',
-  y: 'detector',
-};
-
-state.defaultSettings = JSON.parse(JSON.stringify(defaultSettings));
-state.normalizeValue = defaultSettings.normalize.value;
-state.normalizeField = defaultSettings.normalize.field;
-state.tolerance = defaultSettings.tolerance.value;
-state.normalizeOptions = [
-  'time',
-  'detector',
-  'mcu',
-  'monitor',
-];
-
-export default state;
+export default statePOWDER;

@@ -1,21 +1,59 @@
 import * as d3 from 'd3';
+import _ from 'lodash';
 
 import mutations from '../mutations';
-import setCurrentData from '../../../shared/mutations/setCurrentDataTAS';
+import updateFilesSelected from '../../../shared/mutations/updateFilesSelected';
 
-mutations.setCurrentData = setCurrentData;
+const powderMutations = _.cloneDeep(mutations);
 
-mutations.setNormalizeValue = (state, value) => {
+powderMutations.updateFilesSelected = updateFilesSelected;
+
+powderMutations.setCurrentData = (state, chosenData) => {
+  const filteredData = [];
+
+  for (let i = 0, length = chosenData.length; i < length; i += 1) {
+    const metadata = [...chosenData[i].metadata];
+    const filename = chosenData[i].filename;
+    let data = _.cloneDeep(chosenData[i].data);
+
+    // Get node names
+    const nodeNames = Object.keys(data[0])
+      .filter(field => /^anode\d+$/.exec(field) !== null);
+
+    // Generate curve data per node
+    data = nodeNames.map(node => ({
+      filename,
+      node,
+      values: data.map(point => ({
+        '2theta': point['2theta'],
+        node: point[node],
+        name: `${filename}_${node}`,
+      })),
+    }));
+
+    filteredData.push({
+      metadata,
+      filename,
+      data, // keep a clean version of data when reverting transformed data
+      dataTransformed: _.cloneDeep(data),
+    });
+  }
+
+  // Then set the filtered data
+  state.selectedData = filteredData; // eslint-disable-line
+};
+
+powderMutations.setNormalizeValue = (state, value) => {
   // eslint-disable-next-line
   state.normalizeValue = value;
 };
 
-mutations.setNormalizeField = (state, value) => {
+powderMutations.setNormalizeField = (state, value) => {
   // eslint-disable-next-line
   state.normalizeField = value;
 };
 
-mutations.updateFilesToAdd = (state, selected) => {
+powderMutations.updateFilesToAdd = (state, selected) => {
   const keys = [];
 
   state.filesToAdd.forEach((key) => {
@@ -30,7 +68,7 @@ mutations.updateFilesToAdd = (state, selected) => {
   state.filesSelected.add = selected;
 };
 
-mutations.updateFilesToSubtract = (state, selected) => {
+powderMutations.updateFilesToSubtract = (state, selected) => {
   const keys = [];
 
   state.filesToSubtract.forEach((key) => {
@@ -45,20 +83,13 @@ mutations.updateFilesToSubtract = (state, selected) => {
   state.filesSelected.subtract = selected;
 };
 
-mutations.resetAll = (state) => {
+powderMutations.resetAll = (state) => {
   /* eslint-disable */
-  state.filesToSubtract = [];
-  state.filesToAdd = [];
+  state.filesSelected = [];
   state.combinedData = [];
   state.selectedData = [];
   state.isNormalized = false;
-  state.normalizeValue = state.defaultSettings.normalize.value;
   state.tolerance = state.defaultSettings.tolerance.value;
-  state.field = {
-    x: 'x',
-    y: 'y',
-  };
-  state.normalizeField = 'time';
   state.plotScale = {
     x: { label: 'x', value: d3.scaleLinear() },
     y: { label: 'y', value: d3.scaleLinear() },
@@ -67,4 +98,4 @@ mutations.resetAll = (state) => {
   /* eslint-enable */
 };
 
-export default mutations;
+export default powderMutations;

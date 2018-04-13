@@ -1,13 +1,18 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex';
+
 import Chart from './DefaultChart';
 import { eventBus } from '../../../assets/js/eventBus';
+import chartMethods from './chartMethods';
 
 export default {
   name: 'CombineChartTAS',
   components: {
     'v-edit-chart-button': () => import('../../EditChart/EditChartButton/TASCombineEditChartButton'),
   },
+  mixins: [
+    chartMethods,
+  ],
   extends: Chart,
   data() {
     return {
@@ -25,9 +30,6 @@ export default {
     ...mapState('TAS/Combine', {
       plotScale: state => state.plotScale,
       label: state => state.field,
-      fittedData: state => state.fittedData,
-      fitEquation: state => state.fitEquation,
-      filteredData: state => state.filteredData,
       fields: state => state.field,
       combinedData: state => state.combinedData,
     }),
@@ -38,9 +40,6 @@ export default {
       preparedData: 'getPreparedData',
       mergedFiles: 'mergedFiles',
     }),
-    plottedData() {
-      return this.preparedData.map(d => d.values).reduce((a, b) => a.concat(b), []);
-    },
   },
   methods: {
     ...mapActions('TAS/Combine', [

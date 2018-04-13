@@ -1,16 +1,31 @@
-import getters from '../getters';
+import _ from 'lodash';
 
-import getFields from '../../../shared/getters/getFields';
-import getExtent from '../../../shared/getters/getExtent';
+import getter from '../getters';
+
 import isDefaultFieldsDifferent from '../../../shared/getters/isDefaultFieldsDifferent';
+import getPreparedData from '../../../shared/getters/getPreparedData';
 
-getters.mergedFiles = (state) => {
+const tasGetters = _.cloneDeep(getter);
+
+tasGetters.mergedFiles = (state) => {
   const temp = [...state.filesSelected.add].concat([...state.filesSelected.subtract]);
   return temp;
 };
 
-getters.getFields = getFields;
-getters.getExtent = getExtent;
-getters.isDefaultFieldsDifferent = isDefaultFieldsDifferent;
+tasGetters.getMetadata = (state, getters) => {
+  if (!getters.mergedFiles.length) return null;
 
-export default getters;
+  const obj = {};
+  state.selectedData.forEach((d) => {
+    if (typeof d.metadata !== 'undefined' && d.metadata.length > 0) {
+      obj[d.filename] = [...d.metadata];
+    }
+  });
+
+  return obj;
+};
+
+tasGetters.isDefaultFieldsDifferent = isDefaultFieldsDifferent;
+tasGetters.getPreparedData = getPreparedData;
+
+export default tasGetters;

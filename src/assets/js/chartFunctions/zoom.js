@@ -24,7 +24,7 @@ export default {
         .attr('x1', d => newXScale(d[this.fields.x]))
         .attr('y1', d => newYScale(d[this.fields.y] + d.error))
         .attr('x2', d => newXScale(d[this.fields.x]))
-        .attr('y2', d => newYScale(d[this.fields.y] - d.error));
+        .attr('y2', d => this.errorBottomY(d, newYScale));
 
       // re-draw error cap top;
       this.g.selectAll('.error-cap-top')
@@ -36,9 +36,9 @@ export default {
       // re-draw error cap top;
       this.g.selectAll('.error-cap-bottom')
         .attr('x1', d => newXScale(d[this.fields.x]) + 4)
-        .attr('y1', d => newYScale(d[this.fields.y] - d.error))
+        .attr('y1', d => this.errorBottomY(d, newYScale))
         .attr('x2', d => newXScale(d[this.fields.x]) - 4)
-        .attr('y2', d => newYScale(d[this.fields.y] - d.error));
+        .attr('y2', d => this.errorBottomY(d, newYScale));
 
       // re-draw scatter plot;
       this.g.selectAll('.point')

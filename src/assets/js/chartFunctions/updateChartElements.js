@@ -211,7 +211,7 @@ export default {
     },
     errorBottomY(d, y) {
       const vm = this;
-      if (d[vm.fields.y] - d.error < 0 && this.yType === 'log(y)') return y(d[vm.fields.y]);
+      if (d[vm.fields.y] - d.error <= 0 && this.yType === 'log(y)') return y(d[vm.fields.y]);
 
       return y(d[vm.fields.y] - d.error);
     },

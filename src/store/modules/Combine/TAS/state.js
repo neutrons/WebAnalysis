@@ -1,28 +1,32 @@
+import _ from 'lodash';
+
 import state from '../state';
 
 import defaultSettings from '../combineSettings';
 
-state.filesToAdd = [];
-state.filesToSubtract = [];
-state.filesSelected = {
+const stateTAS = _.cloneDeep(state);
+
+stateTAS.filesToAdd = [];
+stateTAS.filesToSubtract = [];
+stateTAS.filesSelected = {
   add: [],
   subtract: [],
 };
 
-state.field = {
+stateTAS.field = {
   x: 'pt',
   y: 'detector',
 };
 
-state.defaultSettings = JSON.parse(JSON.stringify(defaultSettings));
-state.normalizeValue = defaultSettings.normalize.value;
-state.normalizeField = defaultSettings.normalize.field;
-state.tolerance = defaultSettings.tolerance.value;
-state.normalizeOptions = [
+stateTAS.defaultSettings = JSON.parse(JSON.stringify(defaultSettings));
+stateTAS.normalizeValue = defaultSettings.normalize.value;
+stateTAS.normalizeField = defaultSettings.normalize.field;
+stateTAS.tolerance = defaultSettings.tolerance.value;
+stateTAS.normalizeOptions = [
   'time',
   'detector',
   'mcu',
   'monitor',
 ];
 
-export default state;
+export default stateTAS;

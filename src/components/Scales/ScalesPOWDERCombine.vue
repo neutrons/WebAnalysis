@@ -6,14 +6,14 @@ export default {
   name: 'ScalesPOWDER',
   extends: Scales,
   computed: {
-    ...mapState('POWDER/Fit', {
+    ...mapState('POWDER/Combine', {
       scales: state => state.scale,
       xScaleLabel: state => state.plotScale.x.label,
       yScaleLabel: state => state.plotScale.y.label,
     }),
   },
   methods: {
-    ...mapActions('POWDER/Fit', [
+    ...mapActions('POWDER/Combine', [
       'resetScales',
       'setYScale',
       'setXScale',

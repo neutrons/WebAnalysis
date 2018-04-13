@@ -1,21 +1,28 @@
 import * as d3 from 'd3';
+import _ from 'lodash';
 
 import mutations from '../mutations';
 import setCurrentData from '../../../shared/mutations/setCurrentDataTAS';
+import { setXField, setYField } from '../../../shared/mutations/fields';
 
-mutations.setCurrentData = setCurrentData;
+const tasMutations = _.cloneDeep(mutations);
 
-mutations.setNormalizeValue = (state, value) => {
+tasMutations.setXField = setXField;
+tasMutations.setYField = setYField;
+
+tasMutations.setCurrentData = setCurrentData;
+
+tasMutations.setNormalizeValue = (state, value) => {
   // eslint-disable-next-line
   state.normalizeValue = value;
 };
 
-mutations.setNormalizeField = (state, value) => {
+tasMutations.setNormalizeField = (state, value) => {
   // eslint-disable-next-line
   state.normalizeField = value;
 };
 
-mutations.updateFilesToAdd = (state, selected) => {
+tasMutations.updateFilesToAdd = (state, selected) => {
   const keys = [];
 
   state.filesToAdd.forEach((key) => {
@@ -30,7 +37,7 @@ mutations.updateFilesToAdd = (state, selected) => {
   state.filesSelected.add = selected;
 };
 
-mutations.updateFilesToSubtract = (state, selected) => {
+tasMutations.updateFilesToSubtract = (state, selected) => {
   const keys = [];
 
   state.filesToSubtract.forEach((key) => {
@@ -45,7 +52,7 @@ mutations.updateFilesToSubtract = (state, selected) => {
   state.filesSelected.subtract = selected;
 };
 
-mutations.resetAll = (state) => {
+tasMutations.resetAll = (state) => {
   /* eslint-disable */
   state.filesToSubtract = [];
   state.filesToAdd = [];
@@ -67,4 +74,4 @@ mutations.resetAll = (state) => {
   /* eslint-enable */
 };
 
-export default mutations;
+export default tasMutations;

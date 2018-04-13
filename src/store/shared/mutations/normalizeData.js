@@ -1,16 +1,17 @@
+/* eslint-disable */
 import _ from 'lodash';
 
-export const normalizeData = (state) => {
+export const normalizeData = (state, data) => {
   // normalize data in order to combine data on the same scale
   // normalization function: Y' = y / (K * normalizeField)
-
-  const tempData = state.selectedData;
+  const tempData = _.cloneDeep(data);
   const normField = state.normalizeField;
   const normValue = state.normalizeValue;
   const yField = state.field.y;
 
+  // first normalize data
   tempData.forEach((d) => {
-    d.dataTransformed.forEach((point) => {
+    d.values.forEach((point) => {
       const C = point[normField];
       const errorC = Math.sqrt(C);
       const oldY = point[yField];
@@ -26,8 +27,13 @@ export const normalizeData = (state) => {
     });
 
     // eslint-disable-next-line
-    d.dataTransformed = d.dataTransformed.filter(point => isFinite(point[yField]) && point[yField] !== null); // filter for divide by zero
+    d.values = d.values.filter(point => isFinite(point[yField]) && point[yField] !== null); // filter for divide by zero
   });
+
+  // set the normalized data to selected data's transformed data
+  for (let i = 0, length = tempData.length; i < length; i += 1) {
+    state.selectedData[i].dataTransformed = tempData[i].values;
+  }
 
   state.isNormalized = true; // eslint-disable-line
   state.combinedData = []; // eslint-disable-line
@@ -39,11 +45,7 @@ export const resetNormalizedData = (state) => {
 
   tempData.forEach((d) => {
     // eslint-disable-next-line
-    d.dataTransformed = _.cloneDeep(d.data)
-      .map(p => ({
-        ...p,
-        error: p[yField] < 0 ? 0 : Math.sqrt(p[yField]),
-      }));
+    d.dataTransformed = _.cloneDeep(d.data);
   });
 
   /* eslint-disable */

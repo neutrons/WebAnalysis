@@ -17,7 +17,7 @@
 
   <v-scales v-if='selectedData.length' />
 
-  <v-expansion-panel-content :value='true' v-if='selectedData.length > 1'>
+  <v-expansion-panel-content :value='true' v-if='selectedData.length'>
     <div slot='header' class='title'>Normalize</div>
     <v-container>
       <v-layout row>
@@ -28,7 +28,7 @@
     </v-container>
   </v-expansion-panel-content>
 
-  <v-expansion-panel-content :value='true' v-if='selectedData.length > 1 && isNormalized'>
+  <v-expansion-panel-content :value='true' v-if='selectedData.length && isNormalized'>
     <div slot='header' class='title'>Combine</div>
     <v-container>
       <v-layout row>        

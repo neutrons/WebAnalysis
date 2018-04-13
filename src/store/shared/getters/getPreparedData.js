@@ -21,6 +21,9 @@ export default (state) => {
     return { ...point };
   });
 
+  // Sort by smallest x value
+  temp = temp.sort((a, b) => a[xField] - b[xField]);
+
   // Nest the entries by name
   temp = d3.nest()
     .key(d => d.name)
