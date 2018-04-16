@@ -17,4 +17,27 @@ powderActions.resetNormalizedData = ({ state }) => {
   state.isNormalized = false; // eslint-disable-line
 };
 
+powderActions.setAnodesToExclude = async ({ state, commit }, values) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setAnodesToExclude', values);
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+powderActions.resetAnodesToExclude = async ({ commit, rootState }) =>
+  new Promise((resolve, reject) => {
+    try {
+      const values = [...rootState.POWDER.normalizeFilesData.excludeDetectors];
+      commit('resetAnodesToExclude', values);
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
 export default powderActions;

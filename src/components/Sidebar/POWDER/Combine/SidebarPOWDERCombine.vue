@@ -16,6 +16,7 @@
   </v-expansion-panel-content>
 
   <v-scales v-if='selectedData.length' />
+  <v-exclude-detectors v-if='selectedData.length' />
 
   <v-expansion-panel-content :value='true' v-if='selectedData.length'>
     <div slot='header' class='title'>Normalize</div>
@@ -49,6 +50,7 @@ import FilesListPOWDERCombine from '../../../FileExplorer/FilesList/FilesListPOW
 import CombineNormalize from '../../../CombineData/Normalize/NormalizePOWDER';
 import CombineTolerance from '../../../CombineData/Tolerance/TolerancePOWDER';
 import Scales from '../../../Scales/ScalesPOWDERCombine';
+import ExcludeDetectors from './ExcludeDetectors';
 
 export default {
   name: 'SidebarPOWDERCombine',
@@ -58,6 +60,7 @@ export default {
     'v-combine-normalize': CombineNormalize,
     'v-combine-tolerance': CombineTolerance,
     'v-scales': Scales,
+    'v-exclude-detectors': ExcludeDetectors,
   },
   computed: {
     ...mapState('POWDER/Combine', {

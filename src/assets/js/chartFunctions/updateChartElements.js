@@ -64,13 +64,16 @@ export default {
 
         scatterLine.enter()
           .append('path')
-          .attr('class', 'scatter-line')
+          .attr('class', d => `scatter-line ${d.key}`)
           .style('fill', 'none')
           .style('stroke', d => this.getColor(d.key))
+          .style('stroke-width', '1.5px')
           .attr('d', d => newLine(d.values));
 
         scatterLine.transition(trans)
+          .attr('class', d => `scatter-line ${d.key}`)
           .attr('d', d => newLine(d.values))
+          .style('stroke-width', '1.5px')
           .style('stroke', d => this.getColor(d.key));
       }
 

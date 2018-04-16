@@ -11,7 +11,9 @@ statePOWDER.defaultSettings = JSON.parse(JSON.stringify(defaultSettings));
 statePOWDER.tolerance = defaultSettings.tolerance.value;
 statePOWDER.field = {
   x: '2theta',
-  y: 'node',
+  y: 'anode',
 };
+
+statePOWDER.anodesToExclude = [];
 
 export default statePOWDER;

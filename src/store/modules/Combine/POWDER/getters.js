@@ -18,18 +18,24 @@ powderGetters.getMetadata = (state) => {
   return obj;
 };
 
-powderGetters.getPreparedData = (state) => { // eslint-disable-line
+powderGetters.getPreparedData = (state, getters) => { // eslint-disable-line
   const xField = state.field.x;
   const yField = state.field.y;
 
-  // Get all anodes for each curve
-  let temp = state.selectedData.map(d => d.dataTransformed.map(z => z.values));
-
-  // Exclude Anodes Based on File and User Selection
+  // First, exclude Anodes based on file and user selection
   // regex /^anode(?!19)(?!44)\d+$/
   // this means looks for a string that inclues "anode"
-  // plus any proceeding digit exclude "19" and "44"
+  // plus any proceeding digits excluding "19" and "44"
   // dynamic regex: `^anode${anodesToExclude.map(node => '(?!' + node + ')').join('')}\\d+$`;
+  const anodesToExclude = [...state.anodesToExclude];
+  const excludeStrings = anodesToExclude.map(anode => `(?!${anode})`).join('');
+  const reg = new RegExp(`^anode${excludeStrings}\\d+$`);
+
+  let temp = _.cloneDeep(state.selectedData);
+  temp = temp.map(a => a.dataTransformed
+    .filter(b => reg.exec(b.anode) !== null)
+    .map(c => c.values));
+
 
   // Flatten into one array
   temp = _.flattenDeep(temp);
@@ -71,6 +77,15 @@ powderGetters.getChartConfigurations = (state, getters) => {
     data,
     scales,
   };
+};
+
+powderGetters.getAnodeNames = (state) => {
+  const nodes = state.selectedData
+    .map(a => a.data.map(b => +b.anode.replace('anode', ''))) // get all anode names and reduce to numbers
+    .reduce((a, b) => a.concat(b), []) // reduce to flat array
+    .filter((a, index, arr) => arr.indexOf(a) === index); // filter out duplicate values
+
+  return nodes;
 };
 
 export default powderGetters;

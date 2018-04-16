@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 import addToFetchList from '../../shared/mutations/addToFetchList';
 import addUploadFiles from '../../shared/mutations/addUploadFiles';
 import removeSavedFile from '../../shared/mutations/removeSavedFile';
@@ -14,5 +16,8 @@ export default {
   removeSavedPoint,
   storeNormalizeFiles(state, files) {
     state.normalizeFiles = files; // eslint-disable-line
+  },
+  addExcludeDetectorData(state, data) {
+    Vue.set(state.normalizeFilesData, 'excludeDetectors', data);
   },
 };

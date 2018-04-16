@@ -3,4 +3,7 @@ export default {
   uploaded: {},
   saved: {},
   normalizeFiles: {},
+  normalizeFilesData: {
+    excludeDetectors: [],
+  },
 };

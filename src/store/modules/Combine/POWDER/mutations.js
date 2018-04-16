@@ -21,13 +21,13 @@ powderMutations.setCurrentData = (state, chosenData) => {
       .filter(field => /^anode\d+$/.exec(field) !== null);
 
     // Generate curve data per node
-    data = nodeNames.map(node => ({
+    data = nodeNames.map(anode => ({
       filename,
-      node,
+      anode,
       values: data.map(point => ({
         '2theta': point['2theta'],
-        node: point[node],
-        name: `${filename}_${node}`,
+        anode: point[anode],
+        name: `${filename}_${anode}`,
       })),
     }));
 
@@ -96,6 +96,14 @@ powderMutations.resetAll = (state) => {
   };
   state.isFieldChange = false;
   /* eslint-enable */
+};
+
+powderMutations.setAnodesToExclude = (state, values) => {
+  state.anodesToExclude = values; // eslint-disable-line
+};
+
+powderMutations.resetAnodesToExclude = (state, values) => {
+  state.anodesToExclude = values; // eslint-disable-line
 };
 
 export default powderMutations;
