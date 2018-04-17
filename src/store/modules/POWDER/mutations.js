@@ -20,4 +20,7 @@ export default {
   addExcludeDetectorData(state, data) {
     Vue.set(state.normalizeFilesData, 'excludeDetectors', data);
   },
+  addVCorrData(state, data) {
+    Vue.set(state.normalizeFilesData, 'vcorr', data);
+  },
 };

@@ -2,8 +2,10 @@
 <div>
   <!-- Add three inputs -->
   <!-- gaps -->
-  <!-- exclude detectors -->
-  <!-- vcorr -->
+  
+  <!-- Component to select files to normalize data -->
+  <v-vcorr-select />
+
   <v-tooltip top :close-delay='1' :disabled='isNormalized'>
     <v-btn slot='activator' outline block flat color='success' @click='onNormalizeData' :disabled='isNormalized'>Normalize Data</v-btn>
     <span>Click to normalize data</span>
@@ -22,6 +24,9 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
   name: 'NormalizePOWDER',
+  components: {
+    'v-vcorr-select': () => import('./VCorrPOWDER'),
+  },
   data() {
     return {
       valid: true,

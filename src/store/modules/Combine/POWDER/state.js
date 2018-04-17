@@ -15,5 +15,6 @@ statePOWDER.field = {
 };
 
 statePOWDER.anodesToExclude = [];
+statePOWDER.normalizeByVCorr = {};
 
 export default statePOWDER;

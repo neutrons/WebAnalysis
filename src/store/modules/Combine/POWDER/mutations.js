@@ -106,4 +106,8 @@ powderMutations.resetAnodesToExclude = (state, values) => {
   state.anodesToExclude = values; // eslint-disable-line
 };
 
+powderMutations.setNormalizeByVCorr = (state, value) => {
+  state.normalizeByVCorr = value; // eslint-disable-line
+};
+
 export default powderMutations;

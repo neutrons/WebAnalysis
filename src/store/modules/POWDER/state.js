@@ -5,5 +5,6 @@ export default {
   normalizeFiles: {},
   normalizeFilesData: {
     excludeDetectors: [],
+    vcorr: [],
   },
 };

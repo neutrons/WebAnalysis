@@ -47,7 +47,7 @@ import { mapState } from 'vuex';
 
 import FilterList from '../../../FileExplorer/FilterList/FilterListPOWDERCombine';
 import FilesListPOWDERCombine from '../../../FileExplorer/FilesList/FilesListPOWDERCombine';
-import CombineNormalize from '../../../CombineData/Normalize/NormalizePOWDER';
+import CombineNormalize from '../../../CombineData/Normalize/POWDER/NormalizePOWDER';
 import CombineTolerance from '../../../CombineData/Tolerance/TolerancePOWDER';
 import Scales from '../../../Scales/ScalesPOWDERCombine';
 import ExcludeDetectors from './ExcludeDetectors';

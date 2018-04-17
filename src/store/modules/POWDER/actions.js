@@ -2,12 +2,12 @@ import pp from 'papaparse';
 
 import addUploadFiles from '../../shared/actions/addUploadFiles';
 import fetchData from '../../shared/actions/fetchData';
+import configVCorr from '../../../assets/js/readFiles/configs/POWDERVCorr';
 
 function filterNormalizeFiles(files) {
   const names = Object.keys(files);
   const normalizeFiles = {
-    in_vcorr: [],
-    out_vcorr: [],
+    vcorr: [],
     exclude_detectors: [],
     gaps: [],
   };
@@ -17,10 +17,8 @@ function filterNormalizeFiles(files) {
   for (let i = 0, length = names.length; i < length; i += 1) {
     const file = names[i];
 
-    if (/IN_vcorr$/.exec(file) !== null) {
-      normalizeFiles.in_vcorr.push(files[file]);
-    } else if (/OUT_vcorr$/.exec(file) !== null) {
-      normalizeFiles.out_vcorr.push(files[file]);
+    if (/IN_vcorr$/.exec(file) !== null || /OUT_vcorr$/.exec(file) !== null) {
+      normalizeFiles.vcorr.push(files[file]);
     } else if (/exclude_detectors$/.exec(file) !== null) {
       normalizeFiles.exclude_detectors.push(files[file]);
     } else if (/gaps$/.exec(file) !== null) {
@@ -48,7 +46,9 @@ export default {
         commit('storeNormalizeFiles', normalizeFiles);
 
         // Then read and grab data from normalize files
+        // Then Read and grab data for vcorr files
         dispatch('readNormalizeFileData')
+          .then(dispatch('readVCorrFileData'))
           .then(() => {
             // Then get saved fetch files
             const savedKeys = Object.keys(state.saved);
@@ -93,6 +93,37 @@ export default {
 
         // set initial anodes to exclude for POWDER Combine
         commit('Combine/setAnodesToExclude', excludeData);
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
+  async readVCorrFileData({ state, dispatch, commit }) {
+    // general function to call vcorr parsing
+    function parseData(data) {
+      const result = {};
+
+      data.forEach((d) => {
+        const parsedResult = pp.parse(d.data, configVCorr);
+        const name = d.filename.match(/Ge_(\d+)_(IN|OUT)/g) || d.filename;
+        result[name] = parsedResult.data[0];
+      });
+
+      return result;
+    }
+
+    return new Promise(async (resolve, reject) => {
+      try {
+        // get vcorr detector data
+        const vCorrData = await dispatch('fetchData', state.normalizeFiles.vcorr);
+
+        // parse vcorr data
+        const vCorrParsed = parseData(vCorrData);
+
+        // add vcorr data
+        commit('addVCorrData', vCorrParsed);
 
         resolve(true);
       } catch (error) {
