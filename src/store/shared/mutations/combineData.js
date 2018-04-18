@@ -1,31 +1,14 @@
 import Vue from 'vue';
-import _ from 'lodash';
 import * as d3 from 'd3';
 
-export const combineData = (state, value) => {
-  if (!value.length) {
-    state.combinedData = []; // eslint-disable-line
-    return;
-  }
+export const combineData = (state, payload) => {
+  let tempData = payload.data;
+  // Is error is used to optionally generate a new error point below
+  // some curves, like Powder don't have error values, hence being optional
+  const isError = payload.isError;
 
-  let tempData = [];
   const xField = state.field.x;
   const yField = state.field.y;
-
-  state.selectedData.forEach((item) => {
-    let t;
-    if (item.type === 'subtract') {
-      t = _.cloneDeep(item).dataTransformed.map((d) => {
-        // eslint-disable-next-line
-        d[yField] *= -1;
-        return d;
-      });
-    } else {
-      t = _.cloneDeep(item.dataTransformed);
-    }
-
-    tempData.push(t);
-  });
 
   // flatten temp to 1D array
   tempData = tempData.reduce((a, b) => a.concat(b), []);
@@ -58,19 +41,30 @@ export const combineData = (state, value) => {
 
     if (subset.length) {
       newY = subset.reduce((a, b) => a + b[yField], 0);
-      newError = subset.reduce((a, b) => a + b.error, 0);
+
+      if (isError) {
+        newError = subset.reduce((a, b) => a + b.error, 0);
+      }
 
       /* eslint-disable */
       const newPoint = { ...subset[0] };
+      let matchKeys;
       newPoint[xField] = newX;
       newPoint[yField] = newY;
-      newPoint.error = newError;
+
+      if (isError) {
+        newPoint.error = newError;
+        matchKeys = [xField, yField, 'error'];
+      } else {
+        matchKeys = [xField, yField];
+      }
 
       for (let key in newPoint) {
-        if ([xField, yField, 'error'].indexOf(key) === -1) {
+        if (matchKeys.indexOf(key) === -1) {
           newPoint[key] = null;
         }
       }
+
       newPoint.name = 'combine';
       /* eslint-enable */
       result.push(newPoint);

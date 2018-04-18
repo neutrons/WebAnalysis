@@ -1,7 +1,5 @@
 <template>
-<div>
-  <!-- Add three inputs -->
-  
+<div> 
   <!-- Component to select files to normalize by vcorr data -->
   <v-vcorr-select />
 
@@ -22,7 +20,7 @@
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex';
 
-// import { eventBus } from '../../../assets/js/eventBus';
+import { eventBus } from '../../../../assets/js/eventBus';
 
 export default {
   name: 'NormalizePOWDER',
@@ -50,10 +48,22 @@ export default {
       'resetNormalizedData',
     ]),
     onNormalizeData() {
-      this.normalizeData();
+      this.normalizeData()
+        .then(() => {
+          eventBus.$emit('redraw-chart-powder-combine');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
     onResetNormalizedData() {
-      this.resetNormalizedData();
+      this.resetNormalizedData()
+        .then(() => {
+          eventBus.$emit('redraw-chart-powder-combine');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
   },
 };

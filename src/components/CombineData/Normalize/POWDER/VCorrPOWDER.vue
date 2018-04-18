@@ -29,6 +29,7 @@ export default {
       const result = [];
 
       /* eslint-disable */
+      // get an array of objects for vcorr filenames and data values
       for (let key in this.vcorrFiles) {
         result.push({
           name: key,
@@ -44,6 +45,7 @@ export default {
         return this.normalizeByVCorr;
       },
       set(value) {
+        // when a vcorr file is selected update the state with file's data
         this.setNormalizeByVCorr(value);
       },
     },

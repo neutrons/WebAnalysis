@@ -16,6 +16,9 @@ export default {
       filesSelected: state => state.filesSelected,
       filters: state => state.filters,
     }),
+    ...mapState('POWDER/Combine', {
+      storedCombined: state => state.storedCombined,
+    }),
     selected: {
       get() {
         return this.filesSelected;
@@ -32,6 +35,9 @@ export default {
             eventBus.$emit('add-notification', error.message, 'error');
           });
       },
+    },
+    allFiles() {
+      return Object.assign({}, this.fetched, this.uploaded, this.storedCombined);
     },
   },
   methods: {

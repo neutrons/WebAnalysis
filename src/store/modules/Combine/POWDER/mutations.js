@@ -16,11 +16,11 @@ powderMutations.setCurrentData = (state, chosenData) => {
     const filename = chosenData[i].filename;
     let data = _.cloneDeep(chosenData[i].data);
 
-    // Get node names
+    // Get anode names
     const nodeNames = Object.keys(data[0])
       .filter(field => /^anode\d+$/.exec(field) !== null);
 
-    // Generate curve data per node
+    // Generate curve data per anode
     data = nodeNames.map(anode => ({
       filename,
       anode,
@@ -95,6 +95,9 @@ powderMutations.resetAll = (state) => {
     y: { label: 'y', value: d3.scaleLinear() },
   };
   state.isFieldChange = false;
+  state.anodesToExclude = [];
+  state.normalizeByVCorr = {};
+  state.isNormalizeByGap = false;
   /* eslint-enable */
 };
 
@@ -112,6 +115,42 @@ powderMutations.setNormalizeByVCorr = (state, value) => {
 
 powderMutations.setIsNormalizeByGap = (state, value) => {
   state.isNormalizeByGap = value; // eslint-disable-line
+};
+
+powderMutations.normalizeData = (state) => {
+  state.isNormalized = true; // eslint-disable-line
+
+  // To Normalize Powder Data divide each plotted curve by vcorr data
+  state.selectedData.forEach((curve) => {
+    // Grab transformed data
+    const transformedData = curve.dataTransformed;
+
+    // Loop through each anode value and divide by vcorr matching anode number to vcorr index
+    transformedData.forEach((anode) => {
+      // grab anode number and convert to type of number
+      // then subtract by 1 to get appropriate index for VCorr values
+      let anodeIndex = +anode.anode.replace('anode', '');
+      anodeIndex -= 1;
+
+      const normalizeValue = state.normalizeByVCorr.value[anodeIndex];
+
+      anode.values = anode.values.map((point) => { // eslint-disable-line
+        const normalizedPoint = { ...point };
+        normalizedPoint.anode /= normalizeValue;
+
+        return normalizedPoint;
+      });
+    });
+  });
+};
+
+powderMutations.resetNormalizedData = (state) => {
+  state.isNormalized = false; // eslint-disable-line
+
+  // Loop through selected data and reset transformed data back to being non-normalized
+  state.selectedData.forEach((curve) => {
+     curve.dataTransformed = _.cloneDeep(curve.data); // eslint-disable-line
+  });
 };
 
 export default powderMutations;

@@ -9,14 +9,6 @@ const powderActions = _.cloneDeep(actions);
 powderActions.updateFilesSelected = updateFilesSelected;
 powderActions.parseData = parseData;
 
-powderActions.normalizeData = ({ state }) => {
-  state.isNormalized = true; // eslint-disable-line
-};
-
-powderActions.resetNormalizedData = ({ state }) => {
-  state.isNormalized = false; // eslint-disable-line
-};
-
 powderActions.setAnodesToExclude = async ({ state, commit }, values) =>
   new Promise((resolve, reject) => {
     try {
@@ -39,5 +31,30 @@ powderActions.resetAnodesToExclude = async ({ commit, rootState }) =>
       reject(error);
     }
   });
+
+powderActions.combineData = async ({ state, commit }, value) => { // eslint-disable-line
+  return new Promise((resolve, reject) => {
+    if (!value.length) {
+      commit('resetCombinedData');
+      reject('No data to combine');
+    }
+
+    try {
+      // pre-format data before combining it
+      const tempData = [];
+
+      state.selectedData.forEach((item) => {
+        item.dataTransformed.forEach((curve) => {
+          tempData.push(_.cloneDeep(curve.values));
+        });
+      });
+
+      commit('combineData', { data: tempData, isError: false });
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 
 export default powderActions;

@@ -13,6 +13,12 @@ export default {
     ...mapState('POWDER/Fit', {
       selected: state => state.filters,
     }),
+    ...mapState('POWDER/Combine', {
+      storedCombined: state => state.storedCombined,
+    }),
+    allFiles() {
+      return Object.assign({}, this.fetched, this.uploaded, this.storedCombined);
+    },
   },
   methods: {
     ...mapMutations('POWDER/Fit', [
