@@ -23,4 +23,7 @@ export default {
   addVCorrData(state, data) {
     Vue.set(state.normalizeFilesData, 'vcorr', data);
   },
+  addGapsData(state, data) {
+    Vue.set(state.normalizeFilesData, 'gaps', data);
+  },
 };

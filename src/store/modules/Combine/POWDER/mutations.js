@@ -110,4 +110,8 @@ powderMutations.setNormalizeByVCorr = (state, value) => {
   state.normalizeByVCorr = value; // eslint-disable-line
 };
 
+powderMutations.setIsNormalizeByGap = (state, value) => {
+  state.isNormalizeByGap = value; // eslint-disable-line
+};
+
 export default powderMutations;

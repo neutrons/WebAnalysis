@@ -16,5 +16,6 @@ statePOWDER.field = {
 
 statePOWDER.anodesToExclude = [];
 statePOWDER.normalizeByVCorr = {};
+statePOWDER.isNormalizeByGap = false;
 
 export default statePOWDER;

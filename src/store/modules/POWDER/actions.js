@@ -3,6 +3,7 @@ import pp from 'papaparse';
 import addUploadFiles from '../../shared/actions/addUploadFiles';
 import fetchData from '../../shared/actions/fetchData';
 import configVCorr from '../../../assets/js/readFiles/configs/POWDERVCorr';
+import configGaps from '../../../assets/js/readFiles/configs/POWDERGaps';
 
 function filterNormalizeFiles(files) {
   const names = Object.keys(files);
@@ -46,9 +47,11 @@ export default {
         commit('storeNormalizeFiles', normalizeFiles);
 
         // Then read and grab data from normalize files
-        // Then Read and grab data for vcorr files
+        // Then read and grab data for vcorr files
+        // Then read and grap data for gaps files
         dispatch('readNormalizeFileData')
           .then(dispatch('readVCorrFileData'))
+          .then(dispatch('readGapsFileData'))
           .then(() => {
             // Then get saved fetch files
             const savedKeys = Object.keys(state.saved);
@@ -124,6 +127,29 @@ export default {
 
         // add vcorr data
         commit('addVCorrData', vCorrParsed);
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  },
+  async readGapsFileData({ state, dispatch, commit }) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        // get gaps detector data
+        const gapsData = await dispatch('fetchData', state.normalizeFiles.gaps);
+
+        // parse gaps data
+        const gapsParsed = gapsData.map((data) => {
+          const parsedData = pp.parse(data.data, configGaps).data;
+          const filename = data.filename;
+
+          return { filename, data: parsedData };
+        });
+
+        // add gaps data
+        commit('addGapsData', gapsParsed);
 
         resolve(true);
       } catch (error) {
