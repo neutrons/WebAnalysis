@@ -3,9 +3,6 @@
   <!-- Component to select files to normalize by vcorr data -->
   <v-vcorr-select />
 
-  <!-- Component to toggle normalize by gaps  -->
-  <v-gaps-check />
-
   <v-tooltip top :close-delay='1' :disabled='isNormalized'>
     <v-btn slot='activator' outline block flat color='success' @click='onNormalizeData' :disabled='isNormalized'>Normalize Data</v-btn>
     <span>Click to normalize data</span>
@@ -26,7 +23,6 @@ export default {
   name: 'NormalizePOWDER',
   components: {
     'v-vcorr-select': () => import('./VCorrPOWDER'),
-    'v-gaps-check': () => import('./GapsPOWDER'),
   },
   data() {
     return {

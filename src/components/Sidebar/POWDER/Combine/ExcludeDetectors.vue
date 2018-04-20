@@ -41,9 +41,17 @@ export default {
       default: true,
     },
   },
+  created() {
+    // initialize anodes to exclude from exclude_detectors file data
+    const values = this.defaultAnodesToExclude;
+    values.forEach(d => this.onToggleAnode(d));
+  },
   computed: {
     ...mapState('POWDER/Combine', {
       anodesToExclude: state => state.anodesToExclude,
+    }),
+    ...mapState('POWDER', {
+      defaultAnodesToExclude: state => state.normalizeFilesData.excludeDetectors,
     }),
     ...mapGetters('POWDER/Combine', {
       items: 'getAnodeNames',

@@ -8,28 +8,41 @@ const powderMutations = _.cloneDeep(mutations);
 
 powderMutations.updateFilesSelected = updateFilesSelected;
 
-powderMutations.setCurrentData = (state, chosenData) => {
+powderMutations.setCurrentData = (state, payload) => {
+  const chosenData = payload.data;
+  const gapsData = payload.gaps;
+
   const filteredData = [];
 
   for (let i = 0, length = chosenData.length; i < length; i += 1) {
     const metadata = [...chosenData[i].metadata];
     const filename = chosenData[i].filename;
     let data = _.cloneDeep(chosenData[i].data);
+    let gapSum = 0;
 
     // Get anode names
     const nodeNames = Object.keys(data[0])
       .filter(field => /^anode\d+$/.exec(field) !== null);
 
     // Generate curve data per anode
-    data = nodeNames.map(anode => ({
-      filename,
-      anode,
-      values: data.map(point => ({
-        '2theta': point['2theta'],
-        anode: point[anode],
-        name: `${filename}_${anode}`,
-      })),
-    }));
+    data = nodeNames.map((anode, index) => {
+      // With each iteration of anode, we add the cumulative of gaps data to 2theta
+      // So Anode1 is gaps[0] + 2theta
+      // Anode2 is gaps[0] + gaps[1] + 2theta
+      // ... Anode(N) is gaps[0] + ... + gaps[n] + 2theta
+      // We only use the first column of gaps data (this is what user told us)
+      gapSum += gapsData[index][0];
+
+      return {
+        filename,
+        anode,
+        values: data.map(point => ({
+          '2theta': point['2theta'] + gapSum, // add cumulative gaps data to 2theta
+          anode: point[anode],
+          name: `${filename}_${anode}`,
+        })),
+      };
+    });
 
     filteredData.push({
       metadata,

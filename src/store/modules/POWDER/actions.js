@@ -49,7 +49,7 @@ export default {
         // Then read and grab data from normalize files
         // Then read and grab data for vcorr files
         // Then read and grap data for gaps files
-        dispatch('readNormalizeFileData')
+        dispatch('readExcludeDetectorsFileData')
           .then(dispatch('readVCorrFileData'))
           .then(dispatch('readGapsFileData'))
           .then(() => {
@@ -79,7 +79,7 @@ export default {
       }
     });
   },
-  async readNormalizeFileData({ state, dispatch, commit }) {
+  async readExcludeDetectorsFileData({ state, dispatch, commit }) {
     return new Promise(async (resolve, reject) => {
       try {
         // get exclude detector data
@@ -93,9 +93,6 @@ export default {
         .map(d => (+d + 1)); // node might be a string so convert to number and add one
 
         commit('addExcludeDetectorData', excludeData);
-
-        // set initial anodes to exclude for POWDER Combine
-        commit('Combine/setAnodesToExclude', excludeData);
 
         resolve(true);
       } catch (error) {

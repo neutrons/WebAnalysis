@@ -27,9 +27,9 @@ export default async ({ state, dispatch, commit, rootGetters }, payload) => {
   // Next Store Data
   commit(`${group}/storeData`, parsedData, { root: true });
 
-  // Next Set Current Data
+  // Finally Set Current Data
   const finalData = _.flatten([storedData, parsedData]);
-  commit('setCurrentData', finalData);
+  dispatch('setCurrentData', finalData);
 
   return true;
 };
