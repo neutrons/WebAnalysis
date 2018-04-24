@@ -36,6 +36,9 @@ export default {
 
       return temp;
     },
+    allFiles() {
+      return Object.assign({}, this.fetched, this.uploaded);
+    },
   },
 };
 </script>

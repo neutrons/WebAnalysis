@@ -6,7 +6,6 @@ export default (state, chosenData) => {
 
   const tempData = _.cloneDeep(chosenData);
   const tempSelect = [];
-  const yField = state.field.y;
 
   for (let i = 0, len = tempData.length; i < len; i += 1) {
     const result = {};
@@ -16,11 +15,11 @@ export default (state, chosenData) => {
     const dataTransformed = _.cloneDeep(data)
       .map(d => ({
         ...d,
-        error: d[yField] < 0 ? 0 : Math.sqrt(d[yField]),
       }));
 
     const defaultFields = { ...tempData[i].defaultFields };
 
+    // Conditional statement for TAS combine when filtering for add or substract files
     if (typeof state.filesToAdd !== 'undefined') {
       result.type = state.filesToAdd.indexOf(filename) === -1 ? 'subtract' : 'add';
     }

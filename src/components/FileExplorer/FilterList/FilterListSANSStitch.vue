@@ -13,9 +13,6 @@ export default {
     ...mapState('SANS/Stitch', {
       selected: state => state.filters,
     }),
-    allFiles() {
-      return Object.assign({}, this.fetched, this.uploaded);
-    },
   },
   methods: {
     ...mapMutations('SANS/Stitch', [

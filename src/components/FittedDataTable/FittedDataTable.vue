@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     downloadFittedData() {
-      const headers = 'x,y\n';
+      const headers = ['x', 'y'];
       // eslint-disable-next-line
       const arr = this.fittedData.map((d) => {
         return [

@@ -15,8 +15,30 @@
 </template>
 
 <script>
+import { eventBus } from '../../../assets/js/eventBus';
+
 export default {
   name: 'FitList',
+  computed: {
+    selected: {
+      get() {
+        return this.fileToFit;
+      },
+      set(value) {
+        // trigger action to update file to fit
+        // wait for response before updating chart
+        const redrawName = `redraw-chart-${this.$route.meta.group.toLowerCase()}-fit`;
+
+        this.updateFileToFit(value)
+          .then(() => {
+            eventBus.$emit(redrawName);
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
+      },
+    },
+  },
 };
 </script>
 

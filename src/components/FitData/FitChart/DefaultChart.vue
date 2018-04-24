@@ -169,6 +169,10 @@ export default {
       sliderHeight: 25,
       showPicker: false,
       pickerPoints: [0, 0],
+      isLegend: true,
+      isScatterLines: true,
+      isErrorBars: true,
+      isScatterPoints: true,
     };
   },
   computed: {

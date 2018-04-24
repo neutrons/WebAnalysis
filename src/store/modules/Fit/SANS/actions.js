@@ -1,10 +1,11 @@
 import parseData from '../../../shared/actions/parseSANS1D';
 import updateFilesSelected from '../../../shared/actions/updateFilesSelected';
+import setCurrentData from '../../../shared/actions/setCurrentData';
 
 import actions from '../actions';
 
 actions.updateFilesSelected = updateFilesSelected;
-
+actions.setCurrentData = setCurrentData;
 actions.parseData = parseData;
 
 actions.updateFileToFit = async ({ state, commit, dispatch }, file) => { // eslint-disable-line

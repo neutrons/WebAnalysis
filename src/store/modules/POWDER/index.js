@@ -8,6 +8,7 @@ import mutations from './mutations';
 // Import Modules
 import Browse from '../Browse/POWDER';
 import Fit from '../Fit/POWDER';
+import Combine from '../Combine/POWDER';
 
 export default {
   namespaced: true,
@@ -15,6 +16,7 @@ export default {
   modules: {
     Browse: _.cloneDeep(Browse),
     Fit: _.cloneDeep(Fit),
+    Combine: _.cloneDeep(Combine),
   },
   getters,
   actions,

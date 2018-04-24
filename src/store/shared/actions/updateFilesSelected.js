@@ -10,6 +10,13 @@ export default async ({ state, dispatch, commit, rootGetters }, payload) => {
   // First Update File List
   commit('updateFilesSelected', filelist);
 
+  // if selected files is fewer than 2 remove combined data
+  // this is only for the combine data modules
+  if (
+    (typeof state.isNormalized !== 'undefined' && typeof state.combinedData !== 'undefined') &&
+    (state.isNormalized || state.combinedData.length > 0)
+  ) commit('resetNormalizedData');
+
   // Next Get Stored Data
   const [storedData, nonStoredFiles] = rootGetters[`${group}/getStoredData`](filelist);
 
@@ -27,9 +34,9 @@ export default async ({ state, dispatch, commit, rootGetters }, payload) => {
   // Next Store Data
   commit(`${group}/storeData`, parsedData, { root: true });
 
-  // Next Set Current Data
+  // Finally Set Current Data
   const finalData = _.flatten([storedData, parsedData]);
-  commit('setCurrentData', finalData);
+  dispatch('setCurrentData', finalData);
 
   return true;
 };

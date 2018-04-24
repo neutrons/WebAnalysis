@@ -1,16 +1,22 @@
-export const normalizeData = async ({ commit }) => { // eslint-disable-line
-  return new Promise((resolve, reject) => {
+export const normalizeData = async ({ commit, getters }) =>
+  new Promise((resolve, reject) => {
     try {
-      commit('normalizeData');
+      const data = getters.getPreparedData;
+      commit('normalizeData', data);
+
       resolve(true);
     } catch (error) {
       reject(error);
     }
   });
-};
 
-export const resetNormalizedData = async ({ commit }) => {
-  commit('resetNormalizedData');
-  return Promise.resolve(true);
-};
+export const resetNormalizedData = async ({ commit }) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('resetNormalizedData');
 
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });

@@ -1,37 +1,22 @@
 import Vue from 'vue';
-import _ from 'lodash';
 import * as d3 from 'd3';
 
-export const combineData = (state, value) => {
-  if (!value.length) {
-    state.combinedData = []; // eslint-disable-line
-    return;
-  }
+export const combineData = (state, data) => {
+  let tempData = data;
 
-  let tempData = [];
   const xField = state.field.x;
   const yField = state.field.y;
-
-  state.selectedData.forEach((item) => {
-    let t;
-    if (item.type === 'subtract') {
-      t = _.cloneDeep(item).dataTransformed.map((d) => {
-        // eslint-disable-next-line
-        d[yField] *= -1;
-        return d;
-      });
-    } else {
-      t = _.cloneDeep(item.dataTransformed);
-    }
-
-    tempData.push(t);
-  });
 
   // flatten temp to 1D array
   tempData = tempData.reduce((a, b) => a.concat(b), []);
 
+  // get min and max values for x domain
   const extent = d3.extent(tempData, d => d[xField]);
+
+  // calculate numbe of bins
   const binCount = Math.ceil((extent[1] - extent[0]) / state.tolerance);
+
+  // calculate binning threshold
   const thresholds = d3.range(extent[0], extent[1], (extent[1] - extent[0]) / binCount);
 
   const histogram = d3.histogram()
@@ -50,6 +35,7 @@ export const combineData = (state, value) => {
     let newError;
     let subset;
 
+    // get subset of data by current bin's min and max
     if (index !== end) {
       subset = tempData.filter(d => min <= d[xField] && d[xField] < max);
     } else {
@@ -57,20 +43,28 @@ export const combineData = (state, value) => {
     }
 
     if (subset.length) {
+      // calculate cumulative sum for new y point value
       newY = subset.reduce((a, b) => a + b[yField], 0);
+
+      // calculate cumulative sum for new error point value
       newError = subset.reduce((a, b) => a + b.error, 0);
 
       /* eslint-disable */
-      const newPoint = { ...subset[0] };
-      newPoint[xField] = newX;
-      newPoint[yField] = newY;
+      const newPoint = { ...subset[0] }; // just use first point in subset as a template for new point
       newPoint.error = newError;
 
+      const matchKeys = [xField, yField, 'error'];
+      newPoint[xField] = newX;
+      newPoint[yField] = newY;
+
+      // Some data files have many field other than x, y, and error
+      // So loop through and replace with null since we didn't calculate for those values
       for (let key in newPoint) {
-        if ([xField, yField, 'error'].indexOf(key) === -1) {
+        if (matchKeys.indexOf(key) === -1) {
           newPoint[key] = null;
         }
       }
+
       newPoint.name = 'combine';
       /* eslint-enable */
       result.push(newPoint);
@@ -95,6 +89,7 @@ export const addCombinedData = (state, payload) => {
     tags,
   };
 
+  // use Vue.set in order to watch for changes to original array
   Vue.set(state.storedCombined, filename, data);
 };
 

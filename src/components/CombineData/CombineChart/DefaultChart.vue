@@ -39,7 +39,12 @@
               </v-toolbar>
             </v-flex>
 
+            <!-- Slot for Tas Combine Chart -->
             <slot name='tabs-slot' v-if='ID === "TAS-Combine"' :show-tabs='showTabs' :x-scale='xScale'
+              :active-parent-tab='activeParentTab' :metadata='metadata' :metadata-length='metadataLength' :combined-data='combinedData' :merged-files='mergedFiles'></slot>
+
+            <!-- Slot for Powder Combine Chart -->
+            <slot name='tabs-slot' v-if='ID === "POWDER-Combine"' :show-tabs='showTabs' :x-scale='xScale'
               :active-parent-tab='activeParentTab' :metadata='metadata' :metadata-length='metadataLength' :combined-data='combinedData' :merged-files='mergedFiles'></slot>
           </v-layout>
         </v-tabs-content>
@@ -70,7 +75,6 @@
 <script>
 // Import Packages
 import * as d3 from 'd3';
-import chartMethods from './chartMethods';
 import deletePoint from '../../DeletePoint/DeletePointMixins';
 
 export default {
@@ -82,7 +86,6 @@ export default {
     },
   },
   mixins: [
-    chartMethods,
     deletePoint,
   ],
   components: {
@@ -105,6 +108,10 @@ export default {
         bottom: 50,
         left: 100,
       },
+      isLegend: true,
+      isScatterLines: true,
+      isErrorBars: true,
+      isScatterPoints: true,
     };
   },
   computed: {
@@ -151,6 +158,18 @@ export default {
         .tickSize(-this.width)
         .tickFormat('');
     },
+    isMetadata() {
+      return !(typeof this.metadata === 'undefined');
+    },
+    metadataLength() {
+      if (!this.isMetadata) {
+        return 0;
+      } else if (this.metadata === null) {
+        return 0;
+      }
+
+      return Object.keys(this.metadata).length;
+    },
     xExtent() {
       return this.getExtent(this.fields.x);
     },
@@ -163,17 +182,8 @@ export default {
         .x(d => this.xScale(d[this.fields.x]))
         .y(d => this.yScale(d[this.fields.y]));
     },
-    isMetadata() {
-      return !(typeof this.metadata === 'undefined');
-    },
-    metadataLength() {
-      if (!this.isMetadata) {
-        return 0;
-      } else if (this.metadata === null) {
-        return 0;
-      }
-
-      return Object.keys(this.metadata).length;
+    plottedData() {
+      return this.preparedData.map(d => d.values).reduce((a, b) => a.concat(b), []);
     },
   },
   methods: {

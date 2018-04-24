@@ -42,6 +42,7 @@
 
 <script>
 import math from 'mathjs';
+import { eventBus } from '../../assets/js/eventBus';
 
 export default {
   name: 'Transformations',
@@ -65,6 +66,9 @@ export default {
         && !this.errorX
         && this.xTransformation.length > 0
         && this.yTransformation.length > 0;
+    },
+    redrawName() {
+      return `redraw-chart-${this.$route.meta.group.toLowerCase()}-${this.$route.meta.feature.toLowerCase()}`;
     },
   },
   methods: {
@@ -96,6 +100,58 @@ export default {
     },
     validateLength(expression) {
       return expression.length !== 0 || 'There must be a transformation.';
+    },
+    resetAllTransformations() {
+      // trigger action to reset transformations then
+      // transform data back to original then update plot
+      this.resetTransformations()
+        .then(() => this.transformData())
+        .then(() => {
+          eventBus.$emit(this.redrawName);
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
+    },
+    enterX() {
+      if (this.canEnter) {
+        // trigger action to set x transformation then transform data then update plot
+        this.setXTransformation(this.xTransformation)
+          .then(() => this.transformData())
+          .then(() => {
+            eventBus.$emit(this.redrawName);
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
+      }
+    },
+    enterY() {
+      if (this.canEnter) {
+        // trigger action to set y transformation then transform data then update plot
+        this.setYTransformation(this.yTransformation)
+          .then(() => this.transformData())
+          .then(() => {
+            eventBus.$emit(this.redrawName);
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
+      }
+    },
+    setAllTransformations() {
+      if (this.canEnter) {
+        // trigger action to set both transformations then transform data then update plot
+        this.setXTransformation(this.xTransformation)
+          .then(() => this.setYTransformation(this.yTransformation))
+          .then(() => this.transformData())
+          .then(() => {
+            eventBus.$emit(this.redrawName);
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
+      }
     },
   },
   watch: {

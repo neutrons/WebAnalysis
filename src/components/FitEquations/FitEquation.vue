@@ -130,7 +130,16 @@ export default {
   },
 
   created() {
+    eventBus.$on(`update-initial-value-pick-${this.$route.meta.group.toLowerCase()}`, this.updateInitialValueWithPick);
     this.addEquation(this.fitKeys[0]);
+  },
+
+  destroyed() {
+    eventBus.$off(`update-initial-value-pick-${this.$route.meta.group.toLowerCase()}`);
+  },
+
+  beforeDestroy() {
+    this.setEquationEditSelect([]);
   },
 
   computed: {
@@ -156,6 +165,11 @@ export default {
       }
 
       return true;
+    },
+    selected: {
+      get() {
+        return this.equationEditSelect;
+      },
     },
   },
 
@@ -209,7 +223,7 @@ export default {
           if (this.$options.name === 'FitEquationSANS') this.fitData();
 
           // if TAS revise line with changes to equation
-          if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+          if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-tas', this.fitInitialValues);
         })
         .catch((error) => {
           eventBus.$emit('add-notification', error.message, 'error');
@@ -221,7 +235,7 @@ export default {
       this.addToSelect(temp);
 
       // if tas revise line with changes to equation
-      if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+      if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-tas', this.fitInitialValues);
 
       this.showEquation.push(true);
       this.showIV.push(true);
@@ -230,7 +244,7 @@ export default {
       this.removeSelectAtIndex(index)
         .then(() => {
           // if tas revise line with changes to equation
-          if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+          if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-tas', this.fitInitialValues);
           this.showEquation.splice(index, 1);
           this.showIV.splice(index, 1);
         })
@@ -298,6 +312,47 @@ export default {
     },
     toggleShowIV(index) {
       Vue.set(this.showIV, index, !this.showIV[index]);
+    },
+    togglePick(value, index, ivIndex) {
+      const toggleName = `toggle-pick-area-${this.$route.meta.group.toLowerCase()}`;
+
+      if (value) {
+        eventBus.$emit(toggleName, true);
+        this.pickIndex = index;
+        this.pickIvIndex = ivIndex;
+      } else {
+        eventBus.$emit(toggleName, false);
+        this.resetPickIndex();
+      }
+    },
+    updateInitialValueWithPick(value) {
+      // trigger update initial values then resetPick index and revise fit line
+      const reviseName = `revise-fit-line-${this.$route.meta.group.toLowerCase()}`;
+
+      this.updateInitialValue({
+        index: this.pickIndex,
+        ivIndex: this.pickIvIndex,
+        value: +value.toFixed(4),
+      })
+      .then(() => {
+        this.resetPickIndex();
+        eventBus.$emit(reviseName, this.fitInitialValues);
+      })
+      .catch((error) => {
+        eventBus.$emit('add-notification', error.message, 'error');
+      });
+    },
+    coefficientInput(payload) {
+      // update initial values then revise fit line
+      const reviseName = `revise-fit-line-${this.$route.meta.group.toLowerCase()}`;
+
+      this.updateInitialValue(payload)
+        .then(() => {
+          eventBus.$emit(reviseName, this.fitInitialValues);
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
   },
 };
