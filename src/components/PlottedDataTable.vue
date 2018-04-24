@@ -144,16 +144,6 @@ export default {
 
 </script>
 
-<style lang='scss'>
-table.table thead td:not(:nth-child(1)),
-table.table tbody td:not(:nth-child(1)),
-table.table thead th:not(:nth-child(1)),
-table.table tbody th:not(:nth-child(1)),
-table.table thead td:first-child,
-table.table tbody td:first-child,
-table.table thead th:first-child,
-table.table tbody th:first-child {
-  padding: 0 5px !important;
-}
-
+<style lang='scss' scoped>
+@import url('../assets/css/dataTableStyles.scss');
 </style>

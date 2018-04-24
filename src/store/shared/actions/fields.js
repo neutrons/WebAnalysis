@@ -1,9 +1,21 @@
-export const setXField = ({ commit }, value) => {
-  commit('setXField', value);
-  return Promise.resolve(true);
-};
+export const setXField = ({ commit }, value) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setXField', value);
 
-export const setYField = ({ commit }, value) => {
-  commit('setYField', value);
-  return Promise.resolve(true);
-};
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+export const setYField = ({ commit }, value) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setYField', value);
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });

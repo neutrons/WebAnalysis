@@ -1,3 +1,4 @@
+// Mixin for drawing charts for the stitch component
 // eslint-disable-next-line
 import * as d3 from 'd3';
 

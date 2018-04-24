@@ -1,60 +1,121 @@
 // Mutations specifically for the equation editor component and fit module
-export const addToSelect = async ({ commit }, value) => {
-  commit('addToSelect', value);
-  return Promise.resolve(true);
-};
 
-export const updateSelectAtIndex = async ({ commit }, payload) => {
-  commit('updateSelectAtIndex', payload);
-  return Promise.resolve(true);
-};
+// add new equation to list
+export const addToSelect = async ({ commit }, value) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('addToSelect', value);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const removeSelectAtIndex = async ({ commit }, index) => {
-  commit('removeSelectAtIndex', index);
-  return Promise.resolve(true);
-};
+// update equation information
+export const updateSelectAtIndex = async ({ commit }, payload) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('updateSelectAtIndex', payload);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const updateInitialValue = async ({ commit }, payload) => {
-  commit('updateInitialValue', payload);
-  return Promise.resolve(true);
-};
+// remove equation from list
+export const removeSelectAtIndex = async ({ commit }, index) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('removeSelectAtIndex', index);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const addCoefficientValue = async ({ commit }, payload) => {
-  commit('addCoefficientValue', payload);
-  return Promise.resolve(true);
-};
+// update initial values for a specified equation in the list
+export const updateInitialValue = async ({ commit }, payload) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('updateInitialValue', payload);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const removeInitialValues = async ({ commit }, payload) => {
-  commit('removeInitialValues', payload);
-  return Promise.resolve(true);
-};
+// add coefficient values for a specified equation in the list
+export const addCoefficientValue = async ({ commit }, payload) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('addCoefficientValue', payload);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const addInitialValues = async ({ commit }, payload) => {
-  commit('addInitialValues', payload);
-  return Promise.resolve(true);
-};
+// remove initial value for a specified equation in the list
+export const removeInitialValues = async ({ commit }, payload) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('removeInitialValues', payload);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const setSelectValid = async ({ commit }, payload) => {
-  commit('setSelectValid', payload);
-  return Promise.resolve(true);
-};
+// add initial value for a specfied equation in the list
+export const addInitialValues = async ({ commit }, payload) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('addInitialValues', payload);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const setSelectEquation = async ({ commit }, payload) => {
-  commit('setSelectEquation', payload);
-  return Promise.resolve(true);
-};
+// label whether specified equation in list is a valid entry
+export const setSelectValid = async ({ commit }, payload) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setSelectValid', payload);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const setCoefficientConstant = async ({ commit }, payload) => {
-  commit('setCoefficientConstant', payload);
-  return Promise.resolve(true);
-};
+// change equation specified in the list
+export const setSelectEquation = async ({ commit }, payload) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setSelectEquation', payload);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const updateEquationEditInitialValues = async ({ commit }, item) => {
-  commit('updateEquationEditInitialValues', item);
-  return Promise.resolve(true);
-};
+// toggle whether coefficient will be constant for a given equation in the list
+export const setCoefficientConstant = async ({ commit }, payload) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setCoefficientConstant', payload);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const setEquationEditSelect = async ({ commit }, value) => {
-  commit('setEquationEditSelect', value);
-  return Promise.resolve(true);
-};
+// edit initial value for a specified equation in the list
+export const updateEquationEditInitialValues = async ({ commit }, item) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('updateEquationEditInitialValues', item);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+// update the equation in the list
+export const setEquationEditSelect = async ({ commit }, value) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setEquationEditSelect', value);
+    } catch (error) {
+      reject(error);
+    }
+  });

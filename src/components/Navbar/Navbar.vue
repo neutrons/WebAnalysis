@@ -51,6 +51,7 @@ export default {
   },
   computed: {
     isOffline() {
+      // is offline will control visibility of fetch button
       return process.env.IS_OFFLINE;
     },
     currentMenu() {

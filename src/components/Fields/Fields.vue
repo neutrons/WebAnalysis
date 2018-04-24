@@ -42,7 +42,7 @@ export default {
       set(value) {
         this.setXField(value)
           .then(() => {
-            eventBus.$emit(this.redrawName);
+            eventBus.$emit(this.redrawName); // if field changes re-draw chart
           })
           .catch((error) => {
             eventBus.$emit('add-notification', error.message, 'error');
@@ -56,7 +56,7 @@ export default {
       set(value) {
         this.setYField(value)
           .then(() => {
-            eventBus.$emit(this.redrawName);
+            eventBus.$emit(this.redrawName); // if field changes re-draw chart
           })
           .catch((error) => {
             eventBus.$emit('add-notification', error.message, 'error');

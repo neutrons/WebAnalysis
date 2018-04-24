@@ -18,12 +18,26 @@ export default {
   resetScales,
   resetAll,
   setCurrentData,
-  setStitchedData({ commit }, value) {
-    commit('setStitchedData', value);
-    return Promise.resolve(true);
+  async setStitchedData({ commit }, value) {
+    return new Promise((resolve, reject) => {
+      try {
+        commit('setStitchedData', value);
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
   },
-  resetStitchedData({ commit }) {
-    commit('resetStitchedData');
-    return Promise.resolve(true);
+  async resetStitchedData({ commit }) {
+    return new Promise((resolve, reject) => {
+      try {
+        commit('resetStitchedData');
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
   },
 };

@@ -1,3 +1,4 @@
+// leveberg-marquardt default settings for fit settings component
 export default {
   damping: {
     value: 0.1,

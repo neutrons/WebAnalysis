@@ -1,14 +1,32 @@
-export const resetScales = ({ commit }) => {
-  commit('resetScales');
-  return Promise.resolve(true);
-};
+export const resetScales = async ({ commit }) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('resetScales');
 
-export const setXScale = ({ commit }, x) => {
-  commit('setXScale', x);
-  return Promise.resolve(true);
-};
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const setYScale = ({ commit }, y) => {
-  commit('setYScale', y);
-  return Promise.resolve(true);
-};
+export const setXScale = async ({ commit }, x) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setXScale', x);
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+export const setYScale = async ({ commit }, y) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setYScale', y);
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });

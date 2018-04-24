@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import _ from 'lodash';
 
+// function used to get the min and max values for a plot's x and y domain
 export default (state, getters) => (field) => {
   if (!getters.getChartConfigurations.data.length) return 'N/A';
 
@@ -13,7 +14,7 @@ export default (state, getters) => (field) => {
 
   tempData = tempData.map(el => el.values)
     .reduce((a, b) => a.concat(b))
-    .filter((d) => {
+    .filter((d) => { // check for log scale and filter out points
       if (yType === 'log(y)' && xType === 'log(x)') {
         return d[yField] > 0 && d[xField] > 0;
       } else if (xType === 'log(x)') {

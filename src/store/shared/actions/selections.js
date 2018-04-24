@@ -1,14 +1,33 @@
-export const resetBrushSelection = async ({ commit }) => {
-  commit('resetBrushSelection');
-  return Promise.resolve(true);
-};
+// actions used for the fit component to change brush values for plot slider
+export const resetBrushSelection = async ({ commit }) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('resetBrushSelection');
 
-export const setBrushLimits = async ({ commit }, payload) => {
-  commit('setBrushLimits', payload);
-  return Promise.resolve(true);
-};
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const setBrushSelection = async ({ commit }, value) => {
-  commit('setBrushSelection', value);
-  return Promise.resolve(true);
-};
+export const setBrushLimits = async ({ commit }, payload) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setBrushLimits', payload);
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+export const setBrushSelection = async ({ commit }, value) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setBrushSelection', value);
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });

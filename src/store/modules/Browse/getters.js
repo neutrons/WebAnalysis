@@ -9,16 +9,20 @@ export default {
     };
   },
   getPreparedData(state) {
+    // this returns the data used for plotting
     if (!Object.keys(state.browseData).length) return [];
+
     const yField = state.field.y;
     const temp = _.cloneDeep(state.browseData.data)
       .map((point) => {
+        // if no error present create one and return point
         if (typeof point.error === 'undefined') {
           return {
             ...point,
             error: point[yField] < 0 ? 0 : Math.sqrt(point[yField]),
           };
         }
+
         return { ...point };
       });
 

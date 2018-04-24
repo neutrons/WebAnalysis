@@ -7,6 +7,8 @@ import getPreparedData from '../../../shared/getters/getPreparedData';
 
 const tasGetters = _.cloneDeep(getter);
 
+// merged files is to produce one list for
+// files to be added and subtracted
 tasGetters.mergedFiles = (state) => {
   const temp = [...state.filesSelected.add].concat([...state.filesSelected.subtract]);
   return temp;

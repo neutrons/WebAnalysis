@@ -1,3 +1,4 @@
+// mutations to set brush values for fit plot slider
 export const resetBrushSelection = (state) => {
   // eslint-disable-next-line
   state.brushSelection = [];

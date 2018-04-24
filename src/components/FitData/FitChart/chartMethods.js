@@ -1,6 +1,6 @@
+// Main mixin for drawing charts for the fit chart component
 import * as d3 from 'd3';
 
-// Import Mixins
 import initChartElements from '../../../assets/js/chartFunctions/initChartElements';
 import updateChartElements from '../../../assets/js/chartFunctions/updateChartElements';
 import getContainerWidth from '../../../assets/js/chartFunctions/getContainerWidth';
@@ -36,12 +36,17 @@ export default {
   methods: {
     drawChart() {
       const vm = this;
+
+      // if there are no files selected
+      // or file fit changes from previous fit re-initialize chart
       if (this.filesSelected.length === 0 || this.fileToFit !== this.previousFit) {
         if (typeof this.fileToFit !== 'undefined') this.setPreviousFit(this.fileToFit);
+
         this.initChartElements(`.fit-chart-${this.ID}`);
 
+        // if there is a file to fit set up set up pick area
+        // and tooltip for selecting initial values
         if (this.fileToFit) {
-          // add pick area & tooltip for selecting initial values
           const tooltip = this.svg.append('g')
             .attr('class', `tooltip tooltip-${this.ID}`)
             .append('text')
@@ -59,8 +64,9 @@ export default {
             .style('cursor', 'crosshair')
             .style('visibility', 'hidden')
             .on('click', function click() {
-              const pos = d3.mouse(this);
+              const pos = d3.mouse(this); // grab current mouse position
               const [newXScale, newYScale] = vm.rescaleToZoom();
+
               vm.pickerPoints = [
                 newXScale.invert(pos[0]),
                 newYScale.invert(pos[1]),

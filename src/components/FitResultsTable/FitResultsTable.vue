@@ -109,6 +109,7 @@ export default {
   },
   methods: {
     formatInitialValues(item) {
+      // if Guinier fit need to calculate Rg value
       if (this.fitType === 'Guinier' && item.coefficient === 'Rg') {
         const RgX = item.value * Math.sqrt(this.xScale.invert(this.xBrushSelection));
         return `${item.coefficient}: ${item.value} | Rg * x_max = ${RgX.toFixed(4)}`;

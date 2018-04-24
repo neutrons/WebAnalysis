@@ -21,6 +21,7 @@
     <span>Click to remove combined data</span>
   </v-tooltip>
 
+  <!-- If data is combined reveal component for saving combined data -->
   <v-fade-transition>
     <v-save-combined v-if='combData.length'></v-save-combined>
   </v-fade-transition>
@@ -52,6 +53,7 @@ export default {
   },
   methods: {
     checkValue(value) {
+      // check value validates for correct input in bin tolerance
       if (typeof value !== 'number') {
         this.valid = false;
         return 'Must be a number';

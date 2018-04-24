@@ -38,16 +38,19 @@ export default {
         }
       }
 
-      // filter data for negative values when scale is log
+      // filter data for values <= 0 when scale is log
       const tempData = _.cloneDeep(this.plotData);
       tempData.forEach((d) => {
         d.values = d.values.filter(this.filterForLog); // eslint-disable-line
       });
 
+      // group = new curve to plot
       let group = this.g.selectAll('.group').data(tempData);
 
+      // get rid of old curves no longer selected
       group.exit().remove();
 
+      // add new curves being select
       group = group.enter()
         .append('g')
         .attr('clip-path', `url(#clip-${this.ID})`)
@@ -60,8 +63,10 @@ export default {
         const scatterLine = group.selectAll('path.scatter-line')
           .data(d => [d]);
 
+        // get ride of scatter lines
         scatterLine.exit().remove();
 
+        // add new scatter lines
         scatterLine.enter()
           .append('path')
           .attr('class', d => `scatter-line ${d.key}`)
@@ -70,6 +75,7 @@ export default {
           .style('stroke-width', '1.5px')
           .attr('d', d => newLine(d.values));
 
+        // update present scatter lines
         scatterLine.transition(trans)
           .attr('class', d => `scatter-line ${d.key}`)
           .attr('d', d => newLine(d.values))
@@ -83,8 +89,10 @@ export default {
         let errors = group.selectAll('.error-line')
           .data(d => d.values);
 
+        // get rid of old error bars
         errors.exit().remove();
 
+        // add new error bars
         errors.enter()
           .append('line')
           .attr('class', 'error-line')
@@ -94,6 +102,7 @@ export default {
           .attr('y2', d => this.errorBottomY(d, newYScale))
           .style('stroke', d => this.getColor(d.name));
 
+        // update present error bars
         errors
           .style('stroke', d => this.getColor(d.name))
           .transition(trans)
@@ -105,8 +114,10 @@ export default {
         errors = group.selectAll('.error-cap-top')
           .data(d => d.values);
 
+        // get rid of old error cap tops
         errors.exit().remove();
 
+        // add new error cap tops
         errors.enter()
           .append('line')
           .attr('class', 'error-cap-top')
@@ -116,6 +127,7 @@ export default {
           .attr('y2', d => newYScale(d[vm.fields.y] + d.error))
           .style('stroke', d => this.getColor(d.name));
 
+        // update present error cap tops
         errors
           .style('stroke', d => this.getColor(d.name))
           .transition(trans)
@@ -127,8 +139,10 @@ export default {
         errors = group.selectAll('.error-cap-bottom')
           .data(d => d.values);
 
+        // get ride of old error cap bottoms
         errors.exit().remove();
 
+        // add new error cap bottoms
         errors.enter()
           .append('line')
           .attr('class', 'error-cap-bottom')
@@ -138,6 +152,7 @@ export default {
           .attr('y2', d => this.errorBottomY(d, newYScale))
           .style('stroke', d => this.getColor(d.name));
 
+        // update present error cap bottoms
         errors
           .style('stroke', d => this.getColor(d.name))
           .transition(trans)
@@ -153,8 +168,10 @@ export default {
         const scatter = group.selectAll('path.point')
           .data(d => d.values);
 
+        // get ride of old scatter points
         scatter.exit().remove();
 
+        // add new scatter points
         scatter.enter()
           .append('path')
           .attr('class', 'point')
@@ -214,6 +231,7 @@ export default {
             this.triggerDelete(d);
           });
 
+        // update present scatter point
         scatter.transition(trans)
           .attr('d', (d) => {
             const shape = vm.getShape(d.name);
@@ -226,6 +244,7 @@ export default {
     },
     errorBottomY(d, y) {
       const vm = this;
+      // filter for error bars <= 0 when scale is log
       if (d[vm.fields.y] - d.error <= 0 && this.yType === 'log(y)') return y(d[vm.fields.y]);
 
       return y(d[vm.fields.y] - d.error);

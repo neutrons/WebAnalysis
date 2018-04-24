@@ -6,6 +6,7 @@ import configVCorr from '../../../assets/js/readFiles/configs/POWDERVCorr';
 import configGaps from '../../../assets/js/readFiles/configs/POWDERGaps';
 
 function filterNormalizeFiles(files) {
+  // function to sift files as either data or normalized files
   const names = Object.keys(files);
   const normalizeFiles = {
     vcorr: [],

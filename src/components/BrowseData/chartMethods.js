@@ -1,4 +1,5 @@
-// Import Mixins
+// This is the main mixin for drawing charts in the browsing component.
+
 import initChartElements from '../../assets/js/chartFunctions/initChartElements';
 import updateChartElements from '../../assets/js/chartFunctions/updateChartElements';
 import legend from '../../assets/js/chartFunctions/legend';
@@ -33,7 +34,7 @@ export default {
   methods: {
     drawChart() {
       if (this.plotData.length === 0) {
-        this.initChartElements(`.quickplot-${this.ID}`);
+        this.initChartElements(`.browseplot-${this.ID}`);
       }
 
       if (this.plotData.length !== 0) {

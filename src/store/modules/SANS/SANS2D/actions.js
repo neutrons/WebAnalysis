@@ -14,17 +14,48 @@ export default {
   resetAll,
   parseData,
   addUploadFiles,
-  setScale({ commit }, value) {
-    commit('setScale', value);
+  async setScale({ commit }, value) {
+    return new Promise((resolve, reject) => {
+      try {
+        commit('setScale', value);
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
   },
-  resetScale({ commit }) {
-    commit('resetScale');
+  async resetScale({ commit }) {
+    return new Promise((resolve, reject) => {
+      try {
+        commit('resetScale');
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
   },
-  setBinSize({ commit }, value) {
-    commit('setBinSize', value);
-    return Promise.resolve(true);
+  async setBinSize({ commit }, value) {
+    return new Promise((resolve, reject) => {
+      try {
+        commit('setBinSize', value);
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
   },
-  resetBinSize({ commit }) {
-    commit('resetBinSize');
+  async resetBinSize({ commit }) {
+    return new Promise((resolve, reject) => {
+      try {
+        commit('resetBinSize');
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
   },
 };

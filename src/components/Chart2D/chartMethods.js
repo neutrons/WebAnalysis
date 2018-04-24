@@ -1,3 +1,4 @@
+// Main mixin for drawing charts for SANS 2D Plots
 import * as d3 from 'd3';
 
 import getContainerWidth from '../../assets/js/chartFunctions/getContainerWidth';
