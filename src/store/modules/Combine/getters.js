@@ -24,4 +24,7 @@ export default {
       scales,
     };
   },
+  isCombined(state) {
+    return state.combinedData.length > 0;
+  },
 };

@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     downloadStitchedData() {
-      const headers = 'x,y, error\n';
+      const headers = ['x', 'y', 'error'];
       // eslint-disable-next-line
       const arr = this.stitchedData.map((d) => {
         return [

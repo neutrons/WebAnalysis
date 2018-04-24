@@ -35,11 +35,13 @@
 import axios from 'axios';
 import isBreakpointSmall from '../../assets/js/isBreakpointSmall';
 import { eventBus } from '../../assets/js/eventBus';
+import validateFileName from '../../assets/js/validateFilename';
 
 export default {
   name: 'SaveStitchButton',
   mixins: [
     isBreakpointSmall,
+    validateFileName,
   ],
   data() {
     return {
@@ -49,6 +51,7 @@ export default {
       nameRules: [
         v => !!v || 'Name is required',
         this.validateFileName,
+        this.checkForbiddenName,
       ],
     };
   },
@@ -64,23 +67,8 @@ export default {
         this.close();
       }
     },
-    validateFileName(value) {
-      /* eslint-disable */
-      const rg1 = /^[^\\/:\*\?'<>\|  .]+$/; // forbidden characters \ / : * ? ' < > |
-      const rg2 = /^[0-9]/; // cannot start with a number ([0-9])
-      const rg4 = /^[A-Za-z].*$/; // cannot start with a number ([0-9])
-      const rg3 = /^(nul|prn|con|lpt[0-9]|com[0-9])(\.|$)/i; // forbidden file names
-      /* eslint-enable */
-
-      if (!rg1.test(value)) {
-        return 'Invalid character(s).';
-      } else if (rg2.test(value)) {
-        return 'Do not start files with a number.';
-      } else if (rg3.test(value)) {
-        return 'Invalid file name.';
-      } else if (!rg4.test(value)) {
-        return 'Start file names with a character.';
-      } else if (value === 'stitch') {
+    checkForbiddenName(value) {
+      if (value === 'stitch') {
         return 'Stitch is a reserved word. Give file another name.';
       }
 

@@ -10,6 +10,13 @@ export default async ({ state, dispatch, commit, rootGetters }, payload) => {
   // First Update File List
   commit('updateFilesSelected', filelist);
 
+  // if selected files is fewer than 2 remove combined data
+  // this is only for the combine data modules
+  if (
+    (typeof state.isNormalized !== 'undefined' && typeof state.combinedData !== 'undefined') &&
+    (state.isNormalized || state.combinedData.length > 0)
+  ) commit('resetNormalizedData');
+
   // Next Get Stored Data
   const [storedData, nonStoredFiles] = rootGetters[`${group}/getStoredData`](filelist);
 

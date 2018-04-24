@@ -43,13 +43,17 @@ powderActions.combineData = async ({ state, commit }, value) => { // eslint-disa
       // pre-format data before combining it
       const tempData = [];
 
+      // Grab transformed-normalized data
       state.selectedData.forEach((item) => {
         item.dataTransformed.forEach((curve) => {
-          tempData.push(_.cloneDeep(curve.values));
+          const anode = +curve.anode.replace('anode', '');
+          if (state.anodesToExclude.indexOf(anode) === -1) { // filter for excluded anodes
+            tempData.push(_.cloneDeep(curve.values));
+          }
         });
       });
 
-      commit('combineData', { data: tempData, isError: false });
+      commit('combineData', tempData);
       resolve(true);
     } catch (error) {
       reject(error);

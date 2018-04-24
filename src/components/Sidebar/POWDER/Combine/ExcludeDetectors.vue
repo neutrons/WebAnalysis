@@ -55,12 +55,15 @@ export default {
     }),
     ...mapGetters('POWDER/Combine', {
       items: 'getAnodeNames',
+      isCombined: 'isCombined',
+      getPreparedData: 'getPreparedData',
     }),
   },
   methods: {
     ...mapActions('POWDER/Combine', [
       'setAnodesToExclude',
       'resetAnodesToExclude',
+      'combineData',
     ]),
     resetSelected() {
       this.resetAnodesToExclude()
@@ -86,6 +89,14 @@ export default {
         this.anodesToExclude.slice().concat([value]);
 
       this.setAnodesToExclude(result)
+        .then(async () => { // eslint-disable-line
+          // intermediate step to check if combined data exists
+          // if so re-do combine data to account for newly updated
+          // exclude detectors array
+          if (this.isCombined) await this.combineData(this.getPreparedData);
+
+          return true;
+        })
         .then(() => {
           eventBus.$emit('redraw-chart-powder-combine');
         })

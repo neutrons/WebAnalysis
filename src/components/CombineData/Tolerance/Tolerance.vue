@@ -15,39 +15,26 @@
     <v-btn slot='activator' outline block flat color='success' @click='onCombineData' :disabled='!valid'>Combine Data</v-btn>
     <span>Click to combine data</span>
   </v-tooltip>
+
   <v-tooltip top :close-delay='1' :disabled='!combData.length || !valid'>
     <v-btn slot='activator' outline block flat color='error' @click='onRemoveCombinedData' :disabled='!combData.length || !valid'>Remove Combined Data</v-btn>
     <span>Click to remove combined data</span>
   </v-tooltip>
 
   <v-fade-transition>
-    <div v-if='combData.length'>
-      <v-text-field
-        type='text'
-        label='Combine Name'
-        v-model='editCombineName'
-        required
-        hint='Type name of combined data curve'
-        :rules='[checkName]'
-      ></v-text-field>
-
-      <v-tooltip top :close-delay='1' :disabled='!validName'>
-        <v-btn slot='activator' outline block flat color='success' @click='storeCombine' :disabled='!validName'>Store Combine</v-btn>
-        <span>Click to store combined data curve</span>
-      </v-tooltip>
-    </div>
+    <v-save-combined v-if='combData.length'></v-save-combined>
   </v-fade-transition>
 </div>
 </template>
 
 <script>
+import { eventBus } from '../../../assets/js/eventBus';
+
 export default {
   name: 'Tolerance',
   data() {
     return {
       valid: true,
-      validName: true,
-      editCombineName: 'combined_data',
     };
   },
   computed: {
@@ -59,11 +46,8 @@ export default {
         this.setTolerance(value);
       },
     },
-    filenameList() {
-      const k1 = Object.keys(this.fetched);
-      const k2 = Object.keys(this.uploaded);
-      const k3 = Object.keys(this.storedCombined);
-      return [].concat.apply([], [k1, k2, k3]);
+    group() {
+      return this.$route.meta.group.toLowerCase();
     },
   },
   methods: {
@@ -79,25 +63,24 @@ export default {
       this.valid = true;
       return true;
     },
-    checkName(value) {
-      const str = value.trim();
-
-      if (typeof str !== 'string') {
-        this.validName = false;
-        return 'Must be a string';
-      } else if (str.length < 1) {
-        this.validName = false;
-        return 'Invalid name. Name must be 1+ characters long.';
-      } else if (this.filenameList.indexOf(str) !== -1) {
-        this.validName = false;
-        return 'Duplice name. Name already exists.';
-      } else if (str === 'combine') {
-        this.validName = false;
-        return 'Cannot name \'combine\'. Reserved word.';
-      }
-
-      this.validName = true;
-      return true;
+    onCombineData() {
+      // trigger action to combine data then update chart
+      this.combineData(this.getPreparedData)
+        .then(() => {
+          eventBus.$emit(`redraw-chart-${this.group}-combine`);
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
+    },
+    onRemoveCombinedData() {
+      this.removeCombinedData()
+        .then(() => {
+          eventBus.$emit(`redraw-chart-${this.group}-combine`);
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error, 'error');
+        });
     },
   },
 };

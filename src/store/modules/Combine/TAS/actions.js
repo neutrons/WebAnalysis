@@ -39,7 +39,7 @@ tasActions.combineData = async ({ state, commit }, value) => { // eslint-disable
         tempData.push(t);
       });
 
-      commit('combineData', { data: tempData, isError: true });
+      commit('combineData', tempData);
       resolve(true);
     } catch (error) {
       reject(error);

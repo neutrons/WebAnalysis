@@ -1,6 +1,8 @@
 import * as d3 from 'd3';
 import _ from 'lodash';
 
+import detectVCorrFilename from './detectVCorrFilename';
+
 import mutations from '../mutations';
 import updateFilesSelected from '../../../shared/mutations/updateFilesSelected';
 
@@ -18,6 +20,7 @@ powderMutations.setCurrentData = (state, payload) => {
     const metadata = [...chosenData[i].metadata];
     const filename = chosenData[i].filename;
     let data = _.cloneDeep(chosenData[i].data);
+    const vcorr = detectVCorrFilename(data);
     let gapSum = 0;
 
     // Get anode names
@@ -40,6 +43,7 @@ powderMutations.setCurrentData = (state, payload) => {
           '2theta': point['2theta'] + gapSum, // add cumulative gaps data to 2theta
           anode: point[anode],
           name: `${filename}_${anode}`,
+          error: point[anode] < 0 ? 0 : Math.sqrt(point[anode]),
         })),
       };
     });
@@ -47,6 +51,7 @@ powderMutations.setCurrentData = (state, payload) => {
     filteredData.push({
       metadata,
       filename,
+      vcorr,
       data, // keep a clean version of data when reverting transformed data
       dataTransformed: _.cloneDeep(data),
     });
@@ -145,11 +150,23 @@ powderMutations.normalizeData = (state) => {
       let anodeIndex = +anode.anode.replace('anode', '');
       anodeIndex -= 1;
 
-      const normalizeValue = state.normalizeByVCorr.value[anodeIndex];
+      const normalizeValue = state.normalizeByVCorr[anodeIndex];
 
       anode.values = anode.values.map((point) => { // eslint-disable-line
         const normalizedPoint = { ...point };
-        normalizedPoint.anode /= normalizeValue;
+
+        // calculate normalized error
+        // | normalized_Y | * SQRT( (errY / Y)^2 + (normalized_value_error / normalized_value)^2 )
+        const oldY = normalizedPoint.anode;
+        const normY = oldY / normalizeValue;
+        const errorY = point.error;
+        const normValueError = Math.sqrt(normalizeValue);
+        // eslint-disable-next-line
+        const temp = Math.abs(normY) * Math.sqrt(Math.pow(errorY / oldY, 2) + Math.pow(normValueError / normalizeValue, 2));
+        const newError = isFinite(temp) ? temp : 0; // check for invalid normalized errors
+
+        normalizedPoint.anode = normY;
+        normalizedPoint.error = newError;
 
         return normalizedPoint;
       });
@@ -164,6 +181,12 @@ powderMutations.resetNormalizedData = (state) => {
   state.selectedData.forEach((curve) => {
      curve.dataTransformed = _.cloneDeep(curve.data); // eslint-disable-line
   });
+
+  /* eslint-disable */
+  state.isNormalized = false;
+  state.combinedData = [];
+  state.tolerance = state.defaultSettings.tolerance.value;
+  /* eslint-enable */
 };
 
 export default powderMutations;

@@ -32,7 +32,7 @@
       </v-flex>
 
       <v-flex xs12 pa-1>
-        <b>Fit Equation:</b> <i>{{ fitEquation }}</i></p>
+        <b>Fit Equation:</b> <i>{{ fitEquation }}</i>
       </v-flex>
 
       <v-flex xs12>
@@ -117,7 +117,21 @@ export default {
       return `${item.coefficient}: ${item.value}`;
     },
     downloadFitEquation() {
-      const headers = `fit type,no. points,range start,range end,fit error,R,R2,RMSD,CHI2,equation,${this.fitInitialValues.map(d => d.coefficient)}\n`;
+      const headers = [
+        'fit type',
+        'no. points',
+        'range start',
+        'range end',
+        'fit error',
+        'R',
+        'R2',
+        'RMSD',
+        'CHI2',
+        'equation',
+      ];
+
+      this.fitInitialValues.forEach(d => headers.push(d.coefficient));
+
       const arr = [[
         this.fitType,
         this.fitCount,

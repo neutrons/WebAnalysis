@@ -90,7 +90,7 @@ export default {
           const data = pp.parse(d.data).data;
           return data.reduce((a, b) => a.concat(b), []);
         }).reduce((a, b) => a.concat(b), [])
-        .map(d => (+d + 1)); // node might be a string so convert to number and add one
+        .map(d => (+d)); // node might be a string so convert to number and add one
 
         commit('addExcludeDetectorData', excludeData);
 
