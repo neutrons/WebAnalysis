@@ -59,6 +59,8 @@
 <script>
 import _ from 'lodash';
 
+import { eventBus } from '../../assets/js/eventBus';
+
 export default {
   name: 'SidebarBrowse',
   data() {
@@ -96,6 +98,30 @@ export default {
       if (!this.fTags.length && !this.uTags.length) return [];
 
       return this.fTags.concat(this.uTags);
+    },
+    selectedFile: {
+      get() {
+        return this.filesSelected;
+      },
+      set(value) {
+        const filelist = value !== null ? [value] : [];
+        const group = this.$route.meta.group;
+        const payload = { filelist, group };
+
+        this.updateFilesSelected(payload)
+          .then(() => {
+            if (filelist.length === 0) {
+              this.selectedTags = [];
+            } else {
+              this.selectedTags = this.allFiles[filelist[0]].tags;
+            }
+
+            eventBus.$emit(`redraw-chart-${group.toLowerCase()}-browse`);
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
+      },
     },
   },
   methods: {

@@ -21,12 +21,47 @@
 </template>
 
 <script>
+import { eventBus } from '../../assets/js/eventBus';
+
 export default {
   name: 'Fields',
   props: {
     collapse: {
       type: Boolean,
       default: true,
+    },
+  },
+  computed: {
+    redrawName() {
+      return `redraw-chart-${this.$route.meta.group.toLowerCase()}-${this.$route.meta.feature.toLowerCase()}`;
+    },
+    selectX: {
+      get() {
+        return this.field.x;
+      },
+      set(value) {
+        this.setXField(value)
+          .then(() => {
+            eventBus.$emit(this.redrawName); // if field changes re-draw chart
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
+      },
+    },
+    selectY: {
+      get() {
+        return this.field.y;
+      },
+      set(value) {
+        this.setYField(value)
+          .then(() => {
+            eventBus.$emit(this.redrawName); // if field changes re-draw chart
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
+      },
     },
   },
 };

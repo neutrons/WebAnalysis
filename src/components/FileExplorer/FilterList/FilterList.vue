@@ -24,17 +24,19 @@ export default {
       return Object.keys(this.allFiles);
     },
     tags() {
-      const temp = [];
+      const finalTags = [];
 
       this.filenames.forEach((name) => {
         this.allFiles[name].tags.forEach((tag) => {
-          if (temp.indexOf(tag) === -1) {
-            temp.push(tag);
-          }
+          // if tag doesn't exist add it to final tag list
+          if (finalTags.indexOf(tag) === -1) finalTags.push(tag);
         });
       });
 
-      return temp;
+      return finalTags;
+    },
+    allFiles() {
+      return Object.assign({}, this.fetched, this.uploaded);
     },
   },
 };

@@ -8,7 +8,7 @@ import mutations from './mutations';
 // Import Modules
 import Browse from '../Browse/TAS';
 import Fit from '../Fit/TAS';
-import Combine from '../Combine';
+import Combine from '../Combine/TAS';
 
 export default {
   namespaced: true,

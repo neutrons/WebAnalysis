@@ -5,7 +5,8 @@
 
     <v-container>
       <v-layout row wrap>
-        <v-flex xs12 v-if='$options.name === "FileExplorerPOWDER"'>
+        <!-- display an error if default axis fields are changed  -->
+        <v-flex xs12 v-if='["FileExplorerTAS", "FileExplorerPOWDER"].indexOf($options.name) !== -1'>
           <v-alert 
             outline
             type='warning'

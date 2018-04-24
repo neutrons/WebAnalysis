@@ -169,6 +169,10 @@ export default {
       sliderHeight: 25,
       showPicker: false,
       pickerPoints: [0, 0],
+      isLegend: true,
+      isScatterLines: true,
+      isErrorBars: true,
+      isScatterPoints: true,
     };
   },
   computed: {
@@ -302,98 +306,10 @@ export default {
 </script>
 
 <style lang='scss'>
-.axis {
-  path {
-    shape-rendering: optimizeQuality;
-  }
-  .tick text {
-    font-size: 14px;
-    fill: black;
-  }
-  .tick line {
-    shape-rendering: optimizeQuality;
-    stroke: black;
-  }
-}
-
-.grid .tick line {
-  shape-rendering: optimizeQuality;
-  stroke: gainsboro;
-}
-
-iframe.width-changed {
-  width: 100%;
-  display: block;
-  border: 0;
-  height: 0;
-  margin: 0;
-}
-
-.chart {
-  // Extra small screen (mobile)
-  @media screen and (max-width: 599px) {
-    max-height: 500px / 1.77px;
-    max-width: 500px;
-  } // Small screen (tablet)
-  @media screen and (min-width: 600px) and (max-width: 959px) {
-    max-height: 800px / 1.77px;
-    max-width: 800px;
-  } // Medium screen (laptop)
-  @media screen and (min-width: 960px) and (max-width: 1263px) {
-    max-height: 1000px / 1.77px;
-    max-width: 1000px;
-  } // Large screen (desktop)
-  @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    max-height: 1000px / 1.77px;
-    max-width: 1000px;
-  } // Extra large screen (ultrawide)
-  @media screen and (min-width: 1904px) {
-    max-height: 1800px / 1.77px;
-    max-width: 1800px;
-  }
-}
-
-/* Override MathJax positioning for rendered elements */
-.MathJax_SVG {
-  position: static !important;
-  display: inline-block !important;
-}
-
-foreignObject {
-  height: 100px;
-  width: 200px;
-}
-
-.handle {
-  fill: gray;
-  opacity: 0.75;
-}
-
-.zoom-group {
-  .brush-container .handle {
-    fill: none;
-  }
-
-  .brushes .selection {
-    fill: green;
-    stroke: black;
-    stroke-width: 1px;
-    stroke-dasharray: 3px 3px;
-  }
-
-  .brushes .handle {
-    fill: none;
-  }
-
-  .brushes text {
-    fill: white;
-    text-anchor: end;
-    letter-spacing: 1px;
-  }
-}
+@import url('../../../assets/css/plotStyles.scss');
 
 /* Modal Picker Styles */
-   /* The Modal (background) */
+/* The Modal (background) */
 .modal-picker {
   position: absolute; /* Stay in place */
   z-index: 999999; /* Sit on top */

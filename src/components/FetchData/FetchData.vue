@@ -49,7 +49,6 @@ export default {
   },
   methods: {
     onFetchFiles(silenceMessage) {
-      console.log('silence message', silenceMessage);
       const vm = this;
       if (typeof this.fetchURL === 'undefined') {
         eventBus.$emit('add-notification', 'Unable to fetch.', 'error');
@@ -66,6 +65,8 @@ export default {
   },
   watch: {
     $route() {
+      // whenever a route changes and it contains a query
+      // (re)fetch data if the query matches fetch url
       if (typeof this.$route.query.fetch !== 'undefined') {
         if (this.savedFetchURL !== this.$route.query.fetch) {
           this.savedFetchURL = this.$route.query.fetch;

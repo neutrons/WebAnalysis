@@ -8,14 +8,13 @@ export default ({ state, commit }, files) => { // eslint-disable-line
       const fetchList = {};
 
       keys.forEach((key) => {
-        if (savedKeys.indexOf(key) !== -1) {
-          commit('removeSavedFile', key);
-        }
+        if (savedKeys.indexOf(key) !== -1) commit('removeSavedFile', key);
 
         fetchList[key] = files[key];
       });
 
       commit('addToFetchList', fetchList);
+
       resolve(true);
     } catch (error) {
       reject(error);

@@ -16,20 +16,38 @@ export const combineData = async ({ commit }, value) => { // eslint-disable-line
   });
 };
 
-export const removeCombinedData = async ({ commit }) => {
-  commit('removeCombinedData');
-  return Promise.resolve(true);
-};
+export const removeCombinedData = async ({ commit }) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('removeCombinedData');
 
-export const addCombinedData = async ({ commit }, payload) => {
-  commit('addCombinedData', payload);
-  return Promise.resolve(true);
-};
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-export const resetCombinedData = async ({ commit }) => {
-  commit('resetCombinedData');
-  return Promise.resolve(true);
-};
+export const addCombinedData = async ({ commit }, payload) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('addCombinedData', payload);
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+export const resetCombinedData = async ({ commit }) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('resetCombinedData');
+
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
 export const storeCombinedData = async ({ state, commit }, payload) => { // eslint-disable-line
   return new Promise((resolve, reject) => {

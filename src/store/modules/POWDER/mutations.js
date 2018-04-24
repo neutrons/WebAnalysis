@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 import addToFetchList from '../../shared/mutations/addToFetchList';
 import addUploadFiles from '../../shared/mutations/addUploadFiles';
 import removeSavedFile from '../../shared/mutations/removeSavedFile';
@@ -12,4 +14,16 @@ export default {
   updateTags,
   removeSavedFile,
   removeSavedPoint,
+  storeNormalizeFiles(state, files) {
+    state.normalizeFiles = files; // eslint-disable-line
+  },
+  addExcludeDetectorData(state, data) {
+    Vue.set(state.normalizeFilesData, 'excludeDetectors', data);
+  },
+  addVCorrData(state, data) {
+    Vue.set(state.normalizeFilesData, 'vcorr', data);
+  },
+  addGapsData(state, data) {
+    Vue.set(state.normalizeFilesData, 'gaps', data);
+  },
 };

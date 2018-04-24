@@ -1,10 +1,10 @@
 import * as d3 from 'd3';
 import _ from 'lodash';
 
-// The eventBus serves as the means to communicating between components.
 import { eventBus } from '../../../assets/js/eventBus';
 
 function enableBrushPointerEvents(selection, vm) {
+  // function will toggle brush elements to allow click events
   selection.each(function a(brushItem) {
     d3.select(this)
       .selectAll('.overlay')
@@ -62,14 +62,17 @@ export default {
         const lastBrush = document.getElementById(`selection-${lastBrushID}`);
         const selection = d3.brushSelection(lastBrush);
 
+        // if brush selection is zero remove it
         if (selection === null) d3.select(`#selection-label-${lastBrushID}`).remove();
 
+        // if selection exists and limits are not the same
+        // create values in context of data by inverting pixel units
         if (selection && selection[0] !== selection[1]) {
           vm.brushes[vm.brushes.length - 1].selection =
             [vm.brushScale.invert(selection[0]), vm.brushScale.invert(selection[1])];
         }
 
-        // If it does, that means we need another one
+        // If selection exists, add another one
         if (vm.brushes.length < vm.brushCount && selection && selection[0] !== selection[1]) {
           vm.newBrush();
         }
@@ -139,7 +142,7 @@ export default {
       this.toggleEdit(this.isZoomBrush);
     },
     sortBrushes() {
-      // The object will be turned to an order array,
+      // Return an ordered array of brush selections
       // because objects do not promise an exact order like arrays.
       const sorted = _.toPairs(_.cloneDeep(this.brushSelections));
 
@@ -184,6 +187,7 @@ export default {
       }
     },
     updateBrushScale() {
+      // keep updating brush scale to coincide with the zoom scale
       const t = d3.zoomTransform(this.g.select(`#zoom-group-${this.ID}`).select('.zoom').node());
       const newXScale = t.rescaleX(this.xScale);
 

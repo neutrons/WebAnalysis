@@ -41,7 +41,7 @@
     </v-flex>
 
     <v-flex xs6 sm3 md2 pa-1>
-      <v-card height='100%' hover ripple dark>
+      <v-card height='100%' hover ripple dark exact to='/POWDER/Combine'>
         <v-card-media class='pa-0 pb-3'>
           <v-avatar tile class='primary icon-size'>
             <v-icon x-large dark>merge_type</v-icon>

@@ -1,5 +1,3 @@
-import LM from 'ml-levenberg-marquardt';
-
 /**
  * Return the correlation coefficient of determination (r) and chi-square.
  * From: https://github.com/mljs/regression-base
@@ -34,6 +32,7 @@ export default function scores(x, y, func) {
     if (y[i] !== 0) {
       chi2 += ((y[i] - y2[i]) * (y[i] - y2[i])) / y[i];
     }
+
     rmsd = (y[i] - y2[i]) * (y[i] - y2[i]);
   }
 

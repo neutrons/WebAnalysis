@@ -1,7 +1,6 @@
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex';
 import SidebarBrowse from '../../SidebarBrowse';
-import { eventBus } from '../../../../assets/js/eventBus';
 
 export default {
   name: 'SidebarTASBrowse',
@@ -14,29 +13,6 @@ export default {
     ...mapState('TAS/Browse', {
       filesSelected: state => state.filesSelected,
     }),
-    selectedFile: {
-      get() {
-        return this.filesSelected;
-      },
-      set(value) {
-        const filelist = value !== null ? [value] : [];
-        const payload = { filelist, group: 'TAS' };
-
-        this.updateFilesSelected(payload)
-          .then(() => {
-            if (filelist.length === 0) {
-              this.selectedTags = [];
-            } else {
-              this.selectedTags = this.allFiles[filelist[0]].tags;
-            }
-
-            eventBus.$emit('redraw-chart-tas-browse');
-          })
-          .catch((error) => {
-            eventBus.$emit('add-notification', error.message, 'error');
-          });
-      },
-    },
   },
   methods: {
     ...mapMutations('TAS', [

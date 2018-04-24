@@ -1,10 +1,11 @@
 import parseData from '../../../shared/actions/parseSANS1D';
 import updateFilesSelected from '../../../shared/actions/updateFilesSelected';
+import setCurrentData from '../../../shared/actions/setCurrentData';
 
 import actions from '../actions';
 
 actions.updateFilesSelected = updateFilesSelected;
-
+actions.setCurrentData = setCurrentData;
 actions.parseData = parseData;
 
 actions.updateFileToFit = async ({ state, commit, dispatch }, file) => { // eslint-disable-line
@@ -30,29 +31,54 @@ actions.updateFileToFit = async ({ state, commit, dispatch }, file) => { // esli
   });
 };
 
-actions.setXTransformation = async ({ commit }, x) => {
-  commit('setXTransformation', x);
-  return Promise.resolve(true);
-};
+actions.setXTransformation = async ({ commit }, x) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setXTransformation', x);
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-actions.setYTransformation = async ({ commit }, y) => {
-  commit('setYTransformation', y);
-  return Promise.resolve(true);
-};
+actions.setYTransformation = async ({ commit }, y) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setYTransformation', y);
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-actions.transformData = async ({ commit }) => {
-  commit('transformData');
-  return Promise.resolve(true);
-};
+actions.transformData = async ({ commit }) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('transformData');
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-actions.resetTransformations = async ({ commit }) => {
-  commit('resetTransformations');
-  return Promise.resolve(true);
-};
+actions.resetTransformations = async ({ commit }) =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('resetTransformations');
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
-actions.setFitType = async ({ commit }, type = 'Linear') => {
-  commit('setFitType', type);
-  return Promise.resolve(true);
-};
+actions.setFitType = async ({ commit }, type = 'Linear') =>
+  new Promise((resolve, reject) => {
+    try {
+      commit('setFitType', type);
+      resolve(true);
+    } catch (error) {
+      reject(error);
+    }
+  });
 
 export default actions;

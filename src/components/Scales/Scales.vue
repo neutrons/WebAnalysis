@@ -29,12 +29,68 @@
 </template>
 
 <script>
+import { eventBus } from '../../assets/js/eventBus';
+
 export default {
   name: 'Scales',
   props: {
     collapse: {
       type: Boolean,
       default: true,
+    },
+  },
+  computed: {
+    redrawName() {
+      return `redraw-chart-${this.$route.meta.group.toLowerCase()}-${this.$route.meta.feature.toLowerCase()}`;
+    },
+    xScales() {
+      return Object.keys(this.scales.x);
+    },
+    yScales() {
+      return Object.keys(this.scales.y);
+    },
+    selectX: {
+      get() {
+        return this.xScaleLabel;
+      },
+      set(value) {
+        // trigger action and wait for a response once a response is returned update chart
+        this.setXScale(value)
+          .then(() => {
+            eventBus.$emit(this.redrawName);
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
+      },
+    },
+    selectY: {
+      get() {
+        return this.yScaleLabel;
+      },
+      set(value) {
+        // trigger action and wait for a response once a response is returned update chart
+        this.setYScale(value)
+          .then(() => {
+            eventBus.$emit(this.redrawName);
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
+      },
+    },
+  },
+  methods: {
+    resetPlotScales() {
+      if (this.xScaleLabel !== 'x' || this.yScaleLabel !== 'y') {
+        this.resetScales()
+          .then(() => {
+            eventBus.$emit(this.redrawName);
+          })
+          .catch((error) => {
+            eventBus.$emit('add-notification', error.message, 'error');
+          });
+      }
     },
   },
 };

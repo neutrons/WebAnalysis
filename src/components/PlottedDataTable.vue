@@ -40,7 +40,7 @@
           <td class='text-xs-left pa-2'>
             <strong>Mean:</strong>
           </td>
-          <td v-for='(head, index) in headers' class='text-xs-left pa-2'>
+          <td v-for='(head, index) in headers' class='text-xs-left pa-2' :key='index'>
             <span>{{ plottedData | mean(head.value) | format}}</span>
           </td>
         </tr>
@@ -48,7 +48,7 @@
           <td class='text-xs-left pa-2'>
             <strong>SD:</strong>
           </td>
-          <td v-for='(head, index) in headers' class='text-xs-left pa-2'>
+          <td v-for='(head, index) in headers' class='text-xs-left pa-2' :key='index'>
             <span>{{ plottedData | sd(head.value) | format}}</span>
           </td>
         </tr>
@@ -56,7 +56,7 @@
           <td class='text-xs-left pa-2'>
             <strong>Min:</strong>
           </td>
-          <td v-for='(head, index) in headers' class='text-xs-left pa-2'>
+          <td v-for='(head, index) in headers' class='text-xs-left pa-2' :key='index'>
             <span>{{ plottedData | min(head.value) | format}}</span>
           </td>
         </tr>
@@ -64,7 +64,7 @@
           <td class='text-xs-left pa-2'>
             <strong>Max:</strong>
           </td>
-          <td v-for='(head, index) in headers' class='text-xs-left pa-2'>
+          <td v-for='(head, index) in headers' class='text-xs-left pa-2' :key='index'>
             <span>{{ plottedData | max(head.value) | format}}</span>
           </td>
         </tr>
@@ -134,9 +134,7 @@ export default {
   },
   methods: {
     downloadPlottedData() {
-      let headers = Object.keys(this.plottedData[0]).join(',');
-      headers += '\n';
-
+      const headers = Object.keys(this.plottedData[0]);
       const arr = this.plottedData.map(d => Object.values(d));
 
       this.downloadCSV(arr, headers, 'data.csv');
@@ -146,16 +144,6 @@ export default {
 
 </script>
 
-<style lang='scss'>
-table.table thead td:not(:nth-child(1)),
-table.table tbody td:not(:nth-child(1)),
-table.table thead th:not(:nth-child(1)),
-table.table tbody th:not(:nth-child(1)),
-table.table thead td:first-child,
-table.table tbody td:first-child,
-table.table thead th:first-child,
-table.table tbody th:first-child {
-  padding: 0 5px !important;
-}
-
+<style lang='scss' scoped>
+@import url('../assets/css/dataTableStyles.scss');
 </style>

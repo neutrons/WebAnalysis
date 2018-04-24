@@ -13,6 +13,7 @@ export default (point, data, fields) => {
       testData = data[i].values;
 
       for (let j = 0, L = testData.length; j < L; j += 1) {
+        // if a match return index which will exit out of all loops
         if (testData[j][xField] === x && testData[j][yField] === y) return j;
       }
     }

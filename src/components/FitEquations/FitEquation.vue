@@ -130,11 +130,21 @@ export default {
   },
 
   created() {
+    eventBus.$on(`update-initial-value-pick-${this.$route.meta.group.toLowerCase()}`, this.updateInitialValueWithPick);
     this.addEquation(this.fitKeys[0]);
+  },
+
+  destroyed() {
+    eventBus.$off(`update-initial-value-pick-${this.$route.meta.group.toLowerCase()}`);
+  },
+
+  beforeDestroy() {
+    this.setEquationEditSelect([]);
   },
 
   computed: {
     fitKeys() {
+      // fit keys are the different fittings allowed
       return Object.keys(this.fits);
     },
     items() {
@@ -151,16 +161,24 @@ export default {
       return obj;
     },
     isAllValid() {
+      // checks that all fit equations are valid
       for (let i = 0, length = this.selected.length; i < length; i += 1) {
         if (!this.selected[i].valid) return false;
       }
 
       return true;
     },
+    selected: {
+      get() {
+        return this.equationEditSelect;
+      },
+    },
   },
 
   methods: {
     evaluateInitialGuess(payload) {
+      // some fits' initial values come with functions to
+      // to guess the starting value. Evaluate those functions here
       const initialValues = payload.initialValues;
       const keys = Object.keys(initialValues);
       const length = keys.length;
@@ -209,19 +227,20 @@ export default {
           if (this.$options.name === 'FitEquationSANS') this.fitData();
 
           // if TAS revise line with changes to equation
-          if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+          if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-tas', this.fitInitialValues);
         })
         .catch((error) => {
           eventBus.$emit('add-notification', error.message, 'error');
         });
     },
     addEquation(name) {
+      // before adding check for initial guess functions and get values
       const temp = this.evaluateInitialGuess(_.cloneDeep(this.items[name]));
 
       this.addToSelect(temp);
 
       // if tas revise line with changes to equation
-      if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+      if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-tas', this.fitInitialValues);
 
       this.showEquation.push(true);
       this.showIV.push(true);
@@ -230,7 +249,8 @@ export default {
       this.removeSelectAtIndex(index)
         .then(() => {
           // if tas revise line with changes to equation
-          if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-TAS', this.fitInitialValues);
+          if (this.$options.name === 'FitEquationTAS') eventBus.$emit('revise-fit-line-tas', this.fitInitialValues);
+
           this.showEquation.splice(index, 1);
           this.showIV.splice(index, 1);
         })
@@ -238,23 +258,23 @@ export default {
           eventBus.$emit('add-notification', error.message, 'error');
         });
     },
-    getParameters(value) {
+    getParameters(equation) {
       // Parse the string
-      const parsed = math.parse(value);
+      const parsed = math.parse(equation);
 
+      // get paramters for equation
       const parameters = parsed
         .filter(node => node.isSymbolNode && node.name !== 'x')
         .map(node => node.name);
 
       return _.uniq(parameters);
     },
-    checkEquation(exp) {
-      if (exp === '') {
-        return false;
-      }
+    checkEquation(equation) {
+      // function to validate entered equation
+      if (equation === '') return false;
 
       try {
-        math.compile(exp);
+        math.compile(equation);
       } catch (error) {
         return false;
       }
@@ -262,6 +282,7 @@ export default {
       return true;
     },
     compareParameters(oldParameters, newParameters, index) {
+      // function to check if equation paramters/coefficients have been added or removed.
       if (!_.isEqual(oldParameters, newParameters)) {
         // remove or add parameters
         const deleteKeys = oldParameters.filter(d => newParameters.indexOf(d) === -1);
@@ -277,13 +298,13 @@ export default {
     addParameters(index, keys, newParameters) {
       this.addInitialValues({ index, keys, newParameters });
     },
-    equationInput(exp, index) {
-      if (this.checkEquation(exp)) {
+    equationInput(equation, index) {
+      if (this.checkEquation(equation)) {
         this.setSelectValid({ index, value: true });
-        this.setSelectEquation({ index, equation: exp });
+        this.setSelectEquation({ index, equation });
 
         const oldParameters = this.selected[index].initialValues.map(d => d.coefficient);
-        const newParameters = this.getParameters(exp);
+        const newParameters = this.getParameters(equation);
         this.compareParameters(oldParameters, newParameters, index);
       } else {
         this.setSelectValid({ index, value: false });
@@ -294,10 +315,54 @@ export default {
       this.pickIvIndex = null;
     },
     toggleShowEquation(index) {
+      // toggles the boolean for collapsing equation section
       Vue.set(this.showEquation, index, !this.showEquation[index]);
     },
     toggleShowIV(index) {
+      // toggles the boolean for collapsing initial value section
       Vue.set(this.showIV, index, !this.showIV[index]);
+    },
+    togglePick(value, index, ivIndex) {
+      // triggers ability to pick initial values on the plot
+      const toggleName = `toggle-pick-area-${this.$route.meta.group.toLowerCase()}`;
+
+      if (value) {
+        eventBus.$emit(toggleName, true);
+        this.pickIndex = index;
+        this.pickIvIndex = ivIndex;
+      } else {
+        eventBus.$emit(toggleName, false);
+        this.resetPickIndex();
+      }
+    },
+    updateInitialValueWithPick(value) {
+      // trigger update initial values then resetPick index and revise fit line
+      const reviseName = `revise-fit-line-${this.$route.meta.group.toLowerCase()}`;
+
+      this.updateInitialValue({
+        index: this.pickIndex,
+        ivIndex: this.pickIvIndex,
+        value: +value.toFixed(4),
+      })
+      .then(() => {
+        this.resetPickIndex();
+        eventBus.$emit(reviseName, this.fitInitialValues);
+      })
+      .catch((error) => {
+        eventBus.$emit('add-notification', error.message, 'error');
+      });
+    },
+    coefficientInput(payload) {
+      // update initial values then revise fit line
+      const reviseName = `revise-fit-line-${this.$route.meta.group.toLowerCase()}`;
+
+      this.updateInitialValue(payload)
+        .then(() => {
+          eventBus.$emit(reviseName, this.fitInitialValues);
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
     },
   },
 };

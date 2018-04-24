@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     downloadStitchedData() {
-      const headers = 'x,y, error\n';
+      const headers = ['x', 'y', 'error'];
       // eslint-disable-next-line
       const arr = this.stitchedData.map((d) => {
         return [
@@ -86,14 +86,5 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-table.table thead td:not(:nth-child(1)),
-table.table tbody td:not(:nth-child(1)),
-table.table thead th:not(:nth-child(1)),
-table.table tbody th:not(:nth-child(1)),
-table.table thead td:first-child,
-table.table tbody td:first-child,
-table.table thead th:first-child,
-table.table tbody th:first-child {
-  padding: 0 5px !important;
-}
+@import url('../assets/css/dataTableStyles.scss');
 </style>

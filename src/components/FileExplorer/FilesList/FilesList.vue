@@ -32,21 +32,22 @@ export default {
     filteredFiles() {
       const vm = this;
 
-      if (this.filters.length === 0) {
-        return this.fileKeys;
-      }
+      // if no filter just return all filenames
+      if (this.filters.length === 0) return this.fileKeys;
 
-      const temp = [];
+      const filesFiltered = [];
 
       this.filters.forEach((tag) => {
         vm.fileKeys.forEach((name) => {
-          if (this.allFiles[name].tags.indexOf(tag) > -1) {
-            temp.push(name);
-          }
+          // add filename to list if it matches filter names
+          if (this.allFiles[name].tags.indexOf(tag) > -1) filesFiltered.push(name);
         });
       });
 
-      return temp;
+      return filesFiltered;
+    },
+    allFiles() {
+      return Object.assign({}, this.fetched, this.uploaded);
     },
   },
 };

@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 export default {
   methods: {
     initChartElements(name) {
+      // method to create the base elements for the plot
       this.svg = d3.select(name)
         .attr('viewBox', this.viewBox)
         .attr('perserveAspectRatio', 'xMidYMid meet')

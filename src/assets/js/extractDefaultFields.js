@@ -1,3 +1,12 @@
+/*
+  Function to get default fields from TAS metadata.
+  In the metadata there are two classifications:
+    1) 'def_x = [some field name]'
+    2) 'def_y = [some field name]'
+
+  Use this information to return an object with the extract values.
+*/
+
 export default (md) => {
   const obj = {
     x: 'x',
