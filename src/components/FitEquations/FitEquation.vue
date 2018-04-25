@@ -130,12 +130,12 @@ export default {
   },
 
   created() {
-    eventBus.$on(`update-initial-value-pick-${this.$route.meta.group.toLowerCase()}`, this.updateInitialValueWithPick);
+    eventBus.$on(`update-initial-value-pick-${this.$route.meta.group}`, this.updateInitialValueWithPick);
     this.addEquation(this.fitKeys[0]);
   },
 
   destroyed() {
-    eventBus.$off(`update-initial-value-pick-${this.$route.meta.group.toLowerCase()}`);
+    eventBus.$off(`update-initial-value-pick-${this.$route.meta.group}`);
   },
 
   beforeDestroy() {
@@ -324,7 +324,7 @@ export default {
     },
     togglePick(value, index, ivIndex) {
       // triggers ability to pick initial values on the plot
-      const toggleName = `toggle-pick-area-${this.$route.meta.group.toLowerCase()}`;
+      const toggleName = `toggle-pick-area-${this.$route.meta.group}`;
 
       if (value) {
         eventBus.$emit(toggleName, true);
