@@ -114,7 +114,7 @@ powderMutations.resetAll = (state) => {
   };
   state.isFieldChange = false;
   state.anodesToExclude = [];
-  state.normalizeByVCorr = {};
+  state.normalizeByVCorr = [];
   state.isNormalizeByGap = false;
   /* eslint-enable */
 };

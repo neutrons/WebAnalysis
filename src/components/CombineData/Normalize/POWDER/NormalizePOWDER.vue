@@ -1,7 +1,7 @@
 <template>
 <div> 
   <!-- Component to select files to normalize by vcorr data -->
-  <v-vcorr-select />
+  <v-vcorr-select ref='vcorr' />
 
   <v-tooltip top :close-delay='1' :disabled='isNormalized'>
     <v-btn slot='activator' outline block flat color='success' @click='onNormalizeData' :disabled='isNormalized'>Normalize Data</v-btn>
@@ -53,6 +53,9 @@ export default {
         });
     },
     onResetNormalizedData() {
+      // reset the vcorr file
+      this.$refs.vcorr.setDefaultVCorr();
+
       this.resetNormalizedData()
         .then(() => {
           eventBus.$emit('redraw-chart-powder-combine');

@@ -28,7 +28,6 @@
         v-model='selected'
         item-text='name'
         item-value='value'
-        return-object
         label='VCorr (file to normalize data)'
         hint='Select file to Normalize Data'
       />
@@ -42,11 +41,7 @@ import { mapState, mapMutations } from 'vuex';
 export default {
   name: 'VCorrSelect',
   created() {
-    // Get vcorr file depending on plotted data
-    const vcorr = this.selectedData[0].vcorr.filename;
-    this.selected = this.vcorrFiles[vcorr];
-
-    this.vcorrErrors();
+    this.setDefaultVCorr();
   },
   data() {
     return {
@@ -132,6 +127,14 @@ export default {
       });
 
       return false;
+    },
+    setDefaultVCorr() {
+      // Get vcorr file depending on first plotted data
+      const vcorr = this.selectedData[0].vcorr.filename;
+      this.selected = this.vcorrFiles[vcorr];
+
+      this.resetVcorrErrors();
+      this.vcorrErrors();
     },
   },
   watch: {
