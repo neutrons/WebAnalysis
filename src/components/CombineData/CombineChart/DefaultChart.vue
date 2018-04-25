@@ -29,11 +29,24 @@
                 <v-container class='pa-0' fluid>
                   <v-layout row wrap class='pa-0'>
                     <v-reset-chart-button @reset-chart='resetChart' :disable='mergedFiles.length === 0'></v-reset-chart-button>
+                    
                     <v-edit-chart-button :disable='mergedFiles.length === 0' ></v-edit-chart-button>
+                    
+                    <v-toggle-plot-elements
+                      :disable='plotData.length === 0'
+                      :is-scatter-points='isScatterPoints'
+                      :is-scatter-lines='isScatterLines'
+                      :is-error-bars='isErrorBars'
+                      :is-legend='isLegend'
+                      @toggle-plot-element='togglePlotElement'
+                    ></v-toggle-plot-elements>
+
                     <v-spacer></v-spacer>
+
                     <v-btn icon flat @click='showTabs = !showTabs' v-if='metadataLength > 0'>
                       <v-icon small>{{ showTabs ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
                     </v-btn>
+
                   </v-layout>
                 </v-container>
               </v-toolbar>
@@ -76,6 +89,7 @@
 // Import Packages
 import * as d3 from 'd3';
 import deletePoint from '../../DeletePoint/DeletePointMixins';
+import togglePlotElementsMixin from '../../../assets/js/togglePlotElementsMixin';
 
 export default {
   name: 'CombineChart',
@@ -87,11 +101,13 @@ export default {
   },
   mixins: [
     deletePoint,
+    togglePlotElementsMixin,
   ],
   components: {
     'v-reset-chart-button': () => import('../../ResetChartButton'),
     'v-plotted-data-table': () => import('../../PlottedDataTable'),
     'v-delete-point-modal': () => import('../../DeletePoint/DeletePointModal'),
+    'v-toggle-plot-elements': () => import('../../TogglePlotElements'),
   },
   data() {
     return {
@@ -112,6 +128,7 @@ export default {
       isScatterLines: true,
       isErrorBars: true,
       isScatterPoints: true,
+      defaultPlotElementStatus: null,
     };
   },
   computed: {

@@ -36,6 +36,8 @@ export default {
         } else {
           this.legend(this.plotData);
         }
+      } else {
+        this.g.selectAll('.legend').remove();
       }
 
       // filter data for values <= 0 when scale is log
@@ -81,6 +83,9 @@ export default {
           .attr('d', d => newLine(d.values))
           .style('stroke-width', '1.5px')
           .style('stroke', d => this.getColor(d.key));
+      } else {
+        // remove all scatter points
+        group.selectAll('path.scatter-line').remove();
       }
 
       // only draw error bars if enabled
@@ -160,6 +165,11 @@ export default {
           .attr('y1', d => this.errorBottomY(d, newYScale))
           .attr('x2', d => newXScale(d[vm.fields.x]) - 4)
           .attr('y2', d => this.errorBottomY(d, newYScale));
+      } else {
+        // remove all scatter points
+        group.selectAll('.error-line').remove();
+        group.selectAll('.error-cap-top').remove();
+        group.selectAll('.error-cap-bottom').remove();
       }
 
       // only draw scatter points if enabled
@@ -240,6 +250,9 @@ export default {
           .style('fill', d => this.getColor(d.name))
           .style('stroke', 'whitesmoke')
           .attr('transform', d => `translate( ${newXScale(d[vm.fields.x])}, ${newYScale(d[vm.fields.y])})`);
+      } else {
+        // remove all scatter points
+        group.selectAll('path.point').remove();
       }
     },
     errorBottomY(d, y) {

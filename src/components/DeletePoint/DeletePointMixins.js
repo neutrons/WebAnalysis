@@ -21,6 +21,7 @@ export default {
           eventBus.$emit(`redraw-chart-${group.toLowerCase()}-${feature.toLowerCase()}`);
         })
         .catch((error) => {
+          this.resetDeletePoint();
           eventBus.$emit('add-notification', error, 'error');
         });
     },
