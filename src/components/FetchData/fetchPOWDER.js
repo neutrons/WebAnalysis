@@ -1,4 +1,4 @@
-import fetchMixin from './fetchMixin';
+import fetchMixin from './fetchMixinTASandPOWDER';
 
 export default {
   methods: {
