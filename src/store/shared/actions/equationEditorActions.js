@@ -5,6 +5,8 @@ export const addToSelect = async ({ commit }, value) =>
   new Promise((resolve, reject) => {
     try {
       commit('addToSelect', value);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -15,6 +17,8 @@ export const updateSelectAtIndex = async ({ commit }, payload) =>
   new Promise((resolve, reject) => {
     try {
       commit('updateSelectAtIndex', payload);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -25,6 +29,8 @@ export const removeSelectAtIndex = async ({ commit }, index) =>
   new Promise((resolve, reject) => {
     try {
       commit('removeSelectAtIndex', index);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -35,6 +41,8 @@ export const updateInitialValue = async ({ commit }, payload) =>
   new Promise((resolve, reject) => {
     try {
       commit('updateInitialValue', payload);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -45,6 +53,8 @@ export const addCoefficientValue = async ({ commit }, payload) =>
   new Promise((resolve, reject) => {
     try {
       commit('addCoefficientValue', payload);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -55,6 +65,8 @@ export const removeInitialValues = async ({ commit }, payload) =>
   new Promise((resolve, reject) => {
     try {
       commit('removeInitialValues', payload);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -65,6 +77,8 @@ export const addInitialValues = async ({ commit }, payload) =>
   new Promise((resolve, reject) => {
     try {
       commit('addInitialValues', payload);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -75,6 +89,8 @@ export const setSelectValid = async ({ commit }, payload) =>
   new Promise((resolve, reject) => {
     try {
       commit('setSelectValid', payload);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -85,6 +101,8 @@ export const setSelectEquation = async ({ commit }, payload) =>
   new Promise((resolve, reject) => {
     try {
       commit('setSelectEquation', payload);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -95,6 +113,8 @@ export const setCoefficientConstant = async ({ commit }, payload) =>
   new Promise((resolve, reject) => {
     try {
       commit('setCoefficientConstant', payload);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -105,6 +125,8 @@ export const updateEquationEditInitialValues = async ({ commit }, item) =>
   new Promise((resolve, reject) => {
     try {
       commit('updateEquationEditInitialValues', item);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
@@ -115,6 +137,8 @@ export const setEquationEditSelect = async ({ commit }, value) =>
   new Promise((resolve, reject) => {
     try {
       commit('setEquationEditSelect', value);
+
+      resolve(true);
     } catch (error) {
       reject(error);
     }
