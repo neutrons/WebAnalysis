@@ -17,7 +17,7 @@ export default ({ state, commit, getters }, payload) =>
 
         resolve(true);
       } catch (error) {
-        reject(error);
+        reject('Cannot delete point.');
       }
     } else {
       reject('Cannot delete point.');
