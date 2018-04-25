@@ -11,11 +11,14 @@ export default {
 
         el.results.forEach((r) => {
           const key = r.type;
+          // use regex to match filename from url
+          const matchFilename = r.url.match(/([^\/]+)\./); // eslint-disable-line
+          const filename = matchFilename[0].replace(/\.+$/, '');
 
           if (key === this.$route.meta.subgroup) {
-            temp[r.filename] = {
+            temp[filename] = {
+              filename,
               id: r.id,
-              filename: r.filename,
               url: r.url,
               jobTitle,
               dateModified: jobModified,
