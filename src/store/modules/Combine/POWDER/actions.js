@@ -63,8 +63,16 @@ powderActions.combineData = async ({ state, commit }, value) => { // eslint-disa
 
 powderActions.setCurrentData = ({ commit, rootState }, data) => {
   // Grab gaps data then trigger mutation to set current data
-  const gaps = rootState.POWDER.normalizeFilesData.gaps[0].data;
-  commit('setCurrentData', { data, gaps });
+  const gaps = rootState.POWDER.normalizeFilesData.gaps;
+  let gapsData;
+
+  if (gaps.length > 0) { // first make sure gaps data exists
+    gapsData = _.cloneDeep(gaps[0].data);
+  } else {
+    gapsData = [];
+  }
+
+  commit('setCurrentData', { data, gaps: gapsData });
 };
 
 export default powderActions;

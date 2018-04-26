@@ -4,6 +4,16 @@
     <div slot='header' class='title'>Exclude Detectors</div>
 
     <v-container>
+      <!-- If no exclude detectors files available show warning message -->
+      <v-alert 
+        outline
+        :value='noExcludeDetectorFiles'
+        type='warning'
+        transition='fade-transition'
+        icon='fa-exclamation-triangle'
+        class='pa-2'
+      >No Exclude Detectors file available. Please upload one.</v-alert>
+
       <v-layout row wrap mb-4>
         <v-flex xs3 v-for='(item, index) in items' :key='index' @mouseover='onMouseover(item)' @mouseout='onMouseout(item)'>
           <v-checkbox hide-details :label='`${item}`' :input-value='inSelected(item)' @click='onToggleAnode(item)' color='secondary'></v-checkbox>
@@ -58,6 +68,9 @@ export default {
       isCombined: 'isCombined',
       getPreparedData: 'getPreparedData',
     }),
+    noExcludeDetectorFiles() {
+      return this.defaultAnodesToExclude.length === 0;
+    },
   },
   methods: {
     ...mapActions('POWDER/Combine', [

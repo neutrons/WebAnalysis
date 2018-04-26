@@ -23,6 +23,8 @@ export default async ({ state, dispatch, commit, rootGetters }, payload) => {
   // Next Get File References, either url to fetch or blob to file read
   const [urls, blobs] = rootGetters[`${group}/getURLs`](nonStoredFiles);
 
+  console.log('urls', urls);
+  console.log('blobs', blobs);
   // Next Get data for URLs - either fetched or file reader
   const fetchData = await dispatch('fetchData', urls);
   const readData = await dispatch('readData', blobs);
@@ -31,11 +33,14 @@ export default async ({ state, dispatch, commit, rootGetters }, payload) => {
   const dataToParse = _.flatten([fetchData, readData]);
   const parsedData = await dispatch('parseData', dataToParse);
 
+  console.log('data to parse', dataToParse);
+  console.log('parsed data', parsedData);
   // Next Store Data
   commit(`${group}/storeData`, parsedData, { root: true });
 
   // Finally Set Current Data
   const finalData = _.flatten([storedData, parsedData]);
+  console.log('final data', finalData);
   dispatch('setCurrentData', finalData);
 
   return true;

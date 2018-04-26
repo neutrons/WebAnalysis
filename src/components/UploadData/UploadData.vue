@@ -1,5 +1,5 @@
 <template>
-  <div class='btn btn--flat'>
+  <div class='btn btn--flat' title='Click to upload data files'>
     <label id='file-load-btn' class='btn__content btn-upload'>
         <span class='hidden-md-and-down'>Upload file <i class='fa fa-upload fa-lg'></i></span>
         <span class='hidden-lg-and-up'><i class='fa fa-upload fa-lg'></i></span>

@@ -2,8 +2,21 @@
 <v-expansion-panel expand>
   <v-expansion-panel-content :value='true'>
     <div slot='header' class='title'>Files to Combine</div>
+
     <v-container>
       <v-layout row wrap>
+        <v-flex xs12 v-if='noGapsFiles && selectedData.length'>
+          <!-- If no gaps files available show warning message -->
+          <v-alert 
+            outline
+            :value='true'
+            type='warning'
+            transition='fade-transition'
+            icon='fa-exclamation-triangle'
+            class='pa-2'
+          >No gaps file available. Please upload one.</v-alert>
+        </v-flex>
+
         <v-flex xs12>
           <v-filter-list />
         </v-flex>
@@ -67,6 +80,12 @@ export default {
       selectedData: state => state.selectedData,
       isNormalized: state => state.isNormalized,
     }),
+    ...mapState('POWDER', {
+      gapsFiles: state => state.normalizeFilesData.gaps,
+    }),
+    noGapsFiles() {
+      return this.gapsFiles.length === 0;
+    },
   },
 };
 </script>

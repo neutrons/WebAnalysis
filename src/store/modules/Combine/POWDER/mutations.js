@@ -11,6 +11,7 @@ const powderMutations = _.cloneDeep(mutations);
 powderMutations.updateFilesSelected = updateFilesSelected;
 
 powderMutations.setCurrentData = (state, payload) => {
+  console.log('set current data', payload);
   const chosenData = payload.data;
   const gapsData = payload.gaps;
 
@@ -23,6 +24,7 @@ powderMutations.setCurrentData = (state, payload) => {
     const vcorr = detectVCorrFilename(data);
     let gapSum = 0;
 
+    console.log('data', _.cloneDeep(data));
     // Get anode names
     const nodeNames = Object.keys(data[0])
       .filter(field => /^anode\d+$/.exec(field) !== null);
@@ -34,7 +36,10 @@ powderMutations.setCurrentData = (state, payload) => {
       // Anode2 is gaps[0] + gaps[1] + 2theta
       // ... Anode(N) is gaps[0] + ... + gaps[n] + 2theta
       // We only use the first column of gaps data (this is what user told us)
-      gapSum += gapsData[index][0];
+      if (gapsData.length > 0) { // make sure gap data exists
+        console.log('in gaps data adding');
+        gapSum += gapsData[index][0];
+      }
 
       return {
         filename,
@@ -69,36 +74,6 @@ powderMutations.setNormalizeValue = (state, value) => {
 powderMutations.setNormalizeField = (state, value) => {
   // eslint-disable-next-line
   state.normalizeField = value;
-};
-
-powderMutations.updateFilesToAdd = (state, selected) => {
-  const keys = [];
-
-  state.filesToAdd.forEach((key) => {
-    if (selected.indexOf(key) === -1) {
-      keys.push(key);
-    }
-  });
-
-  // eslint-disable-next-line
-  state.filesToAdd = selected;
-  // eslint-disable-next-line
-  state.filesSelected.add = selected;
-};
-
-powderMutations.updateFilesToSubtract = (state, selected) => {
-  const keys = [];
-
-  state.filesToSubtract.forEach((key) => {
-    if (selected.indexOf(key) === -1) {
-      keys.push(key);
-    }
-  });
-
-  // eslint-disable-next-line
-  state.filesToSubtract = selected;
-  // eslint-disable-next-line
-  state.filesSelected.subtract = selected;
 };
 
 powderMutations.resetAll = (state) => {

@@ -12,13 +12,16 @@ export default {
     return new Promise((resolve, reject) => {
       try {
         // First filter out files for Powder Normalization
-        const normalizeFiles = files.normalizeFiles;
-        const dataFiles = files.dataFiles;
+        let normalizeFiles = {};
+        let dataFiles = {};
 
-        // Then store those filtered files
+        if (typeof files.normalizeFiles !== 'undefined') normalizeFiles = files.normalizeFiles;
+        if (typeof files.dataFiles !== 'undefined') dataFiles = files.dataFiles;
+
+        // Then store those normalized files
         commit('storeNormalizeFiles', normalizeFiles);
 
-        // Then read and grab data from normalize files
+        // Then read and grab data from eclude detector files
         // Then read and grab data for vcorr files
         // Then read and grap data for gaps files
         dispatch('readExcludeDetectorsFileData')
