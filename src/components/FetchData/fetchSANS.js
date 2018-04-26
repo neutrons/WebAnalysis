@@ -30,11 +30,15 @@ export default {
       });
 
       const namespace = this.$route.name !== 'SANS2D' ? 'SANS' : 'SANS/SANS2D';
-      this.$store.dispatch(`${namespace}/addFetchFiles`, temp)
-        .then(() => {
-          // Notify that fetch was a success
-          if (silenceMessage !== true) eventBus.$emit('add-notification', 'Data fetched!', 'success');
-        });
+      if (Object.keys(temp).length > 0) {
+        this.$store.dispatch(`${namespace}/addFetchFiles`, temp)
+          .then(() => {
+            // Notify that fetch was a success
+            if (silenceMessage !== true) eventBus.$emit('add-notification', 'Data fetched.', 'success');
+          });
+      } else {
+        eventBus.$emit('add-notification', 'No data to fetch.', 'warning');
+      }
     },
   },
 };

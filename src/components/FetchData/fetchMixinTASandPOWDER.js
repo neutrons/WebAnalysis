@@ -72,9 +72,13 @@ export default function (data, silenceMessage = false) {
     payload = dataFiles;
   }
 
-  this.$store.dispatch(`${this.$route.meta.group}/addFetchFiles`, payload)
-    .then(() => {
-      // Notify that fetch was a success
-      if (silenceMessage !== true) eventBus.$emit('add-notification', 'Data fetched!', 'success');
-    });
+  if (isNormalizedFiles || Object.keys(payload).length > 0) {
+    this.$store.dispatch(`${this.$route.meta.group}/addFetchFiles`, payload)
+      .then(() => {
+        // Notify that fetch was a success
+        if (silenceMessage !== true) eventBus.$emit('add-notification', 'Data fetched.', 'success');
+      });
+  } else {
+    eventBus.$emit('add-notification', 'No data to fetch', 'warning');
+  }
 }
