@@ -5,34 +5,6 @@ import fetchData from '../../shared/actions/fetchData';
 import configVCorr from '../../../assets/js/readFiles/configs/POWDERVCorr';
 import configGaps from '../../../assets/js/readFiles/configs/POWDERGaps';
 
-function filterNormalizeFiles(files) {
-  // function to sift files as either data or normalized files
-  const names = Object.keys(files);
-  const normalizeFiles = {
-    vcorr: [],
-    exclude_detectors: [],
-    gaps: [],
-  };
-
-  const dataFiles = {};
-
-  for (let i = 0, length = names.length; i < length; i += 1) {
-    const file = names[i];
-
-    if (/IN_vcorr$/.exec(file) !== null || /OUT_vcorr$/.exec(file) !== null) {
-      normalizeFiles.vcorr.push(files[file]);
-    } else if (/exclude_detectors$/.exec(file) !== null) {
-      normalizeFiles.exclude_detectors.push(files[file]);
-    } else if (/gaps$/.exec(file) !== null) {
-      normalizeFiles.gaps.push(files[file]);
-    } else {
-      dataFiles[file] = files[file];
-    }
-  }
-
-  return { normalizeFiles, dataFiles };
-}
-
 export default {
   addUploadFiles,
   fetchData,
@@ -40,9 +12,8 @@ export default {
     return new Promise((resolve, reject) => {
       try {
         // First filter out files for Powder Normalization
-        const filtered = filterNormalizeFiles(files);
-        const normalizeFiles = filtered.normalizeFiles;
-        const dataFiles = filtered.dataFiles;
+        const normalizeFiles = files.normalizeFiles;
+        const dataFiles = files.dataFiles;
 
         // Then store those filtered files
         commit('storeNormalizeFiles', normalizeFiles);

@@ -8,6 +8,7 @@
       chips
       v-model='editNormalizeField'
       :items='normalizeOptions'
+      :disabled='isNormalized'
     ></v-select>
     <span>Select variable to normalize y axis</span>
   </v-tooltip>
@@ -21,6 +22,7 @@
       :step='defaultSettings.normalize.increment'
       required
       :rules='[checkValue]'
+      :disabled='isNormalized'
     ></v-text-field>
     <span>Type a value to normalize y axis to</span>
   </v-tooltip>
