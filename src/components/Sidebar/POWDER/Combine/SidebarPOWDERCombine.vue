@@ -5,7 +5,7 @@
 
     <v-container>
       <v-layout row wrap>
-        <v-flex xs12 v-if='noGapsFiles && selectedData.length'>
+        <v-flex xs12 v-if='noGapsFiles'>
           <!-- If no gaps files available show warning message -->
           <v-alert 
             outline

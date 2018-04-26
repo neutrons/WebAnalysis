@@ -53,8 +53,7 @@ export default {
   },
   created() {
     // initialize anodes to exclude from exclude_detectors file data
-    const values = this.defaultAnodesToExclude;
-    values.forEach(d => this.onToggleAnode(d));
+    this.setDefaultExcludeDetectors();
   },
   computed: {
     ...mapState('POWDER/Combine', {
@@ -119,6 +118,17 @@ export default {
     },
     inSelected(value) {
       return this.anodesToExclude.indexOf(value) > -1;
+    },
+    setDefaultExcludeDetectors() {
+      const values = this.defaultAnodesToExclude;
+      values.forEach(d => this.onToggleAnode(d));
+    },
+  },
+  watch: {
+    noExcludeDetectorFiles(value) {
+      if (!value) {
+        this.setDefaultExcludeDetectors();
+      }
     },
   },
 };

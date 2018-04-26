@@ -11,7 +11,6 @@ const powderMutations = _.cloneDeep(mutations);
 powderMutations.updateFilesSelected = updateFilesSelected;
 
 powderMutations.setCurrentData = (state, payload) => {
-  console.log('set current data', payload);
   const chosenData = payload.data;
   const gapsData = payload.gaps;
 
@@ -24,7 +23,6 @@ powderMutations.setCurrentData = (state, payload) => {
     const vcorr = detectVCorrFilename(data);
     let gapSum = 0;
 
-    console.log('data', _.cloneDeep(data));
     // Get anode names
     const nodeNames = Object.keys(data[0])
       .filter(field => /^anode\d+$/.exec(field) !== null);
@@ -37,7 +35,6 @@ powderMutations.setCurrentData = (state, payload) => {
       // ... Anode(N) is gaps[0] + ... + gaps[n] + 2theta
       // We only use the first column of gaps data (this is what user told us)
       if (gapsData.length > 0) { // make sure gap data exists
-        console.log('in gaps data adding');
         gapSum += gapsData[index][0];
       }
 

@@ -60,6 +60,9 @@ export default {
       selectedData: state => state.selectedData,
       isNormalized: state => state.isNormalized,
     }),
+    vcorrKeys() {
+      return Object.keys(this.vcorrFiles);
+    },
     items() {
       const result = [];
 
@@ -133,7 +136,11 @@ export default {
     setDefaultVCorr() {
       // Get vcorr file depending on first plotted data
       const vcorr = this.selectedData[0].vcorr.filename;
-      this.selected = this.vcorrFiles[vcorr];
+      if (this.vcorrKeys.indexOf(vcorr) !== -1) {
+        this.selected = this.vcorrFiles[vcorr];
+      } else {
+        this.selected = this.vcorrFiles[this.vcorrKeys[0]];
+      }
 
       this.resetVcorrErrors();
       this.vcorrErrors();

@@ -12,76 +12,33 @@
 <script>
 import { eventBus } from '../../assets/js/eventBus';
 import DropZone from './DropZone';
+import uploadSANS from './uploadSANS';
+import uploadTAS from './uploadTAS';
+import uploadPOWDER from './uploadPOWDER';
 
 export default {
   name: 'UploadData',
   components: {
     'v-dropzone': DropZone,
   },
-  computed: {
-    fileExtension() {
-      switch (this.$route.meta.group) {
-        case 'TAS':
-        case 'POWDER':
-          return '.dat';
-        case 'SANS':
-          if (this.$route.name === 'SANS2D') {
-            return '.dat';
-          }
-
-          return '.txt';
-        default:
-          return '.txt';
-      }
-    },
-  },
+  mixins: [
+    uploadSANS,
+    uploadTAS,
+    uploadPOWDER,
+  ],
   methods: {
     validateFiles(files) {
-      const fileList = [];
+      const group = this.$route.meta.group;
 
-      for (let i = 0, len = files.length; i < len; i += 1) {
-        const url = files[i].name;
-        const blob = files[i];
-
-        const re = new RegExp(this.fileExtension, 'g');
-        const match = url.search(re);
-        const filename = url.slice(0, match);
-
-        if (match > 0) {
-          fileList.push({
-            url,
-            blob,
-            filename,
-          });
-        } else {
-          const errorMsg = `Error! ${url} is not a supported type. Make sure the file ends in ${this.fileExtension}.`;
-          eventBus.$emit('add-notification', errorMsg, 'error');
-        }
-      }
-
-      if (fileList.length > 0) {
-        this.uploadFiles(fileList);
-      }
+      // validate files depending on group type
+      this[`validateFiles${group}`](files);
 
       document.getElementById('file-upload-input').value = '';
     },
     uploadFiles(files) {
-      const temp = {};
-
-      files.forEach((el) => {
-        const fname = el.filename;
-        // eslint-disable-next-line
-        el.tags = ['uploaded'];
-
-        // eslint-disable-next-line
-        el.loadType = 'uploaded';
-
-        temp[fname] = el;
-      });
-
       const namespace = this.$route.name === 'SANS2D' ? 'SANS/SANS2D' : this.$route.meta.group;
 
-      this.$store.dispatch(`${namespace}/addUploadFiles`, temp)
+      this.$store.dispatch(`${namespace}/addUploadFiles`, files)
         .then(() => {
           this.sendMessage(true);
         })
