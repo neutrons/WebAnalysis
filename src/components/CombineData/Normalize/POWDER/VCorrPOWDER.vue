@@ -30,6 +30,7 @@
         item-value='value'
         label='VCorr (file to normalize data)'
         hint='Select file to Normalize Data'
+        :disabled='isNormalized'
       />
     </v-flex>
   </div>
@@ -57,6 +58,7 @@ export default {
     ...mapState('POWDER/Combine', {
       normalizeByVCorr: state => state.normalizeByVCorr,
       selectedData: state => state.selectedData,
+      isNormalized: state => state.isNormalized,
     }),
     items() {
       const result = [];
