@@ -1,22 +1,14 @@
 import * as d3 from 'd3';
 import _ from 'lodash';
 
+import createErrorPoints from '../../../../assets/js/createErrorPoints';
+
 import getter from '../getters';
+import getMetadata from '../../../shared/getters/getMetadata';
 
 const powderGetters = _.cloneDeep(getter);
 
-powderGetters.getMetadata = (state) => {
-  if (!state.filesSelected.length) return null;
-
-  const obj = {};
-  state.selectedData.forEach((d) => {
-    if (typeof d.metadata !== 'undefined' && d.metadata.length > 0) {
-      obj[d.filename] = [...d.metadata];
-    }
-  });
-
-  return obj;
-};
+powderGetters.getMetadata = getMetadata;
 
 powderGetters.getPreparedData = (state, getters) => { // eslint-disable-line
   const xField = state.field.x;
@@ -44,15 +36,7 @@ powderGetters.getPreparedData = (state, getters) => { // eslint-disable-line
   temp = temp.filter(d => Number.isFinite(d[yField]) && Number.isFinite(d[xField]));
 
   // Generate error points if non-existent
-  temp = temp.map((point) => {
-    if (typeof point.error === 'undefined') {
-      return {
-        ...point,
-        error: point[yField] < 0 ? 0 : Math.sqrt(point[yField]),
-      };
-    }
-    return { ...point };
-  });
+  temp = createErrorPoints(temp, yField);
 
   // Sort by smallest x value
   temp = temp.sort((a, b) => a[xField] - b[xField]);
@@ -63,20 +47,6 @@ powderGetters.getPreparedData = (state, getters) => { // eslint-disable-line
     .entries(temp);
 
   return temp;
-};
-
-powderGetters.getChartConfigurations = (state, getters) => {
-  const tempCombined = d3.nest()
-    .key(d => d.name)
-    .entries(state.combinedData);
-
-  const data = _.cloneDeep(getters.getPreparedData.concat(tempCombined));
-  const scales = state.plotScale;
-
-  return {
-    data,
-    scales,
-  };
 };
 
 powderGetters.getAnodeNames = (state) => {

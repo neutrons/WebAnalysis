@@ -122,6 +122,9 @@ export default {
     };
   },
   computed: {
+    chartName() {
+      return `.browseplot-${this.ID}`;
+    },
     margin() {
       return this.defaultMargin;
     },
@@ -199,12 +202,12 @@ export default {
         this.removeChart();
       }
 
-      this.drawChart();
+      this.drawChart(this.chartName, 0);
     },
   },
   mounted() {
     this.getContainerWidth(`#browseplot-wrapper-${this.ID}`);
-    this.drawChart();
+    this.drawChart(this.chartName, 0);
   },
 };
 </script>

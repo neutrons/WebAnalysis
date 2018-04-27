@@ -12,6 +12,7 @@ import filterForLog from '../../../assets/js/chartFunctions/filterForLog';
 import addClipPath from '../../../assets/js/chartFunctions/addClipPath';
 import addZoomGroup from '../../../assets/js/chartFunctions/addZoomGroup';
 import legend from '../../../assets/js/chartFunctions/legend';
+import drawChart from '../../../assets/js/chartFunctions/drawChartMixin';
 
 export default {
   mixins: [
@@ -28,20 +29,6 @@ export default {
     addClipPath,
     addZoomGroup,
     legend,
+    drawChart,
   ],
-  methods: {
-    drawChart() {
-      if (this.plotData.length === 0) {
-        this.initChartElements(`.combine-chart-${this.ID}`);
-      }
-
-      if (this.plotData.length !== 0) {
-        // toggle zoom on
-        this.g.select('.zoom')
-          .attr('pointer-events', 'all');
-      }
-
-      this.updateChartElements();
-    },
-  },
 };

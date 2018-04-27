@@ -1,6 +1,8 @@
 import * as d3 from 'd3';
 import _ from 'lodash';
 
+import createErrorPoints from '../../../assets/js/createErrorPoints';
+
 export default (state) => {
   const xField = state.field.x;
   const yField = state.field.y;
@@ -11,15 +13,7 @@ export default (state) => {
   temp = temp.filter(d => Number.isFinite(d[yField]) && Number.isFinite(d[xField]));
 
   // Generate error points if non-existent
-  temp = temp.map((point) => {
-    if (typeof point.error === 'undefined') {
-      return {
-        ...point,
-        error: point[yField] < 0 ? 0 : Math.sqrt(point[yField]),
-      };
-    }
-    return { ...point };
-  });
+  temp = createErrorPoints(temp, yField);
 
   // Sort by smallest x value
   temp = temp.sort((a, b) => a[xField] - b[xField]);

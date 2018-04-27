@@ -132,6 +132,9 @@ export default {
     };
   },
   computed: {
+    chartName() {
+      return `.combine-chart-${this.ID}`;
+    },
     plotData() {
       return this.chartConfigurations.data;
     },
@@ -205,19 +208,19 @@ export default {
   },
   methods: {
     redrawChart() {
+      // if no data reset chart to nothing
       if (this.plotData.length === 0) {
         this.showTabs = true;
         this.removeChart();
         this.getContainerWidth(`#combine-chart-wrapper-${this.ID}`);
-        this.drawChart();
-      } else {
-        this.drawChart();
       }
+
+      this.drawChart(this.chartName, 750);
     },
   },
   mounted() {
     this.getContainerWidth(`#combine-chart-wrapper-${this.ID}`);
-    this.drawChart();
+    this.drawChart(this.chartName, 750);
   },
 };
 
