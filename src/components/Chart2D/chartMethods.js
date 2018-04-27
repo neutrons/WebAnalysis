@@ -7,6 +7,7 @@ import axes from '../../assets/js/chartFunctions/axes';
 import labels from '../../assets/js/chartFunctions/labels';
 import addZoomGroup from '../../assets/js/chartFunctions/addZoomGroup';
 import zoom from './zoom';
+import tooltip from '../../assets/js/chartFunctions/tooltipMixin';
 
 export default {
   mixins: [
@@ -167,20 +168,8 @@ export default {
               <p>Qy: ${newYScale.invert(d.y).toExponential(2)}</p>
               <p>Intensity: ${d.avgIntensity.toExponential(2)}</p>`;
 
-            d3.select('body')
-              .append('div')
-              .attr('class', 'plot-tooltip')
-              .style('position', 'absolute')
-              .style('padding', '10px')
-              .style('height', 'auto')
-              .style('width', 'auto')
-              .style('background', 'white')
-              .style('border', '1px solid black')
-              .style('z-index', '9999')
-              .style('display', 'inline')
-              .style('left', `${moveX}px`)
-              .style('top', `${d3.event.pageY - 50}px`)
-              .html(html);
+            // generate tooltip content
+            tooltip(moveX, d3.event.pageY, html);
           })
           .on('mouseout', () => {
             d3.select('.plot-tooltip').remove();

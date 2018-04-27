@@ -14,6 +14,7 @@ import filterForLog from '../../assets/js/chartFunctions/filterForLog';
 import removeChart from '../../assets/js/chartFunctions/removeChart';
 import addClipPath from '../../assets/js/chartFunctions/addClipPath';
 import addZoomGroup from '../../assets/js/chartFunctions/addZoomGroup';
+import drawChart from '../../assets/js/chartFunctions/drawChartMixin';
 
 export default {
   mixins: [
@@ -30,20 +31,6 @@ export default {
     removeChart,
     addClipPath,
     addZoomGroup,
+    drawChart,
   ],
-  methods: {
-    drawChart() {
-      if (this.plotData.length === 0) {
-        this.initChartElements(`.browseplot-${this.ID}`);
-      }
-
-      if (this.plotData.length !== 0) {
-        // toggle zoom on
-        this.g.select('.zoom')
-          .attr('pointer-events', 'all');
-      }
-
-      this.updateChartElements(0);
-    },
-  },
 };

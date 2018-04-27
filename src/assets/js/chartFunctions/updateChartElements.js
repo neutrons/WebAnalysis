@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import _ from 'lodash';
+import tooltip from './tooltipMixin';
 
 export default {
   data: () => ({
@@ -214,20 +215,8 @@ export default {
               <p>${vm.fields.y}: ${d[vm.fields.y].toExponential(2)}</p>
               <p>error: \u00B1 ${d.error.toExponential(2)}</p>`;
 
-            d3.select('body')
-              .append('div')
-              .attr('class', 'plot-tooltip')
-              .style('position', 'absolute')
-              .style('padding', '10px')
-              .style('height', 'auto')
-              .style('width', 'auto')
-              .style('background', 'white')
-              .style('border', '1px solid black')
-              .style('z-index', '9999')
-              .style('display', 'inline')
-              .style('left', `${moveX}px`)
-              .style('top', `${d3.event.pageY - 50}px`)
-              .html(html);
+            // generate tooltip content
+            tooltip(moveX, d3.event.pageY, html);
           })
           .on('mouseout', function out(d) {
             const shape = vm.getShape(d.name);
