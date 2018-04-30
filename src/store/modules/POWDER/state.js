@@ -2,7 +2,11 @@ export default {
   fetched: {},
   uploaded: {},
   saved: {},
-  normalizeFiles: {},
+  normalizeFiles: {
+    excludeDetectors: [],
+    vcorr: [],
+    gaps: [],
+  },
   normalizeFilesData: {
     excludeDetectors: [],
     vcorr: [],
