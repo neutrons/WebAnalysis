@@ -13,7 +13,9 @@ tasActions.parseData = parseData;
 tasActions.setYField = setYField;
 tasActions.setXField = setXField;
 
-tasActions.combineData = async ({ state, commit }, value) => { // eslint-disable-line
+tasActions.combineData = async ({ state, commit }, value) => {
+  const yField = state.field.y;
+
   return new Promise((resolve, reject) => {
     if (!value.length) {
       commit('resetCombinedData');
