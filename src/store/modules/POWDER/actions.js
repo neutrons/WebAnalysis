@@ -18,7 +18,7 @@ export default {
         // if normalize files exist trigger action to get normalize data
         if (typeof files.normalizeFiles !== 'undefined') {
           normalizeFiles = files.normalizeFiles;
-          dispatch('loadNormalizeFiles', { type: 'upload', normalizeFiles })
+          await dispatch('loadNormalizeFiles', { type: 'upload', normalizeFiles })
             .catch((error) => {
               reject(error);
             });
@@ -27,7 +27,7 @@ export default {
         // if data files exist trigger action to store data files
         if (typeof files.dataFiles !== 'undefined') {
           dataFiles = files.dataFiles;
-          dispatch('loadDataFiles', { type: 'upload', dataFiles })
+          await dispatch('loadDataFiles', { type: 'upload', dataFiles })
             .catch((error) => {
               reject(error);
             });
@@ -48,7 +48,7 @@ export default {
 
         if (typeof files.normalizeFiles !== 'undefined') {
           normalizeFiles = files.normalizeFiles;
-          dispatch('loadNormalizeFiles', { type: 'fetch', normalizeFiles })
+          await dispatch('loadNormalizeFiles', { type: 'fetch', normalizeFiles })
             .catch((error) => {
               reject(error);
             });
@@ -56,7 +56,7 @@ export default {
 
         if (typeof files.dataFiles !== 'undefined') {
           dataFiles = files.dataFiles;
-          dispatch('loadDataFiles', { type: 'fetch', dataFiles })
+          await dispatch('loadDataFiles', { type: 'fetch', dataFiles })
             .catch((error) => {
               reject(error);
             });
