@@ -105,7 +105,13 @@ tasMutations.normalizeData = (state, data) => {
 
   // set the normalized data to selected data's transformed data
   for (let i = 0, length = tempData.length; i < length; i += 1) {
-    state.selectedData[i].dataTransformed = tempData[i].values; // eslint-disable-line
+    const name = tempData[i].key;
+
+    state.selectedData.forEach((curve) => {
+      if (curve.filename === name) {
+        state.selectedData[i].dataTransformed = tempData[i].values; // eslint-disable-line
+      }
+    });
   }
 
   state.isNormalized = true; // eslint-disable-line
