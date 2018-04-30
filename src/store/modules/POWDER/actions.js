@@ -60,9 +60,9 @@ export default {
             .catch((error) => {
               reject(error);
             });
-
-          resolve(true);
         }
+
+        resolve(true);
       } catch (error) {
         reject(error);
       }
