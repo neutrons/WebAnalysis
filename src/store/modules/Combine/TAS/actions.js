@@ -13,7 +13,7 @@ tasActions.parseData = parseData;
 tasActions.setYField = setYField;
 tasActions.setXField = setXField;
 
-tasActions.combineData = async ({ state, commit, getters }, dataToCombine) => {
+tasActions.combineData = async ({ state, commit }, dataToCombine) => {
   const yField = state.field.y;
 
   function getCurveData(d, name) {
