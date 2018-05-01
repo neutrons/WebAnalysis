@@ -142,6 +142,7 @@ import { eventBus } from '../../../assets/js/eventBus';
 import chartMethods from './chartMethods';
 import deletePoint from '../../DeletePoint/DeletePointMixins';
 import togglePlotElementsMixin from '../../../assets/js/togglePlotElementsMixin';
+import defaultChartData from '../../../assets/js/chartFunctions/defaultChartDataMixin';
 
 export default {
   name: 'Chart',
@@ -155,6 +156,7 @@ export default {
     chartMethods,
     deletePoint,
     togglePlotElementsMixin,
+    defaultChartData,
   ],
   components: {
     'v-reset-chart-button': () => import('../../ResetChartButton'),
@@ -168,15 +170,6 @@ export default {
       g: undefined,
       drawerRight: false,
       showTabs: true,
-      width: 960,
-      height: 600,
-      viewBox: '0 0 960 600',
-      defaultMargin: {
-        top: 20,
-        right: 50,
-        bottom: 50,
-        left: 100,
-      },
       sliderMargin: {
         top: 50,
         right: 50,
@@ -186,11 +179,6 @@ export default {
       sliderHeight: 25,
       showPicker: false,
       pickerPoints: [0, 0],
-      isLegend: true,
-      isScatterLines: true,
-      isErrorBars: true,
-      isScatterPoints: true,
-      defaultPlotElementStatus: null,
     };
   },
   computed: {

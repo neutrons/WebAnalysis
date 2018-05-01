@@ -6,7 +6,8 @@ export default ({ state, commit, getters }, payload) =>
     const name = payload.name;
     const group = payload.group;
     const fields = state.field;
-    const tempData = _.cloneDeep(getters.getPreparedData);
+    // const tempData = _.cloneDeep(getters.getPreparedData);
+    const tempData = _.cloneDeep(state.selectedData);
     const index = findPointIndex(payload, tempData, fields);
 
     // match index to file

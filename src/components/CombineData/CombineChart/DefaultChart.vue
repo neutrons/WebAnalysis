@@ -90,6 +90,7 @@
 import * as d3 from 'd3';
 import deletePoint from '../../DeletePoint/DeletePointMixins';
 import togglePlotElementsMixin from '../../../assets/js/togglePlotElementsMixin';
+import defaultChartData from '../../../assets/js/chartFunctions/defaultChartDataMixin';
 
 export default {
   name: 'CombineChart',
@@ -102,6 +103,7 @@ export default {
   mixins: [
     deletePoint,
     togglePlotElementsMixin,
+    defaultChartData,
   ],
   components: {
     'v-reset-chart-button': () => import('../../ResetChartButton'),
@@ -115,20 +117,6 @@ export default {
       g: undefined,
       drawerRight: false,
       showTabs: true,
-      width: 960,
-      height: 600,
-      viewBox: '0 0 960 600',
-      margin: {
-        top: 20,
-        right: 50,
-        bottom: 50,
-        left: 100,
-      },
-      isLegend: true,
-      isScatterLines: true,
-      isErrorBars: true,
-      isScatterPoints: true,
-      defaultPlotElementStatus: null,
     };
   },
   computed: {

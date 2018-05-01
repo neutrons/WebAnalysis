@@ -16,7 +16,7 @@ export default function (chunk) {
   // Rename error for common name scheme throughout
   header = header.replace(/E/, 'error');
 
-  rows[0] = header.toLowerCase();
+  rows[0] = header.replace(/\./g, '').toLowerCase();
 
   // Remove the 2nd row if it's not data
   if (rows[1].length <= 2) {

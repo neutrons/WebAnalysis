@@ -14,11 +14,11 @@ export default {
         fetchFiles[group][filename] = content;
       }
 
-      function sendData(namespace, payload) {
+      function sendData(namespace, payload, message) {
         vm.$store.dispatch(`${namespace}/addFetchFiles`, payload)
           .then(() => {
             // Notify that fetch was a success
-            if (silenceMessage !== true) eventBus.$emit('add-notification', 'Data fetched.', 'success');
+            if (silenceMessage !== true) eventBus.$emit('add-notification', `SANS ${message} data fetched.`, 'success');
           });
       }
 
@@ -55,12 +55,12 @@ export default {
 
       // if there is sans1d data trigger action to add it
       if (isSANS1D) {
-        sendData('SANS', fetchFiles.SANS1D);
+        sendData('SANS', fetchFiles.SANS1D, '1D');
       }
 
       // if there is sans2d data trigger action to add it
       if (isSANS2D) {
-        sendData('SANS/SANS2D', fetchFiles.SANS2D);
+        sendData('SANS/SANS2D', fetchFiles.SANS2D, '2D');
       }
 
       // If both are empty emit message

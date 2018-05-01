@@ -8,9 +8,10 @@ export default (point, data, fields) => {
   const y = point[yField];
 
   let testData = [];
+
   for (let i = 0, length = data.length; i < length; i += 1) {
-    if (data[i].key === name) {
-      testData = data[i].values;
+    if (data[i].filename === name) {
+      testData = data[i].data;
 
       for (let j = 0, L = testData.length; j < L; j += 1) {
         // if a match return index which will exit out of all loops

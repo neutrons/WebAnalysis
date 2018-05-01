@@ -15,14 +15,22 @@ export default (md) => {
 
   if (typeof md === 'undefined') return obj;
 
+  // clean up punctuations, spaces, and lowercase
+  // this is to match exactly to column header names
+  function formatField(value) {
+    return value.trim().split(' = ')[1]
+    .replace(/\./, '')
+    .toLowerCase();
+  }
+
   md.forEach((el) => {
     const xMatch = /^def_x/.exec(el);
     const yMatch = /^def_y/.exec(el);
 
     if (xMatch !== null) {
-      obj.x = el.trim().split(' = ')[1];
+      obj.x = formatField(el);
     } else if (yMatch !== null) {
-      obj.y = el.trim().split(' = ')[1];
+      obj.y = formatField(el);
     }
   });
 
