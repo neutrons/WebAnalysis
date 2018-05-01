@@ -1,5 +1,5 @@
 export default {
-  browseData: {},
+  selectedData: [],
   field: {
     x: 'x',
     y: 'y',

@@ -1,9 +1,6 @@
 import getters from '../getters';
+import plotMetadata from '../plotMetadataGetter';
 
-getters.plotMetadata = (state) => {
-  if (!Object.keys(state.browseData).length) return [];
-
-  return state.browseData.metadata;
-};
+getters.plotMetadata = plotMetadata;
 
 export default getters;

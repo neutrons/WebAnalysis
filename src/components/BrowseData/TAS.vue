@@ -24,13 +24,13 @@ export default {
   },
   computed: {
     ...mapState('TAS/Browse', {
-      browseData: state => state.browseData,
+      sd: state => state.selectedData,
       fields: state => state.field,
     }),
     ...mapGetters('TAS/Browse', {
       label: 'label',
       plotData: 'getPreparedData',
-      plotMetadata: 'plotMetadata',
+      metadata: 'plotMetadata',
     }),
   },
   methods: {

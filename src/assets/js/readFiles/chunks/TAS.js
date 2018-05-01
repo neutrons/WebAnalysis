@@ -10,11 +10,10 @@ export default function (chunk) {
 
   if (header.startsWith('#')) {
     header = header.replace(/#\s*/, '');
-    header = header.split(/[\s,]+/).join(delimiter);
+    header = header.split(/[\s,]+/);
+    header = header.map(head => head.replace(/\./g, ''))
+      .join(delimiter);
   }
-
-  // Remove punctuations from header names for readability
-  header = header.replace(/Pt./, 'pt');
 
   rows[0] = header.toLowerCase();
 

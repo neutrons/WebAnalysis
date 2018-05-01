@@ -1,4 +1,9 @@
 export default {
+  data() {
+    return {
+      defaultPlotElementStatus: null,
+    };
+  },
   methods: {
     togglePlotElement(element) {
       // check if first time toggling, if so set default states

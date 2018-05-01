@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     ...mapState('SANS/Browse', {
-      browseData: state => state.browseData,
+      sd: state => state.selectedData,
       fields: state => state.field,
     }),
     ...mapGetters('SANS/Browse', {

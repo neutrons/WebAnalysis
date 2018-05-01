@@ -24,7 +24,7 @@
 
               <v-spacer></v-spacer>
 
-              <v-btn icon @click='show = !show' v-if='Object.keys(browseData).length'>
+              <v-btn icon @click='show = !show' v-if='Object.keys(selectedData).length'>
                 <v-icon>{{ show ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</v-icon>
               </v-btn>
             </v-layout>
@@ -33,12 +33,12 @@
       </v-flex>
 
       <!-- data and metadata tabs  -->
-      <v-flex xs12 v-if='Object.keys(browseData).length'>
+      <v-flex xs12 v-if='Object.keys(selectedData).length'>
         <v-slide-y-transition>
             <v-tabs v-if='show'>
               <!-- Tabs Bar -->
               <v-tabs-bar>
-                <v-tabs-item href='#metadata' ripple v-if='typeof browseData.metadata !== "undefined"'>
+                <v-tabs-item href='#metadata' ripple v-if='typeof selectedData.metadata !== "undefined"'>
                   Metadata
                 </v-tabs-item>
                 <v-tabs-item href='#data' ripple>
@@ -52,14 +52,14 @@
                 <v-tabs-content id='data'>
                   <v-card flat>
                     <v-card-text class='tab-card-text'>
-                      <v-plotted-data-table :plotted-data='browseData.data || []' :files='[browseData.filename]' />
+                      <v-plotted-data-table :plotted-data='selectedData.data || []' :files='[selectedData.filename]' />
                     </v-card-text>
                   </v-card>
                 </v-tabs-content>
 
                 <v-tabs-content id='metadata'>
-                  <v-card-text class='tab-card-text' v-if='typeof browseData.metadata !== "undefined"'>
-                    <v-metadata-table :metadata='browseData.metadata || {}'></v-metadata-table>
+                  <v-card-text class='tab-card-text' v-if='typeof selectedData.metadata !== "undefined"'>
+                    <v-metadata-table :metadata='selectedData.metadata || {}'></v-metadata-table>
                   </v-card-text>
                 </v-tabs-content>
 
@@ -85,6 +85,7 @@ import * as d3 from 'd3';
 import chartMethods from './chartMethods';
 import deletePoint from '../DeletePoint/DeletePointMixins';
 import togglePlotElement from '../../assets/js/togglePlotElementsMixin';
+import defaultChartMixin from '../../assets/js/chartFunctions/defaultChartMixin';
 
 export default {
   name: 'DefaultBrowseChart',
@@ -92,6 +93,7 @@ export default {
     chartMethods,
     deletePoint,
     togglePlotElement,
+    defaultChartMixin,
   ],
   components: {
     'v-reset-chart-button': () => import('../ResetChartButton'),
@@ -102,26 +104,16 @@ export default {
   },
   data() {
     return {
-      xType: 'x',
-      yType: 'y',
-      width: 960,
-      height: 600,
-      viewBox: '0 0 960 600',
       show: true,
-      defaultMargin: {
-        top: 20,
-        right: 50,
-        bottom: 50,
-        left: 100,
-      },
-      isLegend: true,
-      isScatterLines: true,
-      isErrorBars: true,
-      isScatterPoints: true,
-      defaultPlotElementStatus: null,
     };
   },
   computed: {
+    xType() {
+      return 'x';
+    },
+    yType() {
+      return 'y';
+    },
     chartName() {
       return `.browseplot-${this.ID}`;
     },
@@ -154,45 +146,10 @@ export default {
 
       return d3.extent(this.plotData[0].values, d => d[this.fields.y]);
     },
-    colorScale() {
-      return d3.scaleOrdinal(d3.schemeCategory20)
-        .domain(this.plotData.map(d => d.key));
-    },
-    xAxis() {
-      return d3.axisBottom(this.xScale);
-    },
-    yAxis() {
-      return d3.axisLeft(this.yScale);
-    },
-    xGrid() {
-      return d3.axisBottom(this.xScale)
-        .ticks(10)
-        .tickSize(-this.height)
-        .tickFormat('');
-    },
-    yGrid() {
-      return d3.axisLeft(this.yScale)
-        .ticks(10)
-        .tickSize(-this.width)
-        .tickFormat('');
-    },
-    line() {
-      return d3.line()
-        .defined(this.filterForLog)
-        .x(d => this.xScale(d[this.fields.x]))
-        .y(d => this.yScale(d[this.fields.y]));
-    },
-    isMetadata() {
-      return !(typeof this.plotMetadata === 'undefined');
-    },
-    metadataLength() {
-      if (!this.isMetadata) {
-        return 0;
-      } else if (this.plotMetadata === null) {
-        return 0;
-      }
+    selectedData() {
+      if (this.sd.length === 0) return {};
 
-      return Object.keys(this.plotMetadata).length;
+      return this.sd[0];
     },
   },
   methods: {

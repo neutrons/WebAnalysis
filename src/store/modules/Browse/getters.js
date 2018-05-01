@@ -11,10 +11,10 @@ export default {
   },
   getPreparedData(state) {
     // this returns the data used for plotting
-    if (!Object.keys(state.browseData).length) return [];
+    if (state.selectedData.length === 0) return [];
 
     const yField = state.field.y;
-    let temp = _.cloneDeep(state.browseData.data);
+    let temp = _.cloneDeep(state.selectedData[0].data);
     temp = createErrorPoints(temp, yField);
 
     const nest = d3.nest()
