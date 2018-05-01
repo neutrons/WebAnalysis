@@ -30,7 +30,7 @@ export default {
     ...mapGetters('TAS/Browse', {
       label: 'label',
       plotData: 'getPreparedData',
-      plotMetadata: 'plotMetadata',
+      metadata: 'plotMetadata',
     }),
   },
   methods: {

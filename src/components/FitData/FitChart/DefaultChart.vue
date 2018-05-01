@@ -137,12 +137,11 @@
 
 <script>
 // Import Packages
-import * as d3 from 'd3';
 import { eventBus } from '../../../assets/js/eventBus';
 import chartMethods from './chartMethods';
 import deletePoint from '../../DeletePoint/DeletePointMixins';
 import togglePlotElementsMixin from '../../../assets/js/togglePlotElementsMixin';
-import defaultChartData from '../../../assets/js/chartFunctions/defaultChartDataMixin';
+import defaultChartMixin from '../../../assets/js/chartFunctions/defaultChartMixin';
 
 export default {
   name: 'Chart',
@@ -156,7 +155,7 @@ export default {
     chartMethods,
     deletePoint,
     togglePlotElementsMixin,
-    defaultChartData,
+    defaultChartMixin,
   ],
   components: {
     'v-reset-chart-button': () => import('../../ResetChartButton'),
@@ -203,70 +202,6 @@ export default {
     },
     plotData() {
       return this.chartConfigurations.data;
-    },
-    xScale() {
-      return this.plotScale.x.value
-        .range([0, this.width])
-        .domain(this.xExtent)
-        .nice();
-    },
-    yScale() {
-      return this.plotScale.y.value
-        .range([this.height, 0])
-        .domain(this.yExtent)
-        .nice();
-    },
-    yType() {
-      return this.plotScale.y.label;
-    },
-    xType() {
-      return this.plotScale.x.label;
-    },
-    colorScale() {
-      return d3.scaleOrdinal(d3.schemeCategory20)
-        .domain(this.plotData.map(d => d.key));
-    },
-    xAxis() {
-      return d3.axisBottom(this.xScale);
-    },
-    yAxis() {
-      return d3.axisLeft(this.yScale);
-    },
-    xGrid() {
-      return d3.axisBottom(this.xScale)
-        .ticks(10)
-        .tickSize(-this.height)
-        .tickFormat('');
-    },
-    yGrid() {
-      return d3.axisLeft(this.yScale)
-        .ticks(10)
-        .tickSize(-this.width)
-        .tickFormat('');
-    },
-    xExtent() {
-      return this.getExtent(this.fields.x);
-    },
-    yExtent() {
-      return this.getExtent(this.fields.y);
-    },
-    line() {
-      return d3.line()
-        .defined(this.filterForLog)
-        .x(d => this.xScale(d[this.fields.x]))
-        .y(d => this.yScale(d[this.fields.y]));
-    },
-    isMetadata() {
-      return !(typeof this.metadata === 'undefined');
-    },
-    metadataLength() {
-      if (!this.isMetadata) {
-        return 0;
-      } else if (this.metadata === null) {
-        return 0;
-      }
-
-      return Object.keys(this.metadata).length;
     },
   },
   methods: {

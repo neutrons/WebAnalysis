@@ -3,16 +3,12 @@ import { mapState, mapGetters, mapActions } from 'vuex';
 
 import Chart from './DefaultChart';
 import { eventBus } from '../../../assets/js/eventBus';
-import chartMethods from './chartMethods';
 
 export default {
   name: 'CombineChartPOWDER',
   components: {
     'v-edit-chart-button': () => import('../../EditChart/EditChartButton/POWDERCombineEditChartButton'),
   },
-  mixins: [
-    chartMethods,
-  ],
   extends: Chart,
   data() {
     return {

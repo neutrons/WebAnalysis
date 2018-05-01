@@ -30,7 +30,7 @@ export default {
     ...mapGetters('POWDER/Browse', {
       label: 'label',
       plotData: 'getPreparedData',
-      plotMetadata: 'plotMetadata',
+      metadata: 'plotMetadata',
     }),
   },
   methods: {

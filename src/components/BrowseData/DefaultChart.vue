@@ -85,7 +85,7 @@ import * as d3 from 'd3';
 import chartMethods from './chartMethods';
 import deletePoint from '../DeletePoint/DeletePointMixins';
 import togglePlotElement from '../../assets/js/togglePlotElementsMixin';
-import defaultChartData from '../../assets/js/chartFunctions/defaultChartDataMixin';
+import defaultChartMixin from '../../assets/js/chartFunctions/defaultChartMixin';
 
 export default {
   name: 'DefaultBrowseChart',
@@ -93,7 +93,7 @@ export default {
     chartMethods,
     deletePoint,
     togglePlotElement,
-    defaultChartData,
+    defaultChartMixin,
   ],
   components: {
     'v-reset-chart-button': () => import('../ResetChartButton'),
@@ -104,12 +104,16 @@ export default {
   },
   data() {
     return {
-      xType: 'x',
-      yType: 'y',
       show: true,
     };
   },
   computed: {
+    xType() {
+      return 'x';
+    },
+    yType() {
+      return 'y';
+    },
     chartName() {
       return `.browseplot-${this.ID}`;
     },
@@ -141,46 +145,6 @@ export default {
       }
 
       return d3.extent(this.plotData[0].values, d => d[this.fields.y]);
-    },
-    colorScale() {
-      return d3.scaleOrdinal(d3.schemeCategory20)
-        .domain(this.plotData.map(d => d.key));
-    },
-    xAxis() {
-      return d3.axisBottom(this.xScale);
-    },
-    yAxis() {
-      return d3.axisLeft(this.yScale);
-    },
-    xGrid() {
-      return d3.axisBottom(this.xScale)
-        .ticks(10)
-        .tickSize(-this.height)
-        .tickFormat('');
-    },
-    yGrid() {
-      return d3.axisLeft(this.yScale)
-        .ticks(10)
-        .tickSize(-this.width)
-        .tickFormat('');
-    },
-    line() {
-      return d3.line()
-        .defined(this.filterForLog)
-        .x(d => this.xScale(d[this.fields.x]))
-        .y(d => this.yScale(d[this.fields.y]));
-    },
-    isMetadata() {
-      return !(typeof this.plotMetadata === 'undefined');
-    },
-    metadataLength() {
-      if (!this.isMetadata) {
-        return 0;
-      } else if (this.plotMetadata === null) {
-        return 0;
-      }
-
-      return Object.keys(this.plotMetadata).length;
     },
     selectedData() {
       if (this.sd.length === 0) return {};
