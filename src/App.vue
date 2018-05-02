@@ -42,9 +42,6 @@ export default {
     };
   },
   computed: {
-    links() {
-      return this.$router.options.routes.slice(2, this.$router.options.routes.length);
-    },
     hide() {
       return this.$route.meta.title !== 'Home' && this.$route.meta.title !== 'Edit Chart';
     },

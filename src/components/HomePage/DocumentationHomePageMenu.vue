@@ -5,7 +5,7 @@
   </v-subheader>
   <v-layout row wrap>
     <v-flex xs6 sm3 md2 pa-1>
-      <v-card height='100%' hover ripple dark>
+      <v-card height='100%' hover ripple exact to='/Documentation' dark>
         <v-card-media class='pa-0 pb-3'>
           <v-avatar tile class='primary icon-size'>
             <v-icon x-large dark>fa-book</v-icon>

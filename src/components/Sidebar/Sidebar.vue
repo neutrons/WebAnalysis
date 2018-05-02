@@ -32,6 +32,7 @@ export default {
     SidebarPOWDERBrowse: () => import('./POWDER/Browse/SidebarPOWDERBrowse'),
     SidebarPOWDERFit: () => import('./POWDER/Fit/SidebarPOWDERFit'),
     SidebarPOWDERCombine: () => import('./POWDER/Combine/SidebarPOWDERCombine'),
+    SidebarDocumentation: () => import('./SidebarDocumentation'),
     Sidebar404: () => import('./Sidebar404'),
   },
   props: {

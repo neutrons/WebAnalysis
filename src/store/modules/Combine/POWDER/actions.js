@@ -53,7 +53,7 @@ powderActions.combineData = async ({ state, commit }, value) => { // eslint-disa
         });
       });
 
-      commit('combineData', tempData);
+      commit('combineData', { data: tempData, group: 'POWDER' });
       resolve(true);
     } catch (error) {
       reject(error);

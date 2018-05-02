@@ -14,6 +14,7 @@ const POWDERBrowse = () => import('@/components/BrowseData/POWDER');
 const POWDERFit = () => import('@/components/FitData/POWDER');
 const POWDERCombine = () => import('@/components/CombineData/POWDER');
 const EditChart = () => import('@/components/EditChart/EditChart');
+const Documentation = () => import('@/components/Documentation/Documentation');
 
 Vue.use(Router);
 
@@ -33,7 +34,6 @@ export default new Router({
       component: EditChart,
       meta: {
         title: 'Edit Chart',
-        sidebar: 'Sidebar404',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'Edit', href: '/', disabled: true },
@@ -48,10 +48,6 @@ export default new Router({
       meta: {
         title: 'Home',
       },
-    },
-    {
-      path: '/Documentation',
-      redirect: '/HomePage',
     },
     // SANS Routes
     {
@@ -229,6 +225,21 @@ export default new Router({
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'POWDER', href: '/POWDER', disabled: false },
           { text: 'Combine', href: '/', disabled: true },
+        ],
+      },
+    },
+    // Documentation Route
+    {
+      path: '/Documentation',
+      name: 'Documentation',
+      component: Documentation,
+      meta: {
+        title: 'User Documentation',
+        group: 'Documentation',
+        sidebar: 'SidebarDocumentation',
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage', disabled: false },
+          { text: 'Documentation', href: '/Documentation', disabled: false },
         ],
       },
     },

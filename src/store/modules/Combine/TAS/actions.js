@@ -53,7 +53,7 @@ tasActions.combineData = async ({ state, commit }, dataToCombine) => {
         tempData.push(t);
       });
 
-      commit('combineData', _.cloneDeep(tempData));
+      commit('combineData', { data: _.cloneDeep(tempData), group: 'TAS' });
 
       resolve(true);
     } catch (error) {

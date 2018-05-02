@@ -26,7 +26,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-toolbar-items>
+    <v-toolbar-items v-if='$route.meta.group !== "Documentation"'>
       <v-fetch-data v-if='!isOffline'></v-fetch-data>
       <v-upload-data></v-upload-data>
     </v-toolbar-items>
@@ -48,6 +48,7 @@ export default {
     'v-tas-nav-menu': () => import('./TASNavMenu'),
     'v-sans-nav-menu': () => import('./SANSNavMenu'),
     'v-powder-nav-menu': () => import('./POWDERNavMenu'),
+    'v-documentation-nav-menu': () => import('./DocumentationNavMenu'),
   },
   computed: {
     isOffline() {
