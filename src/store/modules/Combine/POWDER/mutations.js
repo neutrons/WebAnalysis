@@ -46,6 +46,7 @@ powderMutations.setCurrentData = (state, payload) => {
           anode: point[anode],
           name: `${filename}_${anode}`,
           error: point[anode] < 0 ? 0 : Math.sqrt(point[anode]),
+          monitor: point.monitor,
         })),
       };
     });
@@ -109,6 +110,7 @@ powderMutations.setIsNormalizeByGap = (state, value) => {
 
 powderMutations.normalizeData = (state) => {
   state.isNormalized = true; // eslint-disable-line
+  const normalizeByMonitor = state.normalizeByMonitor;
 
   // To Normalize Powder Data divide each plotted curve by vcorr data
   state.selectedData.forEach((curve) => {
@@ -129,19 +131,26 @@ powderMutations.normalizeData = (state) => {
 
         // calculate normalized error
         // | normalized_Y | * SQRT( (errY / Y)^2 + (normalized_value_error / normalized_value)^2 )
+        const monitor = normalizedPoint.monitor;
         const oldY = normalizedPoint.anode;
-        const normY = oldY / normalizeValue;
+        const normY = ((oldY / monitor) / normalizeValue) * normalizeByMonitor;
         const errorY = point.error;
         const normValueError = Math.sqrt(normalizeValue);
         // eslint-disable-next-line
-        const temp = Math.abs(normY) * Math.sqrt(Math.pow(errorY / oldY, 2) + Math.pow(normValueError / normalizeValue, 2));
+        const temp = Math.abs(normY) *
+          Math.sqrt(((errorY / oldY) ** 2)
+            + ((normValueError / normalizeValue) ** 2)
+            + ((Math.sqrt(monitor) / monitor) ** 2)
+            + ((Math.sqrt(normalizeByMonitor) / normalizeByMonitor) ** 2));
+
         const newError = isFinite(temp) ? temp : 0; // check for invalid normalized errors
 
         normalizedPoint.anode = normY;
         normalizedPoint.error = newError;
 
         return normalizedPoint;
-      });
+      })
+      .filter(point => isFinite(point.anode) && isFinite(point.error)); // filter out invalid points
     });
   });
 };
@@ -159,6 +168,10 @@ powderMutations.resetNormalizedData = (state) => {
   state.combinedData = [];
   state.tolerance = state.defaultSettings.tolerance.value;
   /* eslint-enable */
+};
+
+powderMutations.setNormalizeByMonitor = (state, value) => {
+  state.normalizeByMonitor = value; // eslint-disable-line
 };
 
 export default powderMutations;

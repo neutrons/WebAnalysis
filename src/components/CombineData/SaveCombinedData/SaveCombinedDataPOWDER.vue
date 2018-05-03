@@ -14,25 +14,30 @@
       v-model='combineFilename'
       required
       hint='Type name of combined data curve'
-      :rules='[validateFileName]'
+      :rules='[validateFileName, checkName]'
       :suffix='fileType'
     ></v-text-field>
 
+    <v-btn @click='onStoreCombinedData' :disabled='!formValid' block outline flat color='success'>Store Combined</v-btn>
     <v-btn @click='onSaveCombinedData' :disabled='!formValid' block outline flat color='success'>Download Combined</v-btn>
   </v-form>
 </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import validateFileName from '../../../assets/js/validateFilename';
 import downloadCSV from '../../../assets/js/downloadCSV';
 import downloadFile from '../../../assets/js/downloadFile';
+import checkName from './checkName';
+
+import { eventBus } from '../../../assets/js/eventBus';
 
 export default {
   name: 'SaveCombinedDataPOWDER',
   mixins: [
     validateFileName,
+    checkName,
     downloadCSV,
   ],
   data() {
@@ -44,9 +49,14 @@ export default {
     };
   },
   computed: {
+    ...mapState('POWDER', {
+      fetched: state => state.fetched,
+      uploaded: state => state.uploaded,
+    }),
     ...mapState('POWDER/Combine', {
       combinedData: state => state.combinedData,
       binTolerance: state => state.tolerance,
+      storedCombined: state => state.storedCombined,
     }),
     fileType() {
       return this.fileFormat === 'Fullprof' ? '.dat' : '.gsa';
@@ -54,8 +64,29 @@ export default {
     filename() {
       return this.combineFilename + this.fileType;
     },
+    filenameList() {
+      const k1 = Object.keys(this.fetched);
+      const k2 = Object.keys(this.uploaded);
+      const k3 = Object.keys(this.storedCombined);
+      return [].concat.apply([], [k1, k2, k3]);
+    },
   },
   methods: {
+    ...mapActions('POWDER/Combine', [
+      'storeCombinedData',
+    ]),
+    onStoreCombinedData() {
+      // always store combined data
+      const group = this.$route.meta.group;
+      this.storeCombinedData({ group, name: this.combineFilename })
+        .then(() => {
+          eventBus.$emit('redraw-chart-powder-combine');
+          eventBus.$emit('add-notification', 'Combined data stored. To view it go to Graph tab.', 'success');
+        })
+        .catch((error) => {
+          eventBus.$emit('add-notification', error.message, 'error');
+        });
+    },
     onSaveCombinedData() {
       if (this.$refs.form.validate()) {
         if (this.fileFormat === 'Fullprof') {

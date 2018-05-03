@@ -14,6 +14,10 @@ export default {
     return {
       isMathJax: false,
       activeParentTab: null,
+      label: {
+        x: '2theta',
+        y: 'intensity',
+      },
     };
   },
   created() {
@@ -32,7 +36,6 @@ export default {
   computed: {
     ...mapState('POWDER/Combine', {
       plotScale: state => state.plotScale,
-      label: state => state.field,
       combinedData: state => state.combinedData,
       mergedFiles: state => state.filesSelected,
       fields: state => state.field,
