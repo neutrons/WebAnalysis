@@ -9,6 +9,7 @@ import mutations from './mutations';
 import Browse from '../Browse/POWDER';
 import Fit from '../Fit/POWDER';
 import Combine from '../Combine/POWDER';
+import Runs from '../Runs/POWDER';
 
 export default {
   namespaced: true,
@@ -17,6 +18,7 @@ export default {
     Browse: _.cloneDeep(Browse),
     Fit: _.cloneDeep(Fit),
     Combine: _.cloneDeep(Combine),
+    Runs: _.cloneDeep(Runs),
   },
   getters,
   actions,

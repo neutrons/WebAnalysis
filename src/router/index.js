@@ -7,12 +7,16 @@ const SANS1DFit = () => import('@/components/FitData/SANS1D');
 const SANS1DBrowse = () => import('@/components/BrowseData/SANS1D');
 const SANS1DStitch = () => import('@/components/StitchData/SANS');
 const SANS2DGraph = () => import('@/components/Chart2D/SANS2D');
+
 const TASFit = () => import('@/components/FitData/TAS');
 const TASBrowse = () => import('@/components/BrowseData/TAS');
 const TASCombine = () => import('@/components/CombineData/TAS');
+const TASRunsTable = () => import('@/components/RunsTable/RunsTableTAS');
+
 const POWDERBrowse = () => import('@/components/BrowseData/POWDER');
 const POWDERFit = () => import('@/components/FitData/POWDER');
 const POWDERCombine = () => import('@/components/CombineData/POWDER');
+const POWDERRunsTable = () => import('@/components/RunsTable/RunsTablePOWDER');
 const EditChart = () => import('@/components/EditChart/EditChart');
 
 Vue.use(Router);
@@ -33,7 +37,8 @@ export default new Router({
       component: EditChart,
       meta: {
         title: 'Edit Chart',
-        sidebar: 'Sidebar404',
+        sidebar: 'None',
+        hideNavbar: true,
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'Edit', href: '/', disabled: true },
@@ -46,6 +51,8 @@ export default new Router({
       name: 'HomePage',
       component: HomePage,
       meta: {
+        sidebar: 'None',
+        hideNavbar: true,
         title: 'Home',
       },
     },
@@ -67,6 +74,7 @@ export default new Router({
         group: 'SANS',
         subgroup: 'SANS1D',
         sidebar: 'SidebarSANS1DFit',
+        hideNavbar: false,
         feature: 'Fit',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
@@ -84,6 +92,7 @@ export default new Router({
         group: 'SANS',
         subgroup: 'SANS1D',
         sidebar: 'SidebarSANS1DBrowse',
+        hideNavbar: false,
         feature: 'Browse',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
@@ -101,6 +110,7 @@ export default new Router({
         group: 'SANS',
         subgroup: 'SANS1D',
         sidebar: 'SidebarSANS1DStitch',
+        hideNavbar: false,
         feature: 'Stitch',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
@@ -118,6 +128,7 @@ export default new Router({
         group: 'SANS',
         subgroup: 'SANS2D',
         sidebar: 'SidebarSANS2D',
+        hideNavbar: false,
         feature: '2D',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
@@ -139,6 +150,7 @@ export default new Router({
         title: 'TAS-Fit',
         group: 'TAS',
         sidebar: 'SidebarTASFit',
+        hideNavbar: false,
         feature: 'Fit',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
@@ -155,6 +167,7 @@ export default new Router({
         title: 'TAS-Browse',
         group: 'TAS',
         sidebar: 'SidebarTASBrowse',
+        hideNavbar: false,
         feature: 'Browse',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
@@ -171,11 +184,28 @@ export default new Router({
         title: 'TAS-Combine',
         group: 'TAS',
         sidebar: 'SidebarTASCombine',
+        hideNavbar: false,
         feature: 'Combine',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'TAS', href: '/TAS', disabled: false },
           { text: 'Combine', href: '/', disabled: true },
+        ],
+      },
+    },
+    {
+      path: '/TAS/RunsTable',
+      name: 'TAS-Runs-Table',
+      component: TASRunsTable,
+      meta: {
+        title: 'TAS-Runs-Title',
+        group: 'TAS',
+        sidebar: 'None',
+        hideNavbar: false,
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage', disabled: false },
+          { text: 'TAS', href: '/TAS', disabled: false },
+          { text: 'Runs', href: '/', disabled: true },
         ],
       },
     },
@@ -192,6 +222,7 @@ export default new Router({
         title: 'POWDER-Fit',
         group: 'POWDER',
         sidebar: 'SidebarPOWDERFit',
+        hideNavbar: false,
         feature: 'Fit',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
@@ -208,6 +239,7 @@ export default new Router({
         title: 'POWDER-Browse',
         group: 'POWDER',
         sidebar: 'SidebarPOWDERBrowse',
+        hideNavbar: false,
         feature: 'Browse',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
@@ -224,11 +256,28 @@ export default new Router({
         title: 'POWDER-Combine',
         group: 'POWDER',
         sidebar: 'SidebarPOWDERCombine',
+        hideNavbar: false,
         feature: 'Combine',
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'POWDER', href: '/POWDER', disabled: false },
           { text: 'Combine', href: '/', disabled: true },
+        ],
+      },
+    },
+    {
+      path: '/POWDER/RunsTable',
+      name: 'POWDER-Runs-Table',
+      component: POWDERRunsTable,
+      meta: {
+        title: 'POWDER-Runs-Title',
+        group: 'POWDER',
+        sidebar: 'None',
+        hideNavbar: false,
+        breadcrumb: [
+          { text: 'Home', href: '/HomePage', disabled: false },
+          { text: 'POWDER', href: '/POWDER', disabled: false },
+          { text: 'Runs', href: '/', disabled: true },
         ],
       },
     },

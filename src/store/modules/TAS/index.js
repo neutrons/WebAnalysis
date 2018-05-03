@@ -9,6 +9,7 @@ import mutations from './mutations';
 import Browse from '../Browse/TAS';
 import Fit from '../Fit/TAS';
 import Combine from '../Combine/TAS';
+import Runs from '../Runs/TAS';
 
 export default {
   namespaced: true,
@@ -17,6 +18,7 @@ export default {
     Browse: _.cloneDeep(Browse),
     Fit: _.cloneDeep(Fit),
     Combine: _.cloneDeep(Combine),
+    Runs: _.cloneDeep(Runs),
   },
   getters,
   actions,

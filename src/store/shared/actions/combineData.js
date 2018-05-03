@@ -60,11 +60,11 @@ export const storeCombinedData = async ({ state, commit }, payload) => { // esli
       let date = new Date();
       date = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 
-      const metadata = [
-        `date = ${date}`,
-        `def_x = ${defaultFields.x}`,
-        `def_y = ${defaultFields.y}`,
-      ];
+      const metadata = {
+        date: `${date}`,
+        def_x: `${defaultFields.x}`,
+        def_y: `${defaultFields.y}`,
+      };
 
       const group = payload.group;
       // convert point name to new filename

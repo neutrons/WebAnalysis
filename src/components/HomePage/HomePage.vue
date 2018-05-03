@@ -1,29 +1,42 @@
 <template>
 <v-layout row wrap class='home-container'>
-
-  <!-- Documentation Menu -->
-  <v-documentation-home-page-menu />
-
-  <!-- SANS Menu -->
-  <v-sans-home-page-menu />
-
-  <!-- TAS Menu -->
-  <v-tas-home-page-menu />
-
-  <!-- POWDER Menu -->
-  <v-powder-home-page-menu />
-
+  <!-- generate homepage menus -->
+  <v-homepage-menu v-for='menu in menus' :key='menu.header' :header='menu.header' :links='menu.links' />
 </v-layout>
 </template>
 
 <script>
+import POWDERLinks from './POWDERLinks';
+import SANSLinks from './SANSLinks';
+import TASLinks from './TASLinks';
+import DocumentationLinks from './DocumentationLinks';
+
 export default {
   name: 'HomePage',
   components: {
-    'v-documentation-home-page-menu': () => import('./DocumentationHomePageMenu'),
-    'v-sans-home-page-menu': () => import('./SANSHomePageMenu'),
-    'v-tas-home-page-menu': () => import('./TASHomePageMenu'),
-    'v-powder-home-page-menu': () => import('./POWDERHomePageMenu'),
+    'v-homepage-menu': () => import('./HomePageMenu'),
+  },
+  data() {
+    return {
+      menus: [
+        {
+          header: 'DOCUMENTATION',
+          links: DocumentationLinks,
+        },
+        {
+          header: 'SANS',
+          links: SANSLinks,
+        },
+        {
+          header: 'TAS',
+          links: TASLinks,
+        },
+        {
+          header: 'POWDER',
+          links: POWDERLinks,
+        },
+      ],
+    };
   },
 };
 </script>
