@@ -17,7 +17,7 @@ powderMutations.setCurrentData = (state, payload) => {
   const filteredData = [];
 
   for (let i = 0, length = chosenData.length; i < length; i += 1) {
-    const metadata = [...chosenData[i].metadata];
+    const metadata = { ...chosenData[i].metadata };
     const filename = chosenData[i].filename;
     let data = _.cloneDeep(chosenData[i].data);
     const vcorr = detectVCorrFilename(data);

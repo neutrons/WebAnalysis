@@ -11,7 +11,7 @@ export default (state, chosenData) => {
     const result = {};
     const data = _.cloneDeep(tempData[i].data);
     const filename = tempData[i].filename;
-    const metadata = [...tempData[i].metadata];
+    const metadata = { ...tempData[i].metadata };
     const dataTransformed = _.cloneDeep(data)
       .map(d => ({
         ...d,

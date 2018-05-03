@@ -3,8 +3,8 @@ export default (state) => {
 
   const obj = {};
   state.selectedData.forEach((d) => {
-    if (typeof d.metadata !== 'undefined' && d.metadata.length > 0) {
-      obj[d.filename] = [...d.metadata];
+    if (typeof d.metadata !== 'undefined' && Object.keys(d.metadata).length > 0) {
+      obj[d.filename] = { ...d.metadata };
     }
   });
 

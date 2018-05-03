@@ -31,24 +31,21 @@
       <v-upload-data></v-upload-data>
     </v-toolbar-items>
 
-    <!-- Dynamically load menu based on group selected -->
-    <component :is='currentMenu' />
+    <v-navbar-menu />
   </v-toolbar>
 </template>
 
 <script>
 import FetchData from '../FetchData/FetchData';
 import UploadData from '../UploadData/UploadData';
+import NavbarMenu from './NavbarMenu';
 
 export default {
   name: 'Navbar',
   components: {
     'v-fetch-data': FetchData,
     'v-upload-data': UploadData,
-    'v-tas-nav-menu': () => import('./TASNavMenu'),
-    'v-sans-nav-menu': () => import('./SANSNavMenu'),
-    'v-powder-nav-menu': () => import('./POWDERNavMenu'),
-    'v-documentation-nav-menu': () => import('./DocumentationNavMenu'),
+    'v-navbar-menu': NavbarMenu,
   },
   computed: {
     isOffline() {

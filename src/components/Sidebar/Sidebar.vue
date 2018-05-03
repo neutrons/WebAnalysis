@@ -13,7 +13,7 @@
     >
 
     <keep-alive>
-      <component :is='$route.meta.sidebar'></component>
+      <component :is='sidebarName'></component>
     </keep-alive>
     </v-navigation-drawer>
 </template>
@@ -47,6 +47,9 @@ export default {
         return this.show;
       },
       set() {},
+    },
+    sidebarName() {
+      return this.$route.meta.sidebar === 'None' ? 'Sidebar404' : this.$route.meta.sidebar;
     },
   },
 };

@@ -1,6 +1,5 @@
 import pp from 'papaparse';
 import config from '../../../assets/js/readFiles/configs/TAS';
-import extractDefaultFields from '../../../assets/js/extractDefaultFields';
 
 function cleanDataTable(table) {
   let temp = table.split(/\r\n|\r|\n/);
@@ -32,7 +31,20 @@ function extractMetadata(data) {
   metadata = metadata.split(/\r\n|\r|\n/);
   metadata = metadata.filter(d => d !== '');
 
-  const defaultFields = extractDefaultFields(metadata);
+  // turn metadata into an object
+  const obj = {};
+  const tempMD = metadata.map(d => d.split(/\s*=\s*/));
+
+  tempMD.forEach((d) => {
+    if (d.length > 1) obj[d[0]] = d[1];
+  });
+
+  metadata = obj;
+
+  const defaultFields = {
+    x: metadata.def_x.toLowerCase(),
+    y: metadata.def_y.toLowerCase(),
+  };
 
   return {
     metadata,
