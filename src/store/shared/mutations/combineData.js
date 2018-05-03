@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import * as d3 from 'd3';
 
-export const combineData = (state, data) => {
-  let tempData = data;
+export const combineData = (state, payload) => {
+  let tempData = payload.data;
+  const group = payload.group;
 
   const xField = state.field.x;
   const yField = state.field.y;
@@ -48,6 +49,15 @@ export const combineData = (state, data) => {
 
       // calculate cumulative sum for new error point value
       newError = subset.reduce((a, b) => a + b.error, 0);
+
+      // If POWDER get calculate average
+      if (group === 'POWDER') {
+        const length = subset.length;
+        const newYtmp = newY / length;
+        newError = Math.abs(newYtmp) * Math.sqrt(Math.pow(newError / newY, 2) + Math.pow(Math.sqrt(length) / length, 2)); // eslint-disable-line
+
+        newY = newYtmp;
+      }
 
       /* eslint-disable */
       const newPoint = { ...subset[0] }; // just use first point in subset as a template for new point

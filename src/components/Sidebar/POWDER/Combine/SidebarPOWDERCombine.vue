@@ -43,7 +43,7 @@
   </v-expansion-panel-content>
 
   <v-expansion-panel-content :value='true' v-if='selectedData.length && isNormalized'>
-    <div slot='header' class='title'>Combine</div>
+    <div slot='header' class='title'>Binning</div>
     <v-container>
       <v-layout row>        
         <v-flex xs12>

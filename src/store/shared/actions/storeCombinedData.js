@@ -5,7 +5,7 @@ export default ({ state, commit }, payload) => {
   const data = _.cloneDeep(state.combinedData);
   const tags = ['combine'];
   const defaultFields = { ...state.field };
-  const metadata = [];
+  const metadata = {};
   const group = payload.group;
 
   data.forEach((point) => {

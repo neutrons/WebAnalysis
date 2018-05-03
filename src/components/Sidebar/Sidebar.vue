@@ -13,7 +13,7 @@
     >
 
     <keep-alive>
-      <component :is='$route.meta.sidebar'></component>
+      <component :is='sidebarName'></component>
     </keep-alive>
     </v-navigation-drawer>
 </template>
@@ -32,6 +32,7 @@ export default {
     SidebarPOWDERBrowse: () => import('./POWDER/Browse/SidebarPOWDERBrowse'),
     SidebarPOWDERFit: () => import('./POWDER/Fit/SidebarPOWDERFit'),
     SidebarPOWDERCombine: () => import('./POWDER/Combine/SidebarPOWDERCombine'),
+    SidebarDocumentation: () => import('./SidebarDocumentation'),
     Sidebar404: () => import('./Sidebar404'),
   },
   props: {
@@ -46,6 +47,9 @@ export default {
         return this.show;
       },
       set() {},
+    },
+    sidebarName() {
+      return this.$route.meta.sidebar === 'None' ? 'Sidebar404' : this.$route.meta.sidebar;
     },
   },
 };
