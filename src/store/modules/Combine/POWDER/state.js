@@ -20,5 +20,6 @@ statePOWDER.field = {
 statePOWDER.anodesToExclude = [];
 statePOWDER.normalizeByVCorr = {};
 statePOWDER.isNormalizeByGap = false;
+statePOWDER.normalizeByMonitor = 20000;
 
 export default statePOWDER;

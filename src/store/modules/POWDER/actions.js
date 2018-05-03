@@ -48,14 +48,16 @@ export default {
 
         if (typeof files.normalizeFiles !== 'undefined') {
           normalizeFiles = files.normalizeFiles;
+          dataFiles = files.dataFiles;
           await dispatch('loadNormalizeFiles', { type: 'fetch', normalizeFiles })
             .catch((error) => {
               reject(error);
             });
+        } else {
+          dataFiles = files;
         }
 
-        if (typeof files.dataFiles !== 'undefined') {
-          dataFiles = files.dataFiles;
+        if (Object.keys(dataFiles).length > 0) {
           await dispatch('loadDataFiles', { type: 'fetch', dataFiles })
             .catch((error) => {
               reject(error);

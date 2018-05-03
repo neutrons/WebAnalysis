@@ -24,15 +24,19 @@
 
     <v-flex xs12>
       <v-select
+        prepend-icon='mode_edit'
+        :prepend-icon-cb='() => onEditVcorr()'
         :items='items'
         v-model='selected'
-        item-text='name'
-        item-value='value'
+        @change='onSelectChange'
         label='VCorr (file to normalize data)'
         hint='Select file to Normalize Data'
-        :disabled='isNormalized'
       />
     </v-flex>
+
+    <v-vcorr-edit v-if='showVCorrEdit'
+      @cancel-edit='showVCorrEdit = false'
+    />
   </div>
 </template>
 
@@ -44,11 +48,16 @@ export default {
   created() {
     this.setDefaultVCorr();
   },
+  components: {
+    'v-vcorr-edit': () => import('./VCorrEdit'),
+  },
   data() {
     return {
       m1Error: false,
       colltransError: false,
       isDifferentVcorr: false,
+      showVCorrEdit: false,
+      selected: '',
     };
   },
   computed: {
@@ -58,34 +67,9 @@ export default {
     ...mapState('POWDER/Combine', {
       normalizeByVCorr: state => state.normalizeByVCorr,
       selectedData: state => state.selectedData,
-      isNormalized: state => state.isNormalized,
     }),
-    vcorrKeys() {
-      return Object.keys(this.vcorrFiles);
-    },
     items() {
-      const result = [];
-
-      /* eslint-disable */
-      // get an array of objects for vcorr filenames and data values
-      for (let key in this.vcorrFiles) {
-        result.push({
-          name: key,
-          value: this.vcorrFiles[key],
-        });
-      }
-      /* eslint-enable*/
-
-      return result;
-    },
-    selected: {
-      get() {
-        return this.normalizeByVCorr;
-      },
-      set(value) {
-        // when a vcorr file is selected update the state with file's data
-        this.setNormalizeByVCorr(value);
-      },
+      return Object.keys(this.vcorrFiles);
     },
     vcorrErrorMsg() {
       if (this.m1Error && this.colltransError) {
@@ -110,6 +94,10 @@ export default {
     ...mapMutations('POWDER/Combine', [
       'setNormalizeByVCorr',
     ]),
+    onSelectChange(value) {
+      const vcorrData = this.vcorrFiles[value];
+      this.setNormalizeByVCorr(vcorrData);
+    },
     resetVcorrErrors() {
       this.m1Error = false;
       this.colltransError = false;
@@ -136,14 +124,21 @@ export default {
     setDefaultVCorr() {
       // Get vcorr file depending on first plotted data
       const vcorr = this.selectedData[0].vcorr.filename;
-      if (this.vcorrKeys.indexOf(vcorr) !== -1) {
-        this.selected = this.vcorrFiles[vcorr];
+
+      if (this.items.indexOf(vcorr) === -1) {
+        this.selected = this.items[0];
       } else {
-        this.selected = this.vcorrFiles[this.vcorrKeys[0]];
+        this.selected = vcorr;
       }
+
+      this.setNormalizeByVCorr(this.vcorrFiles[this.selected]);
 
       this.resetVcorrErrors();
       this.vcorrErrors();
+    },
+    onEditVcorr() {
+      // trigger dialog to edit vcorr array
+      this.showVCorrEdit = true;
     },
   },
   watch: {
