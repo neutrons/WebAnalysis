@@ -2,10 +2,10 @@
 <v-container pa-3 pl-5>
   <v-layout row wrap mb-5 v-for='(chapter, chapterTitle) in guide' :key='chapterTitle'>
     <v-flex xs12 mb-2>
-      <h1 class='mb-2'>{{ chapterTitle }}</h1>
+      <h1 class='mb-2 secondary--text'>{{ chapterTitle }}</h1>
     </v-flex>
 
-    <v-flex xs12 offset-sm1 v-for='(section, sectionTitle) in chapter.sections' :key='section.id'>
+    <v-flex xs12 v-for='(section, sectionTitle) in chapter.sections' :key='section.id'>
       <h3>{{ sectionTitle }}</h3>
 
       <div v-html='section.content' class='mb-3'></div>
@@ -33,7 +33,7 @@ export default {
               content: `
                 </div>
                   <figure>
-                    <image alt='Plot Layout Image' src=''>
+                    <img alt='Plot Layout Image' src='../../static/AppLayout.png'>
                     <figcaption>
                       <p><sup><b>(1)</b></sup> Left side of the page is the control panel. You can select files to plot, fit, or combine. You can change plot scales, tag files, along with other controls specific to feature.</p>
                       <p><sup><b>(2)</b></sup> Middle of page is the plot view. For the top half, users can view the plot or a table of the data being plotted. Immediately below the chart is a toolbar of tools to alter and edit the plot. The bottom half contains additional information related to plot features, such as fit results, file metadata, etc.</p>
@@ -49,7 +49,7 @@ export default {
               content: `
                 <div>
                   <figure>
-                    <image alt='Fetch Data Image' src=''>
+                    <img alt='Fetch Data Image' src='../../static/FetchData.gif'>
                     <figcaption>Click to fetch data from server</figcaption>
                   </figure>
                 </div>`,
@@ -59,27 +59,16 @@ export default {
               content: `
                 <div>
                   <figure>
-                    <image alt='Click to Upload Image' src=''>
+                    <img alt='Click to Upload Image' src='../../static/UploadFile.gif'>
                     <figcaption>Click to upload a file</figcaption>
                   </figure>
                   <br>
-                  <p><b>OR</b></p>
+                  <p style='text-align: center;'><b>OR</b></p>
                   <br>
                   <figure>
-                    <image alt='Drag and Drop Image' src=''>
+                    <img alt='Drag and Drop Image' src='../../static/DragDrop.gif'>
                     <figcaption>Drag and drop files to upload</figcaption>
                   </figure>
-                </div>`,
-            },
-            'Plot Files': {
-              id: 'basics-plot-files',
-              content: `
-                <div>
-                  <p>
-                    Use the Files panel in the left sidebar to select files to plot.
-                  </p>
-
-                  <image alt='Plot Files Image' src=''>
                 </div>`,
             },
             'Change Scale': {
@@ -90,7 +79,7 @@ export default {
                     Use the Scales panel in the left sidebar to change the current plot's scales...gif goes here.
                   </p>
 
-                  <image alt='Change Plot Scales Image' src=''>
+                  <img alt='Change Plot Scales Image' src='../../static/ChangeScales.gif'>
                 </div>`,
             },
             'Delete Points': {
@@ -101,7 +90,7 @@ export default {
                     If you identify an outlier in the plot, simply click the point to delete it. A prompt will be displayed to confirm.
                   </p>
 
-                  <image alt='Delete Points Image' src=''>
+                  <img alt='Delete Points Image' src='../../static/DeletePoint.gif'>
                 </div>`,
             },
             'Toggle Plot Elements': {
@@ -111,7 +100,7 @@ export default {
                   <p>
                     If you don't need scatter lines, error bars, points, or legends for a given plot, simply toggle the elements off with the button labeled 'Toggle Plot Elements' below the plot view. If you notice the plot is sluggish while zooming and panning, one culprit is too many svg elements on the plot; toggling off plot elements can help improve slow zooming.
                   </p>
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='Toggle Plot Elements Image' src='../../static/TogglingElements.gif'>
                 </div>`,
             },
             'Edit Chart': {
@@ -120,7 +109,7 @@ export default {
                 <div>
                   <p>If you want to edit the current plot, click the 'Edit Chart Button' below the plot. This will take you to a new page where you can customize the appearance of the plot using the Plotly package.</p>
 
-                  <image alt='Edit Plot Image' src=''>
+                  <img alt='Edit Plot Image' src='../../static/EditChart.gif'>
                 </div>`,
             },
             'Change Theme': {
@@ -131,7 +120,7 @@ export default {
                     If you want to change the color of the app's appearance, click one of the three options at the bottom right of the page.
                   </p>
 
-                  <image alt='Change Color Theme Image' src=''>
+                  <img alt='Change Color Theme Image' src='../../static/ChangeTheme.gif'>
                 </div>`,
             },
             'Unzoom Chart': {
@@ -142,7 +131,7 @@ export default {
                     If you have zoomed or panned a plot and would like to go to its default state, simply click the 'Unzoom Plot' button below the plot view.
                   </p>
 
-                  <image alt='Unzoom Plot Image' src=''>
+                  <img alt='Unzoom Plot Image' src='../../static/UnzoomPlot.gif'>
                 </div>`,
             },
           },
@@ -166,7 +155,7 @@ export default {
                     To tag a file use the tag panel to in the left sidebar.
                   </p>
 
-                  <image alt='Tagging Files Image' src=''>
+                  <img alt='Tagging Files Image' src='../../static/TaggingFile.gif'>
                 </div>`,
             },
           },
@@ -178,10 +167,8 @@ export default {
               content: `
                 <div>
                   <p>
-                    Some content in graph's data
+                    The Graph Tab allows users to plot multiple files, as well as perform various types of curve fittings.
                   </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
                 </div>`,
             },
             'Fit Data': {
@@ -189,10 +176,10 @@ export default {
               content: `
                 <div>
                   <p>
-                    Some content in graph's data
+                    The controls for fitting data are found in the left sidebar panel.
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='Fit Data Gif' src='../../static/FitData.gif'>
                 </div>`,
             },
             'Fit Results': {
@@ -200,21 +187,10 @@ export default {
               content: `
                 <div>
                   <p>
-                    Some content in graph's data
+                    The results for fitting a curve will be displayed below the plot view.
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            'Select Fit Type': {
-              id: 'fit-select-type',
-              content: `
-                <div>
-                  <p>
-                    Some content in graph's data
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='Fit Results Gif' src='../../static/FitResults.gif'>
                 </div>`,
             },
             'Edit Fit Equation': {
@@ -222,10 +198,10 @@ export default {
               content: `
                 <div>
                   <p>
-                    Some content in graph's data
+                    Users can edit the original fit equation by changing the equation itself or altering the intial coefficient values. Coefficient values can be toggled constant if desired.
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='Fit Equation Gif' src='../../static/FitEquation.gif'>
                 </div>`,
             },
             'Point Pick': {
@@ -236,7 +212,7 @@ export default {
                     Some content in graph's data
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='Point Pick Gif' src='../../static/PickPoints.gif'>
                 </div>`,
             },
             'Levenberg Settings': {
@@ -247,34 +223,12 @@ export default {
                     Some content in graph's data
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            'SANS Features': {
-              id: 'fit-sans',
-              content: `
-                <div>
-                  <p>
-                    Some content in graph's data
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            'TAS Features': {
-              id: 'fit-tas',
-              content: `
-                <div>
-                  <p>
-                    Some content in graph's data
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='Levenberg Settings Gif' src='../../static/LevenbergSettings.gif'>
                 </div>`,
             },
           },
         },
-        'Combine/Normalize Data': {
+        'Combine / Normalize Data': {
           sections: {
             Intro: {
               id: 'combine-intro',
@@ -284,51 +238,18 @@ export default {
                     Some content for combine's data
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='Combine Data Gif' src='../../static/CombineData.gif'>
                 </div>`,
             },
-            'Normalize Data': {
-              id: 'normalize-data',
+            'Store Combined': {
+              id: 'combine-stroe',
               content: `
                 <div>
                   <p>
-                    Some content for combine's data
+                    Users can store combined data and plot then plot it in the graph tab.
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            'Combine Data': {
-              id: 'combine-data',
-              content: `
-                <div>
-                  <p>
-                    Some content for combine's data
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            TAS: {
-              id: 'combine-tas',
-              content: `
-                <div>
-                  <p>
-                    Some content for combine's data
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            POWDER: {
-              id: 'combine-powder',
-              content: `
-                <div>
-                  <p>
-                    Some content for combine's data
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='Store Combined Gif' src='../../static/StoreCombined.gif'>
                 </div>`,
             },
           },
@@ -343,63 +264,24 @@ export default {
                     Content for stitch data's
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='Stitch Data Gif' src='../../static/StitchData.gif'>
                 </div>`,
             },
-            'Stitching Curves': {
-              id: 'stitch-curves',
+          },
+        },
+        'Runs Table': {
+          sections: {
+            Intro: {
+              id: 'runs-intro',
               content: `
                 <div>
                   <p>
-                    Content for stitch data's
+                    Content for runs table
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            'Remove Stitched Curve': {
-              id: 'stitch-remove',
-              content: `
-                <div>
-                  <p>
-                    Content for stitch data's
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            'Toggling Zoom and Selection': {
-              id: 'stitch-toggle-zoom',
-              content: `
-                <div>
-                  <p>
-                    Content for stitch data's
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            'Save Stitched Curve': {
-              id: 'stitch-save',
-              content: `
-                <div>
-                  <p>
-                    Content for stitch data's
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            'Draw Selections': {
-              id: 'stitch-draw-selections',
-              content: `
-                <div>
-                  <p>
-                    Content for stitch data's
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
+                  <img alt='Runs Table Demo Gif' src='../../static/RunsTable.gif'>
+                </div>
+              `,
             },
           },
         },
@@ -413,7 +295,7 @@ export default {
                     Content for 2d's plot
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='SANS 2D Gif' src='../../static/SANS2D.gif'>
                 </div>`,
             },
           },
@@ -428,18 +310,7 @@ export default {
                     Content for TAS's data
                   </p>
 
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            'Combine Data': {
-              id: 'tas-combine',
-              content: `
-                <div>
-                  <p>
-                    Content for TAS's data
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
+                  <img alt='Metadata Table Gif' src='../../static/MetadataTable.gif'>
                 </div>`,
             },
           },
@@ -451,21 +322,8 @@ export default {
               content: `
                 <div>
                   <p>
-                    Some content for Powder's data
+                    Same as <a href='#tas-metadata'>TAS Metadata</a>.
                   </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
-                </div>`,
-            },
-            'Normalize Data': {
-              id: 'powder-normalize',
-              content: `
-                <div>
-                  <p>
-                    Some content for Powder's data
-                  </p>
-
-                  <image alt='Toggle Plot Elements Image' src=''>
                 </div>`,
             },
           },
@@ -475,3 +333,16 @@ export default {
   },
 };
 </script>
+
+<style>
+img {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+figcaption {
+  text-align: center;
+}
+</style>
