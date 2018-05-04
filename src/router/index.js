@@ -287,6 +287,7 @@ export default new Router({
         title: 'User Documentation',
         group: 'Documentation',
         sidebar: 'SidebarDocumentation',
+        hideNavbar: false,
         breadcrumb: [
           { text: 'Home', href: '/HomePage', disabled: false },
           { text: 'Documentation', href: '/Documentation', disabled: false },

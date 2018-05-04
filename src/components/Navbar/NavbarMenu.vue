@@ -22,6 +22,7 @@ import activeClass from './activeClassMixin';
 import POWDERLinks from '../HomePage/POWDERLinks';
 import SANSLinks from '../HomePage/SANSLinks';
 import TASLinks from '../HomePage/TASLinks';
+import DocumentationLinks from '../HomePage/DocumentationLinks';
 
 export default {
   name: 'NavbarMenu',
@@ -33,6 +34,7 @@ export default {
       POWDERLinks,
       SANSLinks,
       TASLinks,
+      DocumentationLinks,
     };
   },
   computed: {
@@ -43,8 +45,10 @@ export default {
         case 'TAS':
           return this.TASLinks;
         case 'POWDER':
-        default:
           return this.POWDERLinks;
+        case 'Documentation':
+        default:
+          return this.DocumentationLinks;
       }
     },
   },
