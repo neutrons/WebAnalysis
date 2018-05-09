@@ -1,0 +1,39 @@
+# scan = 30
+# date = 5/9/2018
+# time = 1:43:55 PM
+# proposal = 17173
+# experiment = Test for Spin Stripes in a Nickelate Crystal
+# experiment_number = 788
+# command = scan h 0.6666 k 0.6666 l 5 6 1 e 0
+# builtin_command = scan h 0.6666 k 0.6666 l 5 6 1 e 0
+# users = Junjie Zhang, Bixia Wang, Daniel Phelan, Daniel Pajerowski
+# local_contact = 
+# scan_title = superlattice L scan
+# monochromator = Heusler
+# analyzer = Heusler
+# sense = +-+
+# collimation = 48-999-60-999
+# samplename = Lanthanum Nickelate, Lanthanum Nickelate
+# sampletype = crystal
+# samplemosaic = 30.000000
+# latticeconstants = 3.956519,3.956519,25.937332,90.000000,90.000000,90.000000
+# ubmatrix = -0.021984,-0.015737,0.038333,-0.164846,-0.189777,-0.004013,0.190326,-0.166188,0.000952
+# mode = 0
+# plane_normal = -0.017477,0.069745,0.997363
+# ubconf = UB08May2018_50258PM.ini
+# preset_type = countfile
+# countfile = guide 16 parq
+# countfile = drive hguide off vguide off
+# countfile = count preset mcu 600
+# countfile = drive hguide on vguide on
+# countfile = count preset mcu 600
+# def_x = l
+# def_y = detector_1
+# col_headers = 
+#   Pt.          h          k          l          e     time_1 detector_1  monitor_1      mcu_1     time_2 detector_2  monitor_2      mcu_2 focal_length         m1         m2       marc     mtrans     mfocus     fguide     hguide     vguide    tbguide     aguide     bguide     cguide         s1         s2        sgl        sgu        stl        stu         a1         a2          q         ei         ef    coldtip     sample     temp_a
+      1     0.6666     0.6665     5.0026    -0.0071    612.394    234.000 1174201.000    600.001    611.899    201.000 1174201.000    600.001     7.9186   -43.1425    41.9675     0.2500     2.0000   290.0035     4.0097     1.7492     1.3020     0.0039     2.7271     1.7818   -19.6441    34.9224   -44.3230     1.0015     4.0045     0.0000     0.0000    20.9838    41.9559     1.9259    13.5002    13.5073     4.9818     0.0000     5.000
+      2     0.6665     0.6664     6.0026    -0.0071    612.729    208.000 1174201.000    600.001    611.204    194.000 1174201.000    600.001     7.9186   -43.1425    41.9675     0.2500     2.0000   290.0035     4.0097     1.7492     1.3020     0.0039     2.8864     1.5966   -19.5622    27.7800   -48.2500     1.0015     4.0045     0.0000     0.0000    20.9838    41.9559     2.0868    13.5002    13.5073     4.9873     0.0000     5.000
+# Sum of Counts = 442
+# Center of Mass = 5.473188+/-0.368931
+# Full Width Half-Maximum = 0.998268+/-0.521933
+# 2:25:07 PM  5/9/2018   scan completed.

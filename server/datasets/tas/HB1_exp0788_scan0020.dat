@@ -1,0 +1,35 @@
+# scan = 20
+# date = 5/8/2018
+# time = 5:03:14 PM
+# proposal = 17173
+# experiment = Test for Spin Stripes in a Nickelate Crystal
+# experiment_number = 788
+# command = scanrel sgu 5 -5 1
+# builtin_command = scan sgu @(sgu)+5 @(sgu)+-5 1.000000
+# users = Junjie Zhang, Bixia Wang, Daniel Phelan, Daniel Pajerowski
+# local_contact = 
+# scan_title = rechecking 008
+# monochromator = Heusler
+# analyzer = Heusler
+# sense = +-+
+# collimation = 48-80-60-240
+# samplename = Lanthanum Nickelate, Lanthanum Nickelate
+# sampletype = crystal
+# samplemosaic = 30.000000
+# latticeconstants = 3.956519,3.956519,25.937332,90.000000,90.000000,90.000000
+# ubmatrix = -0.021984,-0.015737,0.038333,-0.164846,-0.189777,-0.004013,0.190326,-0.166188,0.000952
+# mode = 0
+# plane_normal = -0.017477,0.069745,0.997363
+# ubconf = UB08May2018_50258PM.ini
+# preset_type = normal 
+# preset_channel = time
+# preset_value = 1.000000
+# def_x = sgu
+# def_y = detector
+# col_headers = 
+#   Pt.        sgu       time   detector    monitor        mcu focal_length         m1         m2       marc     mtrans     mfocus     fguide     hguide     vguide    tbguide     aguide     bguide     cguide         s1         s2        sgl        stl        stu         a1         a2          q          h          k          l         ei         ef          e    coldtip     sample     temp_a
+      1     8.1110      0.000      0.000      0.000      0.000     7.9186   -43.1425    41.9675     0.2500     2.0000   290.0035     4.0097     0.0007     0.0039     5.1093     0.0000     0.0000     0.0000   -16.2325   -44.6212     1.0015     0.0000     0.0000    20.9838    41.9553     1.9383     0.0052    -0.0078     8.0010    13.5002    13.5077    -0.0075    49.9933   481.8250    50.000
+# Sum of Counts = 0
+# Center of Mass = NaN+/-NaN
+# Full Width Half-Maximum = NaN+/-NaN
+# 5:03:40 PM  5/8/2018   scan stopped!!

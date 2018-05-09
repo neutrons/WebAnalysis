@@ -1,0 +1,42 @@
+# scan = 29
+# date = 5/9/2018
+# time = 12:00:48 PM
+# proposal = 17173
+# experiment = Test for Spin Stripes in a Nickelate Crystal
+# experiment_number = 788
+# command = scan h 0.6666 k 0.6666 l 2 6 1 e 0
+# builtin_command = scan h 0.6666 k 0.6666 l 2 6 1 e 0
+# users = Junjie Zhang, Bixia Wang, Daniel Phelan, Daniel Pajerowski
+# local_contact = 
+# scan_title = superlattice L scan
+# monochromator = Heusler
+# analyzer = Heusler
+# sense = +-+
+# collimation = 48-999-60-999
+# samplename = Lanthanum Nickelate, Lanthanum Nickelate
+# sampletype = crystal
+# samplemosaic = 30.000000
+# latticeconstants = 3.956519,3.956519,25.937332,90.000000,90.000000,90.000000
+# ubmatrix = -0.021984,-0.015737,0.038333,-0.164846,-0.189777,-0.004013,0.190326,-0.166188,0.000952
+# mode = 0
+# plane_normal = -0.017477,0.069745,0.997363
+# ubconf = UB08May2018_50258PM.ini
+# preset_type = countfile
+# countfile = guide 16 parq
+# countfile = drive hguide off vguide off
+# countfile = count preset mcu 600
+# countfile = drive hguide on vguide on
+# countfile = count preset mcu 600
+# def_x = l
+# def_y = detector_1
+# col_headers = 
+#   Pt.          h          k          l          e     time_1 detector_1  monitor_1      mcu_1     time_2 detector_2  monitor_2      mcu_2 focal_length         m1         m2       marc     mtrans     mfocus     fguide     hguide     vguide    tbguide     aguide     bguide     cguide         s1         s2        sgl        sgu        stl        stu         a1         a2          q         ei         ef    coldtip     sample     temp_a
+      1     0.6666     0.6665     2.0028    -0.0071    611.923    334.000 1174201.000    600.001    611.771    248.000 1174201.000    600.001     7.9186   -43.1425    41.9675     0.2500     2.0000   290.0035     4.0097     0.0010     0.0039     0.0039     2.8864     1.5966   -19.5628    60.1734   -35.9043     1.0015     4.0045     0.0000     0.0000    20.9838    41.9559     1.5737    13.5002    13.5073     4.9881     0.0000     5.000
+      2     0.6667     0.6666     3.0029    -0.0071    611.372    267.000 1174201.000    600.001    612.333    222.000 1174201.000    600.001     7.9186   -43.1425    41.9675     0.2500     2.0000   290.0035     4.0093     1.7488     1.3020     0.0039     3.2166     1.1939   -19.3120    51.1397   -38.0561     1.0015     4.0045     0.0000     0.0000    20.9838    41.9559     1.6646    13.5002    13.5073     4.9822     0.0000     5.000
+      3     0.6666     0.6665     4.0028    -0.0071    612.431    232.000 1174201.000    600.001    612.444    234.000 1174201.000    600.001     7.9186   -43.1425    41.9675     0.2500     2.0000   290.0035     4.0097     1.7488     1.3020     0.0039     3.1334     1.2977   -19.3862    42.6995   -40.8931     1.0015     4.0045     0.0000     0.0000    20.9838    41.9559     1.7836    13.5002    13.5073     5.0134     0.0000     5.000
+      4     0.6666     0.6665     5.0027    -0.0071    611.381    230.000 1174201.000    600.001    612.525    192.000 1174201.000    600.001     7.9186   -43.1425    41.9675     0.2500     2.0000   290.0035     4.0097     1.7492     1.3020     0.0039     3.0231     1.4336   -19.4732    34.9221   -44.3232     1.0015     4.0045     0.0000     0.0000    20.9838    41.9559     1.9259    13.5002    13.5073     5.0031     0.0000     5.000
+      5     0.6665     0.6664     6.0025    -0.0071    612.806    227.000 1174201.000    600.001    612.783    205.000 1174201.000    600.001     7.9186   -43.1425    41.9675     0.2500     2.0000   290.0035     4.0097     1.7492     1.3020     0.0039     2.8864     1.5969   -19.5622    27.7801   -48.2496     1.0015     4.0045     0.0000     0.0000    20.9838    41.9559     2.0868    13.5002    13.5073     4.9837     0.0000     5.000
+# Sum of Counts = 1290
+# Center of Mass = 3.808176+/-0.155247
+# Full Width Half-Maximum = 2.889041+/-0.157295
+# 1:43:54 PM  5/9/2018   scan completed.
