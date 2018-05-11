@@ -75,33 +75,74 @@ tasMutations.resetAll = (state) => {
 };
 
 tasMutations.normalizeData = (state, data) => {
+  // data is an array with the scans to normalize
+  // every scan is a object: key is the scan name
   // normalize data in order to combine data on the same scale
   // normalization function: Y' = y / (K * normalizeField)
   const tempData = _.cloneDeep(data);
-  const normField = state.normalizeField;
-  const normValue = state.normalizeValue;
-  const yField = state.field.y;
+  const normField = state.normalizeField; // the name of the field. Eg. time, monitor, etc
+  const normValue = state.normalizeValue; // the value
+  const yField = state.field.y; // name of y axis. E.g detector
+  // console.log(state);
+  // console.log(data);
+
+  let normFields = [];
+  let yFields = [];
+  const regexMagneticField = /(\w+)_(\d+)/;
+
+  const matchedYField = yField.match(regexMagneticField);
+
+  if (matchedYField !== null) {
+    // We are in the case detector_1, detector_2, etc
+    // headers in the data in the data file
+    const headers = Object.keys(data[0].values[0]);
+    // Let's find the suffix numbers in the headers
+    const numberSuffix = [];
+    headers.filter((header) => {
+      const match = header.match(regexMagneticField);
+      if (match !== null) {
+        numberSuffix.push(match[2]);
+        return true;
+      }
+      return false;
+    });
+    const numberSuffixUnique = [...new Set(numberSuffix)];
+    normFields = numberSuffixUnique.map(e => `${normField}_${e}`);
+    yFields = numberSuffixUnique.map(e => `${matchedYField[1]}_${e}`);
+  } else {
+    normFields = [normField];
+    yFields = [yField];
+  }
+  // console.log(normFields);
+  // console.log(yFields);
 
   // first normalize data
+  // for each data set
   tempData.forEach((d) => {
-    d.values.forEach((point) => {
-      const C = point[normField];
-      const errorC = Math.sqrt(C);
-      const oldY = point[yField];
-      const normY = point[yField] / (normValue * C);
-      const error = point.error;
+    normFields.forEach((normFieldIt, index) => {
+      const yFieldIt = yFields[index];
+      // Iterating over the data sets to combine and normalize
+      // For each point inside the dataset
+      d.values.forEach((point) => {
+        const C = point[normFieldIt];
+        const errorC = Math.sqrt(C);
+        const oldY = point[yFieldIt];
+        const normY = point[yFieldIt] / (normValue * C);
+        const error = point.error;
 
-      if (isFinite(normY) && normY !== null) {
-        const normError = Math.abs(normY) * Math.sqrt(Math.pow(error / oldY, 2) + Math.pow(errorC / C, 2)); // eslint-disable-line
-        point.error = normError; // eslint-disable-line
-      }
+        // console.log(C, errorC, oldY, normY, error);
 
-      point[yField] = normY; // eslint-disable-line
+        if (isFinite(normY) && normY !== null) {
+          const normError = Math.abs(normY) * Math.sqrt(Math.pow(error / oldY, 2) + Math.pow(errorC / C, 2)); // eslint-disable-line
+          point.error = normError; // eslint-disable-line
+        }
+
+        point[yFieldIt] = normY; // eslint-disable-line
+      });
+      // eslint-disable-next-line
+      d.values = d.values.filter(point => isFinite(point[yFieldIt]) && point[yFieldIt] !== null); // filter for divide by zero
     });
-
-    // eslint-disable-next-line
-    d.values = d.values.filter(point => isFinite(point[yField]) && point[yField] !== null); // filter for divide by zero
-  });
+  }); // normFields
 
   // set the normalized data to selected data's transformed data
   for (let i = 0, length = tempData.length; i < length; i += 1) {
@@ -113,6 +154,8 @@ tasMutations.normalizeData = (state, data) => {
       }
     });
   }
+
+  // console.error(state.selectedData);
 
   state.isNormalized = true; // eslint-disable-line
   state.combinedData = []; // eslint-disable-line
